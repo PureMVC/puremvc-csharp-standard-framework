@@ -1,0 +1,13 @@
+PureMVC Port to CSharp by Michael Brailsford
+PureMVC - Copyright(c) 2006, 2007 Futurescale, Inc., Some rights reserved.
+--------------------------------------------------------------------------
+Release Date: ??/??/??
+    Platform: CSharp  
+     Version: 0 
+    Revision: 1
+      Author: Michael Brailsford <michael.brailsford@puremvc.org>
+     License: Creative Commons Attribution 3.0 United States License
+--------------------------------------------------------------------------
+0.1 - Initial project structure created in repository - CLH
+
+0.2 - ???
