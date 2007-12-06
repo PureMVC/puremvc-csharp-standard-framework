@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.Silverlight", "PureMVC.Silverlight\PureMVC.Silverlight.csproj", "{D59615BB-6F4D-40DC-9225-D782018236F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.Silverlight.Tests", "PureMVC.Silverlight.Tests\PureMVC.Silverlight.Tests.csproj", "{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D59615BB-6F4D-40DC-9225-D782018236F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59615BB-6F4D-40DC-9225-D782018236F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59615BB-6F4D-40DC-9225-D782018236F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59615BB-6F4D-40DC-9225-D782018236F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

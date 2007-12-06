@@ -1,0 +1,724 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PureMVC.Silverlight</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.patterns.observer.Notification" -->
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.INotification" -->
+        <member name="M:org.puremvc.csharp.interfaces.INotification.getName">
+            Get the name of the <code>INotification</code> instance. 
+            No setter, should be set by constructor only
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotification.setBody(System.Object)">
+            Set the body of the <code>INotification</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotification.getBody">
+            Get the body of the <code>INotification</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotification.setType(System.String)">
+            Set the type of the <code>INotification</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotification.getType">
+            Get the type of the <code>INotification</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotification.toString">
+            Get the string representation of the <code>INotification</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.#ctor(System.String)">
+            Constructor. 
+            
+            @param name name of the <code>Notification</code> instance. (required)
+            @param body the <code>Notification</code> body. (optional)
+            @param type the type of the <code>Notification</code> (optional)
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.getName">
+            Get the name of the <code>Notification</code> instance.
+            
+            @return the name of the <code>Notification</code> instance.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.setBody(System.Object)">
+            Set the body of the <code>Notification</code> instance.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.getBody">
+            Get the body of the <code>Notification</code> instance.
+            
+            @return the body object. 
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.setType(System.String)">
+            Set the type of the <code>Notification</code> instance.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.getType">
+            Get the type of the <code>Notification</code> instance.
+            
+            @return the type  
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Notification.toString">
+            Get the string representation of the <code>Notification</code> instance.
+            
+            @return the string representation of the <code>Notification</code> instance.
+        </member>
+        <member name="T:org.puremvc.csharp.interfaces.IModel">
+            The interface definition for a PureMVC Model.
+            
+            <P>
+            In PureMVC, <code>IModel</code> implementors provide
+            access to <code>IProxy</code> objects by named lookup. </P>
+            
+            <P>
+            An <code>IModel</code> assumes these responsibilities:</P>
+            
+            <UL>
+            <LI>Maintain a cache of <code>IProxy</code> instances</LI>
+            <LI>Provide methods for registering, retrieving, and removing <code>IProxy</code> instances</LI>
+            </UL>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IModel.registerProxy(org.puremvc.csharp.interfaces.IProxy)">
+            Register an <code>IProxy</code> instance with the <code>Model</code>.
+            
+            @param proxyName the name to associate with this <code>IProxy</code> instance.
+            @param proxy an object reference to be held by the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IModel.retrieveProxy(System.String)">
+            Retrieve an <code>IProxy</code> instance from the Model.
+            
+            @param proxyName
+            @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IModel.removeProxy(System.String)">
+            Remove an <code>IProxy</code> instance from the Model.
+            
+            @param proxyName name of the <code>IProxy</code> instance to be removed.
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.IMediator" -->
+        <member name="M:org.puremvc.csharp.interfaces.IMediator.getMediatorName">
+            Get the <code>IMediator</code> instance name
+            
+            @return the <code>IMediator</code> instance name
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IMediator.getViewComponent">
+            Get the <code>IMediator</code>'s view component.
+            
+            @return Object the view component
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IMediator.listNotificationInterests">
+            List <code>INotification</code> interests.
+            
+            @return an <code>Array</code> of the <code>INotification</code> names this <code>IMediator</code> has an interest in.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IMediator.handleNotification(org.puremvc.csharp.interfaces.INotification)">
+            Handle an <code>INotification</code>.
+            
+            @param notification the <code>INotification</code> to be handled
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.patterns.facade.Facade" -->
+        <member name="T:org.puremvc.csharp.interfaces.IFacade">
+             The interface definition for a PureMVC Facade.
+            
+             <P>
+             The Facade Pattern suggests providing a single
+             class to act as a central point of communication 
+             for a subsystem. </P>
+             
+             <P>
+             In PureMVC, the Facade acts as an interface between
+             the core MVC actors (Model, View, Controller) and
+             the rest of your application.</P>
+             
+             @see org.puremvc.interfaces.IModel IModel
+             @see org.puremvc.interfaces.IView IView
+             @see org.puremvc.interfaces.IController IController
+             @see org.puremvc.interfaces.ICommand ICommand
+             @see org.puremvc.interfaces.INotification INotification
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.registerProxy(org.puremvc.csharp.interfaces.IProxy)">
+            Register an <code>IProxy</code> with the <code>Model</code> by name.
+            
+            @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.retrieveProxy(System.String)">
+            Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
+            
+            @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
+            @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.removeProxy(System.String)">
+             Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
+            
+             @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.registerCommand(System.String,System.Type)">
+            Register an <code>ICommand</code> with the <code>Controller</code>.
+            
+            @param noteName the name of the <code>INotification</code> to associate the <code>ICommand</code> with.
+            @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            Notify <code>Observer</code>s of an <code>INotification</code>.
+            
+            @param note the <code>INotification</code> to have the <code>View</code> notify observers of.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
+            Register an <code>IMediator</code> instance with the <code>View</code>.
+            
+            @param mediator a reference to the <code>IMediator</code> instance
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.retrieveMediator(System.String)">
+            Retrieve an <code>IMediator</code> instance from the <code>View</code>.
+            
+            @param mediatorName the name of the <code>IMediator</code> instance to retrievve
+            @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.removeMediator(System.String)">
+            Remove a <code>IMediator</code> instance from the <code>View</code>.
+            
+            @param mediatorName name of the <code>IMediator</code> instance to be removed.
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.facade.Facade.#ctor" -->
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.initializeFacade">
+            Initialize the Singleton <code>Facade</code> instance.
+            
+            <P>
+            Called automatically by the constructor. Override in your
+            subclass to do any subclass specific initializations. Be
+            sure to call <code>super.initializeFacade()</code>, though.</P>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.getInstance">
+            Facade Singleton Factory method
+            
+            @return the Singleton instance of the Facade
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.facade.Facade.initializeController" -->
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.facade.Facade.initializeModel" -->
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.facade.Facade.initializeView" -->
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            Notify <code>Observer</code>s.
+            
+            @param notification the <code>INotification</code> to have the <code>View</code> notify <code>Observers</code> of.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.registerCommand(System.String,System.Type)">
+            Register an <code>ICommand</code> with the <code>Controller</code> by Notification name.
+            
+            @param notificationName the name of the <code>INotification</code> to associate the <code>ICommand</code> with
+            @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.registerProxy(org.puremvc.csharp.interfaces.IProxy)">
+            Register an <code>IProxy</code> with the <code>Model</code> by name.
+            
+            @param proxyName the name of the <code>IProxy</code>.
+            @param proxy the <code>IProxy</code> instance to be registered with the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.retrieveProxy(System.String)">
+            Retrieve an <code>IProxy</code> from the <code>Model</code> by name.
+            
+            @param proxyName the name of the proxy to be retrieved.
+            @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.removeProxy(System.String)">
+             Remove an <code>IProxy</code> from the <code>Model</code> by name.
+            
+             @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
+            Register a <code>IMediator</code> with the <code>View</code>.
+            
+            @param mediatorName the name to associate with this <code>IMediator</code>
+            @param mediator a reference to the <code>IMediator</code>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.retrieveMediator(System.String)">
+            Retrieve an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName
+            @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.removeMediator(System.String)">
+            Remove an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName name of the <code>IMediator</code> to be removed.
+        </member>
+        <member name="T:org.puremvc.csharp.patterns.facade.Facade.Nested">
+            Nested class for thread safe Singleton.
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.IView" -->
+        <member name="M:org.puremvc.csharp.interfaces.IView.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
+            Register an <code>IObserver</code> to be notified
+            of <code>INotifications</code> with a given name.
+            
+            @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
+            @param observer the <code>IObserver</code> to register
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            Notify the <code>IObservers</code> for a particular <code>INotification</code>.
+            
+            <P>
+            All previously attached <code>IObservers</code> for this <code>INotification</code>'s
+            list are notified and are passed a reference to the <code>INotification</code> in 
+            the order in which they were registered.</P>
+            
+            @param notification the <code>INotification</code> to notify <code>IObservers</code> of.
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.interfaces.IView.registerMediator(org.puremvc.csharp.interfaces.IMediator)" -->
+        <member name="M:org.puremvc.csharp.interfaces.IView.retrieveMediator(System.String)">
+            Retrieve an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
+            @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.removeMediator(System.String)">
+            Remove an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName name of the <code>IMediator</code> instance to be removed.
+        </member>
+        <member name="T:org.puremvc.csharp.interfaces.ICommand">
+             The interface definition for a PureMVC Command.
+            
+             @see org.puremvc.interfaces INotification
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.ICommand.execute(org.puremvc.csharp.interfaces.INotification)">
+            Execute the <code>ICommand</code>'s logic to handle a given <code>INotification</code>.
+            
+            @param note an <code>INotification</code> to handle.
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.patterns.observer.Observer" -->
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.IObserver" -->
+        <member name="M:org.puremvc.csharp.interfaces.IObserver.setNotifyMethod(System.String)">
+            Set the notification method.
+            
+            <P>
+            The notification method should take one parameter of type <code>INotification</code></P>
+            
+            @param notifyMethod the notification (callback) method of the interested object
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IObserver.setNotifyContext(System.Object)">
+            Set the notification context.
+            
+            @param notifyContext the notification context (this) of the interested object
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IObserver.notifyObserver(org.puremvc.csharp.interfaces.INotification)">
+            Notify the interested object.
+            
+            @param notification the <code>INotification</code> to pass to the interested object's notification method
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IObserver.compareNotifyContext(System.Object)">
+            Compare the given object to the notificaiton context object.
+            
+            @param obj the object to compare.
+            @return boolean indicating if the notification context and the object are the same.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.#ctor(System.String,System.Object)">
+            Constructor. 
+            
+            <P>
+            The notification method on the interested object should take 
+            one parameter of type <code>INotification</code></P>
+            
+            @param notifyMethod the notification method of the interested object
+            @param notifyContext the notification context of the interested object
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.setNotifyMethod(System.String)">
+            Set the notification method.
+            
+            <P>
+            The notification method should take one parameter of type <code>INotification</code>.</P>
+            
+            @param notifyMethod the notification (callback) method of the interested object.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.setNotifyContext(System.Object)">
+            Set the notification context.
+            
+            @param notifyContext the notification context (this) of the interested object.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.getNotifyMethod">
+            Get the notification method.
+            
+            @return the notification (callback) method of the interested object.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.getNotifyContext">
+            Get the notification context.
+            
+            @return the notification context (<code>this</code>) of the interested object.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.notifyObserver(org.puremvc.csharp.interfaces.INotification)">
+            Notify the interested object.
+            
+            @param notification the <code>INotification</code> to pass to the interested object's notification method.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.observer.Observer.compareNotifyContext(System.Object)">
+            Compare an object to the notification context. 
+            
+            @param obj the object to compare
+            @return boolean indicating if the object and the notification context are the same
+        </member>
+        <member name="T:org.puremvc.csharp.patterns.mediator.Mediator">
+            A base <code>IMediator</code> implementation. 
+            
+            @see org.puremvc.core.view.View View
+        </member>
+        <member name="F:org.puremvc.csharp.patterns.mediator.Mediator.NAME">
+            The name of the <code>Mediator</code>. 
+            
+            <P>
+            Typically, a <code>Mediator</code> will be written to serve
+            one specific control or group controls and so,
+            will not have a need to be dynamically named.</P>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.mediator.Mediator.#ctor">
+            Constructor.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.mediator.Mediator.getMediatorName">
+            Get the name of the <code>Mediator</code>.
+            <P>
+            Override in subclass!</P>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.mediator.Mediator.getViewComponent">
+             Get the <code>Mediator</code>'s view component.
+             
+             <P>
+             Additionally, an implicit getter will usually
+             be defined in the subclass that casts the view 
+             object to a type, like this:</P>
+             
+             <listing>
+            		private function get comboBox : mx.controls.ComboBox 
+            		{
+            			return viewComponent as mx.controls.ComboBox;
+            		}
+             </listing>
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.mediator.Mediator.listNotificationInterests">
+            List the <code>INotification</code> names this
+            <code>Mediator</code> is interested in being notified of.
+            
+            @return IList the list of <code>INotification</code> names 
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.mediator.Mediator.handleNotification(org.puremvc.csharp.interfaces.INotification)" -->
+        <member name="T:org.puremvc.csharp.patterns.proxy.Proxy">
+            A base <code>IProxy</code> implementation. 
+            
+            <P>
+            In PureMVC, <code>Proxy</code> classes are used to manage parts of the 
+            application's data model. </P>
+            
+            <P>
+            A <code>Proxy</code> might simply manage a reference to a local data object, 
+            in which case interacting with it might involve setting and 
+            getting of its data in synchronous fashion.</P>
+            
+            <P>
+            <code>Proxy</code> classes are also used to encapsulate the application's 
+            interaction with remote services to save or retrieve data, in which case, 
+            we adopt an asyncronous idiom; setting data (or calling a method) on the 
+            <code>Proxy</code> and listening for a <code>Notification</code> to be sent 
+            when the <code>Proxy</code> has retrieved the data from the service. </P>
+            
+            @see org.puremvc.{port}.core.model.Model Model
+        </member>
+        <member name="T:org.puremvc.csharp.interfaces.IProxy">
+             The interface definition for a PureMVC Proxy.
+            
+             <P>
+             In PureMVC, <code>IProxy</code> implementors assume these responsibilities:</P>
+             <UL>
+             <LI>Implement a common method which returns the name of the Proxy.</LI>
+             </UL>
+             <P>
+             Additionally, <code>IProxy</code>s typically:</P>
+             <UL>
+             <LI>Maintain references to one or more pieces of model data.</LI>
+             <LI>Provide methods for manipulating that data.</LI>
+             <LI>Generate <code>INotifications</code> when their model data changes.</LI>
+             <LI>Expose their name as a <code>public static const</code> called <code>NAME</code>.</LI>
+             <LI>Encapsulate interaction with local or remote services used to fetch and persist model data.</LI>
+             </UL>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IProxy.getProxyName">
+            Get the Proxy name
+            
+            @return the Proxy instance name
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IProxy.setData(System.Object)">
+            		 * Set the data
+            		 * 
+                     * @param data the data of the proxy
+            		 * @return void
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IProxy.getData">
+            Get the data
+            
+            @return the data object
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.proxy.Proxy.#ctor">
+            Constructor
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.proxy.Proxy.getProxyName">
+            Get the proxy name
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.proxy.Proxy.setData(System.Object)">
+            Set the data object
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.proxy.Proxy.getData">
+            Get the data object
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.patterns.command.MacroCommand" -->
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.patterns.observer.Notifier" -->
+        <member name="T:org.puremvc.csharp.interfaces.INotifier">
+            The interface definition for a PureMVC Notifier.
+            
+            <P>
+            <code>MacroCommand, Command, Mediator</code> and <code>Proxy</code>
+            all have a need to send <code>Notifications</code>. </P>
+            
+            <P>
+            The <code>INotifier</code> interface provides a common method called
+            <code>sendNotification</code> that relieves implementation code of 
+            the necessity to actually construct <code>Notifications</code>.</P>
+            
+            <P>
+            The <code>Notifier</code> class, which all of the above mentioned classes
+            extend, also provides an initialized reference to the <code>Facade</code>
+            Singleton, which is required for the convienience method
+            for sending <code>Notifications</code>, but also eases implementation as these
+            classes have frequent <code>Facade</code> interactions and usually require
+            access to the facade anyway.</P>
+            
+            @see org.puremvc.interfaces.IFacade IFacade
+            @see org.puremvc.interfaces.INotification INotification
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.INotifier.sendNotification(System.String)">
+            Send a <code>INotification</code>.
+            
+            <P>
+            Convenience method to prevent having to construct new 
+            notification instances in our implementation code.</P>
+            
+            @param notificationName the name of the notification to send
+            @param body the body of the notification (optional)
+            @param type the type of the notification (optional)
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.observer.Notifier.sendNotification(System.String)" -->
+        <member name="M:org.puremvc.csharp.patterns.command.MacroCommand.#ctor">
+            Constructor. 
+            
+            <P>
+            You should not need to define a constructor, 
+            instead, override the <code>initializeMacroCommand</code>
+            method.</P>
+            
+            <P>
+            If your subclass does define a constructor, be 
+            sure to call <code>super()</code>.</P>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.command.MacroCommand.initializeMacroCommand" -->
+        <member name="M:org.puremvc.csharp.patterns.command.MacroCommand.addSubCommand(System.Type)">
+            Add a <i>SubCommand</i>.
+            
+            <P>
+            The <i>SubCommands</i> will be called in First In/First Out (FIFO)
+            order.</P>
+            
+            @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>.
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.command.MacroCommand.execute(org.puremvc.csharp.interfaces.INotification)" -->
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.core.view.View" -->
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.core.view.View.#ctor" -->
+        <member name="M:org.puremvc.csharp.core.view.View.initializeView">
+            Initialize the Singleton View instance.
+            
+            <P>
+            Called automatically by the constructor, this
+            is your opportunity to initialize the Singleton
+            instance in your subclass without overriding the
+            constructor.</P>
+            
+            @return void
+        </member>
+        <member name="M:org.puremvc.csharp.core.view.View.getInstance">
+            View Singleton Factory method.
+            
+            @return the Singleton instance of <code>View</code>
+        </member>
+        <member name="M:org.puremvc.csharp.core.view.View.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
+            Register an <code>IObserver</code> to be notified
+            of <code>INotifications</code> with a given name.
+            
+            @param notificationName the name of the <code>INotifications</code> to notify this <code>IObserver</code> of
+            @param observer the <code>IObserver</code> to register
+        </member>
+        <member name="M:org.puremvc.csharp.core.view.View.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            Notify the <code>IObservers</code> for a particular <code>INotification</code>.
+            
+            <P>
+            All previously attached <code>IObservers</code> for this <code>INotification</code>'s
+            list are notified and are passed a reference to the <code>INotification</code> in 
+            the order in which they were registered.</P>
+            
+            @param notification the <code>INotification</code> to notify <code>IObservers</code> of.
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.core.view.View.registerMediator(org.puremvc.csharp.interfaces.IMediator)" -->
+        <member name="M:org.puremvc.csharp.core.view.View.retrieveMediator(System.String)">
+            Retrieve an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
+            @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.core.view.View.removeMediator(System.String)">
+            Remove an <code>IMediator</code> from the <code>View</code>.
+            
+            @param mediatorName name of the <code>IMediator</code> instance to be removed.
+        </member>
+        <member name="T:org.puremvc.csharp.core.view.View.Nested">
+            Nested class for thread safe Singleton.
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.core.model.Model" -->
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.core.model.Model.#ctor" -->
+        <member name="M:org.puremvc.csharp.core.model.Model.initializeModel">
+            Initialize the Singleton <code>Model</code> instance.
+            
+            <P>
+            Called automatically by the constructor, this
+            is your opportunity to initialize the Singleton
+            instance in your subclass without overriding the
+            constructor.</P>
+            
+            @return void
+        </member>
+        <member name="M:org.puremvc.csharp.core.model.Model.getInstance">
+            <code>Model</code> Singleton Factory method.
+            
+            @return the Singleton instance
+        </member>
+        <member name="M:org.puremvc.csharp.core.model.Model.registerProxy(org.puremvc.csharp.interfaces.IProxy)">
+            Register an <code>IProxy</code> with the <code>Model</code>.
+            
+            @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.core.model.Model.retrieveProxy(System.String)">
+            Retrieve an <code>IProxy</code> from the <code>Model</code>.
+            
+            @param proxyName
+            @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
+        </member>
+        <member name="M:org.puremvc.csharp.core.model.Model.removeProxy(System.String)">
+            Remove an <code>IProxy</code> from the <code>Model</code>.
+            
+            @param proxyName name of the <code>IProxy</code> instance to be removed.
+        </member>
+        <member name="T:org.puremvc.csharp.core.model.Model.Nested">
+            Nested class for thread safe Singleton.
+        </member>
+        <member name="T:org.puremvc.csharp.patterns.command.SimpleCommand">
+            A base <code>ICommand</code> implementation.
+            
+            <P>
+            Your subclass should override the <code>execute</code> 
+            method where your business logic will handle the <code>INotification</code>. </P>
+            
+            @see org.puremvc.core.controller.Controller Controller
+            @see org.puremvc.patterns.observer.Notification Notification
+            @see org.puremvc.patterns.command.MacroCommand MacroCommand
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.command.SimpleCommand.execute(org.puremvc.csharp.interfaces.INotification)">
+            Fulfill the use-case initiated by the given <code>INotification</code>.
+            
+            <P>
+            In the Command Pattern, an application use-case typically
+            begins with some user action, which results in an <code>INotification</code> being broadcast, which 
+            is handled by business logic in the <code>execute</code> method of an
+            <code>ICommand</code>.</P>
+            
+            @param notification the <code>INotification</code> to handle.
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.IController" -->
+        <member name="M:org.puremvc.csharp.interfaces.IController.registerCommand(System.String,System.Type)">
+            Register a particular <code>ICommand</code> class as the handler 
+            for a particular <code>INotification</code>.
+            
+            @param notificationName the name of the <code>INotification</code>
+            @param commandType the <code>Type</code> of the <code>ICommand</code>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IController.executeCommand(org.puremvc.csharp.interfaces.INotification)">
+            Execute the <code>ICommand</code> previously registered as the
+            handler for <code>INotification</code>s with the given notification name.
+            
+            @param notification the <code>INotification</code> to execute the associated <code>ICommand</code> for
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IController.removeCommand(System.String)">
+            Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
+            
+            @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
+        </member>
+        <member name="T:org.puremvc.csharp.core.controller.Controller">
+            <summary>
+            A Singleton <c>IController</c> implementation.
+            </summary>
+            <remarks>
+            <para>In PureMVC, the <code>Controller</code> class follows the 'Command and Controller' strategy, and assumes these responsibilities:</para>
+            <list type="bullet">
+            <item>Remembering which <c>ICommand</c>s are intended to handle which <c>INotifications</c>.</item>
+            <item>Registering itself as an <c>IObserver</c> with the <c>View</c> for each <c>INotification</c> that it has an <c>ICommand</c> mapping for.</item>
+            <item>Creating a new instance of the proper <c>ICommand</c> to handle a given <c>INotification</c> when notified by the <c>View</c>.</item>
+            <item>Calling the <c>ICommand</c>'s <code>execute</code> method, passing in the <c>INotification</c>.</item>
+            </list>
+            <para>Your application must register <c>ICommands</c> with the Controller.</para>
+            <para>he simplest way is to subclass <c>Facade</c>, and use its <c>initializeController</c> method to add your registrations.</para>
+            </remarks>
+            <see cref="T:org.puremvc.csharp.core.view.View"/>
+            <see cref="T:org.puremvc.csharp.patterns.observer.Observer"/>
+            <see cref="T:org.puremvc.csharp.patterns.observer.Notification"/>
+            <see cref="!:SimpleCommand"/>
+            <see cref="!:MacroCommand"/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.core.controller.Controller.#ctor" -->
+        <member name="M:org.puremvc.csharp.core.controller.Controller.initializeController">
+             Initialize the Singleton <code>Controller</code> instance.
+             
+             <P>Called automatically by the constructor.</P> 
+             
+             <P>Note that if you are using a subclass of <code>View</code>
+             in your application, you should <i>also</i> subclass <code>Controller</code>
+             and override the <code>initializeController</code> method in the 
+             following way:</P>
+             
+             <listing>
+            		// ensure that the Controller is talking to my IView implementation
+            		override public function initializeController(  ) : void 
+            		{
+            			view = MyView.getInstance();
+            		}
+             </listing>
+             
+             @return void
+        </member>
+        <member name="M:org.puremvc.csharp.core.controller.Controller.getInstance">
+            <code>Controller</code> Singleton Factory method.
+            
+            @return the Singleton instance of <code>Controller</code>
+        </member>
+        <member name="M:org.puremvc.csharp.core.controller.Controller.executeCommand(org.puremvc.csharp.interfaces.INotification)">
+            If an <code>ICommand</code> has previously been registered 
+            to handle a the given <code>INotification</code>, then it is executed.
+            
+            @param note an <code>INotification</code>
+        </member>
+        <member name="M:org.puremvc.csharp.core.controller.Controller.registerCommand(System.String,System.Type)">
+            Register a particular <code>ICommand</code> class as the handler 
+            for a particular <code>INotification</code>.
+            
+            <P>
+            If an <code>ICommand</code> has already been registered to 
+            handle <code>INotification</code>s with this name, it is no longer
+            used, the new <code>ICommand</code> is used instead.</P>
+            
+            @param notificationName the name of the <code>INotification</code>
+            @param commandType the <code>Type</code> of the <code>ICommand</code>
+        </member>
+        <member name="M:org.puremvc.csharp.core.controller.Controller.removeCommand(System.String)">
+            Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
+            
+            @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
+        </member>
+        <member name="T:org.puremvc.csharp.core.controller.Controller.Nested">
+            Nested class for thread safe Singleton.
+        </member>
+    </members>
+</doc>

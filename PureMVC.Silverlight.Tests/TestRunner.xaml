@@ -1,0 +1,11 @@
+﻿<Canvas x:Name="parentCanvas"
+        xmlns="http://schemas.microsoft.com/client/2007" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Loaded="TestRunner_Loaded" 
+        x:Class="org.puremvc.csharp.tests.TestRunner;assembly=ClientBin/PureMVC.Silverlight.Tests.dll"
+        Width="640"
+        Height="480"
+        Background="White"
+        >
+  <TextBlock x:Name="resultsTextBlock" Width="640" Height="480" />
+</Canvas>

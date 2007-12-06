@@ -1,5 +1,4 @@
-PureMVC Port to CSharp by Michael Brailsford
-PureMVC - Copyright(c) 2006, 2007 Futurescale, Inc., Some rights reserved.
+PureMVC - Copyright(c) 2006, 2007 FutureScale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
  Reuse governed by Creative Commons Attribution 3.0 United States License
    View this license and the associated Creative Commons deed online at: 

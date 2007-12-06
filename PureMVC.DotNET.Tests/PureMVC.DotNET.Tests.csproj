@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.puremvc.csharp.tests</RootNamespace>
+    <AssemblyName>PureMVC.DotNET.Tests</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>org.puremvc.csharp.tests.TestRunner</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NUnitLite, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnitLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTest.cs">
+      <Link>core\controller\ControllerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestCommand.cs">
+      <Link>core\controller\ControllerTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestVO.cs">
+      <Link>core\controller\ControllerTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\model\ModelTest.cs">
+      <Link>core\model\ModelTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTest.cs">
+      <Link>core\view\ViewTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator.cs">
+      <Link>core\view\ViewTestMediator.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestNote.cs">
+      <Link>core\view\ViewTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
+      <Link>patterns\command\MacroCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestCommand.cs">
+      <Link>patterns\command\MacroCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub1Command.cs">
+      <Link>patterns\command\MacroCommandTestSub1Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub2Command.cs">
+      <Link>patterns\command\MacroCommandTestSub2Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestVO.cs">
+      <Link>patterns\command\MacroCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTest.cs">
+      <Link>patterns\command\SimpleCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestCommand.cs">
+      <Link>patterns\command\SimpleCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestVO.cs">
+      <Link>patterns\command\SimpleCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTest.cs">
+      <Link>patterns\facade\FacadeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestCommand.cs">
+      <Link>patterns\facade\FacadeTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestVO.cs">
+      <Link>patterns\facade\FacadeTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\mediator\MediatorTest.cs">
+      <Link>patterns\mediator\MediatorTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
+      <Link>patterns\observer\NotificationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTestNote.cs">
+      <Link>patterns\observer\NotificationTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
+      <Link>patterns\observer\ObserverTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\proxy\ProxyTest.cs">
+      <Link>patterns\proxy\ProxyTest.cs</Link>
+    </Compile>
+    <Compile Include="TestRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PureMVC.DotNET\PureMVC.DotNET.csproj">
+      <Project>{A1482CF1-5566-4636-8590-30ED9CF3D4D9}</Project>
+      <Name>PureMVC.DotNET</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
