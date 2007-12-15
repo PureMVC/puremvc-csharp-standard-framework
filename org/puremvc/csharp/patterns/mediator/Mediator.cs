@@ -12,7 +12,7 @@ namespace org.puremvc.csharp.patterns.mediator
 	 * 
 	 * @see org.puremvc.core.view.View View
 	 */
-    public class Mediator : IMediator
+    public class Mediator : Notifier, IMediator, INotifier
     {
         /**
 		 * The name of the <code>Mediator</code>. 
