@@ -27,7 +27,7 @@ namespace org.puremvc.csharp.patterns.proxy
 	 * 
 	 * @see org.puremvc.{port}.core.model.Model Model
 	 */
-    public class Proxy : IProxy
+    public class Proxy : Notifier, IProxy, INotifier
     {
         public static String NAME = "Proxy";
 		
