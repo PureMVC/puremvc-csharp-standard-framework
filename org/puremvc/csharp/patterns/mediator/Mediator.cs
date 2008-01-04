@@ -28,12 +28,18 @@ namespace org.puremvc.csharp.patterns.mediator
 		 * Constructor.
 		 */
         public Mediator()
+            : this(NAME, null)
         { }
 
-		public Mediator( Object viewComponent ) 
+        public Mediator(String mediatorName)
+            : this(mediatorName, null)
+        { }
+
+        public Mediator(String mediatorName, Object viewComponent)
         {
-			this.viewComponent = viewComponent;	
-		}
+            this.mediatorName = (mediatorName != null)? mediatorName : NAME;
+            this.viewComponent = viewComponent;
+        }
 
 		/**
 		 * Get the name of the <code>Mediator</code>.
@@ -41,8 +47,8 @@ namespace org.puremvc.csharp.patterns.mediator
 		 * Override in subclass!</P>
 		 */		
 		public virtual String getMediatorName()
-		{	
-			return Mediator.NAME;
+		{
+            return mediatorName;
 		}
 
 		/**
@@ -87,7 +93,10 @@ namespace org.puremvc.csharp.patterns.mediator
         public virtual void handleNotification(INotification notification)
         { }
 		
-		// The view component
-		protected Object viewComponent;
+		// The mediator name
+        protected String mediatorName;
+
+        // The view component
+        protected Object viewComponent;
     }
 }

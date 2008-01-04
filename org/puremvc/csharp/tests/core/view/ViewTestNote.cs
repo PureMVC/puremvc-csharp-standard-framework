@@ -23,7 +23,7 @@ namespace org.puremvc.csharp.core.view
 		 * @param name Ignored and forced to NAME.
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public ViewTestNote( String name, Object body )
+		public ViewTestNote(Object body)
             : base(NAME, body)
 		{ }
 		
@@ -35,12 +35,11 @@ namespace org.puremvc.csharp.core.view
 		 * automatically setting the note name so you don't have to. Use
 		 * this as an alternative to the constructor.</P>
 		 * 
-		 * @param name the name of the Notification to be constructed.
 		 * @param body the body of the Notification to be constructed.
 		 */
 		public static INotification create(Object body) 		
 		{
-			return new ViewTestNote(NAME, body);
+			return new ViewTestNote(body);
 		}
     }
 }

@@ -48,10 +48,10 @@ namespace org.puremvc.csharp.patterns.mediator
   		public void testNameAccessor()
         {
 			// Create a new Mediator and use accessors to set the mediator name 
-   			IMediator mediator = new Mediator();
+   			IMediator mediator = new Mediator("TestMediator");
    			
    			// test assertions
-   			Assert.True(mediator.getMediatorName() == Mediator.NAME, "Expecting mediator.getMediatorName() == Mediator.NAME");
+            Assert.True(mediator.getMediatorName() == "TestMediator", "Expecting mediator.getMediatorName() == 'TestMediator'");
    		}
 
         /**
@@ -63,7 +63,7 @@ namespace org.puremvc.csharp.patterns.mediator
 			Object view = new Object();
 			
 			// Create a new Proxy and use accessors to set the proxy name 
-   			IMediator mediator = new Mediator(view);
+            IMediator mediator = new Mediator("TestMediator", view);
 			   			
    			// test assertions
    			Assert.NotNull(mediator.getViewComponent(), "Expecting mediator.getViewComponent() not null");

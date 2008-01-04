@@ -10,6 +10,9 @@ namespace org.puremvc.csharp.tests
         {
             ConsoleUI testRunner = new ConsoleUI();
             testRunner.Execute(new string[] { "PureMVC.DotNET.Tests, Version=0.1.0.0" });
+            
+            Console.WriteLine("\nPress ENTER to continue...");
+            Console.Read();
         }
     }
 }

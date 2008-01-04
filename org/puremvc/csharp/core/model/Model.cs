@@ -45,12 +45,19 @@ namespace org.puremvc.csharp.core.model
 		 * @throws Error Error if Singleton instance has already been constructed
 		 * 
 		 */
-		private Model()
+		protected Model()
 		{
 			proxyMap = new Hashtable();	
 			initializeModel();	
 		}
 		
+        /**
+         * Explicit static constructor to tell C# compiler
+         * not to mark type as beforefieldinit
+         */
+        static Model()
+        { }
+
 		/**
 		 * Initialize the Singleton <code>Model</code> instance.
 		 * 
@@ -62,9 +69,8 @@ namespace org.puremvc.csharp.core.model
 		 * 
 		 * @return void
 		 */
-		protected void initializeModel()
-		{
-		}
+        protected virtual void initializeModel()
+		{ }
 				
 		/**
 		 * <code>Model</code> Singleton Factory method.
@@ -73,21 +79,8 @@ namespace org.puremvc.csharp.core.model
 		 */
 		public static IModel getInstance() 
 		{
-			return Nested.instance;
+			return instance;
 		}
-
-        /**
-		 * Nested class for thread safe Singleton.
-		 */
-        private class Nested
-        {
-            /* Explicit static constructor to tell C# compiler 
-             * not to mark type as beforefieldinit. */
-            static Nested()
-            { }
-
-            internal static readonly IModel instance = new Model();
-        }
 
 		/**
 		 * Register an <code>IProxy</code> with the <code>Model</code>.
@@ -126,5 +119,8 @@ namespace org.puremvc.csharp.core.model
 
 		// Mapping of proxyNames to IProxy instances
 		protected IDictionary proxyMap;
+
+		// Singleton instance
+		protected static IModel instance = new Model();
     }
 }

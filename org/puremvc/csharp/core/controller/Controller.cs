@@ -38,12 +38,19 @@ namespace org.puremvc.csharp.core.controller
 		 * Factory method <code>Controller.getInstance()</code>
 		 * 
 		 */
-		private Controller( )
+		protected Controller()
 		{
             commandMap = new Hashtable();	
 			initializeController();	
 		}
 		
+        /**
+         * Explicit static constructor to tell C# compiler
+         * not to mark type as beforefieldinit
+         */
+        static Controller()
+        { }
+
 		/**
 		 * Initialize the Singleton <code>Controller</code> instance.
 		 * 
@@ -64,7 +71,7 @@ namespace org.puremvc.csharp.core.controller
 		 * 
 		 * @return void
 		 */
-		protected void initializeController()
+        protected virtual void initializeController()
 		{
 			view = View.getInstance();
 		}
@@ -76,21 +83,8 @@ namespace org.puremvc.csharp.core.controller
 		 */
 		public static IController getInstance()
 		{
-			return Nested.instance;
+			return instance;
 		}
-
-        /**
-		 * Nested class for thread safe Singleton.
-		 */
-        private class Nested
-        {
-            /* Explicit static constructor to tell C# compiler 
-             * not to mark type as beforefieldinit. */
-            static Nested()
-            { }
-
-            internal static readonly IController instance = new Controller();
-        }
 
 		/**
 		 * If an <code>ICommand</code> has previously been registered 
@@ -124,9 +118,11 @@ namespace org.puremvc.csharp.core.controller
          */
         public void registerCommand(String notificationName, Type commandType)
 		{
-            removeCommand(notificationName);
+            if (!commandMap.Contains(notificationName))
+            {
+                view.registerObserver(notificationName, new Observer("executeCommand", this));
+            }
             commandMap[notificationName] = commandType;
-            view.registerObserver(notificationName, new Observer("executeCommand", this));
 		}
 		
 		/**
@@ -147,5 +143,8 @@ namespace org.puremvc.csharp.core.controller
 		
 		// Mapping of Notification names to Command Class references
         protected IDictionary commandMap;
+
+		// Singleton instance
+		protected static IController instance = new Controller();
     }
 }

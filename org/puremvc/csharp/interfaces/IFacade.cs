@@ -28,7 +28,7 @@ namespace org.puremvc.csharp.interfaces
 		 * 
 		 * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
 		 */
-		void registerProxy( IProxy proxy );
+		void registerProxy(IProxy proxy);
 
 		/**
 		 * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
@@ -36,14 +36,14 @@ namespace org.puremvc.csharp.interfaces
 		 * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
 		 * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
 		 */
-		IProxy retrieveProxy( String proxyName );
+		IProxy retrieveProxy(String proxyName);
 		
 		/**
 		 * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
 		 *
 		 * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
 		 */
-		void removeProxy( String proxyName );
+		void removeProxy(String proxyName);
 
         /**
          * Register an <code>ICommand</code> with the <code>Controller</code>.
@@ -51,21 +51,28 @@ namespace org.puremvc.csharp.interfaces
          * @param noteName the name of the <code>INotification</code> to associate the <code>ICommand</code> with.
          * @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>.
          */
-        void registerCommand( String noteName, Type commandType );
-		
+        void registerCommand(String notificationName, Type commandType);
+
+		/**
+		 * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.
+		 * 
+		 * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
+		 */
+		void removeCommand(String notificationName);
+
 		/**
 		 * Notify <code>Observer</code>s of an <code>INotification</code>.
 		 * 
 		 * @param note the <code>INotification</code> to have the <code>View</code> notify observers of.
 		 */
-		void notifyObservers( INotification note );
+		void notifyObservers(INotification note);
 		
 		/**
 		 * Register an <code>IMediator</code> instance with the <code>View</code>.
 		 * 
 		 * @param mediator a reference to the <code>IMediator</code> instance
 		 */
-		void registerMediator( IMediator mediator );
+		void registerMediator(IMediator mediator);
 
 		/**
 		 * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
@@ -73,13 +80,13 @@ namespace org.puremvc.csharp.interfaces
 		 * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
 		 * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
 		 */
-		IMediator retrieveMediator( String mediatorName );
+		IMediator retrieveMediator(String mediatorName);
 
 		/**
 		 * Remove a <code>IMediator</code> instance from the <code>View</code>.
 		 * 
 		 * @param mediatorName name of the <code>IMediator</code> instance to be removed.
 		 */
-		void removeMediator( String mediatorName );
+		void removeMediator(String mediatorName);
     }
 }

@@ -42,7 +42,7 @@ namespace org.puremvc.csharp.patterns.proxy
             : this(proxyName, null)
         { }
 
-		public Proxy( String proxyName , Object data ) 
+		public Proxy(String proxyName, Object data) 
 		{
 			
 			this.proxyName = (proxyName != null)? proxyName : NAME; 

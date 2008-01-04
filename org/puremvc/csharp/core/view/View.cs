@@ -39,13 +39,20 @@ namespace org.puremvc.csharp.core.view
 		 * @throws Error Error if Singleton instance has already been constructed
 		 * 
 		 */
-		private View()
+		protected View()
 		{
             mediatorMap = new Hashtable();
             observerMap = new Hashtable();
             initializeView();
 		}
 		
+        /**
+         * Explicit static constructor to tell C# compiler
+         * not to mark type as beforefieldinit
+         */
+        static View()
+        { }
+
 		/**
 		 * Initialize the Singleton View instance.
 		 * 
@@ -57,7 +64,7 @@ namespace org.puremvc.csharp.core.view
 		 * 
 		 * @return void
 		 */
-		protected void initializeView(  )
+        protected virtual void initializeView()
 		{ }
 	
 		/**
@@ -67,21 +74,8 @@ namespace org.puremvc.csharp.core.view
 		 */
 		public static IView getInstance() 
 		{
-			return Nested.instance;
+			return instance;
 		}
-
-        /**
-		 * Nested class for thread safe Singleton.
-		 */
-        private class Nested
-        {
-            /* Explicit static constructor to tell C# compiler 
-             * not to mark type as beforefieldinit. */
-            static Nested()
-            { }
-
-            internal static readonly IView instance = new View();
-        }
 
 		/**
 		 * Register an <code>IObserver</code> to be notified
@@ -115,7 +109,7 @@ namespace org.puremvc.csharp.core.view
             if(observerMap.Contains(notification.getName())) 
             {
                 IList observers = (IList)observerMap[notification.getName()];
-                for (int i = 0; i < observers.Count; i++ )
+                for (int i = 0; i < observers.Count; i++)
                 {
                     IObserver observer = (IObserver)observers[i];
                     observer.notifyObserver(notification);
@@ -147,15 +141,15 @@ namespace org.puremvc.csharp.core.view
 			
             // Get Notification interests, if any.
             IList interests = mediator.listNotificationInterests();
-            if ( interests.Count == 0) return;
+            if (interests.Count == 0) return;
 			
             // Create Observer
             IObserver observer = new Observer("handleNotification", mediator);
 			
             // Register Mediator as Observer for its list of Notification interests
-            for ( int i = 0;  i < interests.Count; i++ ) 
+            for (int i = 0;  i < interests.Count; i++) 
             {
-                registerObserver( interests[i].ToString(),  observer );
+                registerObserver(interests[i].ToString(),  observer);
             }
 		}
 
@@ -165,7 +159,7 @@ namespace org.puremvc.csharp.core.view
 		 * @param mediatorName the name of the <code>IMediator</code> instance to retrieve.
 		 * @return the <code>IMediator</code> instance previously registered with the given <code>mediatorName</code>.
 		 */
-		public IMediator retrieveMediator( String mediatorName )
+		public IMediator retrieveMediator(String mediatorName)
 		{
 			return (IMediator)mediatorMap[mediatorName];
 		}
@@ -175,36 +169,58 @@ namespace org.puremvc.csharp.core.view
 		 * 
 		 * @param mediatorName name of the <code>IMediator</code> instance to be removed.
 		 */
-		public void removeMediator( String mediatorName )
+		public void removeMediator(String mediatorName)
 		{
-            // Remove all Observers with a reference to this Mediator			
-            // also, when an notification's observer list length falls to 
-            // zero, remove it.
-            ArrayList keysToRemove = new ArrayList();
+            // Go through the observer list for each notification 
+            // in the observer map and remove all Observers with a 
+            // reference to the Mediator being removed.
+            IList keysToRemove = new ArrayList();
             foreach (String notificationName in observerMap.Keys) {
-                IList observers = (IList)observerMap[ notificationName ];
-                for ( int i = 0;  i < observers.Count; i++ ) 
+                // the observer list for the notification under inspection
+                IList observers = (IList)observerMap[notificationName];
+                // First, collect the indices of the observers to be removed 
+				IList observersToRemove = new ArrayList();
+                for (int i = 0; i < observers.Count; i++)
                 {
                     IObserver observer = (IObserver)observers[i];
                     if (observer.compareNotifyContext(retrieveMediator(mediatorName)) == true)
                     {
-                        observers.Remove(observer);
-                        if (observers.Count == 0) 
-                        {
-                            // We can't alter the HashTable during the loop
-                            // so add the key to a list of keys to be removed
-                            // at the end of the loop
-                            keysToRemove.Add(notificationName);							
-                            break;
-                        }
-						
-                    }
+                        observersToRemove.Add(i);
+					}
+				}
+                // now the removalTargets array has an ascending 
+                // list of indices to be removed from the observers array
+                // so pop them off the array, effectively going from 
+                // highest index value to lowest, and splice each
+                // from the observers array. since we're going backwards,
+                // the collapsing of the array elements to fill the spliced
+                // out element's space does not affect the position of the
+                // lower numbered indices we've yet to remove
+                int observerIndex = observersToRemove.Count;
+                while (observerIndex-- > 0)
+                {
+                    observers.RemoveAt((int)observersToRemove[observerIndex]);
+                }
+                /*for (int i = observersToRemove.Count; i > 0; --i)
+                {
+                    observers.RemoveAt((int)observersToRemove[i]);
+                }*/
+                // Also, when an notification's observer list length falls to 
+                // zero, delete the notification key from the observer map
+                if (observers.Count == 0)
+                {
+                    // We can't alter the HashTable during the loop
+                    // so add the key to a list of keys to be removed
+                    // at the end of the loop
+                    keysToRemove.Add(notificationName);
+                    break;
                 }
             }
 
-            for (int i = 0; i < keysToRemove.Count; i++)
+            int keyIndex = keysToRemove.Count;
+            while (keyIndex-- > 0)
             {
-                observerMap.Remove(keysToRemove[i].ToString());
+                observerMap.Remove(keysToRemove[keyIndex].ToString());
             }
 
             // Remove the reference to the Mediator itself
@@ -216,5 +232,8 @@ namespace org.puremvc.csharp.core.view
 
 		// Mapping of Notification names to Observer lists
 		protected IDictionary observerMap;
+		
+		// Singleton instance
+		protected static IView instance	= new View();
     }
 }

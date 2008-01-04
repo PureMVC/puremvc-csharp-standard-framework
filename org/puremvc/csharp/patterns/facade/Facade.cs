@@ -139,10 +139,17 @@ namespace org.puremvc.csharp.patterns.facade
 		 * @throws Error Error if Singleton instance has already been constructed
 		 * 
 		 */
-		private Facade() 
+        protected Facade() 
         {
 			initializeFacade();	
 		}
+
+        /**
+         * Explicit static constructor to tell C# compiler
+         * not to mark type as beforefieldinit
+         */
+        static Facade()
+        { }
 
 		/**
 		 * Initialize the Singleton <code>Facade</code> instance.
@@ -152,7 +159,7 @@ namespace org.puremvc.csharp.patterns.facade
 		 * subclass to do any subclass specific initializations. Be
 		 * sure to call <code>super.initializeFacade()</code>, though.</P>
 		 */
-		protected void initializeFacade()
+        protected virtual void initializeFacade()
         {
 			initializeModel();
 			initializeController();
@@ -166,21 +173,8 @@ namespace org.puremvc.csharp.patterns.facade
 		 */
 		public static IFacade getInstance()
         {
-			return Nested.instance;
+            return instance;
 		}
-
-        /**
-		 * Nested class for thread safe Singleton.
-		 */
-        private class Nested
-        {
-            /* Explicit static constructor to tell C# compiler 
-             * not to mark type as beforefieldinit. */
-            static Nested()
-            { }
-
-            internal static readonly IFacade instance = new Facade();
-        }
 
 		/**
 		 * Initialize the <code>Controller</code>.
@@ -198,7 +192,7 @@ namespace org.puremvc.csharp.patterns.facade
 		 * method, then register <code>Command</code>s.
 		 * </P>
 		 */
-		protected void initializeController()
+		protected virtual void initializeController()
         {
 			if ( controller != null ) return;
 			controller = Controller.getInstance();
@@ -227,7 +221,7 @@ namespace org.puremvc.csharp.patterns.facade
 		 * the <code>Facade</code> during their construction. 
 		 * </P>
 		 */
-		protected void initializeModel( )
+        protected virtual void initializeModel()
         {
 			if ( model != null ) return;
 			model = Model.getInstance();
@@ -256,7 +250,7 @@ namespace org.puremvc.csharp.patterns.facade
 		 * to the <code>Facade</code> during their construction. 
 		 * </P>
 		 */
-		protected void initializeView()
+        protected virtual void initializeView()
         {
 			if ( view != null ) return;
 			view = View.getInstance();
@@ -278,9 +272,19 @@ namespace org.puremvc.csharp.patterns.facade
 		 * @param notificationName the name of the <code>INotification</code> to associate the <code>ICommand</code> with
 		 * @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>
 		 */
-		public void registerCommand( String notificationName, Type commandType ) 
+		public void registerCommand(String notificationName, Type commandType) 
         {
 			controller.registerCommand( notificationName, commandType );
+		}
+
+		/**
+		 * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.
+		 * 
+		 * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
+		 */
+		public void removeCommand(String notificationName)
+        {
+			controller.removeCommand(notificationName);
 		}
 
 		/**
@@ -351,5 +355,8 @@ namespace org.puremvc.csharp.patterns.facade
 		protected IController controller;
 		protected IModel model;
 		protected IView view;
+		
+		// The Singleton Facade instance.
+		protected static IFacade instance = new Facade(); 
     }
 }

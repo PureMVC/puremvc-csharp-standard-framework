@@ -22,24 +22,14 @@ namespace org.puremvc.csharp.core.view
 		 * Constructor
 		 */
 		public ViewTestMediator(Object view) 
-            : base(view)
+            : base(NAME, view)
         { }
 
 		override public IList listNotificationInterests()
 		{
 			// be sure that the mediator has some Observers created
 			// in order to test removeMediator
-			return new ArrayList(new string[]{"ABC", "DEF", "GHI"});
-		}
-
-		/**
-		 * Get the Mediator name
-		 * 
-		 * @return String the Mediator name
-		 */
-		override public String getMediatorName()
-		{
-			return ViewTestMediator.NAME;
+			return new ArrayList(new string[]{"ABC", "DEF", "GHI", ViewTest.NOTE1, ViewTest.NOTE2, ViewTest.NOTE3});
 		}
     }
 }
