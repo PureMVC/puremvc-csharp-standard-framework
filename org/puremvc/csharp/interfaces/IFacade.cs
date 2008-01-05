@@ -88,5 +88,12 @@ namespace org.puremvc.csharp.interfaces
 		 * @param mediatorName name of the <code>IMediator</code> instance to be removed.
 		 */
 		void removeMediator(String mediatorName);
+
+        /**
+		 * Startup the application.
+		 * 
+		 * @param app a reference to the application instance.
+		 */
+        void startup(Object app);
     }
 }

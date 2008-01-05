@@ -29,7 +29,7 @@ namespace org.puremvc.csharp.core.view
 		{
 			// be sure that the mediator has some Observers created
 			// in order to test removeMediator
-			return new ArrayList(new string[]{"ABC", "DEF", "GHI", ViewTest.NOTE1, ViewTest.NOTE2, ViewTest.NOTE3});
+			return new ArrayList(new string[]{"ABC", "DEF", "GHI"});
 		}
     }
 }

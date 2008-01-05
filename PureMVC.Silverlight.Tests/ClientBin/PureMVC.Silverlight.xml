@@ -478,6 +478,11 @@
             
             @param mediatorName name of the <code>IMediator</code> instance to be removed.
         </member>
+        <member name="M:org.puremvc.csharp.interfaces.IFacade.startup(System.Object)">
+            Startup the application.
+            
+            @param app a reference to the application instance.
+        </member>
         <!-- Badly formed XML comment ignored for member "M:org.puremvc.csharp.patterns.facade.Facade.#ctor" -->
         <member name="M:org.puremvc.csharp.patterns.facade.Facade.#cctor">
             Explicit static constructor to tell C# compiler
@@ -548,6 +553,11 @@
             Remove an <code>IMediator</code> from the <code>View</code>.
             
             @param mediatorName name of the <code>IMediator</code> to be removed.
+        </member>
+        <member name="M:org.puremvc.csharp.patterns.facade.Facade.startup(System.Object)">
+            Startup the application.
+            
+            @param app a reference to the application instance.
         </member>
         <!-- Badly formed XML comment ignored for member "T:org.puremvc.csharp.interfaces.INotification" -->
         <member name="M:org.puremvc.csharp.interfaces.INotification.getName">

@@ -348,8 +348,16 @@ namespace org.puremvc.csharp.patterns.facade
 		 */
 		public void removeMediator(String mediatorName)
         {
-			if ( view != null ) view.removeMediator( mediatorName );			
-		}
+			if ( view != null ) view.removeMediator( mediatorName );
+        }
+
+        /**
+		 * Startup the application.
+		 * 
+		 * @param app a reference to the application instance.
+		 */
+        public virtual void startup(Object app)
+        { }
 
 		// Private references to Model, View and Controller
 		protected IController controller;
