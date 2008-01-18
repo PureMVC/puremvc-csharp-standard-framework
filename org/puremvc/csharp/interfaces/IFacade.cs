@@ -2,98 +2,81 @@
 
 namespace org.puremvc.csharp.interfaces
 {
-    /**
-	 * The interface definition for a PureMVC Facade.
-	 *
-	 * <P>
-	 * The Facade Pattern suggests providing a single
-	 * class to act as a central point of communication 
-	 * for a subsystem. </P>
-	 * 
-	 * <P>
-	 * In PureMVC, the Facade acts as an interface between
-	 * the core MVC actors (Model, View, Controller) and
-	 * the rest of your application.</P>
-	 * 
-	 * @see org.puremvc.interfaces.IModel IModel
-	 * @see org.puremvc.interfaces.IView IView
-	 * @see org.puremvc.interfaces.IController IController
-	 * @see org.puremvc.interfaces.ICommand ICommand
-	 * @see org.puremvc.interfaces.INotification INotification
-	 */
+    /// <summary>
+    /// The interface definition for a PureMVC Facade
+    /// </summary>
+    /// <remarks>
+    ///     <para>The Facade Pattern suggests providing a single class to act as a certal point of communication for subsystems</para>
+    ///     <para>In PureMVC, the Facade acts as an interface between the core MVC actors (Model, View, Controller) and the rest of your application</para>
+    /// </remarks>
+    /// <see cref="org.puremvc.csharp.interfaces.IModel"/>
+    /// <see cref="org.puremvc.csharp.interfaces.IView"/>
+    /// <see cref="org.puremvc.csharp.interfaces.IController"/>
+    /// <see cref="org.puremvc.csharp.interfaces.ICommand"/>
+    /// <see cref="org.puremvc.csharp.interfaces.INotification"/>
     public interface IFacade
     {
-        /**
-		 * Register an <code>IProxy</code> with the <code>Model</code> by name.
-		 * 
-		 * @param proxy the <code>IProxy</code> to be registered with the <code>Model</code>.
-		 */
+        /// <summary>
+        /// Register an <c>IProxy</c> with the <c>Model</c> by name
+        /// </summary>
+        /// <param name="proxy">The <c>IProxy</c> to be registered with the <c>Model</c></param>
 		void registerProxy(IProxy proxy);
 
-		/**
-		 * Retrieve a <code>IProxy</code> from the <code>Model</code> by name.
-		 * 
-		 * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
-		 * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
-		 */
+        /// <summary>
+        /// Retrieve a <c>IProxy</c> from the <c>Model</c> by name
+        /// </summary>
+        /// <param name="proxyName">The name of the <c>IProxy</c> instance to be retrieved</param>
+        /// <returns>The <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c></returns>
 		IProxy retrieveProxy(String proxyName);
 		
-		/**
-		 * Remove an <code>IProxy</code> instance from the <code>Model</code> by name.
-		 *
-		 * @param proxyName the <code>IProxy</code> to remove from the <code>Model</code>.
-		 */
+        /// <summary>
+        /// Remove an <c>IProxy</c> instance from the <c>Model</c> by name
+        /// </summary>
+        /// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
 		void removeProxy(String proxyName);
 
-        /**
-         * Register an <code>ICommand</code> with the <code>Controller</code>.
-         * 
-         * @param noteName the name of the <code>INotification</code> to associate the <code>ICommand</code> with.
-         * @param commandType a reference to the <code>Type</code> of the <code>ICommand</code>.
-         */
+        /// <summary>
+        /// Register an <c>ICommand</c> with the <c>Controller</c>
+        /// </summary>
+        /// <param name="notificationName">The name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
+        /// <param name="commandType">A reference to the <c>Type</c> of the <c>ICommand</c></param>
         void registerCommand(String notificationName, Type commandType);
 
-		/**
-		 * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.
-		 * 
-		 * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
-		 */
+        /// <summary>
+        /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.
+        /// </summary>
+        /// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
 		void removeCommand(String notificationName);
 
-		/**
-		 * Notify <code>Observer</code>s of an <code>INotification</code>.
-		 * 
-		 * @param note the <code>INotification</code> to have the <code>View</code> notify observers of.
-		 */
+        /// <summary>
+        /// Notify <c>Observer</c>s of an <c>INotification</c>
+        /// </summary>
+        /// <param name="note">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
 		void notifyObservers(INotification note);
 		
-		/**
-		 * Register an <code>IMediator</code> instance with the <code>View</code>.
-		 * 
-		 * @param mediator a reference to the <code>IMediator</code> instance
-		 */
+        /// <summary>
+        /// Register an <c>IMediator</c> instance with the <c>View</c>
+        /// </summary>
+        /// <param name="mediator">A reference to the <c>IMediator</c> instance</param>
 		void registerMediator(IMediator mediator);
 
-		/**
-		 * Retrieve an <code>IMediator</code> instance from the <code>View</code>.
-		 * 
-		 * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
-		 * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
-		 */
+        /// <summary>
+        /// Retrieve an <c>IMediator</c> instance from the <c>View</c>
+        /// </summary>
+        /// <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
+        /// <returns>The <c>IMediator</c> previously registered with the given <c>mediatorName</c></returns>
 		IMediator retrieveMediator(String mediatorName);
 
-		/**
-		 * Remove a <code>IMediator</code> instance from the <code>View</code>.
-		 * 
-		 * @param mediatorName name of the <code>IMediator</code> instance to be removed.
-		 */
+        /// <summary>
+        /// Remove a <c>IMediator</c> instance from the <c>View</c>
+        /// </summary>
+        /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
 		void removeMediator(String mediatorName);
 
-        /**
-		 * Startup the application.
-		 * 
-		 * @param app a reference to the application instance.
-		 */
+        /// <summary>
+        /// Startup the application
+        /// </summary>
+        /// <param name="app">A reference to the application instance</param>
         void startup(Object app);
     }
 }

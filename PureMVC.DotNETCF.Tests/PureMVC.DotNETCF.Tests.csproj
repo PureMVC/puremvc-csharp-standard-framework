@@ -1,0 +1,156 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F16164A-D57E-4850-9B40-6D7B0DD67D75}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.puremvc.csharp.tests</RootNamespace>
+    <AssemblyName>PureMVC.DotNETCF.Tests</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
+    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
+    <OSVersion>5.0</OSVersion>
+    <DeployDirSuffix>PureMVC.DotNETCF.Tests</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="NUnitLiteCF, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnitLiteCF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTest.cs">
+      <Link>core\controller\ControllerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestCommand.cs">
+      <Link>core\controller\ControllerTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestVO.cs">
+      <Link>core\controller\ControllerTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\model\ModelTest.cs">
+      <Link>core\model\ModelTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTest.cs">
+      <Link>core\view\ViewTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator.cs">
+      <Link>core\view\ViewTestMediator.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator2.cs">
+      <Link>core\view\ViewTestMediator2.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestNote.cs">
+      <Link>core\view\ViewTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
+      <Link>patterns\command\MacroCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestCommand.cs">
+      <Link>patterns\command\MacroCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub1Command.cs">
+      <Link>patterns\command\MacroCommandTestSub1Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub2Command.cs">
+      <Link>patterns\command\MacroCommandTestSub2Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestVO.cs">
+      <Link>patterns\command\MacroCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTest.cs">
+      <Link>patterns\command\SimpleCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestCommand.cs">
+      <Link>patterns\command\SimpleCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestVO.cs">
+      <Link>patterns\command\SimpleCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTest.cs">
+      <Link>patterns\facade\FacadeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestCommand.cs">
+      <Link>patterns\facade\FacadeTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestVO.cs">
+      <Link>patterns\facade\FacadeTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\mediator\MediatorTest.cs">
+      <Link>patterns\mediator\MediatorTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
+      <Link>patterns\observer\NotificationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTestNote.cs">
+      <Link>patterns\observer\NotificationTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
+      <Link>patterns\observer\ObserverTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\proxy\ProxyTest.cs">
+      <Link>patterns\proxy\ProxyTest.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PureMVC.DotNETCF\PureMVC.DotNETCF.csproj">
+      <Project>{22418CE2-A811-4198-90DA-B54ACF7D10B9}</Project>
+      <Name>PureMVC.DotNETCF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -11,15 +11,15 @@ namespace org.puremvc.csharp.core.controller
     /// A Singleton <c>IController</c> implementation.
     /// </summary>
     /// <remarks>
-    /// <para>In PureMVC, the <c>Controller</c> class follows the 'Command and Controller' strategy, and assumes these responsibilities:</para>
-    /// <list type="bullet">
-    /// <item>Remembering which <c>ICommand</c>s are intended to handle which <c>INotifications</c>.</item>
-    /// <item>Registering itself as an <c>IObserver</c> with the <c>View</c> for each <c>INotification</c> that it has an <c>ICommand</c> mapping for.</item>
-    /// <item>Creating a new instance of the proper <c>ICommand</c> to handle a given <c>INotification</c> when notified by the <c>View</c>.</item>
-	/// <item>Calling the <c>ICommand</c>'s <code>execute</code> method, passing in the <c>INotification</c>.</item>
-    /// </list>
-    /// <para>Your application must register <c>ICommands</c> with the <c>Controller</c>.</para>
-    /// <para>The simplest way is to subclass <c>Facade</c>, and use its <c>initializeController</c> method to add your registrations.</para>
+    /// 	<para>In PureMVC, the <c>Controller</c> class follows the 'Command and Controller' strategy, and assumes these responsibilities:</para>
+    /// 	<list type="bullet">
+    /// 		<item>Remembering which <c>ICommand</c>s are intended to handle which <c>INotifications</c>.</item>
+    /// 		<item>Registering itself as an <c>IObserver</c> with the <c>View</c> for each <c>INotification</c> that it has an <c>ICommand</c> mapping for.</item>
+    /// 		<item>Creating a new instance of the proper <c>ICommand</c> to handle a given <c>INotification</c> when notified by the <c>View</c>.</item>
+    /// 		<item>Calling the <c>ICommand</c>'s <c>execute</c> method, passing in the <c>INotification</c>.</item>
+    /// 	</list>
+    /// 	<para>Your application must register <c>ICommands</c> with the <c>Controller</c>.</para>
+    /// 	<para>The simplest way is to subclass <c>Facade</c>, and use its <c>initializeController</c> method to add your registrations.</para>
     /// </remarks>
     /// <see cref="org.puremvc.csharp.core.view.View"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Observer"/>
@@ -28,70 +28,69 @@ namespace org.puremvc.csharp.core.controller
     /// <see cref="org.puremvc.csharp.patterns.command.MacroCommand"/>
     public class Controller : IController
     {
-        /**
-		 * Constructor. 
-		 * 
-		 * <P>
-		 * This <code>IController</code> implementation is a Singleton, 
-		 * so you should not call the constructor 
-		 * directly, but instead call the static Singleton 
-		 * Factory method <code>Controller.getInstance()</code>
-		 * 
-		 */
+        /// <summary>
+        /// Constructs and initializes a new controller
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///         This <c>IController</c> implementation is a Singleton, 
+        ///         so you should not call the constructor 
+        ///         directly, but instead call the static Singleton
+        ///         Factory method <c>Controller.getInstance()</c>
+        ///     </para>
+        /// </remarks>
 		protected Controller()
 		{
             commandMap = new Hashtable();	
 			initializeController();	
 		}
 		
-        /**
-         * Explicit static constructor to tell C# compiler
-         * not to mark type as beforefieldinit
-         */
+        /// <summary>
+        /// Explicit static constructor to tell C# compiler
+        /// not to mark type as beforefieldinit
+        /// </summary>
         static Controller()
         { }
 
-		/**
-		 * Initialize the Singleton <code>Controller</code> instance.
-		 * 
-		 * <P>Called automatically by the constructor.</P> 
-		 * 
-		 * <P>Note that if you are using a subclass of <code>View</code>
-		 * in your application, you should <i>also</i> subclass <code>Controller</code>
-		 * and override the <code>initializeController</code> method in the 
-		 * following way:</P>
-		 * 
-		 * <listing>
-		 *		// ensure that the Controller is talking to my IView implementation
-		 *		override public function initializeController(  ) : void 
-		 *		{
-		 *			view = MyView.getInstance();
-		 *		}
-		 * </listing>
-		 * 
-		 * @return void
-		 */
+        /// <summary>
+        /// Initialize the Singleton <c>Controller</c> instance
+        /// </summary>
+        /// <remarks>
+        ///     <para>Called automatically by the constructor</para>
+        ///     
+        ///     <para>
+        ///         Note that if you are using a subclass of <c>View</c>
+        ///         in your application, you should also subclass <c>Controller</c>
+        ///         and override the <c>initializeController</c> method in the following way:
+        ///     </para>
+        /// 
+        ///     <c>
+        ///         // ensure that the Controller is talking to my IView implementation
+        ///         public override void initializeController()
+        ///         {
+        ///             view = MyView.getInstance();
+        ///         }
+        ///     </c>
+        /// </remarks>
         protected virtual void initializeController()
 		{
 			view = View.getInstance();
 		}
 	
-		/**
-		 * <code>Controller</code> Singleton Factory method.
-		 * 
-		 * @return the Singleton instance of <code>Controller</code>
-		 */
+        /// <summary>
+        /// Singleton Factory method
+        /// </summary>
+        /// <returns>The Singleton instance of <c>Controller</c></returns>
 		public static IController getInstance()
 		{
 			return instance;
 		}
 
-		/**
-		 * If an <code>ICommand</code> has previously been registered 
-		 * to handle a the given <code>INotification</code>, then it is executed.
-		 * 
-		 * @param note an <code>INotification</code>
-		 */
+        /// <summary>
+        /// If an <c>ICommand</c> has previously been registered
+        /// to handle a the given <c>INotification</c>, then it is executed.
+        /// </summary>
+        /// <param name="note">An <c>INotification</c></param>
 		public void executeCommand(INotification note)
 		{
 			Type commandType = (Type)commandMap[note.getName()];
@@ -104,18 +103,19 @@ namespace org.puremvc.csharp.core.controller
             }
 		}
 
-        /**
-         * Register a particular <code>ICommand</code> class as the handler 
-         * for a particular <code>INotification</code>.
-         * 
-         * <P>
-         * If an <code>ICommand</code> has already been registered to 
-         * handle <code>INotification</code>s with this name, it is no longer
-         * used, the new <code>ICommand</code> is used instead.</P>
-         * 
-         * @param notificationName the name of the <code>INotification</code>
-         * @param commandType the <code>Type</code> of the <code>ICommand</code>
-         */
+        /// <summary>
+        /// Register a particular <c>ICommand</c> class as the handler
+        /// for a particular <c>INotification</c>.
+        /// </summary>
+        /// <param name="notificationName">The name of the <c>INotification</c></param>
+        /// <param name="commandType">The <c>Type</c> of the <c>ICommand</c></param>
+        /// <remarks>
+        ///     <para>
+        ///         If an <c>ICommand</c> has already been registered to 
+        ///         handle <c>INotification</c>s with this name, it is no longer
+        ///         used, the new <c>ICommand</c> is used instead.
+        ///     </para>
+        /// </remarks> 
         public void registerCommand(String notificationName, Type commandType)
 		{
             if (!commandMap.Contains(notificationName))
@@ -124,12 +124,11 @@ namespace org.puremvc.csharp.core.controller
             }
             commandMap[notificationName] = commandType;
 		}
-		
-		/**
-		 * Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
-		 * 
-		 * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
-		 */
+
+        /// <summary>
+        /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping.
+        /// </summary>
+        /// <param name="notificationName">The name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
 		public void removeCommand(String notificationName)
 		{
             if (commandMap.Contains(notificationName))
@@ -138,13 +137,19 @@ namespace org.puremvc.csharp.core.controller
             }
 		}
 		
-		// Local reference to View 
+        /// <summary>
+        /// Local reference to View
+        /// </summary>
 		protected IView view;
 		
-		// Mapping of Notification names to Command Class references
+        /// <summary>
+        /// Mapping of Notification names to Command Class references
+        /// </summary>
         protected IDictionary commandMap;
 
-		// Singleton instance
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
 		protected static IController instance = new Controller();
     }
 }

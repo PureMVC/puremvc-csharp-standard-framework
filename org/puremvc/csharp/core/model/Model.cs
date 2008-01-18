@@ -5,122 +5,103 @@ using org.puremvc.csharp.interfaces;
 
 namespace org.puremvc.csharp.core.model
 {
-    /**
-	 * A Singleton <code>IModel</code> implementation.
-	 * 
-	 * <P>
-	 * In PureMVC, the <code>Model</code> class provides
-	 * access to model objects (Proxies) by named lookup. 
-	 * 
-	 * <P>
-	 * The <code>Model</code> assumes these responsibilities:</P>
-	 * 
-	 * <UL>
-	 * <LI>Maintain a cache of <code>IProxy</code> instances.</LI>
-	 * <LI>Provide methods for registering, retrieving, and removing 
-	 * <code>IProxy</code> instances.</LI>
-	 * </UL>
-	 * 
-	 * <P>
-	 * Your application must register <code>IProxy</code> instances 
-	 * with the <code>Model</code>. Typically, you use an 
-	 * <code>ICommand</code> to create and register <code>IProxy</code> 
-	 * instances once the <code>Facade</code> has initialized the Core 
-	 * actors.</p>
-	 *
-	 * @see org.puremvc.patterns.proxy.Proxy Proxy
-	 * @see org.puremvc.interfaces.IProxy IProxy
-	 */
+    /// <summary>
+    /// A Singleton <c>IModel</c> implementation
+    /// </summary>
+    /// <remarks>
+    ///     <para>In PureMVC, the <c>Model</c> class provides access to model objects (Proxies) by named lookup</para>
+    ///     <para>The <c>Model</c> assumes these responsibilities:</para>
+    ///     <list type="bullet">
+    ///         <item>Maintain a cache of <c>IProxy</c> instances</item>
+    ///         <item>Provide methods for registering, retrieving, and removing <c>IProxy</c> instances</item>
+    ///     </list>
+    ///     <para>
+    ///         Your application must register <c>IProxy</c> instances
+    ///         with the <c>Model</c>. Typically, you use an 
+    ///         <c>ICommand</c> to create and register <c>IProxy</c> 
+    ///         instances once the <c>Facade</c> has initialized the Core actors
+    ///     </para>
+    /// </remarks>
+    /// <seealso cref="org.puremvc.csharp.patterns.proxy.Proxy"/>
+    /// <seealso cref="org.puremvc.csharp.interfaces.IProxy" />
     public class Model : IModel
     {
-        /**
-		 * Constructor. 
-		 * 
-		 * <P>
-		 * This <code>IModel</code> implementation is a Singleton, 
-		 * so you should not call the constructor 
-		 * directly, but instead call the static Singleton 
-		 * Factory method <code>Model.getInstance()</code>
-		 * 
-		 * @throws Error Error if Singleton instance has already been constructed
-		 * 
-		 */
+        /// <summary>
+        /// Constructs and initializes a new model
+        /// </summary>
+        /// <remarks>
+        ///     <para>This <c>IModel</c> implementation is a Singleton, so you should not call the constructor directly, but instead call the static Singleton Factory method <c>Model.getInstance()</c></para>
+        /// </remarks>
 		protected Model()
 		{
 			proxyMap = new Hashtable();	
 			initializeModel();	
 		}
 		
-        /**
-         * Explicit static constructor to tell C# compiler
-         * not to mark type as beforefieldinit
-         */
+        /// <summary>
+        /// Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        /// </summary>
         static Model()
         { }
 
-		/**
-		 * Initialize the Singleton <code>Model</code> instance.
-		 * 
-		 * <P>
-		 * Called automatically by the constructor, this
-		 * is your opportunity to initialize the Singleton
-		 * instance in your subclass without overriding the
-		 * constructor.</P>
-		 * 
-		 * @return void
-		 */
+        /// <summary>
+        /// Initialize the Singleton <c>Model</c> instance.
+        /// </summary>
+        /// <remarks>
+        ///     <para>Called automatically by the constructor, this is your opportunity to initialize the Singleton instance in your subclass without overriding the constructor</para>
+        /// </remarks>
         protected virtual void initializeModel()
 		{ }
-				
-		/**
-		 * <code>Model</code> Singleton Factory method.
-		 * 
-		 * @return the Singleton instance
-		 */
-		public static IModel getInstance() 
-		{
+		
+		/// <summary>
+        /// <c>Model</c> Singleton Factory method
+		/// </summary>
+        /// <returns>The Singleton instance</returns>
+		public static IModel getInstance()
+        {
 			return instance;
 		}
 
-		/**
-		 * Register an <code>IProxy</code> with the <code>Model</code>.
-		 * 
-		 * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
-		 */
+        /// <summary>
+        /// Register an <c>IProxy</c> with the <c>Model</c>
+        /// </summary>
+        /// <param name="proxy">An <c>IProxy</c> to be held by the <c>Model</c></param>
 		public void registerProxy(IProxy proxy)
-		{
+        {
             removeProxy(proxy.getProxyName());
             proxyMap[proxy.getProxyName()] = proxy;
 		}
 
-		/**
-		 * Retrieve an <code>IProxy</code> from the <code>Model</code>.
-		 * 
-		 * @param proxyName
-		 * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
-		 */
-		public IProxy retrieveProxy(String proxyName) 
-		{
+        /// <summary>
+        /// Retrieve an <c>IProxy</c> from the <c>Model</c>
+        /// </summary>
+        /// <param name="proxyName">The name of the <c>IProxy</c> to retrieve</param>
+        /// <returns>The <c>IProxy</c> instance previously registered with the given <c>proxyName</c></returns>
+		public IProxy retrieveProxy(String proxyName)
+        {
 			return (IProxy)proxyMap[proxyName];
 		}
 
-		/**
-		 * Remove an <code>IProxy</code> from the <code>Model</code>.
-		 * 
-		 * @param proxyName name of the <code>IProxy</code> instance to be removed.
-		 */
+        /// <summary>
+        /// Remove an <c>IProxy</c> from the <c>Model</c>
+        /// </summary>
+        /// <param name="proxyName">The name of the <c>IProxy</c> instance to be removed</param>
 		public void removeProxy(String proxyName)
-		{
+        {
             if (proxyMap.Contains(proxyName))
             {
                 proxyMap.Remove(proxyName);
             }
 		}
 
-		// Mapping of proxyNames to IProxy instances
+        /// <summary>
+        /// Mapping of proxyNames to <c>IProxy</c> instances
+        /// </summary>
 		protected IDictionary proxyMap;
 
-		// Singleton instance
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
 		protected static IModel instance = new Model();
     }
 }

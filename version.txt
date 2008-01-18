@@ -10,6 +10,4 @@ Release Date: 03/12/07
 --------------------------------------------------------------------------
 0.1 - Initial project structure created in repository - CLH
 
-0.2 - Initial conversion from AS3 to C# - MPB
-
-0.3 - ???
+0.4 - Initial conversion from AS3 to C# - MPB

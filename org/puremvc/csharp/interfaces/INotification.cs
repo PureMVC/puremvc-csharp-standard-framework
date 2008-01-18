@@ -2,72 +2,53 @@
 
 namespace org.puremvc.csharp.interfaces
 {
-    /**
-	 * The interface definition for a PureMVC Notification.
-	 *
-	 * <P>
-	 * PureMVC does not rely upon underlying event models such 
-	 * as the one provided with Flash, and ActionScript 3 does 
-	 * not have an inherent event model.</P>
-	 * 
-	 * <P>
-	 * The Observer Pattern as implemented within PureMVC exists 
-	 * to support event-driven communication between the 
-	 * application and the actors of the MVC triad.</P>
-	 * 
-	 * <P>
-	 * Notifications are not meant to be a replacement for Events
-	 * in Flex/Flash/Apollo. Generally, <code>IMediator</code> implementors
-	 * place event listeners on their view components, which they
-	 * then handle in the usual way. This may lead to the broadcast of <code>Notification</code>s to 
-	 * trigger <code>ICommand</code>s or to communicate with other <code>IMediators</code>. <code>IProxy</code> and <code>ICommand</code>
-	 * instances communicate with each other and <code>IMediator</code>s 
-	 * by broadcasting <code>INotification</code>s.</P>
-	 * 
-	 * <P>
-	 * A key difference between Flash <code>Event</code>s and PureMVC 
-	 * <code>Notification</code>s is that <code>Event</code>s follow the 
-	 * 'Chain of Responsibility' pattern, 'bubbling' up the display hierarchy 
-	 * until some parent component handles the <code>Event</code>, while
-	 * PureMVC <code>Notification</code>s follow a 'Publish/Subscribe'
-	 * pattern. PureMVC classes need not be related to each other in a 
-	 * parent/child relationship in order to communicate with one another
-	 * using <code>Notification</code>s.
-	 * 
-	 * @see org.puremvc.interfaces.IView IView
-	 * @see org.puremvc.interfaces.IObserver IObserver
-	 */
+    /// <summary>
+    /// The interface definition for a PureMVC Notification
+    /// </summary>
+    /// <remarks>
+    ///     <para>PureMVC does not rely upon underlying event models</para>
+    ///     <para>The Observer Pattern as implemented within PureMVC exists to support event-driven communication between the application and the actors of the MVC triad</para>
+    ///     <para>Notifications are not meant to be a replacement for Events. Generally, <c>IMediator</c> implementors place event handlers on their view components, which they then handle in the usual way. This may lead to the broadcast of <c>Notification</c>s to trigger <c>ICommand</c>s or to communicate with other <c>IMediators</c>. <c>IProxy</c> and <c>ICommand</c> instances communicate with each other and <c>IMediator</c>s by broadcasting <c>INotification</c>s</para>
+    /// </remarks>
+    /// <see cref="org.puremvc.csharp.interfaces.IView"/>
+    /// <see cref="org.puremvc.csharp.interfaces.IObserver"/>
     public interface INotification
     {
-        /**
-		 * Get the name of the <code>INotification</code> instance. 
-		 * No setter, should be set by constructor only
-		 */
+        /// <summary>
+        /// Get the name of the <c>INotification</c> instance
+        /// </summary>
+        /// <remarks>No setter, should be set by constructor only</remarks>
+        /// <returns>The name of the <c>INotification</c> instance</returns>
 		String getName();
 
-		/**
-		 * Set the body of the <code>INotification</code> instance
-		 */
-		void setBody( Object body );
+        /// <summary>
+        /// Set the body of the <c>INotification</c> instance
+        /// </summary>
+        /// <param name="body">The body</param>
+        void setBody( Object body );
 		
-		/**
-		 * Get the body of the <code>INotification</code> instance
-		 */
+        /// <summary>
+        /// Get the body of the <c>INotification</c> instance
+        /// </summary>
+        /// <returns>The body of the <c>INotification</c> instance</returns>
 		Object getBody();
 		
-		/**
-		 * Set the type of the <code>INotification</code> instance
-		 */
+        /// <summary>
+        /// Set the type of the <c>INotification</c> instance
+        /// </summary>
+        /// <param name="type">The type of the <c>INotification</c> instance</param>
 		void setType( String type );
 		
-		/**
-		 * Get the type of the <code>INotification</code> instance
-		 */
+        /// <summary>
+        /// Get the type of the <c>INotification</c> instance
+        /// </summary>
+        /// <returns>The type of the <c>INotification</c> instance</returns>
 		String getType();
 
-		/**
-		 * Get the string representation of the <code>INotification</code> instance
-		 */
-		String toString();
+        /// <summary>
+        /// Get the string representation of the <c>INotification</c> instance
+        /// </summary>
+        /// <returns>The string representation of the <c>INotification</c> instance</returns>
+        String toString();
     }
 }

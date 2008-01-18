@@ -2,44 +2,36 @@
 
 namespace org.puremvc.csharp.interfaces
 {
-    /**
-	 * The interface definition for a PureMVC Model.
-	 * 
-	 * <P>
-	 * In PureMVC, <code>IModel</code> implementors provide
-	 * access to <code>IProxy</code> objects by named lookup. </P>
-	 * 
-	 * <P>
-	 * An <code>IModel</code> assumes these responsibilities:</P>
-	 * 
-	 * <UL>
-	 * <LI>Maintain a cache of <code>IProxy</code> instances</LI>
-	 * <LI>Provide methods for registering, retrieving, and removing <code>IProxy</code> instances</LI>
-	 * </UL>
-	 */
+    /// <summary>
+    /// The interface definition for a PureMVC Model
+    /// </summary>
+    /// <remarks>
+    ///     <para>In PureMVC, <c>IModel</c> implementors provide access to <c>IProxy</c> objects by named lookup</para>
+    ///     <para>An <c>IModel</c> assumes these responsibilities:</para>
+    ///     <list type="bullet">
+    ///         <item>Maintain a cache of <c>IProxy</c> instances</item>
+    ///         <item>Provide methods for registering, retrieving, and removing <c>IProxy</c> instances</item>
+    ///     </list>
+    /// </remarks>
     public interface IModel
     {
-        /**
-		 * Register an <code>IProxy</code> instance with the <code>Model</code>.
-		 * 
-		 * @param proxyName the name to associate with this <code>IProxy</code> instance.
-		 * @param proxy an object reference to be held by the <code>Model</code>.
-		 */
+        /// <summary>
+        /// Register an <c>IProxy</c> instance with the <c>Model</c>
+        /// </summary>
+        /// <param name="proxy">A reference to the proxy object to be held by the <c>Model</c></param>
 		void registerProxy( IProxy proxy );
 
-		/**
-		 * Retrieve an <code>IProxy</code> instance from the Model.
-		 * 
-		 * @param proxyName
-		 * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
-		 */
+        /// <summary>
+        /// Retrieve an <c>IProxy</c> instance from the Model
+        /// </summary>
+        /// <param name="proxyName">The name of the proxy to retrieve</param>
+        /// <returns>The <c>IProxy</c> instance previously registered with the given <c>proxyName</c></returns>
 		IProxy retrieveProxy( String proxyName );
 
-		/**
-		 * Remove an <code>IProxy</code> instance from the Model.
-		 * 
-		 * @param proxyName name of the <code>IProxy</code> instance to be removed.
-		 */
+        /// <summary>
+        /// Remove an <c>IProxy</c> instance from the Model
+        /// </summary>
+        /// <param name="proxyName">The name of the <c>IProxy</c> instance to be removed</param>
 		void removeProxy( String proxyName );
     }
 }

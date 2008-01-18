@@ -2,18 +2,16 @@
 
 namespace org.puremvc.csharp.interfaces
 {
-    /**
-	 * The interface definition for a PureMVC Command.
-	 *
-	 * @see org.puremvc.interfaces INotification
-	 */
+    /// <summary>
+    /// The interface definition for a PureMVC Command
+    /// </summary>
+    /// <see cref="org.puremvc.csharp.interfaces.INotification"/>
     public interface ICommand
     {
-        /**
-		 * Execute the <code>ICommand</code>'s logic to handle a given <code>INotification</code>.
-		 * 
-		 * @param note an <code>INotification</code> to handle.
-		 */
+        /// <summary>
+        /// Execute the <c>ICommand</c>'s logic to handle a given <c>INotification</c>
+        /// </summary>
+        /// <param name="notification">An <c>INotification</c> to handle</param>
 		void execute( INotification notification );
     }
 }
