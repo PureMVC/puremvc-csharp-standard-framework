@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
@@ -74,7 +78,7 @@ namespace org.puremvc.csharp.patterns.command
         /// <remarks>
         ///     <para>The <i>SubCommands</i> will be called in First In/First Out (FIFO) order</para>
         /// </remarks>
-		public void execute( INotification notification )
+		public void execute(INotification notification)
 		{
 			while (subCommands.Count > 0) 
             {

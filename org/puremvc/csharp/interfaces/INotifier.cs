@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 namespace org.puremvc.csharp.interfaces
 {
@@ -21,7 +25,8 @@ namespace org.puremvc.csharp.interfaces
         ///     <para>Convenience method to prevent having to construct new notification instances in our implementation code</para>
         /// </remarks>
         /// <param name="notificationName">The name of the notification to send</param>
-		void sendNotification( String notificationName );
+		void sendNotification(String notificationName);
+
         /// <summary>
         /// Send a <c>INotification</c>
         /// </summary>
@@ -30,7 +35,8 @@ namespace org.puremvc.csharp.interfaces
         /// </remarks>
         /// <param name="notificationName">The name of the notification to send</param>
         /// <param name="body">The body of the notification</param>
-		void sendNotification( String notificationName, Object body );
+		void sendNotification(String notificationName, Object body);
+
         /// <summary>
         /// Send a <c>INotification</c>
         /// </summary>
@@ -40,6 +46,6 @@ namespace org.puremvc.csharp.interfaces
         /// <param name="notificationName">The name of the notification to send</param>
         /// <param name="body">The body of the notification</param>
         /// <param name="type">The type of the notification</param>
-		void sendNotification( String notificationName, Object body, String type );
+		void sendNotification(String notificationName, Object body, String type);
     }
 }

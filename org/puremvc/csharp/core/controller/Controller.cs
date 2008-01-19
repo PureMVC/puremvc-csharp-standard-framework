@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.core.view;
@@ -50,7 +54,9 @@ namespace org.puremvc.csharp.core.controller
         /// not to mark type as beforefieldinit
         /// </summary>
         static Controller()
-        { }
+        {
+            instance = new Controller();
+        }
 
         /// <summary>
         /// Initialize the Singleton <c>Controller</c> instance
@@ -150,6 +156,6 @@ namespace org.puremvc.csharp.core.controller
         /// <summary>
         /// Singleton instance
         /// </summary>
-		protected static IController instance = new Controller();
+		protected static IController instance;
     }
 }

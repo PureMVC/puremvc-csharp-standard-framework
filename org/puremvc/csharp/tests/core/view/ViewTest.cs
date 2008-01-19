@@ -1,9 +1,14 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 using NUnitLite;
 using NUnit.Framework;
 
 using org.puremvc.csharp.interfaces;
+using org.puremvc.csharp.patterns.mediator;
 using org.puremvc.csharp.patterns.observer;
 
 namespace org.puremvc.csharp.core.view
@@ -44,6 +49,7 @@ namespace org.puremvc.csharp.core.view
                 ts.AddTest(new ViewTest("testRegisterAndRemoveMediator"));
                 ts.AddTest(new ViewTest("testSuccessiveRegisterAndRemoveMediator"));
                 ts.AddTest(new ViewTest("testRemoveMediatorAndSubsequentNotify"));
+                ts.AddTest(new ViewTest("testRemoveOneOfTwoMediatorsAndSubsequentNotify"));
 
                 return ts;
             }
@@ -156,13 +162,14 @@ namespace org.puremvc.csharp.core.view
 
 			// Create and register the test mediator, 
 			// but not so we have a reference to it
-			view.registerMediator(new ViewTestMediator(this));
+			view.registerMediator(new Mediator("testing", this));
 			
 			// Remove the component
-			view.removeMediator(ViewTestMediator.NAME);
+            IMediator removedMediator = view.removeMediator("testing");
 			
-			// test assertions  			
-   			Assert.Null(view.retrieveMediator(ViewTestMediator.NAME), "Expecting view.retrieveMediator(ViewTestMediator.NAME) == null");			  			
+			// test assertions  		
+            Assert.True(removedMediator.getMediatorName() == "testing", "Expecting removedMediator.getMediatorName() == 'testing'");
+            Assert.Null(view.retrieveMediator("testing"), "Expecting view.retrieveMediator('testing') == null");			  			
 		}
 
 		/**
@@ -232,9 +239,6 @@ namespace org.puremvc.csharp.core.view
 
             view.notifyObservers(new Notification(NOTE2));
             Assert.True(lastNotification == NOTE2, "Expecting lastNotification == NOTE2");
-
-            view.notifyObservers(new Notification(NOTE3));
-            Assert.True(lastNotification == NOTE3, "Expecting lastNotification == NOTE3");
 		   			
 			// Remove the Mediator
 			view.removeMediator(ViewTestMediator2.NAME);
@@ -253,15 +257,62 @@ namespace org.puremvc.csharp.core.view
             view.notifyObservers(new Notification(NOTE2));
             Assert.True(lastNotification != NOTE2, "Expecting lastNotification != NOTE2");
 
+			cleanup();						  			
+		}
+
+        /**
+		 * Tests registering one of two registered Mediators and seeing
+		 * that the remaining one still responds.
+		 * Added for the fix deployed in version 1.7.1
+		 */
+		public void testRemoveOneOfTwoMediatorsAndSubsequentNotify()
+        {
+  			// Get the Singleton View instance
+  			IView view = View.getInstance();
+			
+			// Create and register that responds to notifications 1 and 2
+			view.registerMediator(new ViewTestMediator2(this));
+			
+			// Create and register that responds to notification 3
+			view.registerMediator(new ViewTestMediator3(this));
+			
+			// test that all notifications work
+            view.notifyObservers(new Notification(NOTE1));
+            Assert.True(lastNotification == NOTE1, "Expecting lastNotification == NOTE1");
+
+            view.notifyObservers(new Notification(NOTE2));
+            Assert.True(lastNotification == NOTE2, "Expecting lastNotification == NOTE2");
+
             view.notifyObservers(new Notification(NOTE3));
-            Assert.True(lastNotification != NOTE3, "Expecting lastNotification != NOTE3");
+            Assert.True(lastNotification == NOTE3, "Expecting lastNotification == NOTE3");
+		   			
+			// Remove the Mediator that responds to 1 and 2
+			view.removeMediator(ViewTestMediator2.NAME);
+
+			// test that retrieving it now returns null				
+            Assert.Null(view.retrieveMediator(ViewTestMediator2.NAME), "Expecting view.retrieveMediator(ViewTestMediator2.NAME) == null");
+
+			// test that notifications no longer work
+			// for notifications 1 and 2, but still work for 3
+            lastNotification = null;
+
+            view.notifyObservers(new Notification(NOTE1));
+            Assert.True(lastNotification != NOTE1, "Expecting lastNotification != NOTE1");
+
+            view.notifyObservers(new Notification(NOTE2));
+            Assert.True(lastNotification != NOTE2, "Expecting lastNotification != NOTE2");
+
+            view.notifyObservers(new Notification(NOTE3));
+            Assert.True(lastNotification == NOTE3, "Expecting lastNotification == NOTE3");
 
 			cleanup();						  			
 		}
 
 		private void cleanup()
 		{
-			 View.getInstance().removeMediator(ViewTestMediator.NAME);
+            View.getInstance().removeMediator(ViewTestMediator.NAME);
+            View.getInstance().removeMediator(ViewTestMediator2.NAME);
+            View.getInstance().removeMediator(ViewTestMediator3.NAME);
 		}
     }
 }

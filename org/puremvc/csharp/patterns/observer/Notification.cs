@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 using org.puremvc.csharp.interfaces;
 
@@ -58,7 +62,7 @@ namespace org.puremvc.csharp.patterns.observer
         /// Set the body of the <c>Notification</c> instance
         /// </summary>
         /// <param name="body">The body of the <c>Notification</c></param>
-		public void setBody( Object body )
+		public void setBody(Object body)
 		{
 			this.body = body;
 		}
@@ -76,7 +80,7 @@ namespace org.puremvc.csharp.patterns.observer
 		/// Set the type of the <c>Notification</c> instance
 		/// </summary>
 		/// <param name="type">The type of the <c>Notification</c> instance</param>
-		public void setType( String type )
+		public void setType(String type)
         {
 			this.type = type;
 		}
@@ -106,10 +110,12 @@ namespace org.puremvc.csharp.patterns.observer
         /// The name of the notification instance 
         /// </summary>
 		private String name;
+
         /// <summary>
         /// The type of the notification instance
         /// </summary>
 		private String type;
+
         /// <summary>
         /// The body of the notification instance
         /// </summary>

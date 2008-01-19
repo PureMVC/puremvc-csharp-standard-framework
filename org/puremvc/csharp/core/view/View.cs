@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
@@ -40,10 +44,13 @@ namespace org.puremvc.csharp.core.view
 		}
 		
         /// <summary>
-        /// Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        /// Explicit static constructor to tell C# compiler 
+        /// not to mark type as beforefieldinit
         /// </summary>
         static View()
-        { }
+        {
+            instance = new View();
+        }
 
         /// <summary>
         /// Initialize the Singleton View instance
@@ -68,7 +75,7 @@ namespace org.puremvc.csharp.core.view
         /// </summary>
         /// <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
         /// <param name="observer">The <c>IObserver</c> to register</param>
-		public void registerObserver ( String notificationName, IObserver observer )
+		public void registerObserver (String notificationName, IObserver observer)
 		{
 			if(!observerMap.Contains(notificationName)) 
             {
@@ -84,7 +91,7 @@ namespace org.puremvc.csharp.core.view
         /// <remarks>
         /// <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
         /// </remarks>
-		public void notifyObservers( INotification notification )
+		public void notifyObservers(INotification notification)
 		{
             if(observerMap.Contains(notification.getName())) 
             {
@@ -138,7 +145,7 @@ namespace org.puremvc.csharp.core.view
         /// Remove an <c>IMediator</c> from the <c>View</c>
         /// </summary>
         /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-		public void removeMediator(String mediatorName)
+		public IMediator removeMediator(String mediatorName)
 		{
             // Go through the observer list for each notification 
             // in the observer map and remove all Observers with a 
@@ -188,7 +195,9 @@ namespace org.puremvc.csharp.core.view
             }
 
             // Remove the reference to the Mediator itself
+            IMediator mediator = retrieveMediator(mediatorName);
             mediatorMap.Remove(mediatorName);
+            return mediator;
 		}
 						
         /// <summary>
@@ -204,6 +213,6 @@ namespace org.puremvc.csharp.core.view
         /// <summary>
         /// Singleton instance
         /// </summary>
-		protected static IView instance	= new View();
+		protected static IView instance;
     }
 }

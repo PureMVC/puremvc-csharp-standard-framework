@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
@@ -55,6 +59,15 @@ namespace org.puremvc.csharp.patterns.mediator
 		public virtual String getMediatorName()
 		{
             return mediatorName;
+		}
+
+		/// <summary>
+		/// Set the <code>IMediator</code>'s view component.
+		/// </summary>
+        /// <param name="viewComponent">The view component</param>
+		public void setViewComponent(Object viewComponent)
+		{
+			this.viewComponent = viewComponent;
 		}
 
         /// <summary>

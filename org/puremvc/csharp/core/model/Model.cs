@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
@@ -42,7 +46,9 @@ namespace org.puremvc.csharp.core.model
         /// Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
         /// </summary>
         static Model()
-        { }
+        {
+            instance = new Model();
+        }
 
         /// <summary>
         /// Initialize the Singleton <c>Model</c> instance.
@@ -68,7 +74,6 @@ namespace org.puremvc.csharp.core.model
         /// <param name="proxy">An <c>IProxy</c> to be held by the <c>Model</c></param>
 		public void registerProxy(IProxy proxy)
         {
-            removeProxy(proxy.getProxyName());
             proxyMap[proxy.getProxyName()] = proxy;
 		}
 
@@ -86,12 +91,17 @@ namespace org.puremvc.csharp.core.model
         /// Remove an <c>IProxy</c> from the <c>Model</c>
         /// </summary>
         /// <param name="proxyName">The name of the <c>IProxy</c> instance to be removed</param>
-		public void removeProxy(String proxyName)
+		public IProxy removeProxy(String proxyName)
         {
+            IProxy proxy = null;
+
             if (proxyMap.Contains(proxyName))
             {
+                proxy = retrieveProxy(proxyName);
                 proxyMap.Remove(proxyName);
             }
+
+            return proxy;
 		}
 
         /// <summary>
@@ -102,6 +112,6 @@ namespace org.puremvc.csharp.core.model
         /// <summary>
         /// Singleton instance
         /// </summary>
-		protected static IModel instance = new Model();
+		protected static IModel instance;
     }
 }

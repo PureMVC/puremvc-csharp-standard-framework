@@ -15,17 +15,17 @@ namespace org.puremvc.csharp.core.view
   	 * 
   	 * @see org.puremvc.csharp.core.view.ViewTest ViewTest
   	 */
-    public class ViewTestMediator2 : Mediator, IMediator
+    public class ViewTestMediator3 : Mediator, IMediator
     {
         /**
 		 * The Mediator name
 		 */
-        public new static String NAME = "ViewTestMediator2";
+        public new static String NAME = "ViewTestMediator3";
 
         /**
          * Constructor
          */
-        public ViewTestMediator2(Object view)
+        public ViewTestMediator3(Object view)
             : base(NAME, view)
         { }
 
@@ -33,7 +33,7 @@ namespace org.puremvc.csharp.core.view
         {
             // be sure that the mediator has some Observers created
             // in order to test removeMediator
-            return new ArrayList(new string[] { ViewTest.NOTE1, ViewTest.NOTE2 });
+            return new ArrayList(new string[] { ViewTest.NOTE3 });
         }
 
         override public void handleNotification(INotification notification)

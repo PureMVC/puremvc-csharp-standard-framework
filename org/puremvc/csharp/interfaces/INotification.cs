@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 namespace org.puremvc.csharp.interfaces
 {
@@ -25,7 +29,7 @@ namespace org.puremvc.csharp.interfaces
         /// Set the body of the <c>INotification</c> instance
         /// </summary>
         /// <param name="body">The body</param>
-        void setBody( Object body );
+        void setBody(Object body);
 		
         /// <summary>
         /// Get the body of the <c>INotification</c> instance
@@ -37,7 +41,7 @@ namespace org.puremvc.csharp.interfaces
         /// Set the type of the <c>INotification</c> instance
         /// </summary>
         /// <param name="type">The type of the <c>INotification</c> instance</param>
-		void setType( String type );
+		void setType(String type);
 		
         /// <summary>
         /// Get the type of the <c>INotification</c> instance

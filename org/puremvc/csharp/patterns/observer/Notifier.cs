@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
@@ -28,7 +32,7 @@ namespace org.puremvc.csharp.patterns.observer
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
         public void sendNotification(String notificationName) 
 		{
-			facade.notifyObservers( new Notification( notificationName ) );
+            facade.sendNotification(notificationName);
 		}
 
         /// <summary>
@@ -39,7 +43,7 @@ namespace org.puremvc.csharp.patterns.observer
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
         public void sendNotification(String notificationName, Object body)
 		{
-			facade.notifyObservers( new Notification( notificationName, body ) );
+            facade.sendNotification(notificationName, body);
 		}
 
         /// <summary>
@@ -51,7 +55,7 @@ namespace org.puremvc.csharp.patterns.observer
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
         public void sendNotification(String notificationName, Object body, String type)
 		{
-			facade.notifyObservers( new Notification( notificationName, body, type ) );
+            facade.sendNotification(notificationName, body, type);
 		}
 		
         /// <summary>

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 namespace org.puremvc.csharp.interfaces
@@ -88,6 +92,12 @@ namespace org.puremvc.csharp.interfaces
         /// </summary>
         /// <returns>The view component</returns>
 		Object getViewComponent();
+
+		/// <summary>
+		/// Set the <code>IMediator</code>'s view component.
+		/// </summary>
+        /// <param name="viewComponent">A reference to the view component</param>
+		void setViewComponent(Object viewComponent);
 		
         /// <summary>
         /// List <c>INotification interests</c>

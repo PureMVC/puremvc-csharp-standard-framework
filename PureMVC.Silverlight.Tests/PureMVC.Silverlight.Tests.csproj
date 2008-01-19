@@ -67,6 +67,9 @@
     <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator2.cs">
       <Link>core\view\ViewTestMediator2.cs</Link>
     </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator3.cs">
+      <Link>core\view\ViewTestMediator3.cs</Link>
+    </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestNote.cs">
       <Link>core\view\ViewTestNote.cs</Link>
     </Compile>

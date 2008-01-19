@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using NUnitLite;
@@ -34,8 +38,8 @@ namespace org.puremvc.csharp.core.model
                 TestSuite ts = new TestSuite(typeof(ModelTest));
 
                 ts.AddTest(new ModelTest("testGetInstance"));
-                ts.AddTest(new ModelTest("testRegisterAndExecuteCommand"));
-                ts.AddTest(new ModelTest("testRegisterAndRemoveCommand"));
+                ts.AddTest(new ModelTest("testRegisterAndRetrieveProxy"));
+                ts.AddTest(new ModelTest("testRegisterAndRemoveProxy"));
 
                 return ts;
             }
@@ -88,7 +92,11 @@ namespace org.puremvc.csharp.core.model
    			// register a proxy, remove it, then try to retrieve it
    			IModel model = Model.getInstance();
 			model.registerProxy(new Proxy("sizes", new ArrayList(new int[]{7, 13, 21})));
-			model.removeProxy("sizes");
+			
+            IProxy removedProxy = model.removeProxy("sizes");
+
+            Assert.True(removedProxy.getProxyName() == "sizes", "Expecting removedProxy.getProxyName() == 'sizes'");
+
 			IProxy proxy = model.retrieveProxy("sizes");
 			
 			// test assertions

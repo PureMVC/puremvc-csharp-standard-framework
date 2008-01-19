@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using NUnitLite;
@@ -6,6 +10,7 @@ using NUnit.Framework;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.core.model;
+using org.puremvc.csharp.patterns.mediator;
 using org.puremvc.csharp.patterns.observer;
 using org.puremvc.csharp.patterns.proxy;
 
@@ -40,8 +45,10 @@ namespace org.puremvc.csharp.patterns.facade
 
                 ts.AddTest(new FacadeTest("testGetInstance"));
                 ts.AddTest(new FacadeTest("testRegisterCommandAndNotifyObservers"));
+                ts.AddTest(new FacadeTest("testRegisterAndRemoveCommandAndSendNotification"));
                 ts.AddTest(new FacadeTest("testRegisterAndRetreiveProxy"));
                 ts.AddTest(new FacadeTest("testRegisterAndRemoveProxy"));
+                ts.AddTest(new FacadeTest("testRegisterRetrieveAndRemoveMediator"));
 
                 return ts;
             }
@@ -84,15 +91,43 @@ namespace org.puremvc.csharp.patterns.facade
    			
    			// Create a 'FacadeTest' event
    			FacadeTestVO vo = new FacadeTestVO(32);
-   			INotification note = new Notification("FacadeTestNote", vo);
-
-			// Notify Observers. The Command associated with the event
-			// (FacadeTestCommand) will be invoked, and will multiply 
-			// the vo.input value by 2 and set the result on vo.result
-   			facade.notifyObservers(note);
+            facade.sendNotification("FacadeTestNote", vo);
    			
    			// test assertions 
    			Assert.True(vo.result == 64, "Expecting vo.result == 64");
+   		}
+
+  		/**
+  		 * Tests Command removal via the Facade.
+  		 * 
+  		 * <P>
+  		 * This test gets the Singleton Facade instance 
+  		 * and registers the FacadeTestCommand class 
+  		 * to handle 'FacadeTest' Notifcations. Then it removes the command.<P>
+  		 * 
+  		 * <P>
+  		 * It then sends a Notification using the Facade. 
+  		 * Success is determined by evaluating 
+  		 * a property on an object placed in the body of
+  		 * the Notification, which will NOT be modified by the Command.</P>
+  		 * 
+  		 */
+  		public void testRegisterAndRemoveCommandAndSendNotification()
+        {
+   			// Create the Facade, register the FacadeTestCommand to 
+   			// handle 'FacadeTest' events
+   			IFacade facade = Facade.getInstance();
+   			facade.registerCommand("FacadeTestNote", typeof(FacadeTestCommand));
+   			facade.removeCommand("FacadeTestNote");
+
+			// Send notification. The Command associated with the event
+			// (FacadeTestCommand) will NOT be invoked, and will NOT multiply 
+			// the vo.input value by 2 
+            FacadeTestVO vo = new FacadeTestVO(32);
+   			facade.sendNotification("FacadeTestNote", vo);
+   			
+   			// test assertions 
+   			Assert.True(vo.result != 64, "Expecting vo.result != 64");
    		}
 
         /**
@@ -134,11 +169,37 @@ namespace org.puremvc.csharp.patterns.facade
    			// register a proxy, remove it, then try to retrieve it
    			IFacade facade = Facade.getInstance();
 			facade.registerProxy(new Proxy("sizes", new ArrayList(new int[]{7, 13, 21})));
-			facade.removeProxy("sizes");
+
+			IProxy removedProxy = facade.removeProxy("sizes");
+
+            Assert.True(removedProxy.getProxyName() == "sizes", "Expecting removedProxy.getProxyName() == 'sizes'");
+
 			IProxy proxy = facade.retrieveProxy("sizes");
 			
 			// test assertions
    			Assert.Null(proxy, "Expecting proxy is null");
+   		}
+
+  		/**
+  		 * Tests registering, retrieving and removing Mediators via the Facade.
+  		 */
+  		public void testRegisterRetrieveAndRemoveMediator()
+        {  			
+   			// register a mediator, remove it, then try to retrieve it
+   			IFacade facade = Facade.getInstance();
+			facade.registerMediator(new Mediator(Mediator.NAME, new Object()));
+			
+			// retrieve the mediator
+   			Assert.NotNull(facade.retrieveMediator(Mediator.NAME), "Expecting mediator is not null");
+
+			// remove the mediator
+			IMediator removedMediator = facade.removeMediator(Mediator.NAME);
+
+			// assert that we have removed the appropriate mediator
+   			Assert.True(removedMediator.getMediatorName() == Mediator.NAME, "Expecting removedMediator.getMediatorName() == Mediator.NAME");
+				
+			// assert that the mediator is no longer retrievable
+   			Assert.True(facade.retrieveMediator( Mediator.NAME ) == null, "Expecting facade.retrieveMediator(Mediator.NAME) == null )");		  			
    		}
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Reflection;
 
 using org.puremvc.csharp.interfaces;
@@ -35,8 +39,8 @@ namespace org.puremvc.csharp.patterns.observer
         /// </remarks>
         public Observer(String notifyMethod, Object notifyContext) 
 		{
-			setNotifyMethod( notifyMethod );
-			setNotifyContext( notifyContext );
+			setNotifyMethod(notifyMethod);
+			setNotifyContext(notifyContext);
 		}
 
         /// <summary>
@@ -80,7 +84,7 @@ namespace org.puremvc.csharp.patterns.observer
         /// Notify the interested object
         /// </summary>
         /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
-		public void notifyObserver( INotification notification )
+		public void notifyObserver(INotification notification)
 		{
             Type t = this.getNotifyContext().GetType();
             BindingFlags f = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase;

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 namespace org.puremvc.csharp.interfaces
 {
@@ -14,7 +18,7 @@ namespace org.puremvc.csharp.interfaces
     /// <see cref="org.puremvc.csharp.interfaces.IController"/>
     /// <see cref="org.puremvc.csharp.interfaces.ICommand"/>
     /// <see cref="org.puremvc.csharp.interfaces.INotification"/>
-    public interface IFacade
+    public interface IFacade : INotifier
     {
         /// <summary>
         /// Register an <c>IProxy</c> with the <c>Model</c> by name
@@ -33,7 +37,7 @@ namespace org.puremvc.csharp.interfaces
         /// Remove an <c>IProxy</c> instance from the <c>Model</c> by name
         /// </summary>
         /// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
-		void removeProxy(String proxyName);
+        IProxy removeProxy(String proxyName);
 
         /// <summary>
         /// Register an <c>ICommand</c> with the <c>Controller</c>
@@ -48,12 +52,6 @@ namespace org.puremvc.csharp.interfaces
         /// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
 		void removeCommand(String notificationName);
 
-        /// <summary>
-        /// Notify <c>Observer</c>s of an <c>INotification</c>
-        /// </summary>
-        /// <param name="note">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
-		void notifyObservers(INotification note);
-		
         /// <summary>
         /// Register an <c>IMediator</c> instance with the <c>View</c>
         /// </summary>
@@ -71,7 +69,7 @@ namespace org.puremvc.csharp.interfaces
         /// Remove a <c>IMediator</c> instance from the <c>View</c>
         /// </summary>
         /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-		void removeMediator(String mediatorName);
+        IMediator removeMediator(String mediatorName);
 
         /// <summary>
         /// Startup the application

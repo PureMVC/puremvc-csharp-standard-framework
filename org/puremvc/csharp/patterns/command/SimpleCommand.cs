@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
@@ -24,7 +28,7 @@ namespace org.puremvc.csharp.patterns.command
         /// <remarks>
         ///     <para>In the Command Pattern, an application use-case typically begins with some user action, which results in an <c>INotification</c> being broadcast, which is handled by business logic in the <c>execute</c> method of an <c>ICommand</c></para>
         /// </remarks>
-		public virtual void execute( INotification notification )
+		public virtual void execute(INotification notification)
 		{ }
     }
 }

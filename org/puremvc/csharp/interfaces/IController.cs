@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 namespace org.puremvc.csharp.interfaces
 {
@@ -23,18 +27,18 @@ namespace org.puremvc.csharp.interfaces
         /// </summary>
         /// <param name="notificationName">The name of the <c>INotification</c></param>
         /// <param name="commandType">The <c>Type</c> of the <c>ICommand</c></param>
-        void registerCommand( String notificationName, Type commandType );
+        void registerCommand(String notificationName, Type commandType);
 
         /// <summary>
         /// Execute the <c>ICommand</c> previously registered as the handler for <c>INotification</c>s with the given notification name
         /// </summary>
         /// <param name="notification">The <c>INotification</c> to execute the associated <c>ICommand</c> for</param>
-		void executeCommand( INotification notification );
+		void executeCommand(INotification notification);
 
         /// <summary>
         /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping.
         /// </summary>
         /// <param name="notificationName">The name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
-		void removeCommand( String notificationName );
+		void removeCommand(String notificationName);
     }
 }

@@ -1,9 +1,14 @@
-﻿using System;
+﻿/*
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+*/
+using System;
 
 using org.puremvc.csharp.core.view;
 using org.puremvc.csharp.core.model;
 using org.puremvc.csharp.core.controller;
 using org.puremvc.csharp.interfaces;
+using org.puremvc.csharp.patterns.observer;
 
 namespace org.puremvc.csharp.patterns.facade
 {
@@ -141,7 +146,8 @@ namespace org.puremvc.csharp.patterns.facade
 		}
 
         /// <summary>
-        /// Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        /// Explicit static constructor to tell C# compiler 
+        /// not to mark type as beforefieldinit
         ///</summary>
         static Facade()
         {
@@ -183,7 +189,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// </remarks>
 		protected virtual void initializeController()
         {
-			if ( controller != null ) return;
+			if (controller != null) return;
 			controller = Controller.getInstance();
 		}
 
@@ -201,7 +207,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// </remarks>
         protected virtual void initializeModel()
         {
-			if ( model != null ) return;
+			if (model != null) return;
 			model = Model.getInstance();
 		}
 		
@@ -219,17 +225,8 @@ namespace org.puremvc.csharp.patterns.facade
         /// </remarks>
         protected virtual void initializeView()
         {
-			if ( view != null ) return;
+			if (view != null) return;
 			view = View.getInstance();
-		}
-
-        /// <summary>
-        /// Notify <c>Observer</c>s of an <c>INotification</c>
-        /// </summary>
-        /// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
-        public void notifyObservers(INotification notification)
-        {
-			if ( view != null ) view.notifyObservers( notification );
 		}
 
         /// <summary>
@@ -239,7 +236,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// <param name="commandType">A reference to the <c>Type</c> of the <c>ICommand</c></param>
         public void registerCommand(String notificationName, Type commandType) 
         {
-			controller.registerCommand( notificationName, commandType );
+			controller.registerCommand(notificationName, commandType);
 		}
 
         /// <summary>
@@ -257,7 +254,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// <param name="proxy">The <c>IProxy</c> to be registered with the <c>Model</c></param>
         public void registerProxy(IProxy proxy)
         {
-			model.registerProxy ( proxy );	
+			model.registerProxy (proxy);	
 		}
 
         /// <summary>
@@ -267,16 +264,18 @@ namespace org.puremvc.csharp.patterns.facade
         /// <returns>The <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c></returns>
         public IProxy retrieveProxy(String proxyName)
         {
-			return model.retrieveProxy ( proxyName );	
+			return model.retrieveProxy (proxyName);	
 		}
 
         /// <summary>
         /// Remove an <c>IProxy</c> instance from the <c>Model</c> by name
         /// </summary>
         /// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
-        public void removeProxy(String proxyName) 
+        public IProxy removeProxy(String proxyName) 
         {
-			if ( model != null ) model.removeProxy ( proxyName );	
+            IProxy proxy = null;
+            if (model != null) proxy = model.removeProxy(proxyName);
+            return proxy;
 		}
 
         /// <summary>
@@ -285,7 +284,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// <param name="mediator">A reference to the <c>IMediator</c> instance</param>
         public void registerMediator(IMediator mediator)
         {
-			if ( view != null ) view.registerMediator( mediator );
+			if (view != null) view.registerMediator(mediator);
 		}
 
         /// <summary>
@@ -302,10 +301,56 @@ namespace org.puremvc.csharp.patterns.facade
         /// Remove a <c>IMediator</c> instance from the <c>View</c>
         /// </summary>
         /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-        public void removeMediator(String mediatorName)
+        public IMediator removeMediator(String mediatorName)
         {
-			if ( view != null ) view.removeMediator( mediatorName );
+            IMediator mediator = null;
+            if (view != null) mediator = view.removeMediator(mediatorName);
+            return mediator;
         }
+
+        /// <summary>
+        /// Send an <c>INotification</c>
+        /// </summary>
+        /// <param name="notificationName">The name of the notiification to send</param>
+        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+        public void sendNotification(String notificationName)
+        {
+            notifyObservers(new Notification(notificationName));
+        }
+
+        /// <summary>
+        /// Send an <c>INotification</c>
+        /// </summary>
+        /// <param name="notificationName">The name of the notification to send</param>
+        /// <param name="body">The body of the notification</param>
+        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+        public void sendNotification(String notificationName, Object body)
+        {
+            notifyObservers(new Notification(notificationName, body));
+        }
+
+        /// <summary>
+        /// Send an <c>INotification</c>
+        /// </summary>
+        /// <param name="notificationName">The name of the notification to send</param>
+        /// <param name="body">The body of the notification</param>
+        /// <param name="type">The type of the notification</param>
+        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+        public void sendNotification(String notificationName, Object body, String type)
+        {
+            notifyObservers(new Notification(notificationName, body, type));
+        }
+
+        /// <summary>
+        /// Notify <c>Observer</c>s of an <c>INotification</c>
+        /// </summary>
+        /// <remarks>This method is left public mostly for backward compatibility, and to allow you to send custom notification classes using the facade.</remarks>
+        /// <remarks>Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.</remarks>
+        /// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
+        public void notifyObservers(INotification notification)
+        {
+			if ( view != null ) view.notifyObservers( notification );
+		}
 
         /// <summary>
         /// Startup the application
@@ -318,10 +363,12 @@ namespace org.puremvc.csharp.patterns.facade
         /// Private reference to the Controller
         /// </summary>
 		protected IController controller;
+
         /// <summary>
         /// Private reference to the Model
         /// </summary>
         protected IModel model;
+
         /// <summary>
         /// Private reference to the View
         /// </summary>
