@@ -1,4 +1,4 @@
-PureMVC Port to C# by Andy Adamczak
+PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, Matt Brailsford
 PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
 Release Date: 8/26/08
