@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
@@ -39,7 +40,14 @@ namespace org.puremvc.csharp.interfaces
         /// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
         IProxy removeProxy(String proxyName);
 
-        /// <summary>
+		/// <summary>
+		/// Check if a Proxy is registered
+		/// </summary>
+		/// <param name="proxyName">The name of the <c>IProxy</c> instance to check</param>
+		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
+		Boolean hasProxy(String proxyName);
+
+		/// <summary>
         /// Register an <c>ICommand</c> with the <c>Controller</c>
         /// </summary>
         /// <param name="notificationName">The name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
@@ -52,6 +60,13 @@ namespace org.puremvc.csharp.interfaces
         /// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
 		void removeCommand(String notificationName);
 
+		/// <summary>
+		/// Check if a Command is registered for a given Notification 
+		/// </summary>
+		/// <param name="notificationName">The name of the <c>INotification</c> to check.</param>
+		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
+		Boolean hasCommand(String notificationName);
+		
         /// <summary>
         /// Register an <c>IMediator</c> instance with the <c>View</c>
         /// </summary>
@@ -71,10 +86,19 @@ namespace org.puremvc.csharp.interfaces
         /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
         IMediator removeMediator(String mediatorName);
 
-        /// <summary>
-        /// Startup the application
-        /// </summary>
-        /// <param name="app">A reference to the application instance</param>
-        void startup(Object app);
+		/// <summary>
+		/// Check if a Mediator is registered or not
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check</param>
+		/// <returns>whether a Mediator is registered with the given <c>mediatorName</c>.</returns>
+		Boolean hasMediator(String mediatorName);
+
+		/// <summary>
+		/// Notify the <c>IObservers</c> for a particular <c>INotification</c>.
+		/// <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered.</para>
+		/// <para>NOTE: Use this method only if you are sending custom Notifications. Otherwise use the sendNotification method which does not require you to create the Notification instance.</para>
+		/// </summary>
+		/// <param name="note">the <c>INotification</c> to notify <c>IObservers</c> of.</param>
+		void notifyObservers(INotification note);
     }
 }

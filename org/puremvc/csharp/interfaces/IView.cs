@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
@@ -28,9 +29,16 @@ namespace org.puremvc.csharp.interfaces
         /// <summary>
         /// Register an <c>IObserver</c> to be notified of <c>INotifications</c> with a given name
         /// </summary>
-        /// <param name="noteName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
+        /// <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
         /// <param name="observer">The <c>IObserver</c> to register</param>
-		void registerObserver (String noteName, IObserver observer);
+		void registerObserver (String notificationName, IObserver observer);
+
+		/// <summary>
+		/// Remove a group of observers from the observer list for a given Notification name.
+		/// </summary>
+		/// <param name="notificationName">which observer list to remove from</param>
+		/// <param name="notifyContext">removed the observers with this object as their notifyContext</param>
+		void removeObserver(String notificationName, Object notifyContext);
 
         /// <summary>
         /// Notify the <c>IObservers</c> for a particular <c>INotification</c>
@@ -63,5 +71,12 @@ namespace org.puremvc.csharp.interfaces
         /// </summary>
         /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
         IMediator removeMediator(String mediatorName);
+		
+		/// <summary>
+		/// Check if a Mediator is registered or not
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
+		/// <returns>whether a Mediator is registered with the given <c>mediatorName</c>.</returns>
+		Boolean hasMediator(String mediatorName);
     }
 }

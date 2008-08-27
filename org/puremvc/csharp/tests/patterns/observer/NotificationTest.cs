@@ -1,8 +1,10 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
+using System.Collections;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -41,6 +43,7 @@ namespace org.puremvc.csharp.patterns.observer
                 ts.AddTest(new NotificationTest("testNameAccessors"));
                 ts.AddTest(new NotificationTest("testBodyAccessors"));
                 ts.AddTest(new NotificationTest("testConstructor"));
+				ts.AddTest(new NotificationTest("testToString"));
 
                 return ts;
             }
@@ -83,6 +86,19 @@ namespace org.puremvc.csharp.patterns.observer
    			Assert.True(note.getName() == "TestNote", "Expecting note.getName() == 'TestNote'");
    			Assert.True((int)note.getBody() == 5, "Expecting (int)note.getBody() == 5");
    			Assert.True(note.getType() == "TestNoteType", "Expecting note.getType() == 'TestNoteType'");
+   		}
+   		
+  		/**
+  		 * Tests the toString method of the notification
+  		 */
+  		public void testToString() {
+
+			// Create a new Notification and use accessors to set the note name 
+   			INotification note = new Notification("TestNote", "1,3,5", "TestType");
+   			String ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+   			
+   			// test assertions
+			Assert.True(note.toString() == ts, "Expecting note.testToString() == '" + ts + "'");
    		}
     }
 }

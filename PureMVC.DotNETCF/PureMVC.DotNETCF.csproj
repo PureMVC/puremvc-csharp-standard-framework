@@ -17,6 +17,8 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FormFactorID>
     </FormFactorID>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>PureMVC.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,14 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\core\controller\Controller.cs">
-      <Link>core\controller\Controller.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\Controller.cs">
+      <Link>core\Controller.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\model\Model.cs">
-      <Link>core\model\Model.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\Model.cs">
+      <Link>core\Model.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\view\View.cs">
-      <Link>core\view\View.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\View.cs">
+      <Link>core\View.cs</Link>
     </Compile>
     <Compile Include="..\org\puremvc\csharp\interfaces\ICommand.cs">
       <Link>interfaces\ICommand.cs</Link>
@@ -116,6 +118,9 @@
       <Link>patterns\proxy\Proxy.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PureMVC.snk" />
   </ItemGroup>
   <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
   <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

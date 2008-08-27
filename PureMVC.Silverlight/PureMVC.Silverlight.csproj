@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D59615BB-6F4D-40DC-9225-D782018236F9}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -11,6 +11,8 @@
     <RootNamespace>org.puremvc.csharp</RootNamespace>
     <AssemblyName>PureMVC.Silverlight</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>PureMVC.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,14 +46,14 @@
     <Reference Include="system.silverlight" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\core\controller\Controller.cs">
-      <Link>core\controller\Controller.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\Controller.cs">
+      <Link>core\Controller.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\model\Model.cs">
-      <Link>core\model\Model.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\Model.cs">
+      <Link>core\Model.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\view\View.cs">
-      <Link>core\view\View.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\core\View.cs">
+      <Link>core\View.cs</Link>
     </Compile>
     <Compile Include="..\org\puremvc\csharp\interfaces\ICommand.cs">
       <Link>interfaces\ICommand.cs</Link>
@@ -109,7 +111,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\Silverlight\Microsoft.Silverlight.Csharp.targets" />
+  <ItemGroup>
+    <None Include="PureMVC.snk" />
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -120,7 +124,7 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
-        <WebProjectProperties />
+        <SilverlightProjectProperties />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

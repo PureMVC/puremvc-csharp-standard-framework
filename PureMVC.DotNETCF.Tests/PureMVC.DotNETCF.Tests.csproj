@@ -56,32 +56,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTest.cs">
-      <Link>core\controller\ControllerTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTest.cs">
+      <Link>core\ControllerTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestCommand.cs">
-      <Link>core\controller\ControllerTestCommand.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand.cs">
+      <Link>core\ControllerTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestVO.cs">
-      <Link>core\controller\ControllerTestVO.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand2.cs">
+      <Link>core\ControllerTestCommand2.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\model\ModelTest.cs">
-      <Link>core\model\ModelTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestVO.cs">
+      <Link>core\ControllerTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTest.cs">
-      <Link>core\view\ViewTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTest.cs">
+      <Link>core\ModelTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator.cs">
-      <Link>core\view\ViewTestMediator.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTestProxy.cs">
+      <Link>core\ModelTestProxy.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator2.cs">
-      <Link>core\view\ViewTestMediator2.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTest.cs">
+      <Link>core\ViewTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator3.cs">
-      <Link>core\view\ViewTestMediator3.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator.cs">
+      <Link>core\ViewTestMediator.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestNote.cs">
-      <Link>core\view\ViewTestNote.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator2.cs">
+      <Link>core\ViewTestMediator2.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator3.cs">
+      <Link>core\ViewTestMediator3.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator4.cs">
+      <Link>core\ViewTestMediator4.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator5.cs">
+      <Link>core\ViewTestMediator5.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator6.cs">
+      <Link>core\ViewTestMediator6.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestNote.cs">
+      <Link>core\ViewTestNote.cs</Link>
     </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
       <Link>patterns\command\MacroCommandTest.cs</Link>
@@ -121,9 +136,6 @@
     </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
       <Link>patterns\observer\NotificationTest.cs</Link>
-    </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTestNote.cs">
-      <Link>patterns\observer\NotificationTestNote.cs</Link>
     </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
       <Link>patterns\observer\ObserverTest.cs</Link>

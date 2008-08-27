@@ -1,13 +1,14 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 using System.Collections;
 
 using org.puremvc.csharp.interfaces;
 
-namespace org.puremvc.csharp.core.model
+namespace org.puremvc.csharp.core
 {
     /// <summary>
     /// A Singleton <c>IModel</c> implementation
@@ -75,6 +76,7 @@ namespace org.puremvc.csharp.core.model
 		public void registerProxy(IProxy proxy)
         {
             proxyMap[proxy.getProxyName()] = proxy;
+			proxy.onRegister();
 		}
 
         /// <summary>
@@ -85,6 +87,16 @@ namespace org.puremvc.csharp.core.model
 		public IProxy retrieveProxy(String proxyName)
         {
 			return (IProxy)proxyMap[proxyName];
+		}
+
+		/// <summary>
+		/// Check if a Proxy is registered
+		/// </summary>
+		/// <param name="proxyName"></param>
+		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
+		public Boolean hasProxy(String proxyName)
+		{
+			return proxyMap.Contains(proxyName);
 		}
 
         /// <summary>
@@ -99,7 +111,8 @@ namespace org.puremvc.csharp.core.model
             {
                 proxy = retrieveProxy(proxyName);
                 proxyMap.Remove(proxyName);
-            }
+				proxy.onRemove();
+			}
 
             return proxy;
 		}

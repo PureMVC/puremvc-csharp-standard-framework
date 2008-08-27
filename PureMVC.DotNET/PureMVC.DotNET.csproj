@@ -12,6 +12,8 @@
     <AssemblyName>PureMVC.DotNET</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>PureMVC.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +23,7 @@
     <DefineConstants>TRACE;DEBUG;DOTNET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\PureMVC.DotNET.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +32,7 @@
     <DefineConstants>TRACE;DOTNET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\PureMVC.DotNET.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,15 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\core\controller\Controller.cs">
-      <Link>core\controller\Controller.cs</Link>
-    </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\model\Model.cs">
-      <Link>core\model\Model.cs</Link>
-    </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\view\View.cs">
-      <Link>core\view\View.cs</Link>
-    </Compile>
     <Compile Include="..\org\puremvc\csharp\interfaces\ICommand.cs">
       <Link>interfaces\ICommand.cs</Link>
     </Compile>
@@ -105,7 +100,19 @@
     <Compile Include="..\org\puremvc\csharp\patterns\proxy\Proxy.cs">
       <Link>patterns\proxy\Proxy.cs</Link>
     </Compile>
+    <Compile Include="..\org\puremvc\csharp\core\Controller.cs">
+      <Link>core\Controller.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\core\Model.cs">
+      <Link>core\Model.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\core\View.cs">
+      <Link>core\View.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PureMVC.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

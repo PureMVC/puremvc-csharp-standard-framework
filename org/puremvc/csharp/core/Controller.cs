@@ -1,15 +1,15 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 using System.Collections;
 
-using org.puremvc.csharp.core.view;
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
 
-namespace org.puremvc.csharp.core.controller
+namespace org.puremvc.csharp.core
 {
     /// <summary>
     /// A Singleton <c>IController</c> implementation.
@@ -130,6 +130,16 @@ namespace org.puremvc.csharp.core.controller
             }
             commandMap[notificationName] = commandType;
 		}
+		
+		/// <summary>
+		/// Check if a Command is registered for a given Notification 
+		/// </summary>
+		/// <param name="notificationName"></param>
+		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
+		public Boolean hasCommand(String notificationName)
+		{
+			return commandMap.Contains(notificationName);
+		}
 
         /// <summary>
         /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping.
@@ -139,7 +149,10 @@ namespace org.puremvc.csharp.core.controller
 		{
             if (commandMap.Contains(notificationName))
             {
-                commandMap.Remove(notificationName);
+				// remove the observer
+				view.removeObserver(notificationName, this);
+				
+				commandMap.Remove(notificationName);
             }
 		}
 		

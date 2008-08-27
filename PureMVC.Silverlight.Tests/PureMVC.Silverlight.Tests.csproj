@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1A6A9213-F7C5-4D0F-8AC9-9FA57CB355A7}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -11,6 +11,8 @@
     <RootNamespace>org.puremvc.csharp.tests</RootNamespace>
     <AssemblyName>PureMVC.Silverlight.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>false</ThrowErrorsInValidation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,32 +48,47 @@
     <Reference Include="system.silverlight" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTest.cs">
-      <Link>core\controller\ControllerTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTest.cs">
+      <Link>core\ControllerTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestCommand.cs">
-      <Link>core\controller\ControllerTestCommand.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand.cs">
+      <Link>core\ControllerTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\controller\ControllerTestVO.cs">
-      <Link>core\controller\ControllerTestVO.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand2.cs">
+      <Link>core\ControllerTestCommand2.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\model\ModelTest.cs">
-      <Link>core\model\ModelTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestVO.cs">
+      <Link>core\ControllerTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTest.cs">
-      <Link>core\view\ViewTest.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTest.cs">
+      <Link>core\ModelTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator.cs">
-      <Link>core\view\ViewTestMediator.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTestProxy.cs">
+      <Link>core\ModelTestProxy.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator2.cs">
-      <Link>core\view\ViewTestMediator2.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTest.cs">
+      <Link>core\ViewTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestMediator3.cs">
-      <Link>core\view\ViewTestMediator3.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator.cs">
+      <Link>core\ViewTestMediator.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\view\ViewTestNote.cs">
-      <Link>core\view\ViewTestNote.cs</Link>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator2.cs">
+      <Link>core\ViewTestMediator2.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator3.cs">
+      <Link>core\ViewTestMediator3.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator4.cs">
+      <Link>core\ViewTestMediator4.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator5.cs">
+      <Link>core\ViewTestMediator5.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator6.cs">
+      <Link>core\ViewTestMediator6.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestNote.cs">
+      <Link>core\ViewTestNote.cs</Link>
     </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
       <Link>patterns\command\MacroCommandTest.cs</Link>
@@ -112,9 +129,6 @@
     <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
       <Link>patterns\observer\NotificationTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTestNote.cs">
-      <Link>patterns\observer\NotificationTestNote.cs</Link>
-    </Compile>
     <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
       <Link>patterns\observer\ObserverTest.cs</Link>
     </Compile>
@@ -128,9 +142,9 @@
     <Compile Include="TextBlockWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <SilverlightPage Include="TestRunner.xaml">
-      <Generator>MSBuild:CompileXaml</Generator>
-    </SilverlightPage>
+    <Page Include="TestRunner.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestRunner.html" />
@@ -145,7 +159,6 @@
       <Name>org.puremvc.silverlight</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\Silverlight\Microsoft.Silverlight.Csharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -156,7 +169,7 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
-        <WebProjectProperties />
+        <SilverlightProjectProperties />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

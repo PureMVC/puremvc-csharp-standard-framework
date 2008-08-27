@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
@@ -40,5 +41,12 @@ namespace org.puremvc.csharp.interfaces
         /// </summary>
         /// <param name="notificationName">The name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
 		void removeCommand(String notificationName);
-    }
+
+		/// <summary>
+		/// Check if a Command is registered for a given Notification.
+		/// </summary>
+		/// <param name="notificationName">The name of the <c>INotification</c> to check the <c>ICommand</c> mapping for</param>
+		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
+		Boolean hasCommand(String notificationName);
+	}
 }

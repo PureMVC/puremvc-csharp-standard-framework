@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 using System.Collections;
@@ -9,7 +10,7 @@ using NUnitLite;
 using NUnit.Framework;
 
 using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.core.model;
+using org.puremvc.csharp.core;
 using org.puremvc.csharp.patterns.mediator;
 using org.puremvc.csharp.patterns.observer;
 using org.puremvc.csharp.patterns.proxy;
@@ -43,12 +44,15 @@ namespace org.puremvc.csharp.patterns.facade
             {
                 TestSuite ts = new TestSuite(typeof(FacadeTest));
 
-                ts.AddTest(new FacadeTest("testGetInstance"));
-                ts.AddTest(new FacadeTest("testRegisterCommandAndNotifyObservers"));
-                ts.AddTest(new FacadeTest("testRegisterAndRemoveCommandAndSendNotification"));
-                ts.AddTest(new FacadeTest("testRegisterAndRetreiveProxy"));
-                ts.AddTest(new FacadeTest("testRegisterAndRemoveProxy"));
-                ts.AddTest(new FacadeTest("testRegisterRetrieveAndRemoveMediator"));
+				ts.AddTest(new FacadeTest("testGetInstance"));
+				ts.AddTest(new FacadeTest("testRegisterCommandAndSendNotification"));
+				ts.AddTest(new FacadeTest("testRegisterAndRemoveCommandAndSendNotification"));
+				ts.AddTest(new FacadeTest("testRegisterAndRetrieveProxy"));
+				ts.AddTest(new FacadeTest("testRegisterAndRemoveProxy"));
+				ts.AddTest(new FacadeTest("testRegisterRetrieveAndRemoveMediator"));
+				ts.AddTest(new FacadeTest("testHasProxy"));
+				ts.AddTest(new FacadeTest("testHasMediator"));
+				ts.AddTest(new FacadeTest("testHasCommand"));
 
                 return ts;
             }
@@ -88,9 +92,11 @@ namespace org.puremvc.csharp.patterns.facade
    			// handle 'FacadeTest' events
    			IFacade facade = Facade.getInstance();
    			facade.registerCommand("FacadeTestNote", typeof(FacadeTestCommand));
-   			
-   			// Create a 'FacadeTest' event
-   			FacadeTestVO vo = new FacadeTestVO(32);
+
+			// Send notification. The Command associated with the event
+			// (FacadeTestCommand) will be invoked, and will multiply 
+			// the vo.input value by 2 and set the result on vo.result
+			FacadeTestVO vo = new FacadeTestVO(32);
             facade.sendNotification("FacadeTestNote", vo);
    			
    			// test assertions 
@@ -201,5 +207,60 @@ namespace org.puremvc.csharp.patterns.facade
 			// assert that the mediator is no longer retrievable
    			Assert.True(facade.retrieveMediator( Mediator.NAME ) == null, "Expecting facade.retrieveMediator(Mediator.NAME) == null )");		  			
    		}
-    }
+
+	
+  		/**
+  		 * Tests the hasProxy Method
+  		 */
+  		public void testHasProxy()
+		{
+   			// register a Proxy
+			IFacade facade = Facade.getInstance();
+			facade.registerProxy( new Proxy( "hasProxyTest", new ArrayList(new int[]{1,2,3})));
+			
+   			// assert that the model.hasProxy method returns true
+   			// for that proxy name
+   			Assert.True(facade.hasProxy("hasProxyTest") == true, "Expecting facade.hasProxy('hasProxyTest') == true");
+   		}
+
+  		/**
+  		 * Tests the hasMediator Method
+  		 */
+  		public void testHasMediator()
+		{
+   			// register a Mediator
+			IFacade facade = Facade.getInstance();
+			facade.registerMediator( new Mediator( "facadeHasMediatorTest", new Object() ) );
+			
+   			// assert that the facade.hasMediator method returns true
+   			// for that mediator name
+   			Assert.True(facade.hasMediator("facadeHasMediatorTest") == true, "Expecting facade.hasMediator('facadeHasMediatorTest') == true");
+   						
+   			facade.removeMediator( "facadeHasMediatorTest" );
+   			
+   			// assert that the facade.hasMediator method returns false
+   			// for that mediator name
+   			Assert.True(facade.hasMediator("facadeHasMediatorTest") == false, "Expecting facade.hasMediator('facadeHasMediatorTest') == false");
+   		}
+
+  		/**
+  		 * Test hasCommand method.
+  		 */
+  		public void testHasCommand()
+		{
+   			// register the ControllerTestCommand to handle 'hasCommandTest' notes
+   			IFacade facade = Facade.getInstance();
+   			facade.registerCommand("facadeHasCommandTest", typeof(FacadeTestCommand));
+   			
+   			// test that hasCommand returns true for hasCommandTest notifications 
+   			Assert.True(facade.hasCommand("facadeHasCommandTest") == true, "Expecting facade.hasCommand('facadeHasCommandTest') == true");
+   			
+   			// Remove the Command from the Controller
+   			facade.removeCommand("facadeHasCommandTest");
+			
+   			// test that hasCommand returns false for hasCommandTest notifications 
+   			Assert.True(facade.hasCommand("facadeHasCommandTest") == false, "Expecting facade.hasCommand('facadeHasCommandTest') == false");
+   			
+   		}
+	}
 }

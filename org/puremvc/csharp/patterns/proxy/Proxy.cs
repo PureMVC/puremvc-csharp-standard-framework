@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
@@ -46,10 +47,10 @@ namespace org.puremvc.csharp.patterns.proxy
         /// </summary>
         /// <param name="proxyName">The name of the proxy</param>
         /// <param name="data">The data to be managed</param>
-		public Proxy(String proxyName, Object data) 
+		public Proxy(String proxyName, Object data)
 		{
-			
-			this.proxyName = (proxyName != null)? proxyName : NAME; 
+
+			this.proxyName = (proxyName != null) ? proxyName : NAME;
 			if (data != null) setData(data);
 		}
 
@@ -79,6 +80,18 @@ namespace org.puremvc.csharp.patterns.proxy
 		{
 			return data;
 		}
+
+		/// <summary>
+		/// Called by the Model when the Proxy is registered
+		/// </summary>
+		public virtual void onRegister()
+		{ }
+
+		/// <summary>
+		/// Called by the Model when the Proxy is removed
+		/// </summary>
+		public virtual void onRemove()
+		{ }
 
         /// <summary>
         /// The name of the proxy

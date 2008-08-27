@@ -1,13 +1,14 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.command;
 
-namespace org.puremvc.csharp.core.controller
+namespace org.puremvc.csharp.core
 {
     /**
 	 * A SimpleCommand subclass used by ControllerTest.
@@ -15,12 +16,12 @@ namespace org.puremvc.csharp.core.controller
   	 * @see org.puremvc.csharp.core.controller.ControllerTest ControllerTest
   	 * @see org.puremvc.csharp.core.controller.ControllerTestVO ControllerTestVO
 	 */
-    public class ControllerTestCommand : SimpleCommand
+    public class ControllerTestCommand2 : SimpleCommand
     {
         /**
 		 * Constructor.
 		 */
-        public ControllerTestCommand()
+        public ControllerTestCommand2()
             : base()
         { }
 
@@ -33,9 +34,9 @@ namespace org.puremvc.csharp.core.controller
 		{
 			
 			ControllerTestVO vo = note.getBody() as ControllerTestVO;
-			
+
 			// Fabricate a result
-			vo.result = 2 * vo.input;
+			vo.result = vo.result + (2 * vo.input);
 
 		}
     }

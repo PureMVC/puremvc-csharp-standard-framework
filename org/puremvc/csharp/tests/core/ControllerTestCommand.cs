@@ -8,34 +8,36 @@ using System;
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.command;
 
-namespace org.puremvc.csharp.patterns.facade
+namespace org.puremvc.csharp.core
 {
     /**
-	 * A SimpleCommand subclass used by FacadeTest.
+	 * A SimpleCommand subclass used by ControllerTest.
 	 *
-  	 * @see org.puremvc.csharp.patterns.facade.FacadeTest FacadeTest
-  	 * @see org.puremvc.csharp.patterns.facade.FacadeTestVO FacadeTestVO
+  	 * @see org.puremvc.csharp.core.controller.ControllerTest ControllerTest
+  	 * @see org.puremvc.csharp.core.controller.ControllerTestVO ControllerTestVO
 	 */
-    public class FacadeTestCommand : SimpleCommand
+    public class ControllerTestCommand : SimpleCommand
     {
         /**
 		 * Constructor.
 		 */
-		public FacadeTestCommand()
+        public ControllerTestCommand()
             : base()
-		{ }
-		
-		/**
+        { }
+
+        /**
 		 * Fabricate a result by multiplying the input by 2
 		 * 
-		 * @param note the Notification carrying the FacadeTestVO
+		 * @param note the note carrying the ControllerTestVO
 		 */
-		override public void execute(INotification note)
+		override public void execute( INotification note )
 		{
-			FacadeTestVO vo = note.getBody() as FacadeTestVO;
+			
+			ControllerTestVO vo = note.getBody() as ControllerTestVO;
 			
 			// Fabricate a result
 			vo.result = 2 * vo.input;
+
 		}
     }
 }

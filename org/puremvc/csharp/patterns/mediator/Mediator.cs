@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 using System.Collections;
@@ -45,11 +46,11 @@ namespace org.puremvc.csharp.patterns.mediator
         /// </summary>
         /// <param name="mediatorName">The name of the mediator</param>
         /// <param name="viewComponent">The view component to be mediated</param>
-        public Mediator(String mediatorName, Object viewComponent)
-        {
-            this.mediatorName = (mediatorName != null)? mediatorName : NAME;
-            this.viewComponent = viewComponent;
-        }
+		public Mediator(String mediatorName, Object viewComponent)
+		{
+			this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
+			this.viewComponent = viewComponent;
+		}
 
         /// <summary>
         /// Get the name of the <c>Mediator</c>
@@ -109,6 +110,18 @@ namespace org.puremvc.csharp.patterns.mediator
         /// </remarks>
         public virtual void handleNotification(INotification notification)
         { }
+		
+		/// <summary>
+		/// Called by the View when the Mediator is registered
+		/// </summary>
+		public virtual void onRegister()
+		{ }
+
+		/// <summary>
+		/// Called by the View when the Mediator is removed
+		/// </summary>
+		public virtual void onRemove()
+		{ }
 
         /// <summary>
         /// The mediator name

@@ -1,6 +1,7 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 using System.Collections;
@@ -11,7 +12,7 @@ using NUnit.Framework;
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.proxy;
 
-namespace org.puremvc.csharp.core.model
+namespace org.puremvc.csharp.core
 {
     /**
 	 * Test the PureMVC Model class.
@@ -40,8 +41,10 @@ namespace org.puremvc.csharp.core.model
                 ts.AddTest(new ModelTest("testGetInstance"));
                 ts.AddTest(new ModelTest("testRegisterAndRetrieveProxy"));
                 ts.AddTest(new ModelTest("testRegisterAndRemoveProxy"));
+				ts.AddTest(new ModelTest("testHasProxy"));
+				ts.AddTest(new ModelTest("testOnRegisterAndOnRemove"));
 
-                return ts;
+				return ts;
             }
         }
 
@@ -102,5 +105,49 @@ namespace org.puremvc.csharp.core.model
 			// test assertions
    			Assert.Null(proxy, "Expecting proxy is null");
    		}
+  		
+  		/**
+  		 * Tests the hasProxy Method
+  		 */
+  		public void testHasProxy() {
+  			
+   			// register a proxy
+   			IModel model = Model.getInstance();
+   			IProxy proxy = new Proxy( "aces", new ArrayList(new string[] {"clubs", "spades", "hearts", "diamonds"}));
+			model.registerProxy(proxy);
+			
+   			// assert that the model.hasProxy method returns true
+   			// for that proxy name
+   			Assert.True(model.hasProxy("aces") == true, "Expecting model.hasProxy('aces') == true");
+			
+			// remove the proxy
+			model.removeProxy("aces");
+			
+   			// assert that the model.hasProxy method returns false
+   			// for that proxy name
+   			Assert.True(model.hasProxy("aces") == false, "Expecting model.hasProxy('aces') == false");
+   		}
+  		
+		/**
+		 * Tests that the Model calls the onRegister and onRemove methods
+		 */
+		public void testOnRegisterAndOnRemove() {
+			
+  			// Get the Singleton View instance
+  			IModel model = Model.getInstance();
+
+			// Create and register the test mediator
+			IProxy proxy = new ModelTestProxy();
+			model.registerProxy(proxy);
+
+			// assert that onRegsiter was called, and the proxy responded by setting its data accordingly
+   			Assert.True(proxy.getData() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.getData() == ModelTestProxy.ON_REGISTER_CALLED");
+			
+			// Remove the component
+			model.removeProxy(ModelTestProxy.NAME);
+			
+			// assert that onRemove was called, and the proxy responded by setting its data accordingly
+   			Assert.True(proxy.getData() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.getData() == ModelTestProxy.ON_REMOVE_CALLED");
+		}
     }
 }

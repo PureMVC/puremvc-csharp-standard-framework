@@ -1,12 +1,11 @@
-﻿/*
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+﻿/* 
+ PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
+ PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
 
-using org.puremvc.csharp.core.view;
-using org.puremvc.csharp.core.model;
-using org.puremvc.csharp.core.controller;
+using org.puremvc.csharp.core;
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
 
@@ -248,6 +247,16 @@ namespace org.puremvc.csharp.patterns.facade
 			controller.removeCommand(notificationName);
 		}
 
+		/// <summary>
+		/// Check if a Command is registered for a given Notification 
+		/// </summary>
+		/// <param name="notificationName">The name of the <c>INotification</c> to check for.</param>
+		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
+		public Boolean hasCommand(String notificationName)
+		{
+			return controller.hasCommand(notificationName);
+		}
+
         /// <summary>
         /// Register an <c>IProxy</c> with the <c>Model</c> by name
         /// </summary>
@@ -276,6 +285,16 @@ namespace org.puremvc.csharp.patterns.facade
             IProxy proxy = null;
             if (model != null) proxy = model.removeProxy(proxyName);
             return proxy;
+		}
+
+		/// <summary>
+		/// Check if a Proxy is registered
+		/// </summary>
+		/// <param name="proxyName">The name of the <c>IProxy</c> instance to check for</param>
+		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
+		public Boolean hasProxy(String proxyName)
+		{
+			return model.hasProxy(proxyName);
 		}
 
         /// <summary>
@@ -307,6 +326,16 @@ namespace org.puremvc.csharp.patterns.facade
             if (view != null) mediator = view.removeMediator(mediatorName);
             return mediator;
         }
+
+		/// <summary>
+		/// Check if a Mediator is registered or not
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
+		/// <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
+		public Boolean hasMediator(String mediatorName)
+		{
+			return view.hasMediator(mediatorName);
+		}
 
         /// <summary>
         /// Send an <c>INotification</c>
@@ -351,13 +380,6 @@ namespace org.puremvc.csharp.patterns.facade
         {
 			if ( view != null ) view.notifyObservers( notification );
 		}
-
-        /// <summary>
-        /// Startup the application
-        /// </summary>
-        /// <param name="app">A reference to the application instance</param>
-        public virtual void startup(Object app)
-        { }
 
         /// <summary>
         /// Private reference to the Controller
