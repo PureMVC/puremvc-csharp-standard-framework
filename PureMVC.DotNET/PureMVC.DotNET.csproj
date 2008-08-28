@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>org.puremvc.csharp</RootNamespace>
-    <AssemblyName>PureMVC.DotNET</AssemblyName>
+    <AssemblyName>PureMVC.DotNET.20</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE;DOTNET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\PureMVC.DotNET.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\PureMVC.DotNET.20.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
