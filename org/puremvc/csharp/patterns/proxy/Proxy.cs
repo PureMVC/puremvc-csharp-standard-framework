@@ -19,7 +19,7 @@ namespace org.puremvc.csharp.patterns.proxy
     /// 	<para>A <c>Proxy</c> might simply manage a reference to a local data object, in which case interacting with it might involve setting and getting of its data in synchronous fashion</para>
     /// 	<para><c>Proxy</c> classes are also used to encapsulate the application's interaction with remote services to save or retrieve data, in which case, we adopt an asyncronous idiom; setting data (or calling a method) on the <c>Proxy</c> and listening for a <c>Notification</c> to be sent when the <c>Proxy</c> has retrieved the data from the service</para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.model.Model"/>
+    /// <see cref="org.puremvc.csharp.core.Model"/>
     public class Proxy : Notifier, IProxy, INotifier
     {
         /// <summary>

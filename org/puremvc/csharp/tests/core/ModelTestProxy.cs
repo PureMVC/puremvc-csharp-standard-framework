@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace org.puremvc.csharp.core
 {
 	public class ModelTestProxy : Proxy
 	{
-		public const String NAME = "ModelTestProxy";
+		public new const String NAME = "ModelTestProxy";
 		public const String ON_REGISTER_CALLED = "onRegister Called";
 		public const String ON_REMOVE_CALLED = "onRemove Called";
 

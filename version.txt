@@ -10,9 +10,13 @@ Release Date: 8/26/08
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
 
+1.1 - Converted the framework to use only generics. - AA
+      Added separate Visual Studio 2008 projects that compile the framework
+      against .Net Framework 3.5. - AA
+
 1.0 - Updated inline with version 2.0.4 release of the AS3 implementation
 	  See http://forums.puremvc.org/index.php?topic=625.0 for details
-	  Signed the built assemblies.
+	  Signed the built assemblies. - AA
       
 0.9 - Updated inline with version 2.0 release of the AS3 implementation
       See http://forums.puremvc.org/index.php?topic=212.0 for details - MB

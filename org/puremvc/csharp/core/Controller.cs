@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
@@ -25,7 +25,7 @@ namespace org.puremvc.csharp.core
     /// 	<para>Your application must register <c>ICommands</c> with the <c>Controller</c>.</para>
     /// 	<para>The simplest way is to subclass <c>Facade</c>, and use its <c>initializeController</c> method to add your registrations.</para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.view.View"/>
+    /// <see cref="org.puremvc.csharp.core.View"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Observer"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
     /// <see cref="org.puremvc.csharp.patterns.command.SimpleCommand"/>
@@ -45,8 +45,8 @@ namespace org.puremvc.csharp.core
         /// </remarks>
 		protected Controller()
 		{
-            commandMap = new Hashtable();	
-			initializeController();	
+			commandMap = new Dictionary<String, Type>();	
+			initializeController();
 		}
 		
         /// <summary>
@@ -99,14 +99,15 @@ namespace org.puremvc.csharp.core
         /// <param name="note">An <c>INotification</c></param>
 		public void executeCommand(INotification note)
 		{
-			Type commandType = (Type)commandMap[note.getName()];
-            if (commandType == null) return;
+			if (!commandMap.ContainsKey(note.getName())) return;
+			Type commandType = commandMap[note.getName()];
 
-            Object commandInstance = Activator.CreateInstance(commandType);
-            if (commandInstance is ICommand)
-            {
-                ((ICommand)commandInstance).execute(note);
-            }
+			Object commandInstance = Activator.CreateInstance(commandType);
+
+			if (commandInstance is ICommand)
+			{
+				((ICommand) commandInstance).execute(note);
+			}
 		}
 
         /// <summary>
@@ -124,10 +125,11 @@ namespace org.puremvc.csharp.core
         /// </remarks> 
         public void registerCommand(String notificationName, Type commandType)
 		{
-            if (!commandMap.Contains(notificationName))
+            if (!commandMap.ContainsKey(notificationName))
             {
                 view.registerObserver(notificationName, new Observer("executeCommand", this));
             }
+
             commandMap[notificationName] = commandType;
 		}
 		
@@ -138,7 +140,7 @@ namespace org.puremvc.csharp.core
 		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
 		public Boolean hasCommand(String notificationName)
 		{
-			return commandMap.Contains(notificationName);
+			return commandMap.ContainsKey(notificationName);
 		}
 
         /// <summary>
@@ -147,7 +149,7 @@ namespace org.puremvc.csharp.core
         /// <param name="notificationName">The name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
 		public void removeCommand(String notificationName)
 		{
-            if (commandMap.Contains(notificationName))
+            if (commandMap.ContainsKey(notificationName))
             {
 				// remove the observer
 				view.removeObserver(notificationName, this);
@@ -164,7 +166,7 @@ namespace org.puremvc.csharp.core
         /// <summary>
         /// Mapping of Notification names to Command Class references
         /// </summary>
-        protected IDictionary commandMap;
+        protected IDictionary<String, Type> commandMap;
 
         /// <summary>
         /// Singleton instance

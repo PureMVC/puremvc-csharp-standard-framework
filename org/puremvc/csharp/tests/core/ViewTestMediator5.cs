@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.mediator;
@@ -31,9 +31,9 @@ namespace org.puremvc.csharp.core
 		{
 		}
 
-		public override IList listNotificationInterests()
+		public override IList<String> listNotificationInterests()
 		{
-            return new ArrayList(new string[] { ViewTest.NOTE5 });
+			return new List<String>(new string[] { ViewTest.NOTE5 });
 		}
 
 		public override void handleNotification(INotification note)
@@ -43,7 +43,7 @@ namespace org.puremvc.csharp.core
 
         public ViewTest viewTest
 		{
-            get { return viewComponent as ViewTest; }
+			get { return (ViewTest) viewComponent; }
 		}
 	}
 }

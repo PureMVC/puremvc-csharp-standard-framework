@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -149,18 +149,18 @@ namespace org.puremvc.csharp.patterns.facade
         {
    			// register a proxy and retrieve it.
    			IFacade facade = Facade.getInstance();
-			facade.registerProxy(new Proxy("colors", new ArrayList(new string[]{"red", "green", "blue"})));
+			facade.registerProxy(new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" })));
 			IProxy proxy = facade.retrieveProxy("colors");
 			
 			// test assertions
    			Assert.True(proxy is IProxy, "Expecting proxy is IProxy");
 
 			// retrieve data from proxy
-			ArrayList data = proxy.getData() as ArrayList;
+			List<String> data = (List<String>) proxy.getData();
 			
 			// test assertions
    			Assert.NotNull(data, "Expecting data not null");
-   			Assert.True(data is ArrayList, "Expecting data is ArrayList");
+			Assert.True(data is List<String>, "Expecting data is ArrayList");
    			Assert.True(data.Count == 3, "Expecting data.Count == 3");
    			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
             Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
@@ -174,7 +174,7 @@ namespace org.puremvc.csharp.patterns.facade
         {
    			// register a proxy, remove it, then try to retrieve it
    			IFacade facade = Facade.getInstance();
-			facade.registerProxy(new Proxy("sizes", new ArrayList(new int[]{7, 13, 21})));
+			facade.registerProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
 
 			IProxy removedProxy = facade.removeProxy("sizes");
 
@@ -216,7 +216,7 @@ namespace org.puremvc.csharp.patterns.facade
 		{
    			// register a Proxy
 			IFacade facade = Facade.getInstance();
-			facade.registerProxy( new Proxy( "hasProxyTest", new ArrayList(new int[]{1,2,3})));
+			facade.registerProxy(new Proxy("hasProxyTest", new List<int>(new int[] { 1, 2, 3 })));
 			
    			// assert that the model.hasProxy method returns true
    			// for that proxy name

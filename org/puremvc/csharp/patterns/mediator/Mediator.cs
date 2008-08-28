@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.facade;
@@ -15,7 +15,7 @@ namespace org.puremvc.csharp.patterns.mediator
     /// <summary>
     /// A base <c>IMediator</c> implementation
     /// </summary>
-    /// <see cref="org.puremvc.csharp.core.view.View"/>
+    /// <see cref="org.puremvc.csharp.core.View"/>
     public class Mediator : Notifier, IMediator, INotifier
     {
         /// <summary>
@@ -94,9 +94,9 @@ namespace org.puremvc.csharp.patterns.mediator
         /// List the <c>INotification</c> names this <c>Mediator</c> is interested in being notified of
         /// </summary>
         /// <returns>The list of <c>INotification</c> names </returns>
-        public virtual IList listNotificationInterests()
+        public virtual IList<String> listNotificationInterests()
 		{
-            return new ArrayList();
+            return new List<String>();
 		}
 
         /// <summary>

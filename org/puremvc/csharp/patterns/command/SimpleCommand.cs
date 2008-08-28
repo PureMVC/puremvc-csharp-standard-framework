@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
@@ -17,7 +17,7 @@ namespace org.puremvc.csharp.patterns.command
     /// <remarks>
     ///     <para>Your subclass should override the <c>execute</c> method where your business logic will handle the <c>INotification</c></para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.controller.Controller"/>
+    /// <see cref="org.puremvc.csharp.core.Controller"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
     /// <see cref="org.puremvc.csharp.patterns.command.MacroCommand"/>
     public class SimpleCommand : Notifier, ICommand, INotifier

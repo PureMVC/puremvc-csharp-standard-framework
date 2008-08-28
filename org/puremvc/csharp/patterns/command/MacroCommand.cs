@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 using org.puremvc.csharp.patterns.observer;
@@ -19,12 +19,12 @@ namespace org.puremvc.csharp.patterns.command
     ///     <para>When <c>execute</c> is called, the <c>MacroCommand</c> instantiates and calls <c>execute</c> on each of its <i>SubCommands</i> turn. Each <i>SubCommand</i> will be passed a reference to the original <c>INotification</c> that was passed to the <c>MacroCommand</c>'s <c>execute</c> method</para>
     ///     <para>Unlike <c>SimpleCommand</c>, your subclass should not override <c>execute</c>, but instead, should override the <c>initializeMacroCommand</c> method, calling <c>addSubCommand</c> once for each <i>SubCommand</i> to be executed</para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.controller.Controller"/>
+    /// <see cref="org.puremvc.csharp.core.Controller"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
     /// <see cref="org.puremvc.csharp.patterns.command.SimpleCommand"/>
     public class MacroCommand : Notifier, ICommand, INotifier
     {
-        private IList subCommands;
+		private IList<Type> subCommands;
 		
         /// <summary>
         /// Constructs a new macro command
@@ -35,7 +35,7 @@ namespace org.puremvc.csharp.patterns.command
         /// </remarks>
 		public MacroCommand()
 		{
-			subCommands = new ArrayList();
+			subCommands = new List<Type>();
 			initializeMacroCommand();			
 		}
 
@@ -81,15 +81,17 @@ namespace org.puremvc.csharp.patterns.command
         /// </remarks>
 		public void execute(INotification notification)
 		{
-			while (subCommands.Count > 0) 
-            {
-                Type commandType = (Type)subCommands[0];
-                Object commandInstance = Activator.CreateInstance(commandType);
-                if (commandInstance is ICommand)
-                {
-                    ((ICommand)commandInstance).execute(notification);
-                }
-                subCommands.RemoveAt(0);
+			while (subCommands.Count > 0)
+			{
+				Type commandType = subCommands[0];
+				Object commandInstance = Activator.CreateInstance(commandType);
+
+				if (commandInstance is ICommand)
+				{
+					((ICommand) commandInstance).execute(notification);
+				}
+
+				subCommands.RemoveAt(0);
 			}
 		}
     }

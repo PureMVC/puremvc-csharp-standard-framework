@@ -123,9 +123,9 @@ namespace org.puremvc.csharp.patterns.facade
     ///         </code>
     ///     </example>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.model.Model"/>
-    /// <see cref="org.puremvc.csharp.core.view.View"/>
-    /// <see cref="org.puremvc.csharp.core.controller.Controller"/>
+    /// <see cref="org.puremvc.csharp.core.Model"/>
+    /// <see cref="org.puremvc.csharp.core.View"/>
+    /// <see cref="org.puremvc.csharp.core.Controller"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
     /// <see cref="org.puremvc.csharp.patterns.mediator.Mediator"/>
     /// <see cref="org.puremvc.csharp.patterns.proxy.Proxy"/>
@@ -313,7 +313,7 @@ namespace org.puremvc.csharp.patterns.facade
         /// <returns>The <c>IMediator</c> previously registered with the given <c>mediatorName</c></returns>
         public IMediator retrieveMediator(String mediatorName)
         {
-			return view.retrieveMediator( mediatorName ) as IMediator;
+			return view.retrieveMediator(mediatorName);
 		}
 
         /// <summary>
@@ -376,9 +376,9 @@ namespace org.puremvc.csharp.patterns.facade
         /// <remarks>This method is left public mostly for backward compatibility, and to allow you to send custom notification classes using the facade.</remarks>
         /// <remarks>Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.</remarks>
         /// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
-        public void notifyObservers(INotification notification)
-        {
-			if ( view != null ) view.notifyObservers( notification );
+		public void notifyObservers(INotification notification)
+		{
+			if (view != null) view.notifyObservers(notification);
 		}
 
         /// <summary>

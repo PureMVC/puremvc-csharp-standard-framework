@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PureMVC.DotNET")]
+[assembly: AssemblyTitle("PureMVC.DotNET.Tests")]
 [assembly: AssemblyDescription("PureMVC - A lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Futurescale Inc")]
-[assembly: AssemblyProduct("PureMVC.DotNET")]
+[assembly: AssemblyProduct("PureMVC.DotNET.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2006 - 2008, Futurescale Inc")]
 [assembly: AssemblyTrademark("PureMVC")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bdc5ea8d-cb10-4bca-b6cb-f5388de76a6c")]
+[assembly: Guid("a3917234-dfd7-4f31-bee0-3b49985fcbf5")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

@@ -33,7 +33,7 @@ namespace org.puremvc.csharp.patterns.command
 		 */
 		public override void execute(INotification note)
 		{
-			MacroCommandTestVO vo = note.getBody() as MacroCommandTestVO;
+			MacroCommandTestVO vo = (MacroCommandTestVO) note.getBody();
 			
 			// Fabricate a result
 			vo.result2 = vo.input * vo.input;

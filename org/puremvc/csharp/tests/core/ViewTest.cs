@@ -155,7 +155,7 @@ namespace org.puremvc.csharp.core
 			view.registerMediator(viewTestMediator);
 
 			// Retrieve the component
-			IMediator mediator = view.retrieveMediator(ViewTestMediator.NAME) as IMediator;
+			IMediator mediator = view.retrieveMediator(ViewTestMediator.NAME);
 			
 			// test assertions  			
    			Assert.True(mediator is ViewTestMediator, "Expecting comp is ViewTestMediator");

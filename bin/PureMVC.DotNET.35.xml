@@ -1,9 +1,196 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>PureMVC.DotNETCF</name>
+        <name>PureMVC.DotNET.35</name>
     </assembly>
     <members>
+        <member name="T:org.puremvc.csharp.core.View">
+            <summary>
+            A Singleton <c>IView</c> implementation.
+            </summary>
+            <remarks>
+                <para>In PureMVC, the <c>View</c> class assumes these responsibilities:</para>
+                <list type="bullet">
+                    <item>Maintain a cache of <c>IMediator</c> instances</item>
+                    <item>Provide methods for registering, retrieving, and removing <c>IMediators</c></item>
+                    <item>Managing the observer lists for each <c>INotification</c> in the application</item>
+                    <item>Providing a method for attaching <c>IObservers</c> to an <c>INotification</c>'s observer list</item>
+                    <item>Providing a method for broadcasting an <c>INotification</c></item>
+                    <item>Notifying the <c>IObservers</c> of a given <c>INotification</c> when it broadcast</item>
+                </list>
+            </remarks>
+            <see cref="T:org.puremvc.csharp.patterns.mediator.Mediator"/>
+            <see cref="T:org.puremvc.csharp.patterns.observer.Observer"/>
+            <see cref="T:org.puremvc.csharp.patterns.observer.Notification"/>
+        </member>
+        <member name="T:org.puremvc.csharp.interfaces.IView">
+            <summary>
+            The interface definition for a PureMVC View
+            </summary>
+            <remarks>
+                <para>In PureMVC, <c>IView</c> implementors assume these responsibilities:</para>
+                <list type="bullet">
+                    <item>Maintain a cache of <c>IMediator</c> instances</item>
+                    <item>Provide methods for registering, retrieving, and removing <c>IMediators</c></item>
+                    <item>Managing the observer lists for each <c>INotification</c> in the application</item>
+                    <item>Providing a method for attaching <c>IObservers</c> to an <c>INotification</c>'s observer list</item>
+                    <item>Providing a method for broadcasting an <c>INotification</c></item>
+                    <item>Notifying the <c>IObservers</c> of a given <c>INotification</c> when it broadcast</item>
+                </list>
+            </remarks>
+            <see cref="T:org.puremvc.csharp.interfaces.IMediator"/>
+            <see cref="T:org.puremvc.csharp.interfaces.IObserver"/>
+            <see cref="T:org.puremvc.csharp.interfaces.INotification"/>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
+            <summary>
+            Register an <c>IObserver</c> to be notified of <c>INotifications</c> with a given name
+            </summary>
+            <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
+            <param name="observer">The <c>IObserver</c> to register</param>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.removeObserver(System.String,System.Object)">
+            <summary>
+            Remove a group of observers from the observer list for a given Notification name.
+            </summary>
+            <param name="notificationName">which observer list to remove from</param>
+            <param name="notifyContext">removed the observers with this object as their notifyContext</param>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            <summary>
+            Notify the <c>IObservers</c> for a particular <c>INotification</c>
+            </summary>
+            <param name="note">The <c>INotification</c> to notify <c>IObservers</c> of</param>
+            <remarks>
+                <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
+            <summary>
+            Register an <c>IMediator</c> instance with the <c>View</c>
+            </summary>
+            <param name="mediator">A a reference to the <c>IMediator</c> instance</param>
+            <remarks>
+                <para>Registers the <c>IMediator</c> so that it can be retrieved by name, and further interrogates the <c>IMediator</c> for its <c>INotification</c> interests</para>
+                <para>If the <c>IMediator</c> returns any <c>INotification</c> names to be notified about, an <c>Observer</c> is created encapsulating  the <c>IMediator</c> instance's <c>handleNotification</c> method and registering it as an <c>Observer</c> for all <c>INotifications</c> the <c>IMediator</c> is interested in</para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.retrieveMediator(System.String)">
+            <summary>
+            Retrieve an <c>IMediator</c> from the <c>View</c>
+            </summary>
+            <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
+            <returns>The <c>IMediator</c> instance previously registered with the given <c>mediatorName</c></returns>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.removeMediator(System.String)">
+            <summary>
+            Remove an <c>IMediator</c> from the <c>View</c>
+            </summary>
+            <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
+        </member>
+        <member name="M:org.puremvc.csharp.interfaces.IView.hasMediator(System.String)">
+            <summary>
+            Check if a Mediator is registered or not
+            </summary>
+            <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
+            <returns>whether a Mediator is registered with the given <c>mediatorName</c>.</returns>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.#ctor">
+            <summary>
+            Constructs and initializes a new view
+            </summary>
+            <remarks>
+            <para>This <c>IView</c> implementation is a Singleton, so you should not call the constructor directly, but instead call the static Singleton Factory method <c>View.getInstance()</c></para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.#cctor">
+            <summary>
+            Explicit static constructor to tell C# compiler 
+            not to mark type as beforefieldinit
+            </summary>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.initializeView">
+            <summary>
+            Initialize the Singleton View instance
+            </summary>
+            <remarks>
+            <para>Called automatically by the constructor, this is your opportunity to initialize the Singleton instance in your subclass without overriding the constructor</para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.getInstance">
+            <summary>
+            View Singleton Factory method
+            </summary>
+            <returns>The Singleton instance of <c>View</c></returns>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
+            <summary>
+            Register an <c>IObserver</c> to be notified of <c>INotifications</c> with a given name
+            </summary>
+            <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
+            <param name="observer">The <c>IObserver</c> to register</param>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
+            <summary>
+            Notify the <c>IObservers</c> for a particular <c>INotification</c>
+            </summary>
+            <param name="notification">The <c>INotification</c> to notify <c>IObservers</c> of</param>
+            <remarks>
+            <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.removeObserver(System.String,System.Object)">
+            <summary>
+            Remove the observer for a given notifyContext from an observer list for a given Notification name.
+            </summary>
+            <param name="notificationName">which observer list to remove from</param>
+            <param name="notifyContext">remove the observer with this object as its notifyContext</param>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
+            <summary>
+            Register an <c>IMediator</c> instance with the <c>View</c>
+            </summary>
+            <param name="mediator">A reference to the <c>IMediator</c> instance</param>
+            <remarks>
+                <para>Registers the <c>IMediator</c> so that it can be retrieved by name, and further interrogates the <c>IMediator</c> for its <c>INotification</c> interests</para>
+                <para>If the <c>IMediator</c> returns any <c>INotification</c> names to be notified about, an <c>Observer</c> is created encapsulating the <c>IMediator</c> instance's <c>handleNotification</c> method and registering it as an <c>Observer</c> for all <c>INotifications</c> the <c>IMediator</c> is interested in</para>
+            </remarks>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.retrieveMediator(System.String)">
+            <summary>
+            Retrieve an <c>IMediator</c> from the <c>View</c>
+            </summary>
+            <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
+            <returns>The <c>IMediator</c> instance previously registered with the given <c>mediatorName</c></returns>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.removeMediator(System.String)">
+            <summary>
+            Remove an <c>IMediator</c> from the <c>View</c>
+            </summary>
+            <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
+        </member>
+        <member name="M:org.puremvc.csharp.core.View.hasMediator(System.String)">
+            <summary>
+            Check if a Mediator is registered or not
+            </summary>
+            <param name="mediatorName"></param>
+            <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
+        </member>
+        <member name="F:org.puremvc.csharp.core.View.mediatorMap">
+            <summary>
+            Mapping of Mediator names to Mediator instances
+            </summary>
+        </member>
+        <member name="F:org.puremvc.csharp.core.View.observerMap">
+            <summary>
+            Mapping of Notification names to Observer lists
+            </summary>
+        </member>
+        <member name="F:org.puremvc.csharp.core.View.instance">
+            <summary>
+            Singleton instance
+            </summary>
+        </member>
         <member name="T:org.puremvc.csharp.interfaces.IObserver">
             <summary>
             The interface definition for a PureMVC Observer
@@ -244,193 +431,6 @@
             </summary>
             <param name="notificationName">The name of the <c>INotification</c> to check the <c>ICommand</c> mapping for</param>
             <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
-        </member>
-        <member name="T:org.puremvc.csharp.core.View">
-            <summary>
-            A Singleton <c>IView</c> implementation.
-            </summary>
-            <remarks>
-                <para>In PureMVC, the <c>View</c> class assumes these responsibilities:</para>
-                <list type="bullet">
-                    <item>Maintain a cache of <c>IMediator</c> instances</item>
-                    <item>Provide methods for registering, retrieving, and removing <c>IMediators</c></item>
-                    <item>Managing the observer lists for each <c>INotification</c> in the application</item>
-                    <item>Providing a method for attaching <c>IObservers</c> to an <c>INotification</c>'s observer list</item>
-                    <item>Providing a method for broadcasting an <c>INotification</c></item>
-                    <item>Notifying the <c>IObservers</c> of a given <c>INotification</c> when it broadcast</item>
-                </list>
-            </remarks>
-            <see cref="T:org.puremvc.csharp.patterns.mediator.Mediator"/>
-            <see cref="T:org.puremvc.csharp.patterns.observer.Observer"/>
-            <see cref="T:org.puremvc.csharp.patterns.observer.Notification"/>
-        </member>
-        <member name="T:org.puremvc.csharp.interfaces.IView">
-            <summary>
-            The interface definition for a PureMVC View
-            </summary>
-            <remarks>
-                <para>In PureMVC, <c>IView</c> implementors assume these responsibilities:</para>
-                <list type="bullet">
-                    <item>Maintain a cache of <c>IMediator</c> instances</item>
-                    <item>Provide methods for registering, retrieving, and removing <c>IMediators</c></item>
-                    <item>Managing the observer lists for each <c>INotification</c> in the application</item>
-                    <item>Providing a method for attaching <c>IObservers</c> to an <c>INotification</c>'s observer list</item>
-                    <item>Providing a method for broadcasting an <c>INotification</c></item>
-                    <item>Notifying the <c>IObservers</c> of a given <c>INotification</c> when it broadcast</item>
-                </list>
-            </remarks>
-            <see cref="T:org.puremvc.csharp.interfaces.IMediator"/>
-            <see cref="T:org.puremvc.csharp.interfaces.IObserver"/>
-            <see cref="T:org.puremvc.csharp.interfaces.INotification"/>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
-            <summary>
-            Register an <c>IObserver</c> to be notified of <c>INotifications</c> with a given name
-            </summary>
-            <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
-            <param name="observer">The <c>IObserver</c> to register</param>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.removeObserver(System.String,System.Object)">
-            <summary>
-            Remove a group of observers from the observer list for a given Notification name.
-            </summary>
-            <param name="notificationName">which observer list to remove from</param>
-            <param name="notifyContext">removed the observers with this object as their notifyContext</param>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
-            <summary>
-            Notify the <c>IObservers</c> for a particular <c>INotification</c>
-            </summary>
-            <param name="note">The <c>INotification</c> to notify <c>IObservers</c> of</param>
-            <remarks>
-                <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
-            <summary>
-            Register an <c>IMediator</c> instance with the <c>View</c>
-            </summary>
-            <param name="mediator">A a reference to the <c>IMediator</c> instance</param>
-            <remarks>
-                <para>Registers the <c>IMediator</c> so that it can be retrieved by name, and further interrogates the <c>IMediator</c> for its <c>INotification</c> interests</para>
-                <para>If the <c>IMediator</c> returns any <c>INotification</c> names to be notified about, an <c>Observer</c> is created encapsulating  the <c>IMediator</c> instance's <c>handleNotification</c> method and registering it as an <c>Observer</c> for all <c>INotifications</c> the <c>IMediator</c> is interested in</para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.retrieveMediator(System.String)">
-            <summary>
-            Retrieve an <c>IMediator</c> from the <c>View</c>
-            </summary>
-            <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
-            <returns>The <c>IMediator</c> instance previously registered with the given <c>mediatorName</c></returns>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.removeMediator(System.String)">
-            <summary>
-            Remove an <c>IMediator</c> from the <c>View</c>
-            </summary>
-            <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-        </member>
-        <member name="M:org.puremvc.csharp.interfaces.IView.hasMediator(System.String)">
-            <summary>
-            Check if a Mediator is registered or not
-            </summary>
-            <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
-            <returns>whether a Mediator is registered with the given <c>mediatorName</c>.</returns>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.#ctor">
-            <summary>
-            Constructs and initializes a new view
-            </summary>
-            <remarks>
-            <para>This <c>IView</c> implementation is a Singleton, so you should not call the constructor directly, but instead call the static Singleton Factory method <c>View.getInstance()</c></para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.#cctor">
-            <summary>
-            Explicit static constructor to tell C# compiler 
-            not to mark type as beforefieldinit
-            </summary>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.initializeView">
-            <summary>
-            Initialize the Singleton View instance
-            </summary>
-            <remarks>
-            <para>Called automatically by the constructor, this is your opportunity to initialize the Singleton instance in your subclass without overriding the constructor</para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.getInstance">
-            <summary>
-            View Singleton Factory method
-            </summary>
-            <returns>The Singleton instance of <c>View</c></returns>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.registerObserver(System.String,org.puremvc.csharp.interfaces.IObserver)">
-            <summary>
-            Register an <c>IObserver</c> to be notified of <c>INotifications</c> with a given name
-            </summary>
-            <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
-            <param name="observer">The <c>IObserver</c> to register</param>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.notifyObservers(org.puremvc.csharp.interfaces.INotification)">
-            <summary>
-            Notify the <c>IObservers</c> for a particular <c>INotification</c>
-            </summary>
-            <param name="notification">The <c>INotification</c> to notify <c>IObservers</c> of</param>
-            <remarks>
-            <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.removeObserver(System.String,System.Object)">
-            <summary>
-            Remove the observer for a given notifyContext from an observer list for a given Notification name.
-            </summary>
-            <param name="notificationName">which observer list to remove from</param>
-            <param name="notifyContext">remove the observer with this object as its notifyContext</param>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.registerMediator(org.puremvc.csharp.interfaces.IMediator)">
-            <summary>
-            Register an <c>IMediator</c> instance with the <c>View</c>
-            </summary>
-            <param name="mediator">A reference to the <c>IMediator</c> instance</param>
-            <remarks>
-                <para>Registers the <c>IMediator</c> so that it can be retrieved by name, and further interrogates the <c>IMediator</c> for its <c>INotification</c> interests</para>
-                <para>If the <c>IMediator</c> returns any <c>INotification</c> names to be notified about, an <c>Observer</c> is created encapsulating the <c>IMediator</c> instance's <c>handleNotification</c> method and registering it as an <c>Observer</c> for all <c>INotifications</c> the <c>IMediator</c> is interested in</para>
-            </remarks>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.retrieveMediator(System.String)">
-            <summary>
-            Retrieve an <c>IMediator</c> from the <c>View</c>
-            </summary>
-            <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
-            <returns>The <c>IMediator</c> instance previously registered with the given <c>mediatorName</c></returns>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.removeMediator(System.String)">
-            <summary>
-            Remove an <c>IMediator</c> from the <c>View</c>
-            </summary>
-            <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-        </member>
-        <member name="M:org.puremvc.csharp.core.View.hasMediator(System.String)">
-            <summary>
-            Check if a Mediator is registered or not
-            </summary>
-            <param name="mediatorName"></param>
-            <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
-        </member>
-        <member name="F:org.puremvc.csharp.core.View.mediatorMap">
-            <summary>
-            Mapping of Mediator names to Mediator instances
-            </summary>
-        </member>
-        <member name="F:org.puremvc.csharp.core.View.observerMap">
-            <summary>
-            Mapping of Notification names to Observer lists
-            </summary>
-        </member>
-        <member name="F:org.puremvc.csharp.core.View.instance">
-            <summary>
-            Singleton instance
-            </summary>
         </member>
         <member name="T:org.puremvc.csharp.interfaces.IFacade">
             <summary>

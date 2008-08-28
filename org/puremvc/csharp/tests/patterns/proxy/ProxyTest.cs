@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -68,8 +68,8 @@ namespace org.puremvc.csharp.patterns.proxy
         {
 			// Create a new Proxy and use accessors to set the data
    			IProxy proxy = new Proxy("colors");
-   			proxy.setData(new ArrayList(new string[]{"red", "green", "blue"}));
-   			ArrayList data = proxy.getData() as ArrayList;
+			proxy.setData(new List<String>(new string[] { "red", "green", "blue" }));
+			List<String> data = (List<String>) proxy.getData();
    			
    			// test assertions
    			Assert.True(data.Count == 3, "Expecting data.Count == 3");
@@ -84,8 +84,8 @@ namespace org.puremvc.csharp.patterns.proxy
   		public void testConstructor()
         {
 			// Create a new Proxy using the Constructor to set the name and data
-   			IProxy proxy = new Proxy("colors", new ArrayList(new string[]{"red", "green", "blue"}));
-   			ArrayList data = proxy.getData() as ArrayList;
+			IProxy proxy = new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" }));
+			List<String> data = (List<String>) proxy.getData();
    			
    			// test assertions
    			Assert.NotNull(proxy, "Expecting proxy not null");

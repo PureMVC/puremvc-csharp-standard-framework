@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using org.puremvc.csharp.interfaces;
 
@@ -39,7 +39,7 @@ namespace org.puremvc.csharp.core
         /// </remarks>
 		protected Model()
 		{
-			proxyMap = new Hashtable();	
+			proxyMap = new Dictionary<String, IProxy>();	
 			initializeModel();	
 		}
 		
@@ -86,7 +86,8 @@ namespace org.puremvc.csharp.core
         /// <returns>The <c>IProxy</c> instance previously registered with the given <c>proxyName</c></returns>
 		public IProxy retrieveProxy(String proxyName)
         {
-			return (IProxy)proxyMap[proxyName];
+			if (!proxyMap.ContainsKey(proxyName)) return null;
+			return proxyMap[proxyName];
 		}
 
 		/// <summary>
@@ -96,7 +97,7 @@ namespace org.puremvc.csharp.core
 		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
 		public Boolean hasProxy(String proxyName)
 		{
-			return proxyMap.Contains(proxyName);
+			return proxyMap.ContainsKey(proxyName);
 		}
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace org.puremvc.csharp.core
         {
             IProxy proxy = null;
 
-            if (proxyMap.Contains(proxyName))
+            if (proxyMap.ContainsKey(proxyName))
             {
                 proxy = retrieveProxy(proxyName);
                 proxyMap.Remove(proxyName);
@@ -120,7 +121,7 @@ namespace org.puremvc.csharp.core
         /// <summary>
         /// Mapping of proxyNames to <c>IProxy</c> instances
         /// </summary>
-		protected IDictionary proxyMap;
+		protected IDictionary<String, IProxy> proxyMap;
 
         /// <summary>
         /// Singleton instance

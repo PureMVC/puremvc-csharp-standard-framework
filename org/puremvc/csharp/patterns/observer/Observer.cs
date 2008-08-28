@@ -23,7 +23,7 @@ namespace org.puremvc.csharp.patterns.observer
     ///         <item>Provide a method for notifying the interested object</item>
     ///     </list>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.view.View"/>
+    /// <see cref="org.puremvc.csharp.core.View"/>
     /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
     public class Observer : IObserver
     {

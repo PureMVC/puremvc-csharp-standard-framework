@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -74,13 +74,13 @@ namespace org.puremvc.csharp.core
         {
    			// register a proxy and retrieve it.
    			IModel model = Model.getInstance();
-			model.registerProxy(new Proxy("colors", new ArrayList(new string[]{"red", "green", "blue"})));
-			IProxy proxy = model.retrieveProxy("colors") as Proxy;
-            ArrayList data = proxy.getData() as ArrayList;
+			model.registerProxy(new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" })));
+			IProxy proxy = model.retrieveProxy("colors");
+			List<String> data = (List<String>) proxy.getData();
 			
 			// test assertions
             Assert.NotNull(data, "Expecting data not null");
-            Assert.True(data is ArrayList, "Expecting data type is ArrayList");
+			Assert.True(data is List<String>, "Expecting data type is ArrayList");
    			Assert.True(data.Count == 3, "Expecting data.length == 3");
    			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
             Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
@@ -94,7 +94,7 @@ namespace org.puremvc.csharp.core
         {
    			// register a proxy, remove it, then try to retrieve it
    			IModel model = Model.getInstance();
-			model.registerProxy(new Proxy("sizes", new ArrayList(new int[]{7, 13, 21})));
+			model.registerProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
 			
             IProxy removedProxy = model.removeProxy("sizes");
 
@@ -113,7 +113,7 @@ namespace org.puremvc.csharp.core
   			
    			// register a proxy
    			IModel model = Model.getInstance();
-   			IProxy proxy = new Proxy( "aces", new ArrayList(new string[] {"clubs", "spades", "hearts", "diamonds"}));
+			IProxy proxy = new Proxy("aces", new List<String>(new string[] { "clubs", "spades", "hearts", "diamonds" }));
 			model.registerProxy(proxy);
 			
    			// assert that the model.hasProxy method returns true

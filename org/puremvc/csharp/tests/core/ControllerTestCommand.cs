@@ -33,7 +33,7 @@ namespace org.puremvc.csharp.core
 		override public void execute( INotification note )
 		{
 			
-			ControllerTestVO vo = note.getBody() as ControllerTestVO;
+			ControllerTestVO vo = (ControllerTestVO) note.getBody();
 			
 			// Fabricate a result
 			vo.result = 2 * vo.input;

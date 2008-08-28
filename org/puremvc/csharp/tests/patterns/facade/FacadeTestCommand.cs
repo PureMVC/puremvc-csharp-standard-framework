@@ -32,7 +32,7 @@ namespace org.puremvc.csharp.patterns.facade
 		 */
 		override public void execute(INotification note)
 		{
-			FacadeTestVO vo = note.getBody() as FacadeTestVO;
+			FacadeTestVO vo = (FacadeTestVO) note.getBody();
 			
 			// Fabricate a result
 			vo.result = 2 * vo.input;

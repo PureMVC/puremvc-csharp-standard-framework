@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.puremvc.csharp.tests</RootNamespace>
+    <AssemblyName>PureMVC.DotNET.35.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>org.puremvc.csharp.tests.TestRunner</StartupObject>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NUnitLite, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnitLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTest.cs">
+      <Link>core\ControllerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand.cs">
+      <Link>core\ControllerTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand2.cs">
+      <Link>core\ControllerTestCommand2.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestVO.cs">
+      <Link>core\ControllerTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTest.cs">
+      <Link>core\ModelTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTestProxy.cs">
+      <Link>core\ModelTestProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTest.cs">
+      <Link>core\ViewTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator.cs">
+      <Link>core\ViewTestMediator.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator2.cs">
+      <Link>core\ViewTestMediator2.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator3.cs">
+      <Link>core\ViewTestMediator3.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator4.cs">
+      <Link>core\ViewTestMediator4.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator5.cs">
+      <Link>core\ViewTestMediator5.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator6.cs">
+      <Link>core\ViewTestMediator6.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestNote.cs">
+      <Link>core\ViewTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
+      <Link>patterns\command\MacroCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestCommand.cs">
+      <Link>patterns\command\MacroCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub1Command.cs">
+      <Link>patterns\command\MacroCommandTestSub1Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub2Command.cs">
+      <Link>patterns\command\MacroCommandTestSub2Command.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestVO.cs">
+      <Link>patterns\command\MacroCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTest.cs">
+      <Link>patterns\command\SimpleCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestCommand.cs">
+      <Link>patterns\command\SimpleCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestVO.cs">
+      <Link>patterns\command\SimpleCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTest.cs">
+      <Link>patterns\facade\FacadeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestCommand.cs">
+      <Link>patterns\facade\FacadeTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestVO.cs">
+      <Link>patterns\facade\FacadeTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\mediator\MediatorTest.cs">
+      <Link>patterns\mediator\MediatorTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
+      <Link>patterns\observer\NotificationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
+      <Link>patterns\observer\ObserverTest.cs</Link>
+    </Compile>
+    <Compile Include="..\org\puremvc\csharp\tests\patterns\proxy\ProxyTest.cs">
+      <Link>patterns\proxy\ProxyTest.cs</Link>
+    </Compile>
+    <Compile Include="TestRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PureMVC.DotNET.2008\PureMVC.DotNET.2008.csproj">
+      <Project>{A1482CF1-5566-4636-8590-30ED9CF3D4D9}</Project>
+      <Name>PureMVC.DotNET.2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

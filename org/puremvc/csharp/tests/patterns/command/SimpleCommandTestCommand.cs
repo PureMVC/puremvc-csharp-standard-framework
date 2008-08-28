@@ -32,7 +32,7 @@ namespace org.puremvc.csharp.patterns.command
 		 */
 		public override void execute(INotification note)
 		{
-			SimpleCommandTestVO vo = note.getBody() as SimpleCommandTestVO;
+			SimpleCommandTestVO vo = (SimpleCommandTestVO) note.getBody();
 			
 			// Fabricate a result
 			vo.result = 2 * vo.input;

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET", "PureMVC.DotNET\PureMVC.DotNET.csproj", "{A1482CF1-5566-4636-8590-30ED9CF3D4D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.2008", "PureMVC.DotNET.2008\PureMVC.DotNET.2008.csproj", "{A1482CF1-5566-4636-8590-30ED9CF3D4D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.Tests", "PureMVC.DotNET.Tests\PureMVC.DotNET.Tests.csproj", "{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.Tests", "PureMVC.DotNET.2008.Tests\PureMVC.DotNET.2008.Tests.csproj", "{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace org.puremvc.csharp.interfaces
 {
@@ -104,7 +104,7 @@ namespace org.puremvc.csharp.interfaces
         /// List <c>INotification interests</c>
         /// </summary>
         /// <returns>An <c>IList</c> of the <c>INotification</c> names this <c>IMediator</c> has an interest in</returns>
-        IList listNotificationInterests();
+        IList<String> listNotificationInterests();
 		
         /// <summary>
         /// Handle an <c>INotification</c>
