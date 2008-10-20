@@ -63,14 +63,18 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="notificationName">The name of the <c>INotifications</c> to notify this <c>IObserver</c> of</param>
 		/// <param name="observer">The <c>IObserver</c> to register</param>
-		public void RegisterObserver(string notificationName, IObserver observer)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RegisterObserver(string notificationName, IObserver observer)
 		{
-			if (!m_observerMap.ContainsKey(notificationName))
+			lock (m_syncRoot)
 			{
-				m_observerMap[notificationName] = new List<IObserver>();
-			}
+				if (!m_observerMap.ContainsKey(notificationName))
+				{
+					m_observerMap[notificationName] = new List<IObserver>();
+				}
 
-			m_observerMap[notificationName].Add(observer);
+				m_observerMap[notificationName].Add(observer);
+			}
 		}
 
 		/// <summary>
@@ -80,16 +84,26 @@ namespace PureMVC.Core
 		/// <remarks>
 		/// <para>All previously attached <c>IObservers</c> for this <c>INotification</c>'s list are notified and are passed a reference to the <c>INotification</c> in the order in which they were registered</para>
 		/// </remarks>
-		public void NotifyObservers(INotification notification)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void NotifyObservers(INotification notification)
 		{
-			if (m_observerMap.ContainsKey(notification.Name))
-			{
-				// Get a reference to the observers list for this notification name
-				IList<IObserver> observers_ref = m_observerMap[notification.Name];
-				// Copy observers from reference array to working array, 
-				// since the reference array may change during the notification loop
-				IList<IObserver> observers = new List<IObserver>(observers_ref);
+			IList<IObserver> observers = null;
 
+			lock (m_syncRoot)
+			{
+				if (m_observerMap.ContainsKey(notification.Name))
+				{
+					// Get a reference to the observers list for this notification name
+					IList<IObserver> observers_ref = m_observerMap[notification.Name];
+					// Copy observers from reference array to working array, 
+					// since the reference array may change during the notification loop
+					observers = new List<IObserver>(observers_ref);
+				}
+			}
+
+			// Notify outside of the lock
+			if (observers != null)
+			{
 				// Notify Observers from the working array				
 				for (int i = 0; i < observers.Count; i++)
 				{
@@ -104,30 +118,34 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="notificationName">which observer list to remove from</param>
 		/// <param name="notifyContext">remove the observer with this object as its notifyContext</param>
-		public void RemoveObserver(string notificationName, object notifyContext)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RemoveObserver(string notificationName, object notifyContext)
 		{
-			// the observer list for the notification under inspection
-			if (m_observerMap.ContainsKey(notificationName))
+			lock (m_syncRoot)
 			{
-				IList<IObserver> observers = m_observerMap[notificationName];
-
-				// find the observer for the notifyContext
-				for (int i = 0; i < observers.Count; i++)
+				// the observer list for the notification under inspection
+				if (m_observerMap.ContainsKey(notificationName))
 				{
-					if (observers[i].CompareNotifyContext(notifyContext))
+					IList<IObserver> observers = m_observerMap[notificationName];
+
+					// find the observer for the notifyContext
+					for (int i = 0; i < observers.Count; i++)
 					{
-						// there can only be one Observer for a given notifyContext 
-						// in any given Observer list, so remove it and break
-						observers.RemoveAt(i);
-						break;
+						if (observers[i].CompareNotifyContext(notifyContext))
+						{
+							// there can only be one Observer for a given notifyContext 
+							// in any given Observer list, so remove it and break
+							observers.RemoveAt(i);
+							break;
+						}
 					}
-				}
 
-				// Also, when a Notification's Observer list length falls to 
-				// zero, delete the notification key from the observer map
-				if (observers.Count == 0)
-				{
-					m_observerMap.Remove(notificationName);
+					// Also, when a Notification's Observer list length falls to 
+					// zero, delete the notification key from the observer map
+					if (observers.Count == 0)
+					{
+						m_observerMap.Remove(notificationName);
+					}
 				}
 			}
 		}
@@ -144,27 +162,31 @@ namespace PureMVC.Core
 		///     <para>Registers the <c>IMediator</c> so that it can be retrieved by name, and further interrogates the <c>IMediator</c> for its <c>INotification</c> interests</para>
 		///     <para>If the <c>IMediator</c> returns any <c>INotification</c> names to be notified about, an <c>Observer</c> is created encapsulating the <c>IMediator</c> instance's <c>handleNotification</c> method and registering it as an <c>Observer</c> for all <c>INotifications</c> the <c>IMediator</c> is interested in</para>
 		/// </remarks>
-		public void RegisterMediator(IMediator mediator)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RegisterMediator(IMediator mediator)
 		{
-			// do not allow re-registration (you must to removeMediator fist)
-			if (m_mediatorMap.ContainsKey(mediator.MediatorName)) return;
-
-			// Register the Mediator for retrieval by name
-			m_mediatorMap[mediator.MediatorName] = mediator;
-
-			// Get Notification interests, if any.
-			IList<string> interests = mediator.ListNotificationInterests();
-
-			// Register Mediator as an observer for each of its notification interests
-			if (interests.Count > 0)
+			lock (m_syncRoot)
 			{
-				// Create Observer
-				IObserver observer = new Observer("handleNotification", mediator);
+				// do not allow re-registration (you must to removeMediator fist)
+				if (m_mediatorMap.ContainsKey(mediator.MediatorName)) return;
 
-				// Register Mediator as Observer for its list of Notification interests
-				for (int i = 0; i < interests.Count; i++)
+				// Register the Mediator for retrieval by name
+				m_mediatorMap[mediator.MediatorName] = mediator;
+
+				// Get Notification interests, if any.
+				IList<string> interests = mediator.ListNotificationInterests();
+
+				// Register Mediator as an observer for each of its notification interests
+				if (interests.Count > 0)
 				{
-					RegisterObserver(interests[i].ToString(), observer);
+					// Create Observer
+					IObserver observer = new Observer("handleNotification", mediator);
+
+					// Register Mediator as Observer for its list of Notification interests
+					for (int i = 0; i < interests.Count; i++)
+					{
+						RegisterObserver(interests[i].ToString(), observer);
+					}
 				}
 			}
 
@@ -177,37 +199,47 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
 		/// <returns>The <c>IMediator</c> instance previously registered with the given <c>mediatorName</c></returns>
-		public IMediator RetrieveMediator(string mediatorName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual IMediator RetrieveMediator(string mediatorName)
 		{
-			if (!m_mediatorMap.ContainsKey(mediatorName)) return null;
-			return m_mediatorMap[mediatorName];
+			lock (m_syncRoot)
+			{
+				if (!m_mediatorMap.ContainsKey(mediatorName)) return null;
+				return m_mediatorMap[mediatorName];
+			}
 		}
 
 		/// <summary>
 		/// Remove an <c>IMediator</c> from the <c>View</c>
 		/// </summary>
 		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-		public IMediator RemoveMediator(string mediatorName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual IMediator RemoveMediator(string mediatorName)
 		{
-			// Retrieve the named mediator
-			if (!m_mediatorMap.ContainsKey(mediatorName)) return null;
-			IMediator mediator = (IMediator) m_mediatorMap[mediatorName];
+			IMediator mediator = null;
 
-			// for every notification this mediator is interested in...
-			IList<string> interests = mediator.ListNotificationInterests();
-
-			for (int i = 0; i < interests.Count; i++)
+			lock (m_syncRoot)
 			{
-				// remove the observer linking the mediator 
-				// to the notification interest
-				RemoveObserver(interests[i], mediator);
+				// Retrieve the named mediator
+				if (!m_mediatorMap.ContainsKey(mediatorName)) return null;
+				mediator = (IMediator) m_mediatorMap[mediatorName];
+
+				// for every notification this mediator is interested in...
+				IList<string> interests = mediator.ListNotificationInterests();
+
+				for (int i = 0; i < interests.Count; i++)
+				{
+					// remove the observer linking the mediator 
+					// to the notification interest
+					RemoveObserver(interests[i], mediator);
+				}
+
+				// remove the mediator from the map		
+				m_mediatorMap.Remove(mediatorName);
 			}
 
-			// remove the mediator from the map		
-			m_mediatorMap.Remove(mediatorName);
-
 			// alert the mediator that it has been removed
-			mediator.OnRemove();
+			if (mediator != null) mediator.OnRemove();
 			return mediator;
 		}
 
@@ -216,9 +248,13 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="mediatorName"></param>
 		/// <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
-		public bool HasMediator(string mediatorName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual bool HasMediator(string mediatorName)
 		{
-			return m_mediatorMap.ContainsKey(mediatorName);
+			lock (m_syncRoot)
+			{
+				return m_mediatorMap.ContainsKey(mediatorName);
+			}
 		}
 
 		#endregion
@@ -230,7 +266,7 @@ namespace PureMVC.Core
 		#region Accessors
 
 		/// <summary>
-		/// View Singleton Factory method
+		/// View Singleton Factory method.  This method is thread safe.
 		/// </summary>
 		public static IView Instance
 		{
@@ -247,8 +283,10 @@ namespace PureMVC.Core
         /// </summary>
         static View()
         {
-            m_instance = new View();
-        }
+			// We create the instance in the static constructor so that subclasses can create their own instance
+			// in their own static constructors.  This makes this pattern not an actual singleton, but a logical singleton.
+			m_instance = new View();
+		}
 
         /// <summary>
         /// Initialize the Singleton View instance
@@ -277,7 +315,12 @@ namespace PureMVC.Core
         /// <summary>
         /// Singleton instance
         /// </summary>
-		protected static IView m_instance;
+		protected static volatile IView m_instance;
+
+		/// <summary>
+		/// Used for locking
+		/// </summary>
+		protected static readonly object m_syncRoot = new object();
 
 		#endregion
 	}

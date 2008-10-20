@@ -88,19 +88,37 @@ namespace PureMVC.Patterns
         /// <summary>
         /// The body of the <c>Notification</c> instance
         /// </summary>
+		/// <remarks>This accessor is thread safe</remarks>
 		public object Body
 		{
-			get { return this.m_body; }
-			set { m_body = value; }
+			get
+			{
+				// Setting and getting of reference types is atomic, no need to lock here
+				return m_body;
+			}
+			set
+			{
+				// Setting and getting of reference types is atomic, no need to lock here
+				m_body = value;
+			}
 		}
 		
 		/// <summary>
 		/// The type of the <c>Notification</c> instance
 		/// </summary>
+		/// <remarks>This accessor is thread safe</remarks>
 		public string Type
         {
-			get { return m_type; }
-			set { m_type = value; }
+			get
+			{
+				// Setting and getting of reference types is atomic, no need to lock here
+				return m_type;
+			}
+			set
+			{
+				// Setting and getting of reference types is atomic, no need to lock here
+				m_type = value;
+			}
 		}
 
 		#endregion

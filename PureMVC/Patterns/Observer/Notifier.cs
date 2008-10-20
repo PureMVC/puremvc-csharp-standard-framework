@@ -40,9 +40,11 @@ namespace PureMVC.Patterns
         /// </summary>
         /// <param name="notificationName">The name of the notiification to send</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void SendNotification(string notificationName) 
+		/// <remarks>This method is thread safe</remarks>
+		public void SendNotification(string notificationName) 
 		{
-            m_facade.SendNotification(notificationName);
+			// The Facade SendNotification is thread safe, therefore this method is thread safe.
+			m_facade.SendNotification(notificationName);
 		}
 
         /// <summary>
@@ -51,9 +53,11 @@ namespace PureMVC.Patterns
         /// <param name="notificationName">The name of the notification to send</param>
         /// <param name="body">The body of the notification</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void SendNotification(string notificationName, object body)
+		/// <remarks>This method is thread safe</remarks>
+		public void SendNotification(string notificationName, object body)
 		{
-            m_facade.SendNotification(notificationName, body);
+			// The Facade SendNotification is thread safe, therefore this method is thread safe.
+			m_facade.SendNotification(notificationName, body);
 		}
 
         /// <summary>
@@ -63,8 +67,10 @@ namespace PureMVC.Patterns
         /// <param name="body">The body of the notification</param>
         /// <param name="type">The type of the notification</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void SendNotification(string notificationName, object body, string type)
+		/// <remarks>This method is thread safe</remarks>
+		public void SendNotification(string notificationName, object body, string type)
 		{
+			// The Facade SendNotification is thread safe, therefore this method is thread safe.
             m_facade.SendNotification(notificationName, body, type);
 		}
 

@@ -67,10 +67,16 @@ namespace PureMVC.Core
 		/// to handle a the given <c>INotification</c>, then it is executed.
 		/// </summary>
 		/// <param name="note">An <c>INotification</c></param>
-		public void ExecuteCommand(INotification note)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void ExecuteCommand(INotification note)
 		{
-			if (!m_commandMap.ContainsKey(note.Name)) return;
-			Type commandType = m_commandMap[note.Name];
+			Type commandType = null;
+
+			lock (m_syncRoot)
+			{
+				if (!m_commandMap.ContainsKey(note.Name)) return;
+				commandType = m_commandMap[note.Name];
+			}
 
 			object commandInstance = Activator.CreateInstance(commandType);
 
@@ -93,14 +99,20 @@ namespace PureMVC.Core
 		///         used, the new <c>ICommand</c> is used instead.
 		///     </para>
 		/// </remarks> 
-		public void RegisterCommand(string notificationName, Type commandType)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RegisterCommand(string notificationName, Type commandType)
 		{
-			if (!m_commandMap.ContainsKey(notificationName))
+			lock (m_syncRoot)
 			{
-				m_view.RegisterObserver(notificationName, new Observer("executeCommand", this));
-			}
+				if (!m_commandMap.ContainsKey(notificationName))
+				{
+					// This call needs to be monitored carefully. Have to make sure that RegisterObserver
+					// doesn't call back into the controller, or a dead lock could happen.
+					m_view.RegisterObserver(notificationName, new Observer("executeCommand", this));
+				}
 
-			m_commandMap[notificationName] = commandType;
+				m_commandMap[notificationName] = commandType;
+			}
 		}
 
 		/// <summary>
@@ -108,22 +120,33 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="notificationName"></param>
 		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
-		public bool HasCommand(string notificationName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual bool HasCommand(string notificationName)
 		{
-			return m_commandMap.ContainsKey(notificationName);
+			lock (m_syncRoot)
+			{
+				return m_commandMap.ContainsKey(notificationName);
+			}
 		}
 
 		/// <summary>
 		/// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping.
 		/// </summary>
 		/// <param name="notificationName">The name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
-		public void RemoveCommand(string notificationName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RemoveCommand(string notificationName)
 		{
-			if (m_commandMap.ContainsKey(notificationName))
+			lock (m_syncRoot)
 			{
-				// remove the observer
-				m_view.RemoveObserver(notificationName, this);
-				m_commandMap.Remove(notificationName);
+				if (m_commandMap.ContainsKey(notificationName))
+				{
+					// remove the observer
+
+					// This call needs to be monitored carefully. Have to make sure that RemoveObserver
+					// doesn't call back into the controller, or a dead lock could happen.
+					m_view.RemoveObserver(notificationName, this);
+					m_commandMap.Remove(notificationName);
+				}
 			}
 		}
 
@@ -134,7 +157,7 @@ namespace PureMVC.Core
 		#region Accessors
 
 		/// <summary>
-		/// Singleton Factory method
+		/// Singleton Factory method.  This method is thread safe.
 		/// </summary>
 		public static IController Instance
 		{
@@ -151,6 +174,8 @@ namespace PureMVC.Core
 		/// </summary>
 		static Controller()
 		{
+			// We create the instance in the static constructor so that subclasses can create their own instance
+			// in their own static constructors.  This makes this pattern not an actual singleton, but a logical singleton.
 			m_instance = new Controller();
 		}
 
@@ -194,9 +219,14 @@ namespace PureMVC.Core
         protected IDictionary<string, Type> m_commandMap;
 
         /// <summary>
-        /// Singleton instance
+        /// Singleton instance, can be sublcassed though....
         /// </summary>
-		protected static IController m_instance;
+		protected static volatile IController m_instance;
+
+		/// <summary>
+		/// Used for locking
+		/// </summary>
+		protected static readonly object m_syncRoot = new object();
 
 		#endregion
 	}

@@ -60,9 +60,14 @@ namespace PureMVC.Core
 		/// Register an <c>IProxy</c> with the <c>Model</c>
 		/// </summary>
 		/// <param name="proxy">An <c>IProxy</c> to be held by the <c>Model</c></param>
-		public void RegisterProxy(IProxy proxy)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual void RegisterProxy(IProxy proxy)
 		{
-			m_proxyMap[proxy.ProxyName] = proxy;
+			lock (m_syncRoot)
+			{
+				m_proxyMap[proxy.ProxyName] = proxy;
+			}
+
 			proxy.OnRegister();
 		}
 
@@ -71,10 +76,14 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="proxyName">The name of the <c>IProxy</c> to retrieve</param>
 		/// <returns>The <c>IProxy</c> instance previously registered with the given <c>proxyName</c></returns>
-		public IProxy RetrieveProxy(string proxyName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual IProxy RetrieveProxy(string proxyName)
 		{
-			if (!m_proxyMap.ContainsKey(proxyName)) return null;
-			return m_proxyMap[proxyName];
+			lock (m_syncRoot)
+			{
+				if (!m_proxyMap.ContainsKey(proxyName)) return null;
+				return m_proxyMap[proxyName];
+			}
 		}
 
 		/// <summary>
@@ -82,26 +91,34 @@ namespace PureMVC.Core
 		/// </summary>
 		/// <param name="proxyName"></param>
 		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
-		public bool HasProxy(string proxyName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual bool HasProxy(string proxyName)
 		{
-			return m_proxyMap.ContainsKey(proxyName);
+			lock (m_syncRoot)
+			{
+				return m_proxyMap.ContainsKey(proxyName);
+			}
 		}
 
 		/// <summary>
 		/// Remove an <c>IProxy</c> from the <c>Model</c>
 		/// </summary>
 		/// <param name="proxyName">The name of the <c>IProxy</c> instance to be removed</param>
-		public IProxy RemoveProxy(string proxyName)
+		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
+		public virtual IProxy RemoveProxy(string proxyName)
 		{
 			IProxy proxy = null;
 
-			if (m_proxyMap.ContainsKey(proxyName))
+			lock (m_syncRoot)
 			{
-				proxy = RetrieveProxy(proxyName);
-				m_proxyMap.Remove(proxyName);
-				proxy.OnRemove();
+				if (m_proxyMap.ContainsKey(proxyName))
+				{
+					proxy = RetrieveProxy(proxyName);
+					m_proxyMap.Remove(proxyName);
+				}
 			}
 
+			if (proxy != null) proxy.OnRemove();
 			return proxy;
 		}
 
@@ -112,7 +129,7 @@ namespace PureMVC.Core
 		#region Accessors
 
 		/// <summary>
-		/// <c>Model</c> Singleton Factory method
+		/// <c>Model</c> Singleton Factory method.  This method is thread safe.
 		/// </summary>
 		public static IModel Instance
 		{
@@ -128,6 +145,8 @@ namespace PureMVC.Core
 		/// </summary>
 		static Model()
 		{
+			// We create the instance in the static constructor so that subclasses can create their own instance
+			// in their own static constructors.  This makes this pattern not an actual singleton, but a logical singleton.
 			m_instance = new Model();
 		}
 
@@ -153,7 +172,12 @@ namespace PureMVC.Core
 		/// <summary>
 		/// Singleton instance
 		/// </summary>
-		protected static IModel m_instance;
+		protected static volatile IModel m_instance;
+
+		/// <summary>
+		/// Used for locking
+		/// </summary>
+		protected static readonly object m_syncRoot = new object();
 
 		#endregion
     }

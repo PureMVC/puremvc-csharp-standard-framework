@@ -44,8 +44,8 @@ namespace PureMVC.Patterns
 		/// </remarks>
 		public Observer(string notifyMethod, object notifyContext)
 		{
-			NotifyMethod = notifyMethod;
-			NotifyContext = notifyContext;
+			m_notifyMethod = notifyMethod;
+			m_notifyContext = notifyContext;
 		}
 
 		#endregion
@@ -57,23 +57,39 @@ namespace PureMVC.Patterns
 		/// <summary>
 		/// Notify the interested object
 		/// </summary>
+		/// <remarks>This method is thread safe</remarks>
 		/// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
 		public void NotifyObserver(INotification notification)
 		{
-			Type t = this.NotifyContext.GetType();
+			object context;
+			string method;
+
+			// Retrieve the current state of the object, then notify outside of our thread safe block
+			lock (m_syncRoot)
+			{
+				context = NotifyContext;
+				method = NotifyMethod;
+			}
+
+			Type t = context.GetType();
 			BindingFlags f = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase;
-			MethodInfo mi = t.GetMethod(this.NotifyMethod, f);
-			mi.Invoke(this.NotifyContext, new object[] { notification });
+			MethodInfo mi = t.GetMethod(NotifyMethod, f);
+			mi.Invoke(context, new object[] { notification });
 		}
 
 		/// <summary>
 		/// Compare an object to the notification context
 		/// </summary>
+		/// <remarks>This method is thread safe</remarks>
 		/// <param name="obj">The object to compare</param>
 		/// <returns>Indicating if the object and the notification context are the same</returns>
 		public bool CompareNotifyContext(object obj)
 		{
-			return this.NotifyContext.Equals(obj);
+			lock (m_syncRoot)
+			{
+				// Compare on the current state
+				return NotifyContext.Equals(obj);
+			}
 		}
 
 		#endregion
@@ -86,28 +102,73 @@ namespace PureMVC.Patterns
 		/// The notification (callback) method of the interested object
 		/// </summary>
 		/// <remarks>The notification method should take one parameter of type <c>INotification</c></remarks>
+		/// <remarks>This accessor is thread safe</remarks>
 		public string NotifyMethod
 		{
-			private get { return m_notify; }
-			set { m_notify = value; }
+			private get
+			{
+				lock (m_syncRoot)
+				{
+					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
+					// and they need to match.
+					return m_notifyMethod;
+				}
+			}
+			set
+			{
+				lock (m_syncRoot)
+				{
+					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
+					// and they need to match.
+					m_notifyMethod = value;
+				}
+			}
 		}
 
 		/// <summary>
 		/// The notification context (this) of the interested object
 		/// </summary>
+		/// <remarks>This accessor is thread safe</remarks>
 		public object NotifyContext
 		{
-			private get { return m_context; }
-			set { m_context = value; }
+			private get
+			{
+				lock (m_syncRoot)
+				{
+					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
+					// and they need to match.
+					return m_notifyContext;
+				}
+			}
+			set
+			{
+				lock (m_syncRoot)
+				{
+					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
+					// and they need to match.
+					m_notifyContext = value;
+				}
+			}
 		}
 
 		#endregion
 
 		#region Members
 
-		private string m_notify;
+		/// <summary>
+		/// Holds the notify method name.
+		/// </summary>
+		private string m_notifyMethod;
 
-		private object m_context;
+		/// <summary>
+		/// Holds the notify context.
+		/// </summary>
+		private object m_notifyContext;
+
+		/// <summary>
+		/// Used for locking
+		/// </summary>
+		protected static readonly object m_syncRoot = new object();
 
 		#endregion
 	}
