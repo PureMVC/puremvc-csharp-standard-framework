@@ -101,8 +101,8 @@
     <Compile Include="..\PureMVC\Patterns\Observer\Observer.cs">
       <Link>Patterns\Observer\Observer.cs</Link>
     </Compile>
-    <Compile Include="..\PureMVC\patterns\proxy\Proxy.cs">
-      <Link>patterns\proxy\Proxy.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Proxy\Proxy.cs">
+      <Link>Patterns\Proxy\Proxy.cs</Link>
     </Compile>
     <Compile Include="..\PureMVC\Core\Controller.cs">
       <Link>Core\Controller.cs</Link>
