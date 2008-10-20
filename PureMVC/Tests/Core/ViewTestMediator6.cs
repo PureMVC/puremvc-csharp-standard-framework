@@ -38,7 +38,7 @@ namespace PureMVC.Tests.Core
 
 		public override void HandleNotification(INotification note)
 		{
-			m_facade.RemoveMediator(MediatorName);
+			Facade.RemoveMediator(MediatorName);
 		}
 		
 		public override void OnRemove()

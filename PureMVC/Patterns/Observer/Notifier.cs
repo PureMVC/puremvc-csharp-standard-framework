@@ -78,12 +78,24 @@ namespace PureMVC.Patterns
 
 		#endregion
 
+		#region Accessors
+
+		/// <summary>
+		/// Local reference to the Facade Singleton
+		/// </summary>
+		protected IFacade Facade
+		{
+			get { return m_facade; }
+		}
+
+		#endregion
+
 		#region Members
 
 		/// <summary>
         /// Local reference to the Facade Singleton
         /// </summary>
-		protected IFacade m_facade = Facade.Instance;
+		private IFacade m_facade = PureMVC.Patterns.Facade.Instance;
 
 		#endregion
 	}
