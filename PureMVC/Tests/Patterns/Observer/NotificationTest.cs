@@ -40,10 +40,10 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(NotificationTest));
 
-                ts.AddTest(new NotificationTest("testNameAccessors"));
-                ts.AddTest(new NotificationTest("testBodyAccessors"));
-                ts.AddTest(new NotificationTest("testConstructor"));
-				ts.AddTest(new NotificationTest("testToString"));
+                ts.AddTest(new NotificationTest("TestNameAccessors"));
+                ts.AddTest(new NotificationTest("TestBodyAccessors"));
+                ts.AddTest(new NotificationTest("TestConstructor"));
+				ts.AddTest(new NotificationTest("TestToString"));
 
                 return ts;
             }
@@ -52,7 +52,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests setting and getting the name using Notification class accessor methods.
   		 */
-  		public void testNameAccessors()
+  		public void TestNameAccessors()
         {
 			// Create a new Notification and use accessors to set the note name 
    			INotification note = new Notification("TestNote");
@@ -64,7 +64,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests setting and getting the body using Notification class accessor methods.
   		 */
-  		public void testBodyAccessors()
+  		public void TestBodyAccessors()
         {
 			// Create a new Notification and use accessors to set the body
    			INotification note = new Notification(null);
@@ -77,7 +77,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests setting the name and body using the Notification class Constructor.
   		 */
-  		public void testConstructor()
+  		public void TestConstructor()
         {
 			// Create a new Notification using the Constructor to set the note name and body
    			INotification note = new Notification("TestNote", 5, "TestNoteType");
@@ -91,7 +91,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests the toString method of the notification
   		 */
-  		public void testToString() {
+  		public void TestToString() {
 
 			// Create a new Notification and use accessors to set the note name 
    			INotification note = new Notification("TestNote", "1,3,5", "TestType");

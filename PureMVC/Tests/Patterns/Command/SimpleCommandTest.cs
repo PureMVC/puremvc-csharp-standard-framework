@@ -40,7 +40,7 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(SimpleCommandTest));
 
-                ts.AddTest(new SimpleCommandTest("testSimpleCommandExecute"));
+                ts.AddTest(new SimpleCommandTest("TestSimpleCommandExecute"));
 
                 return ts;
             }
@@ -61,7 +61,7 @@ namespace PureMVC.Tests.Patterns
   		 * be modified by the SimpleCommand</P>.
   		 * 
   		 */
-  		public void testSimpleCommandExecute()
+  		public void TestSimpleCommandExecute()
         {
   			// Create the VO
   			SimpleCommandTestVO vo = new SimpleCommandTestVO(5);

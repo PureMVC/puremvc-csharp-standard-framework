@@ -42,15 +42,15 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(FacadeTest));
 
-				ts.AddTest(new FacadeTest("testGetInstance"));
-				ts.AddTest(new FacadeTest("testRegisterCommandAndSendNotification"));
-				ts.AddTest(new FacadeTest("testRegisterAndRemoveCommandAndSendNotification"));
-				ts.AddTest(new FacadeTest("testRegisterAndRetrieveProxy"));
-				ts.AddTest(new FacadeTest("testRegisterAndRemoveProxy"));
-				ts.AddTest(new FacadeTest("testRegisterRetrieveAndRemoveMediator"));
-				ts.AddTest(new FacadeTest("testHasProxy"));
-				ts.AddTest(new FacadeTest("testHasMediator"));
-				ts.AddTest(new FacadeTest("testHasCommand"));
+				ts.AddTest(new FacadeTest("TestGetInstance"));
+				ts.AddTest(new FacadeTest("TestRegisterCommandAndSendNotification"));
+				ts.AddTest(new FacadeTest("TestRegisterAndRemoveCommandAndSendNotification"));
+				ts.AddTest(new FacadeTest("TestRegisterAndRetrieveProxy"));
+				ts.AddTest(new FacadeTest("TestRegisterAndRemoveProxy"));
+				ts.AddTest(new FacadeTest("TestRegisterRetrieveAndRemoveMediator"));
+				ts.AddTest(new FacadeTest("TestHasProxy"));
+				ts.AddTest(new FacadeTest("TestHasMediator"));
+				ts.AddTest(new FacadeTest("TestHasCommand"));
 
                 return ts;
             }
@@ -59,7 +59,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests the Facade Singleton Factory Method 
   		 */
-  		public void testGetInstance()
+  		public void TestGetInstance()
         {
    			// Test Factory Method
 			IFacade facade = Facade.Instance;
@@ -84,7 +84,7 @@ namespace PureMVC.Tests.Patterns
   		 * the Notification, which will be modified by the Command.</P>
   		 * 
   		 */
-  		public void testRegisterCommandAndNotifyObservers()
+  		public void TestRegisterCommandAndNotifyObservers()
         {
    			// Create the Facade, register the FacadeTestCommand to 
    			// handle 'FacadeTest' events
@@ -116,7 +116,7 @@ namespace PureMVC.Tests.Patterns
   		 * the Notification, which will NOT be modified by the Command.</P>
   		 * 
   		 */
-  		public void testRegisterAndRemoveCommandAndSendNotification()
+  		public void TestRegisterAndRemoveCommandAndSendNotification()
         {
    			// Create the Facade, register the FacadeTestCommand to 
    			// handle 'FacadeTest' events
@@ -143,7 +143,7 @@ namespace PureMVC.Tests.Patterns
   		 * in any meaningful way other than to show that the
   		 * methods do not throw exception when called. </P>
   		 */
-  		public void testRegisterAndRetrieveProxy()
+  		public void TestRegisterAndRetrieveProxy()
         {
    			// register a proxy and retrieve it.
 			IFacade facade = Facade.Instance;
@@ -168,7 +168,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests the removing Model proxys via the Facade.
   		 */
-  		public void testRegisterAndRemoveProxy()
+  		public void TestRegisterAndRemoveProxy()
         {
    			// register a proxy, remove it, then try to retrieve it
 			IFacade facade = Facade.Instance;
@@ -187,7 +187,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests registering, retrieving and removing Mediators via the Facade.
   		 */
-  		public void testRegisterRetrieveAndRemoveMediator()
+  		public void TestRegisterRetrieveAndRemoveMediator()
         {  			
    			// register a mediator, remove it, then try to retrieve it
 			IFacade facade = Facade.Instance;
@@ -210,7 +210,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests the hasProxy Method
   		 */
-  		public void testHasProxy()
+  		public void TestHasProxy()
 		{
    			// register a Proxy
 			IFacade facade = Facade.Instance;
@@ -224,7 +224,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests the hasMediator Method
   		 */
-  		public void testHasMediator()
+  		public void TestHasMediator()
 		{
    			// register a Mediator
 			IFacade facade = Facade.Instance;
@@ -244,7 +244,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Test hasCommand method.
   		 */
-  		public void testHasCommand()
+  		public void TestHasCommand()
 		{
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
    			IFacade facade = Facade.Instance;

@@ -38,10 +38,10 @@ namespace PureMVC.Tests.Core
 
 		public override void HandleNotification(INotification note)
 		{
-			viewTest.counter++;
+			ViewTest.counter++;
 		}
 
-        public ViewTest viewTest
+        public ViewTest ViewTest
 		{
 			get { return (ViewTest) m_viewComponent; }
 		}

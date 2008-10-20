@@ -42,7 +42,7 @@ namespace PureMVC.Tests.Core
 		 * 
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public static INotification create(object body) 		
+		public static INotification Create(object body) 		
 		{
 			return new ViewTestNote(body);
 		}

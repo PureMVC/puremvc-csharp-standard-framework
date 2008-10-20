@@ -40,7 +40,7 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(MacroCommandTest));
 
-                ts.AddTest(new MacroCommandTest("testMacroCommandExecute"));
+                ts.AddTest(new MacroCommandTest("TestMacroCommandExecute"));
 
                 return ts;
             }
@@ -78,7 +78,7 @@ namespace PureMVC.Tests.Patterns
   		 * body.</P>
   		 * 
   		 */
-  		public void testMacroCommandExecute()
+  		public void TestMacroCommandExecute()
         {
   			// Create the VO
   			MacroCommandTestVO vo = new MacroCommandTestVO(5);

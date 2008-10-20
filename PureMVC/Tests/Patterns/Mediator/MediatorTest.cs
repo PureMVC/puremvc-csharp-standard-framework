@@ -40,8 +40,8 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(MediatorTest));
 
-                ts.AddTest(new MediatorTest("testNameAccessor"));
-                ts.AddTest(new MediatorTest("testViewAccessor"));
+                ts.AddTest(new MediatorTest("TestNameAccessor"));
+                ts.AddTest(new MediatorTest("TestViewAccessor"));
 
                 return ts;
             }
@@ -50,7 +50,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests getting the name using Mediator class accessor method. 
   		 */
-  		public void testNameAccessor()
+  		public void TestNameAccessor()
         {
 			// Create a new Mediator and use accessors to set the mediator name 
    			IMediator mediator = new Mediator("TestMediator");
@@ -62,7 +62,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests getting the name using Mediator class accessor method. 
   		 */
-  		public void testViewAccessor()
+  		public void TestViewAccessor()
         {
 			// Create a view object
 			object view = new object();

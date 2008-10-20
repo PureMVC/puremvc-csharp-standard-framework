@@ -41,9 +41,9 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(ProxyTest));
 
-                ts.AddTest(new ProxyTest("testNameAccessor"));
-                ts.AddTest(new ProxyTest("testDataAccessors"));
-                ts.AddTest(new ProxyTest("testConstructor"));
+                ts.AddTest(new ProxyTest("TestNameAccessor"));
+                ts.AddTest(new ProxyTest("TestDataAccessors"));
+                ts.AddTest(new ProxyTest("TestConstructor"));
 
                 return ts;
             }
@@ -52,7 +52,7 @@ namespace PureMVC.Tests.Patterns
         /**
   		 * Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
   		 */
-  		public void testNameAccessor()
+  		public void TestNameAccessor()
         {
 			// Create a new Proxy and use accessors to set the proxy name 
    			IProxy proxy = new Proxy("TestProxy");
@@ -64,7 +64,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests setting and getting the data using Proxy class accessor methods.
   		 */
-  		public void testDataAccessors()
+  		public void TestDataAccessors()
         {
 			// Create a new Proxy and use accessors to set the data
    			IProxy proxy = new Proxy("colors");
@@ -81,7 +81,7 @@ namespace PureMVC.Tests.Patterns
   		/**
   		 * Tests setting the name and body using the Notification class Constructor.
   		 */
-  		public void testConstructor()
+  		public void TestConstructor()
         {
 			// Create a new Proxy using the Constructor to set the name and data
 			IProxy proxy = new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" }));

@@ -31,19 +31,19 @@ namespace PureMVC.Tests.Core
 		{
 		}
 
-        public ViewTest viewTest
+        public ViewTest ViewTest
 		{
 			get { return (ViewTest) m_viewComponent; }
 		}
 				
 		public override void OnRegister()
 		{
-			viewTest.onRegisterCalled = true;
+			ViewTest.onRegisterCalled = true;
 		}
 				
 		public override  void OnRemove()
 		{
-			viewTest.onRemoveCalled = true;
+			ViewTest.onRemoveCalled = true;
 		}
 				
 				

@@ -48,9 +48,9 @@ namespace PureMVC.Tests.Patterns
             {
                 TestSuite ts = new TestSuite(typeof(ObserverTest));
 
-                ts.AddTest(new ObserverTest("testObserverAccessors"));
-                ts.AddTest(new ObserverTest("testObserverConstructor"));
-                ts.AddTest(new ObserverTest("testCompareNotifyContext"));
+                ts.AddTest(new ObserverTest("TestObserverAccessors"));
+                ts.AddTest(new ObserverTest("TestObserverConstructor"));
+                ts.AddTest(new ObserverTest("TestCompareNotifyContext"));
 
                 return ts;
             }
@@ -60,7 +60,7 @@ namespace PureMVC.Tests.Patterns
   		 * Tests observer class when initialized by accessor methods.
   		 * 
   		 */
-  		public void testObserverAccessors()
+  		public void TestObserverAccessors()
         {
    			// Create observer with null args, then
    			// use accessors to set notification method and context
@@ -85,7 +85,7 @@ namespace PureMVC.Tests.Patterns
   		 * Tests observer class when initialized by constructor.
   		 * 
  		 */
-  		public void testObserverConstructor()
+  		public void TestObserverConstructor()
         {
    			// Create observer passing in notification method and context
 			IObserver observer = new Observer("observerTestMethod", this);
@@ -107,7 +107,7 @@ namespace PureMVC.Tests.Patterns
   		 * Tests the compareNotifyContext method of the Observer class
   		 * 
  		 */
-  		public void testCompareNotifyContext()
+  		public void TestCompareNotifyContext()
         {
   			
    			// Create observer passing in notification method and context

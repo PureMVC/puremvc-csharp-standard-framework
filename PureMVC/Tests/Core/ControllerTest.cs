@@ -16,9 +16,6 @@ namespace PureMVC.Tests.Core
 {
 	/**
 	 * Test the PureMVC Controller class.
-	 *
-	 * @see PureMVC.Tests.Core.ControllerTestVO ControllerTestVO
-	 * @see PureMVC.Tests.Core.ControllerTestCommand ControllerTestCommand
 	 */
 	[TestFixture]
     public class ControllerTest : TestCase
@@ -41,11 +38,11 @@ namespace PureMVC.Tests.Core
             {
                 TestSuite ts = new TestSuite(typeof(ControllerTest));
 
-                ts.AddTest(new ControllerTest("testGetInstance"));
-                ts.AddTest(new ControllerTest("testRegisterAndExecuteCommand"));
-                ts.AddTest(new ControllerTest("testRegisterAndRemoveCommand"));
-				ts.AddTest(new ControllerTest("testHasCommand"));
-				ts.AddTest(new ControllerTest("testReregisterAndExecuteCommand"));
+                ts.AddTest(new ControllerTest("TestGetInstance"));
+                ts.AddTest(new ControllerTest("TestRegisterAndExecuteCommand"));
+                ts.AddTest(new ControllerTest("TestRegisterAndRemoveCommand"));
+				ts.AddTest(new ControllerTest("TestHasCommand"));
+				ts.AddTest(new ControllerTest("TestReregisterAndExecuteCommand"));
 
                 return ts;
             }
@@ -54,7 +51,7 @@ namespace PureMVC.Tests.Core
         /**
   		 * Tests the Controller Singleton Factory Method 
   		 */
-  		public void testGetInstance()
+  		public void TestGetInstance()
         {
    			// Test Factory Method
    			IController controller = Controller.Instance;
@@ -80,7 +77,7 @@ namespace PureMVC.Tests.Core
   		 * be modified when the Command executes.</P>
   		 * 
   		 */
-  		public void testRegisterAndExecuteCommand() 
+  		public void TestRegisterAndExecuteCommand() 
         {
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
    			IController controller = Controller.Instance;
@@ -106,7 +103,7 @@ namespace PureMVC.Tests.Core
   		 * Tests that once a Command is registered and verified
   		 * working, it can be removed from the Controller.</P>
   		 */
-  		public void testRegisterAndRemoveCommand()
+  		public void TestRegisterAndRemoveCommand()
         {
   			
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
@@ -144,7 +141,7 @@ namespace PureMVC.Tests.Core
   		/**
   		 * Test hasCommand method.
   		 */
-  		public void testHasCommand() {
+  		public void TestHasCommand() {
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
    			IController controller = Controller.Instance;
    			controller.RegisterCommand("hasCommandTest", typeof(ControllerTestCommand));
@@ -171,7 +168,7 @@ namespace PureMVC.Tests.Core
   		 * Version 2.0.2. If you run the unit tests with 2.0.1 this
   		 * test will fail.</P>
   		 */
-  		public void testReregisterAndExecuteCommand() {
+  		public void TestReregisterAndExecuteCommand() {
   			 
    			// Fetch the controller, register the ControllerTestCommand2 to handle 'ControllerTest2' notes
    			IController controller = Controller.Instance;

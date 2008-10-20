@@ -43,10 +43,10 @@ namespace PureMVC.Tests.Core
 		
 		public override void OnRemove()
 		{
-			viewTest.counter++;
+			ViewTest.counter++;
 		}
 
-		public ViewTest viewTest
+		public ViewTest ViewTest
 		{
 			get { return (ViewTest) m_viewComponent; }
 		}

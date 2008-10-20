@@ -39,11 +39,11 @@ namespace PureMVC.Tests.Core
             {
                 TestSuite ts = new TestSuite(typeof(ModelTest));
 
-                ts.AddTest(new ModelTest("testGetInstance"));
-                ts.AddTest(new ModelTest("testRegisterAndRetrieveProxy"));
-                ts.AddTest(new ModelTest("testRegisterAndRemoveProxy"));
-				ts.AddTest(new ModelTest("testHasProxy"));
-				ts.AddTest(new ModelTest("testOnRegisterAndOnRemove"));
+                ts.AddTest(new ModelTest("TestGetInstance"));
+                ts.AddTest(new ModelTest("TestRegisterAndRetrieveProxy"));
+                ts.AddTest(new ModelTest("TestRegisterAndRemoveProxy"));
+				ts.AddTest(new ModelTest("TestHasProxy"));
+				ts.AddTest(new ModelTest("TestOnRegisterAndOnRemove"));
 
 				return ts;
             }
@@ -52,7 +52,7 @@ namespace PureMVC.Tests.Core
         /**
   		 * Tests the Model Singleton Factory Method 
   		 */
-  		public void testGetInstance()
+  		public void TestGetInstance()
         {
    			// Test Factory Method
    			IModel model = Model.Instance;
@@ -71,7 +71,7 @@ namespace PureMVC.Tests.Core
   		 * in any meaningful way other than to show that the
   		 * methods do not throw exception when called. </P>
   		 */
-  		public void testRegisterAndRetrieveProxy()
+  		public void TestRegisterAndRetrieveProxy()
         {
    			// register a proxy and retrieve it.
    			IModel model = Model.Instance;
@@ -91,7 +91,7 @@ namespace PureMVC.Tests.Core
   		/**
   		 * Tests the proxy removal method.
   		 */
-  		public void testRegisterAndRemoveProxy()
+  		public void TestRegisterAndRemoveProxy()
         {
    			// register a proxy, remove it, then try to retrieve it
    			IModel model = Model.Instance;
@@ -110,7 +110,7 @@ namespace PureMVC.Tests.Core
   		/**
   		 * Tests the hasProxy Method
   		 */
-  		public void testHasProxy() {
+  		public void TestHasProxy() {
   			
    			// register a proxy
    			IModel model = Model.Instance;
@@ -132,7 +132,7 @@ namespace PureMVC.Tests.Core
 		/**
 		 * Tests that the Model calls the onRegister and onRemove methods
 		 */
-		public void testOnRegisterAndOnRemove() {
+		public void TestOnRegisterAndOnRemove() {
 			
   			// Get the Singleton View instance
   			IModel model = Model.Instance;
