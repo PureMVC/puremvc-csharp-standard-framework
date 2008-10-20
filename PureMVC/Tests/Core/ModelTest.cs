@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.proxy;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
+using PureMVC.Core;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
     /**
 	 * Test the PureMVC Model class.
@@ -25,7 +26,7 @@ namespace org.puremvc.csharp.core
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public ModelTest(String methodName)
+        public ModelTest(string methodName)
             : base(methodName)
         { }
 
@@ -54,7 +55,7 @@ namespace org.puremvc.csharp.core
   		public void testGetInstance()
         {
    			// Test Factory Method
-   			IModel model = Model.getInstance();
+   			IModel model = Model.Instance;
    			
    			// test assertions
             Assert.NotNull(model, "Expecting instance not null");
@@ -73,14 +74,14 @@ namespace org.puremvc.csharp.core
   		public void testRegisterAndRetrieveProxy()
         {
    			// register a proxy and retrieve it.
-   			IModel model = Model.getInstance();
-			model.registerProxy(new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" })));
-			IProxy proxy = model.retrieveProxy("colors");
-			List<String> data = (List<String>) proxy.getData();
+   			IModel model = Model.Instance;
+			model.RegisterProxy(new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" })));
+			IProxy proxy = model.RetrieveProxy("colors");
+			List<string> data = (List<string>) proxy.Data;
 			
 			// test assertions
             Assert.NotNull(data, "Expecting data not null");
-			Assert.True(data is List<String>, "Expecting data type is ArrayList");
+			Assert.True(data is List<string>, "Expecting data type is ArrayList");
    			Assert.True(data.Count == 3, "Expecting data.length == 3");
    			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
             Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
@@ -93,14 +94,14 @@ namespace org.puremvc.csharp.core
   		public void testRegisterAndRemoveProxy()
         {
    			// register a proxy, remove it, then try to retrieve it
-   			IModel model = Model.getInstance();
-			model.registerProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
+   			IModel model = Model.Instance;
+			model.RegisterProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
 			
-            IProxy removedProxy = model.removeProxy("sizes");
+            IProxy removedProxy = model.RemoveProxy("sizes");
 
-            Assert.True(removedProxy.getProxyName() == "sizes", "Expecting removedProxy.getProxyName() == 'sizes'");
+            Assert.True(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
 
-			IProxy proxy = model.retrieveProxy("sizes");
+			IProxy proxy = model.RetrieveProxy("sizes");
 			
 			// test assertions
    			Assert.Null(proxy, "Expecting proxy is null");
@@ -112,20 +113,20 @@ namespace org.puremvc.csharp.core
   		public void testHasProxy() {
   			
    			// register a proxy
-   			IModel model = Model.getInstance();
-			IProxy proxy = new Proxy("aces", new List<String>(new string[] { "clubs", "spades", "hearts", "diamonds" }));
-			model.registerProxy(proxy);
+   			IModel model = Model.Instance;
+			IProxy proxy = new Proxy("aces", new List<string>(new string[] { "clubs", "spades", "hearts", "diamonds" }));
+			model.RegisterProxy(proxy);
 			
    			// assert that the model.hasProxy method returns true
    			// for that proxy name
-   			Assert.True(model.hasProxy("aces") == true, "Expecting model.hasProxy('aces') == true");
+   			Assert.True(model.HasProxy("aces") == true, "Expecting model.hasProxy('aces') == true");
 			
 			// remove the proxy
-			model.removeProxy("aces");
+			model.RemoveProxy("aces");
 			
    			// assert that the model.hasProxy method returns false
    			// for that proxy name
-   			Assert.True(model.hasProxy("aces") == false, "Expecting model.hasProxy('aces') == false");
+   			Assert.True(model.HasProxy("aces") == false, "Expecting model.hasProxy('aces') == false");
    		}
   		
 		/**
@@ -134,20 +135,20 @@ namespace org.puremvc.csharp.core
 		public void testOnRegisterAndOnRemove() {
 			
   			// Get the Singleton View instance
-  			IModel model = Model.getInstance();
+  			IModel model = Model.Instance;
 
 			// Create and register the test mediator
 			IProxy proxy = new ModelTestProxy();
-			model.registerProxy(proxy);
+			model.RegisterProxy(proxy);
 
 			// assert that onRegsiter was called, and the proxy responded by setting its data accordingly
-   			Assert.True(proxy.getData() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.getData() == ModelTestProxy.ON_REGISTER_CALLED");
+			Assert.True(proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED");
 			
 			// Remove the component
-			model.removeProxy(ModelTestProxy.NAME);
+			model.RemoveProxy(ModelTestProxy.NAME);
 			
 			// assert that onRemove was called, and the proxy responded by setting its data accordingly
-   			Assert.True(proxy.getData() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.getData() == ModelTestProxy.ON_REMOVE_CALLED");
+   			Assert.True(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
 		}
     }
 }

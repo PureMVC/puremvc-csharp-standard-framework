@@ -5,10 +5,10 @@
 */
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.command;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.facade
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * A SimpleCommand subclass used by FacadeTest.
@@ -30,9 +30,9 @@ namespace org.puremvc.csharp.patterns.facade
 		 * 
 		 * @param note the Notification carrying the FacadeTestVO
 		 */
-		override public void execute(INotification note)
+		override public void Execute(INotification note)
 		{
-			FacadeTestVO vo = (FacadeTestVO) note.getBody();
+			FacadeTestVO vo = (FacadeTestVO) note.Body;
 			
 			// Fabricate a result
 			vo.result = 2 * vo.input;

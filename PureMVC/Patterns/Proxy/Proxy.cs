@@ -3,13 +3,17 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
+
+#region Using
+
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.facade;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.proxy
+#endregion
+
+namespace PureMVC.Patterns
 {
     /// <summary>
     /// A base <c>IProxy</c> implementation
@@ -19,88 +23,107 @@ namespace org.puremvc.csharp.patterns.proxy
     /// 	<para>A <c>Proxy</c> might simply manage a reference to a local data object, in which case interacting with it might involve setting and getting of its data in synchronous fashion</para>
     /// 	<para><c>Proxy</c> classes are also used to encapsulate the application's interaction with remote services to save or retrieve data, in which case, we adopt an asyncronous idiom; setting data (or calling a method) on the <c>Proxy</c> and listening for a <c>Notification</c> to be sent when the <c>Proxy</c> has retrieved the data from the service</para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.Model"/>
+	/// <see cref="PureMVC.Core.Model"/>
     public class Proxy : Notifier, IProxy, INotifier
     {
-        /// <summary>
+		#region Constants
+
+		/// <summary>
         /// The default proxy name
         /// </summary>
-        public static String NAME = "Proxy";
-		
-        /// <summary>
+        public static string NAME = "Proxy";
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
         /// Constructs a new proxy with the default name and no data
         /// </summary>
         public Proxy() 
             : this(NAME, null)
-        { }
+        {
+		}
 
         /// <summary>
         /// Constructs a new proxy with the specified name and no data
         /// </summary>
         /// <param name="proxyName">The name of the proxy</param>
-        public Proxy(String proxyName)
+        public Proxy(string proxyName)
             : this(proxyName, null)
-        { }
+        {
+		}
 
         /// <summary>
         /// Constructs a new proxy with the specified name and data
         /// </summary>
         /// <param name="proxyName">The name of the proxy</param>
         /// <param name="data">The data to be managed</param>
-		public Proxy(String proxyName, Object data)
+		public Proxy(string proxyName, object data)
 		{
 
-			this.proxyName = (proxyName != null) ? proxyName : NAME;
-			if (data != null) setData(data);
+			m_proxyName = (proxyName != null) ? proxyName : NAME;
+			if (data != null) m_data = data;
 		}
 
-        /// <summary>
-        /// Get the proxy name
-        /// </summary>
-        /// <returns></returns>
-		public String getProxyName()
-		{
-			return proxyName;
-		}
+		#endregion
 
-        /// <summary>
-        /// Set the data object
-        /// </summary>
-        /// <param name="data">The data of the proxy</param>
-		public void setData( Object data )
-		{
-			this.data = data;
-		}
+		#region Public Methods
 
-        /// <summary>
-        /// Gets the data object
-        /// </summary>
-        /// <returns>The data object</returns>
-		public Object getData()
-		{
-			return data;
-		}
+		#region IProxy Members
 
 		/// <summary>
 		/// Called by the Model when the Proxy is registered
 		/// </summary>
-		public virtual void onRegister()
-		{ }
+		public virtual void OnRegister()
+		{
+		}
 
 		/// <summary>
 		/// Called by the Model when the Proxy is removed
 		/// </summary>
-		public virtual void onRemove()
-		{ }
+		public virtual void OnRemove()
+		{
+		}
 
-        /// <summary>
+		#endregion
+
+		#endregion
+
+		#region Accessors
+
+		/// <summary>
+		/// Get the proxy name
+		/// </summary>
+		/// <returns></returns>
+		public string ProxyName
+		{
+			get { return m_proxyName; }
+		}
+
+		/// <summary>
+		/// Set the data object
+		/// </summary>
+		public object Data
+		{
+			get { return m_data; }
+			set { m_data = value; }
+		}
+
+		#endregion
+
+		#region Members
+
+		/// <summary>
         /// The name of the proxy
         /// </summary>
-		protected String proxyName;
+		protected string m_proxyName;
 		
 		/// <summary>
 		/// The data object to be managed
 		/// </summary>
-		protected Object data;
-    }
+		protected object m_data;
+
+		#endregion
+	}
 }

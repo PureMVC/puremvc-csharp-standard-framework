@@ -8,10 +8,10 @@ using System;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.mediator;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.mediator
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * Test the PureMVC Mediator class.
@@ -27,7 +27,7 @@ namespace org.puremvc.csharp.patterns.mediator
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public MediatorTest(String methodName) 
+        public MediatorTest(string methodName) 
             : base(methodName)
         { }
 
@@ -56,7 +56,7 @@ namespace org.puremvc.csharp.patterns.mediator
    			IMediator mediator = new Mediator("TestMediator");
    			
    			// test assertions
-            Assert.True(mediator.getMediatorName() == "TestMediator", "Expecting mediator.getMediatorName() == 'TestMediator'");
+            Assert.True(mediator.MediatorName == "TestMediator", "Expecting mediator.MediatorName == 'TestMediator'");
    		}
 
         /**
@@ -65,13 +65,13 @@ namespace org.puremvc.csharp.patterns.mediator
   		public void testViewAccessor()
         {
 			// Create a view object
-			Object view = new Object();
+			object view = new object();
 			
 			// Create a new Proxy and use accessors to set the proxy name 
             IMediator mediator = new Mediator("TestMediator", view);
 			   			
    			// test assertions
-   			Assert.NotNull(mediator.getViewComponent(), "Expecting mediator.getViewComponent() not null");
+   			Assert.NotNull(mediator.ViewComponent, "Expecting mediator.ViewComponent not null");
    		}
     }
 }

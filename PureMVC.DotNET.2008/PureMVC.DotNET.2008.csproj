@@ -8,7 +8,7 @@
     <ProjectGuid>{A1482CF1-5566-4636-8590-30ED9CF3D4D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>org.puremvc.csharp</RootNamespace>
+    <RootNamespace>PureMVC</RootNamespace>
     <AssemblyName>PureMVC.DotNET.35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,68 +50,68 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\interfaces\ICommand.cs">
-      <Link>interfaces\ICommand.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\ICommand.cs">
+      <Link>Interfaces\ICommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IController.cs">
-      <Link>interfaces\IController.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IController.cs">
+      <Link>Interfaces\IController.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IFacade.cs">
-      <Link>interfaces\IFacade.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IFacade.cs">
+      <Link>Interfaces\IFacade.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IMediator.cs">
-      <Link>interfaces\IMediator.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IMediator.cs">
+      <Link>Interfaces\IMediator.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IModel.cs">
-      <Link>interfaces\IModel.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IModel.cs">
+      <Link>Interfaces\IModel.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\INotification.cs">
-      <Link>interfaces\INotification.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\INotification.cs">
+      <Link>Interfaces\INotification.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\INotifier.cs">
-      <Link>interfaces\INotifier.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\INotifier.cs">
+      <Link>Interfaces\INotifier.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IObserver.cs">
-      <Link>interfaces\IObserver.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IObserver.cs">
+      <Link>Interfaces\IObserver.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IProxy.cs">
-      <Link>interfaces\IProxy.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IProxy.cs">
+      <Link>Interfaces\IProxy.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\interfaces\IView.cs">
-      <Link>interfaces\IView.cs</Link>
+    <Compile Include="..\PureMVC\Interfaces\IView.cs">
+      <Link>Interfaces\IView.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\command\MacroCommand.cs">
-      <Link>patterns\command\MacroCommand.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Command\MacroCommand.cs">
+      <Link>Patterns\Command\MacroCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\command\SimpleCommand.cs">
-      <Link>patterns\command\SimpleCommand.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Command\SimpleCommand.cs">
+      <Link>Patterns\Command\SimpleCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\facade\Facade.cs">
-      <Link>patterns\facade\Facade.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Facade\Facade.cs">
+      <Link>Patterns\Facade\Facade.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\mediator\Mediator.cs">
-      <Link>patterns\mediator\Mediator.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Mediator\Mediator.cs">
+      <Link>Patterns\Mediator\Mediator.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\observer\Notification.cs">
-      <Link>patterns\observer\Notification.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Observer\Notification.cs">
+      <Link>Patterns\Observer\Notification.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\observer\Notifier.cs">
-      <Link>patterns\observer\Notifier.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Observer\Notifier.cs">
+      <Link>Patterns\Observer\Notifier.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\observer\Observer.cs">
-      <Link>patterns\observer\Observer.cs</Link>
+    <Compile Include="..\PureMVC\Patterns\Observer\Observer.cs">
+      <Link>Patterns\Observer\Observer.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\patterns\proxy\Proxy.cs">
+    <Compile Include="..\PureMVC\patterns\proxy\Proxy.cs">
       <Link>patterns\proxy\Proxy.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\Controller.cs">
-      <Link>core\Controller.cs</Link>
+    <Compile Include="..\PureMVC\Core\Controller.cs">
+      <Link>Core\Controller.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\Model.cs">
-      <Link>core\Model.cs</Link>
+    <Compile Include="..\PureMVC\Core\Model.cs">
+      <Link>Core\Model.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\core\View.cs">
-      <Link>core\View.cs</Link>
+    <Compile Include="..\PureMVC\Core\View.cs">
+      <Link>Core\View.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

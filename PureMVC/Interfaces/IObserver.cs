@@ -6,9 +6,9 @@
 using System;
 using System.Reflection;
 
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.interfaces
+namespace PureMVC.Interfaces
 {
     /// <summary>
     /// The interface definition for a PureMVC Observer
@@ -26,34 +26,32 @@ namespace org.puremvc.csharp.interfaces
     ///     <para>An Observer is an object that encapsulates information about an interested object with a notification method that should be called when an <c>INotification</c> is broadcast. The Observer then acts as a proxy for notifying the interested object</para>
     ///     <para>Observers can receive <c>Notification</c>s by having their <c>notifyObserver</c> method invoked, passing in an object implementing the <c>INotification</c> interface, such as a subclass of <c>Notification</c></para>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.interfaces.IView"/>
-    /// <see cref="org.puremvc.csharp.interfaces.INotification"/>
+	/// <see cref="PureMVC.Interfaces.IView"/>
+	/// <see cref="PureMVC.Interfaces.INotification"/>
     public interface IObserver
     {
         /// <summary>
-        /// Set the notification method
+		/// The notification (callback) method of the interested object
         /// </summary>
         /// <remarks>The notification method should take one parameter of type <c>INotification</c></remarks>
-        /// <param name="notifyMethod">The notification (callback) method of the interested object</param>
-        void setNotifyMethod(String notifyMethod);
+		string NotifyMethod { set; }
 
         /// <summary>
-        /// Set the notification context
+		/// The notification context (this) of the interested object
         /// </summary>
-        /// <param name="notifyContext">The notification context (this) of the interested object</param>
-		void setNotifyContext(Object notifyContext);
+		object NotifyContext { set; }
 
         /// <summary>
         /// Notify the interested object
         /// </summary>
         /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
-        void notifyObserver(INotification notification);
+        void NotifyObserver(INotification notification);
 		
         /// <summary>
         /// Compare the given object to the notificaiton context object
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>Indicates if the notification context and the object are the same.</returns>
-		Boolean compareNotifyContext(Object obj);
+		bool CompareNotifyContext(object obj);
     }
 }

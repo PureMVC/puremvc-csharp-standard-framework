@@ -5,10 +5,10 @@
 */
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
     /**
   	 * A Notification class used by ViewTest.
@@ -20,7 +20,7 @@ namespace org.puremvc.csharp.core
         /**
 		 * The name of this Notification.
 		 */
-		public const String NAME = "ViewTestNote";
+		public const string NAME = "ViewTestNote";
 		
 		/**
 		 * Constructor.
@@ -28,7 +28,7 @@ namespace org.puremvc.csharp.core
 		 * @param name Ignored and forced to NAME.
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public ViewTestNote(Object body)
+		public ViewTestNote(object body)
             : base(NAME, body)
 		{ }
 		
@@ -42,7 +42,7 @@ namespace org.puremvc.csharp.core
 		 * 
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public static INotification create(Object body) 		
+		public static INotification create(object body) 		
 		{
 			return new ViewTestNote(body);
 		}

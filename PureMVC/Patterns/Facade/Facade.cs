@@ -3,13 +3,18 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
+
+#region Using
+
 using System;
 
-using org.puremvc.csharp.core;
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Core;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.facade
+#endregion
+
+namespace PureMVC.Patterns
 {
     /// <summary>
     /// A base Singleton <c>IFacade</c> implementation
@@ -24,7 +29,7 @@ namespace org.puremvc.csharp.patterns.facade
     ///     </list>
     ///     <example>
     ///         <code>
-    ///	using org.puremvc.csharp.patterns.facade;
+    ///	using PureMVC.Patterns;
     /// 
     ///	using com.me.myapp.model;
     ///	using com.me.myapp.view;
@@ -105,7 +110,7 @@ namespace org.puremvc.csharp.patterns.facade
     ///			// Otherwise, if you're implmenting your own
     ///			// IView, then instead do:
     ///			// if ( view != null ) return;
-    ///			// view = MyAppView.getInstance();
+    ///			// view = MyAppView.Instance;
     /// 		
     ///			// do any special subclass initialization here
     ///			// such as creating and registering Mediators
@@ -123,34 +128,233 @@ namespace org.puremvc.csharp.patterns.facade
     ///         </code>
     ///     </example>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.Model"/>
-    /// <see cref="org.puremvc.csharp.core.View"/>
-    /// <see cref="org.puremvc.csharp.core.Controller"/>
-    /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
-    /// <see cref="org.puremvc.csharp.patterns.mediator.Mediator"/>
-    /// <see cref="org.puremvc.csharp.patterns.proxy.Proxy"/>
-    /// <see cref="org.puremvc.csharp.patterns.command.SimpleCommand"/>
-    /// <see cref="org.puremvc.csharp.patterns.command.MacroCommand"/>
+	/// <see cref="PureMVC.Core.Model"/>
+	/// <see cref="PureMVC.Core.View"/>
+	/// <see cref="PureMVC.Core.Controller"/>
+	/// <see cref="PureMVC.Patterns.Notification"/>
+	/// <see cref="PureMVC.Patterns.Mediator"/>
+	/// <see cref="PureMVC.Patterns.Proxy"/>
+	/// <see cref="PureMVC.Patterns.SimpleCommand"/>
+	/// <see cref="PureMVC.Patterns.MacroCommand"/>
     public class Facade : IFacade
-    {
-        /// <summary>
+	{
+		#region Constructors
+
+		/// <summary>
         /// Constructor that initializes the Facade
         /// </summary>
         /// <remarks>
-        ///     <para>This <c>IFacade</c> implementation is a Singleton, so you should not call the constructor directly, but instead call the static Singleton Factory method <c>Facade.getInstance()</c></para>
+        ///     <para>This <c>IFacade</c> implementation is a Singleton, so you should not call the constructor directly, but instead call the static Singleton Factory method <c>Facade.Instance</c></para>
         /// </remarks>
         protected Facade() 
         {
-			initializeFacade();	
+			InitializeFacade();
 		}
 
-        /// <summary>
+		#endregion
+
+		#region Public Methods
+
+		#region IFacade Members
+
+		#region Proxy
+
+		/// <summary>
+		/// Register an <c>IProxy</c> with the <c>Model</c> by name
+		/// </summary>
+		/// <param name="proxy">The <c>IProxy</c> to be registered with the <c>Model</c></param>
+		public void RegisterProxy(IProxy proxy)
+		{
+			m_model.RegisterProxy(proxy);
+		}
+
+		/// <summary>
+		/// Retrieve a <c>IProxy</c> from the <c>Model</c> by name
+		/// </summary>
+		/// <param name="proxyName">The name of the <c>IProxy</c> instance to be retrieved</param>
+		/// <returns>The <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c></returns>
+		public IProxy RetrieveProxy(string proxyName)
+		{
+			return m_model.RetrieveProxy(proxyName);
+		}
+
+		/// <summary>
+		/// Remove an <c>IProxy</c> instance from the <c>Model</c> by name
+		/// </summary>
+		/// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
+		public IProxy RemoveProxy(string proxyName)
+		{
+			IProxy proxy = null;
+			if (m_model != null) proxy = m_model.RemoveProxy(proxyName);
+			return proxy;
+		}
+
+		/// <summary>
+		/// Check if a Proxy is registered
+		/// </summary>
+		/// <param name="proxyName">The name of the <c>IProxy</c> instance to check for</param>
+		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
+		public bool HasProxy(string proxyName)
+		{
+			return m_model.HasProxy(proxyName);
+		}
+
+		#endregion
+
+		#region Command
+
+		/// <summary>
+		/// Register an <c>ICommand</c> with the <c>Controller</c>
+		/// </summary>
+		/// <param name="notificationName">The name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
+		/// <param name="commandType">A reference to the <c>Type</c> of the <c>ICommand</c></param>
+		public void RegisterCommand(string notificationName, Type commandType)
+		{
+			m_controller.RegisterCommand(notificationName, commandType);
+		}
+
+		/// <summary>
+		/// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.
+		/// </summary>
+		/// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
+		public void RemoveCommand(string notificationName)
+		{
+			m_controller.RemoveCommand(notificationName);
+		}
+
+		/// <summary>
+		/// Check if a Command is registered for a given Notification 
+		/// </summary>
+		/// <param name="notificationName">The name of the <c>INotification</c> to check for.</param>
+		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
+		public bool HasCommand(string notificationName)
+		{
+			return m_controller.HasCommand(notificationName);
+		}
+
+		#endregion
+
+		#region Mediator
+
+		/// <summary>
+		/// Register an <c>IMediator</c> instance with the <c>View</c>
+		/// </summary>
+		/// <param name="mediator">A reference to the <c>IMediator</c> instance</param>
+		public void RegisterMediator(IMediator mediator)
+		{
+			if (m_view != null) m_view.RegisterMediator(mediator);
+		}
+
+		/// <summary>
+		/// Retrieve an <c>IMediator</c> instance from the <c>View</c>
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
+		/// <returns>The <c>IMediator</c> previously registered with the given <c>mediatorName</c></returns>
+		public IMediator RetrieveMediator(string mediatorName)
+		{
+			return m_view.RetrieveMediator(mediatorName);
+		}
+
+		/// <summary>
+		/// Remove a <c>IMediator</c> instance from the <c>View</c>
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
+		public IMediator RemoveMediator(string mediatorName)
+		{
+			IMediator mediator = null;
+			if (m_view != null) mediator = m_view.RemoveMediator(mediatorName);
+			return mediator;
+		}
+
+		/// <summary>
+		/// Check if a Mediator is registered or not
+		/// </summary>
+		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
+		/// <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
+		public bool HasMediator(string mediatorName)
+		{
+			return m_view.HasMediator(mediatorName);
+		}
+
+		#endregion
+
+		#region Observer
+
+		/// <summary>
+		/// Notify <c>Observer</c>s of an <c>INotification</c>
+		/// </summary>
+		/// <remarks>This method is left public mostly for backward compatibility, and to allow you to send custom notification classes using the facade.</remarks>
+		/// <remarks>Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.</remarks>
+		/// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
+		public void NotifyObservers(INotification notification)
+		{
+			if (m_view != null) m_view.NotifyObservers(notification);
+		}
+
+		#endregion
+
+		#endregion
+
+		#region INotifier Members
+
+		/// <summary>
+		/// Send an <c>INotification</c>
+		/// </summary>
+		/// <param name="notificationName">The name of the notiification to send</param>
+		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+		public void SendNotification(string notificationName)
+		{
+			NotifyObservers(new Notification(notificationName));
+		}
+
+		/// <summary>
+		/// Send an <c>INotification</c>
+		/// </summary>
+		/// <param name="notificationName">The name of the notification to send</param>
+		/// <param name="body">The body of the notification</param>
+		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+		public void SendNotification(string notificationName, object body)
+		{
+			NotifyObservers(new Notification(notificationName, body));
+		}
+
+		/// <summary>
+		/// Send an <c>INotification</c>
+		/// </summary>
+		/// <param name="notificationName">The name of the notification to send</param>
+		/// <param name="body">The body of the notification</param>
+		/// <param name="type">The type of the notification</param>
+		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
+		public void SendNotification(string notificationName, object body, string type)
+		{
+			NotifyObservers(new Notification(notificationName, body, type));
+		}
+
+		#endregion
+
+		#endregion
+
+		#region Accessors
+
+		/// <summary>
+		/// Facade Singleton Factory method
+		/// </summary>
+		public static IFacade Instance
+		{
+			get { return m_instance; }
+		}
+
+		#endregion
+
+		#region Protected & Internal Methods
+
+		/// <summary>
         /// Explicit static constructor to tell C# compiler 
         /// not to mark type as beforefieldinit
         ///</summary>
         static Facade()
         {
-            instance = new Facade();
+            m_instance = new Facade();
         }
 
         /// <summary>
@@ -159,20 +363,11 @@ namespace org.puremvc.csharp.patterns.facade
         /// <remarks>
         /// <para>Called automatically by the constructor. Override in your subclass to do any subclass specific initializations. Be sure to call <c>base.initializeFacade()</c>, though</para>
         /// </remarks>
-        protected virtual void initializeFacade()
+        protected virtual void InitializeFacade()
         {
-			initializeModel();
-			initializeController();
-			initializeView();
-		}
-
-        /// <summary>
-        /// Facade Singleton Factory method
-        /// </summary>
-        /// <returns>The Singleton instance of the Facade</returns>
-		public static IFacade getInstance()
-        {
-            return instance;
+			InitializeModel();
+			InitializeController();
+			InitializeView();
 		}
 
         /// <summary>
@@ -186,10 +381,10 @@ namespace org.puremvc.csharp.patterns.facade
         ///     </list>
         ///     <para>If you don't want to initialize a different <c>IController</c>, call <c>base.initializeController()</c> at the beginning of your method, then register <c>Command</c>s</para>
         /// </remarks>
-		protected virtual void initializeController()
+		protected virtual void InitializeController()
         {
-			if (controller != null) return;
-			controller = Controller.getInstance();
+			if (m_controller != null) return;
+			m_controller = Controller.Instance;
 		}
 
         /// <summary>
@@ -204,10 +399,10 @@ namespace org.puremvc.csharp.patterns.facade
         ///     <para>If you don't want to initialize a different <c>IModel</c>, call <c>base.initializeModel()</c> at the beginning of your method, then register <c>Proxy</c>s</para>
         ///     <para>Note: This method is <i>rarely</i> overridden; in practice you are more likely to use a <c>Command</c> to create and register <c>Proxy</c>s with the <c>Model</c>, since <c>Proxy</c>s with mutable data will likely need to send <c>INotification</c>s and thus will likely want to fetch a reference to the <c>Facade</c> during their construction</para>
         /// </remarks>
-        protected virtual void initializeModel()
+        protected virtual void InitializeModel()
         {
-			if (model != null) return;
-			model = Model.getInstance();
+			if (m_model != null) return;
+			m_model = Model.Instance;
 		}
 		
         /// <summary>
@@ -222,183 +417,36 @@ namespace org.puremvc.csharp.patterns.facade
         ///     <para>If you don't want to initialize a different <c>IView</c>, call <c>base.initializeView()</c> at the beginning of your method, then register <c>IMediator</c> instances</para>
         ///     <para>Note: This method is <i>rarely</i> overridden; in practice you are more likely to use a <c>Command</c> to create and register <c>Mediator</c>s with the <c>View</c>, since <c>IMediator</c> instances will need to send <c>INotification</c>s and thus will likely want to fetch a reference to the <c>Facade</c> during their construction</para>
         /// </remarks>
-        protected virtual void initializeView()
+        protected virtual void InitializeView()
         {
-			if (view != null) return;
-			view = View.getInstance();
+			if (m_view != null) return;
+			m_view = View.Instance;
 		}
 
-        /// <summary>
-        /// Register an <c>ICommand</c> with the <c>Controller</c>
-        /// </summary>
-        /// <param name="notificationName">The name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
-        /// <param name="commandType">A reference to the <c>Type</c> of the <c>ICommand</c></param>
-        public void registerCommand(String notificationName, Type commandType) 
-        {
-			controller.registerCommand(notificationName, commandType);
-		}
+		#endregion
 
-        /// <summary>
-        /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.
-        /// </summary>
-        /// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
-        public void removeCommand(String notificationName)
-        {
-			controller.removeCommand(notificationName);
-		}
+		#region Members
 
 		/// <summary>
-		/// Check if a Command is registered for a given Notification 
-		/// </summary>
-		/// <param name="notificationName">The name of the <c>INotification</c> to check for.</param>
-		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
-		public Boolean hasCommand(String notificationName)
-		{
-			return controller.hasCommand(notificationName);
-		}
-
-        /// <summary>
-        /// Register an <c>IProxy</c> with the <c>Model</c> by name
-        /// </summary>
-        /// <param name="proxy">The <c>IProxy</c> to be registered with the <c>Model</c></param>
-        public void registerProxy(IProxy proxy)
-        {
-			model.registerProxy (proxy);	
-		}
-
-        /// <summary>
-        /// Retrieve a <c>IProxy</c> from the <c>Model</c> by name
-        /// </summary>
-        /// <param name="proxyName">The name of the <c>IProxy</c> instance to be retrieved</param>
-        /// <returns>The <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c></returns>
-        public IProxy retrieveProxy(String proxyName)
-        {
-			return model.retrieveProxy (proxyName);	
-		}
-
-        /// <summary>
-        /// Remove an <c>IProxy</c> instance from the <c>Model</c> by name
-        /// </summary>
-        /// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
-        public IProxy removeProxy(String proxyName) 
-        {
-            IProxy proxy = null;
-            if (model != null) proxy = model.removeProxy(proxyName);
-            return proxy;
-		}
-
-		/// <summary>
-		/// Check if a Proxy is registered
-		/// </summary>
-		/// <param name="proxyName">The name of the <c>IProxy</c> instance to check for</param>
-		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
-		public Boolean hasProxy(String proxyName)
-		{
-			return model.hasProxy(proxyName);
-		}
-
-        /// <summary>
-        /// Register an <c>IMediator</c> instance with the <c>View</c>
-        /// </summary>
-        /// <param name="mediator">A reference to the <c>IMediator</c> instance</param>
-        public void registerMediator(IMediator mediator)
-        {
-			if (view != null) view.registerMediator(mediator);
-		}
-
-        /// <summary>
-        /// Retrieve an <c>IMediator</c> instance from the <c>View</c>
-        /// </summary>
-        /// <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
-        /// <returns>The <c>IMediator</c> previously registered with the given <c>mediatorName</c></returns>
-        public IMediator retrieveMediator(String mediatorName)
-        {
-			return view.retrieveMediator(mediatorName);
-		}
-
-        /// <summary>
-        /// Remove a <c>IMediator</c> instance from the <c>View</c>
-        /// </summary>
-        /// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
-        public IMediator removeMediator(String mediatorName)
-        {
-            IMediator mediator = null;
-            if (view != null) mediator = view.removeMediator(mediatorName);
-            return mediator;
-        }
-
-		/// <summary>
-		/// Check if a Mediator is registered or not
-		/// </summary>
-		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
-		/// <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
-		public Boolean hasMediator(String mediatorName)
-		{
-			return view.hasMediator(mediatorName);
-		}
-
-        /// <summary>
-        /// Send an <c>INotification</c>
-        /// </summary>
-        /// <param name="notificationName">The name of the notiification to send</param>
-        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void sendNotification(String notificationName)
-        {
-            notifyObservers(new Notification(notificationName));
-        }
-
-        /// <summary>
-        /// Send an <c>INotification</c>
-        /// </summary>
-        /// <param name="notificationName">The name of the notification to send</param>
-        /// <param name="body">The body of the notification</param>
-        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void sendNotification(String notificationName, Object body)
-        {
-            notifyObservers(new Notification(notificationName, body));
-        }
-
-        /// <summary>
-        /// Send an <c>INotification</c>
-        /// </summary>
-        /// <param name="notificationName">The name of the notification to send</param>
-        /// <param name="body">The body of the notification</param>
-        /// <param name="type">The type of the notification</param>
-        /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
-        public void sendNotification(String notificationName, Object body, String type)
-        {
-            notifyObservers(new Notification(notificationName, body, type));
-        }
-
-        /// <summary>
-        /// Notify <c>Observer</c>s of an <c>INotification</c>
-        /// </summary>
-        /// <remarks>This method is left public mostly for backward compatibility, and to allow you to send custom notification classes using the facade.</remarks>
-        /// <remarks>Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.</remarks>
-        /// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
-		public void notifyObservers(INotification notification)
-		{
-			if (view != null) view.notifyObservers(notification);
-		}
-
-        /// <summary>
         /// Private reference to the Controller
         /// </summary>
-		protected IController controller;
+		protected IController m_controller;
 
         /// <summary>
         /// Private reference to the Model
         /// </summary>
-        protected IModel model;
+        protected IModel m_model;
 
         /// <summary>
         /// Private reference to the View
         /// </summary>
-        protected IView view;
+        protected IView m_view;
 
         /// <summary>
         /// The Singleton Facade Instance
         /// </summary>
-        protected static IFacade instance;
-    }
+        protected static IFacade m_instance;
+
+		#endregion
+	}
 }

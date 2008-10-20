@@ -3,10 +3,15 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
+
+#region Using
+
 using System;
 using System.Collections.Generic;
 
-namespace org.puremvc.csharp.interfaces
+#endregion
+
+namespace PureMVC.Interfaces
 {
     /// <summary>
     /// The interface definition for a PureMVC Mediator.
@@ -28,9 +33,8 @@ namespace org.puremvc.csharp.interfaces
     ///     <para>A concrete IMediator implementor usually looks something like this:</para>
     ///     <example>
     ///         <code>
-    ///	using org.puremvc.csharp.patterns.mediator.~~;
-    ///	using org.puremvc.csharp.patterns.observer.~~;
-    ///	using org.puremvc.csharp.core.view.~~;
+	///	using PureMVC.Patterns.~~;
+	///	using PureMVC.Core.View.~~;
     /// 
     ///	using com.me.myapp.model.~~;
     ///	using com.me.myapp.view.~~;
@@ -41,7 +45,7 @@ namespace org.puremvc.csharp.interfaces
     /// 
     /// public class MyMediator : Mediator, IMediator {
     /// 
-    /// 		public MyMediator( viewComponent:Object ) {
+    /// 		public MyMediator( viewComponent:object ) {
     /// 			base( viewComponent );
     ///             combo.DataSourceChanged += new EventHandler(onChange);
     /// 		}
@@ -79,47 +83,39 @@ namespace org.puremvc.csharp.interfaces
     ///         </code>
     ///     </example>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.interfaces.INotification"/>
+	/// <see cref="PureMVC.Interfaces.INotification"/>
     public interface IMediator
-    {
-        /// <summary>
-        /// Get the <c>IMediator</c> instance name
+	{
+		/// <summary>
+        /// Tthe <c>IMediator</c> instance name
         /// </summary>
-        /// <returns>The <c>IMediator</c> instance name</returns>
-		String getMediatorName();
+		string MediatorName { get; }
 		
         /// <summary>
-        /// Get the <c>IMediator</c>'s view component
+        /// The <c>IMediator</c>'s view component
         /// </summary>
-        /// <returns>The view component</returns>
-		Object getViewComponent();
+		object ViewComponent { get; set; }
 
 		/// <summary>
-		/// Set the <code>IMediator</code>'s view component.
-		/// </summary>
-        /// <param name="viewComponent">A reference to the view component</param>
-		void setViewComponent(Object viewComponent);
-		
-        /// <summary>
         /// List <c>INotification interests</c>
         /// </summary>
         /// <returns>An <c>IList</c> of the <c>INotification</c> names this <c>IMediator</c> has an interest in</returns>
-        IList<String> listNotificationInterests();
+        IList<string> ListNotificationInterests();
 		
         /// <summary>
         /// Handle an <c>INotification</c>
         /// </summary>
         /// <param name="notification">The <c>INotification</c> to be handled</param>
-		void handleNotification( INotification notification );
+		void HandleNotification(INotification notification);
 		
 		/// <summary>
 		/// Called by the View when the Mediator is registered
 		/// </summary>
-		void onRegister();
+		void OnRegister();
 
 		/// <summary>
 		/// Called by the View when the Mediator is removed
 		/// </summary>
-		void onRemove();
-    }
+		void OnRemove();
+	}
 }

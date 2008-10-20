@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.proxy;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.proxy
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * Test the PureMVC Proxy class.
@@ -28,7 +28,7 @@ namespace org.puremvc.csharp.patterns.proxy
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public ProxyTest(String methodName) 
+        public ProxyTest(string methodName) 
             : base(methodName)
         { }
 
@@ -58,7 +58,7 @@ namespace org.puremvc.csharp.patterns.proxy
    			IProxy proxy = new Proxy("TestProxy");
    			
    			// test assertions
-   			Assert.True(proxy.getProxyName() == "TestProxy", "Expecting proxy.getProxyName() == 'TestProxy'");
+   			Assert.True(proxy.ProxyName == "TestProxy", "Expecting proxy.ProxyName == 'TestProxy'");
    		}
 
   		/**
@@ -68,8 +68,8 @@ namespace org.puremvc.csharp.patterns.proxy
         {
 			// Create a new Proxy and use accessors to set the data
    			IProxy proxy = new Proxy("colors");
-			proxy.setData(new List<String>(new string[] { "red", "green", "blue" }));
-			List<String> data = (List<String>) proxy.getData();
+			proxy.Data = new List<string>(new string[] { "red", "green", "blue" });
+			List<string> data = (List<string>) proxy.Data;
    			
    			// test assertions
    			Assert.True(data.Count == 3, "Expecting data.Count == 3");
@@ -84,12 +84,12 @@ namespace org.puremvc.csharp.patterns.proxy
   		public void testConstructor()
         {
 			// Create a new Proxy using the Constructor to set the name and data
-			IProxy proxy = new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" }));
-			List<String> data = (List<String>) proxy.getData();
+			IProxy proxy = new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" }));
+			List<string> data = (List<string>) proxy.Data;
    			
    			// test assertions
    			Assert.NotNull(proxy, "Expecting proxy not null");
-   			Assert.True(proxy.getProxyName() == "colors", "Expecting proxy.getProxyName() == 'colors'");
+   			Assert.True(proxy.ProxyName == "colors", "Expecting proxy.ProxyName == 'colors'");
             Assert.True(data.Count == 3, "Expecting data.Count == 3");
             Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
             Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");

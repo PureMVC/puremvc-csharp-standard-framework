@@ -8,11 +8,10 @@ using System;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
-using org.puremvc.csharp.patterns.command;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.command
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * Test the PureMVC SimpleCommand class.
@@ -28,7 +27,7 @@ namespace org.puremvc.csharp.patterns.command
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-  	    public MacroCommandTest(String methodName) 
+  	    public MacroCommandTest(string methodName) 
             : base(methodName)
         { }
 
@@ -91,7 +90,7 @@ namespace org.puremvc.csharp.patterns.command
 			ICommand command = new MacroCommandTestCommand();
    			
    			// Execute the SimpleCommand
-   			command.execute(note);
+   			command.Execute(note);
    			
    			// test assertions
    			Assert.True(vo.result1 == 10, "Expecting vo.result1 == 10");

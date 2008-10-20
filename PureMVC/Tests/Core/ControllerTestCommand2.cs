@@ -5,10 +5,10 @@
 */
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.command;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
     /**
 	 * A SimpleCommand subclass used by ControllerTest.
@@ -30,10 +30,10 @@ namespace org.puremvc.csharp.core
 		 * 
 		 * @param note the note carrying the ControllerTestVO
 		 */
-		override public void execute( INotification note )
+		override public void Execute( INotification note )
 		{
 			
-			ControllerTestVO vo = (ControllerTestVO) note.getBody();
+			ControllerTestVO vo = (ControllerTestVO) note.Body;
 
 			// Fabricate a result
 			vo.result = vo.result + (2 * vo.input);

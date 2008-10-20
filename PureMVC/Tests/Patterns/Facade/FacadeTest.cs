@@ -9,13 +9,11 @@ using System.Collections.Generic;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.core;
-using org.puremvc.csharp.patterns.mediator;
-using org.puremvc.csharp.patterns.observer;
-using org.puremvc.csharp.patterns.proxy;
+using PureMVC.Interfaces;
+using PureMVC.Core;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.facade
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * Test the PureMVC Facade class.
@@ -31,7 +29,7 @@ namespace org.puremvc.csharp.patterns.facade
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public FacadeTest(String methodName) 
+        public FacadeTest(string methodName) 
             : base(methodName)
         { }
 
@@ -64,7 +62,7 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testGetInstance()
         {
    			// Test Factory Method
-   			IFacade facade = Facade.getInstance();
+			IFacade facade = Facade.Instance;
    			
    			// test assertions
             Assert.NotNull(facade, "Expecting instance not null");
@@ -90,14 +88,14 @@ namespace org.puremvc.csharp.patterns.facade
         {
    			// Create the Facade, register the FacadeTestCommand to 
    			// handle 'FacadeTest' events
-   			IFacade facade = Facade.getInstance();
-   			facade.registerCommand("FacadeTestNote", typeof(FacadeTestCommand));
+			IFacade facade = Facade.Instance;
+   			facade.RegisterCommand("FacadeTestNote", typeof(FacadeTestCommand));
 
 			// Send notification. The Command associated with the event
 			// (FacadeTestCommand) will be invoked, and will multiply 
 			// the vo.input value by 2 and set the result on vo.result
 			FacadeTestVO vo = new FacadeTestVO(32);
-            facade.sendNotification("FacadeTestNote", vo);
+            facade.SendNotification("FacadeTestNote", vo);
    			
    			// test assertions 
    			Assert.True(vo.result == 64, "Expecting vo.result == 64");
@@ -122,15 +120,15 @@ namespace org.puremvc.csharp.patterns.facade
         {
    			// Create the Facade, register the FacadeTestCommand to 
    			// handle 'FacadeTest' events
-   			IFacade facade = Facade.getInstance();
-   			facade.registerCommand("FacadeTestNote", typeof(FacadeTestCommand));
-   			facade.removeCommand("FacadeTestNote");
+			IFacade facade = Facade.Instance;
+   			facade.RegisterCommand("FacadeTestNote", typeof(FacadeTestCommand));
+   			facade.RemoveCommand("FacadeTestNote");
 
 			// Send notification. The Command associated with the event
 			// (FacadeTestCommand) will NOT be invoked, and will NOT multiply 
 			// the vo.input value by 2 
             FacadeTestVO vo = new FacadeTestVO(32);
-   			facade.sendNotification("FacadeTestNote", vo);
+   			facade.SendNotification("FacadeTestNote", vo);
    			
    			// test assertions 
    			Assert.True(vo.result != 64, "Expecting vo.result != 64");
@@ -148,19 +146,19 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testRegisterAndRetrieveProxy()
         {
    			// register a proxy and retrieve it.
-   			IFacade facade = Facade.getInstance();
-			facade.registerProxy(new Proxy("colors", new List<String>(new string[] { "red", "green", "blue" })));
-			IProxy proxy = facade.retrieveProxy("colors");
+			IFacade facade = Facade.Instance;
+			facade.RegisterProxy(new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" })));
+			IProxy proxy = facade.RetrieveProxy("colors");
 			
 			// test assertions
    			Assert.True(proxy is IProxy, "Expecting proxy is IProxy");
 
 			// retrieve data from proxy
-			List<String> data = (List<String>) proxy.getData();
+			List<string> data = (List<string>) proxy.Data;
 			
 			// test assertions
    			Assert.NotNull(data, "Expecting data not null");
-			Assert.True(data is List<String>, "Expecting data is ArrayList");
+			Assert.True(data is List<string>, "Expecting data is ArrayList");
    			Assert.True(data.Count == 3, "Expecting data.Count == 3");
    			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
             Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
@@ -173,14 +171,14 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testRegisterAndRemoveProxy()
         {
    			// register a proxy, remove it, then try to retrieve it
-   			IFacade facade = Facade.getInstance();
-			facade.registerProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
+			IFacade facade = Facade.Instance;
+			facade.RegisterProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
 
-			IProxy removedProxy = facade.removeProxy("sizes");
+			IProxy removedProxy = facade.RemoveProxy("sizes");
 
-            Assert.True(removedProxy.getProxyName() == "sizes", "Expecting removedProxy.getProxyName() == 'sizes'");
+            Assert.True(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
 
-			IProxy proxy = facade.retrieveProxy("sizes");
+			IProxy proxy = facade.RetrieveProxy("sizes");
 			
 			// test assertions
    			Assert.Null(proxy, "Expecting proxy is null");
@@ -192,20 +190,20 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testRegisterRetrieveAndRemoveMediator()
         {  			
    			// register a mediator, remove it, then try to retrieve it
-   			IFacade facade = Facade.getInstance();
-			facade.registerMediator(new Mediator(Mediator.NAME, new Object()));
+			IFacade facade = Facade.Instance;
+			facade.RegisterMediator(new Mediator(Mediator.NAME, new object()));
 			
 			// retrieve the mediator
-   			Assert.NotNull(facade.retrieveMediator(Mediator.NAME), "Expecting mediator is not null");
+   			Assert.NotNull(facade.RetrieveMediator(Mediator.NAME), "Expecting mediator is not null");
 
 			// remove the mediator
-			IMediator removedMediator = facade.removeMediator(Mediator.NAME);
+			IMediator removedMediator = facade.RemoveMediator(Mediator.NAME);
 
 			// assert that we have removed the appropriate mediator
-   			Assert.True(removedMediator.getMediatorName() == Mediator.NAME, "Expecting removedMediator.getMediatorName() == Mediator.NAME");
+   			Assert.True(removedMediator.MediatorName == Mediator.NAME, "Expecting removedMediator.MediatorName == Mediator.NAME");
 				
 			// assert that the mediator is no longer retrievable
-   			Assert.True(facade.retrieveMediator( Mediator.NAME ) == null, "Expecting facade.retrieveMediator(Mediator.NAME) == null )");		  			
+   			Assert.True(facade.RetrieveMediator( Mediator.NAME ) == null, "Expecting facade.retrieveMediator(Mediator.NAME) == null )");		  			
    		}
 
 	
@@ -215,12 +213,12 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testHasProxy()
 		{
    			// register a Proxy
-			IFacade facade = Facade.getInstance();
-			facade.registerProxy(new Proxy("hasProxyTest", new List<int>(new int[] { 1, 2, 3 })));
+			IFacade facade = Facade.Instance;
+			facade.RegisterProxy(new Proxy("hasProxyTest", new List<int>(new int[] { 1, 2, 3 })));
 			
    			// assert that the model.hasProxy method returns true
    			// for that proxy name
-   			Assert.True(facade.hasProxy("hasProxyTest") == true, "Expecting facade.hasProxy('hasProxyTest') == true");
+   			Assert.True(facade.HasProxy("hasProxyTest") == true, "Expecting facade.hasProxy('hasProxyTest') == true");
    		}
 
   		/**
@@ -229,18 +227,18 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testHasMediator()
 		{
    			// register a Mediator
-			IFacade facade = Facade.getInstance();
-			facade.registerMediator( new Mediator( "facadeHasMediatorTest", new Object() ) );
+			IFacade facade = Facade.Instance;
+			facade.RegisterMediator( new Mediator( "facadeHasMediatorTest", new object() ) );
 			
    			// assert that the facade.hasMediator method returns true
    			// for that mediator name
-   			Assert.True(facade.hasMediator("facadeHasMediatorTest") == true, "Expecting facade.hasMediator('facadeHasMediatorTest') == true");
+   			Assert.True(facade.HasMediator("facadeHasMediatorTest") == true, "Expecting facade.hasMediator('facadeHasMediatorTest') == true");
    						
-   			facade.removeMediator( "facadeHasMediatorTest" );
+   			facade.RemoveMediator( "facadeHasMediatorTest" );
    			
    			// assert that the facade.hasMediator method returns false
    			// for that mediator name
-   			Assert.True(facade.hasMediator("facadeHasMediatorTest") == false, "Expecting facade.hasMediator('facadeHasMediatorTest') == false");
+   			Assert.True(facade.HasMediator("facadeHasMediatorTest") == false, "Expecting facade.hasMediator('facadeHasMediatorTest') == false");
    		}
 
   		/**
@@ -249,17 +247,17 @@ namespace org.puremvc.csharp.patterns.facade
   		public void testHasCommand()
 		{
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
-   			IFacade facade = Facade.getInstance();
-   			facade.registerCommand("facadeHasCommandTest", typeof(FacadeTestCommand));
+   			IFacade facade = Facade.Instance;
+   			facade.RegisterCommand("facadeHasCommandTest", typeof(FacadeTestCommand));
    			
    			// test that hasCommand returns true for hasCommandTest notifications 
-   			Assert.True(facade.hasCommand("facadeHasCommandTest") == true, "Expecting facade.hasCommand('facadeHasCommandTest') == true");
+   			Assert.True(facade.HasCommand("facadeHasCommandTest") == true, "Expecting facade.hasCommand('facadeHasCommandTest') == true");
    			
    			// Remove the Command from the Controller
-   			facade.removeCommand("facadeHasCommandTest");
+   			facade.RemoveCommand("facadeHasCommandTest");
 			
    			// test that hasCommand returns false for hasCommandTest notifications 
-   			Assert.True(facade.hasCommand("facadeHasCommandTest") == false, "Expecting facade.hasCommand('facadeHasCommandTest') == false");
+   			Assert.True(facade.HasCommand("facadeHasCommandTest") == false, "Expecting facade.hasCommand('facadeHasCommandTest') == false");
    			
    		}
 	}

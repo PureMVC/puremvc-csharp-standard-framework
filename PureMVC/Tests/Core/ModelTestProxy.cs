@@ -9,30 +9,30 @@ using System.Collections.Generic;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.proxy;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
 	public class ModelTestProxy : Proxy
 	{
-		public new const String NAME = "ModelTestProxy";
-		public const String ON_REGISTER_CALLED = "onRegister Called";
-		public const String ON_REMOVE_CALLED = "onRemove Called";
+		public new const string NAME = "ModelTestProxy";
+		public const string ON_REGISTER_CALLED = "onRegister Called";
+		public const string ON_REMOVE_CALLED = "onRemove Called";
 
 		public ModelTestProxy()
 			: base(NAME, "")
 		{
 		}
 
-		public override void onRegister()
+		public override void OnRegister()
 		{
-			setData(ON_REGISTER_CALLED);
+			Data = ON_REGISTER_CALLED;
 		}		
 
-		public override void onRemove()
+		public override void OnRemove()
 		{
-			setData(ON_REMOVE_CALLED);
+			Data = ON_REMOVE_CALLED;
 		}		
 	}
 }

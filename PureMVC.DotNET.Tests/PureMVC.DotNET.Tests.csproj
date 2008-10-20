@@ -8,11 +8,11 @@
     <ProjectGuid>{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>org.puremvc.csharp.tests</RootNamespace>
+    <RootNamespace>PureMVC.Tests</RootNamespace>
     <AssemblyName>PureMVC.DotNET.Tests</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>org.puremvc.csharp.tests.TestRunner</StartupObject>
+    <StartupObject>PureMVC.Tests.TestRunner</StartupObject>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -44,92 +44,92 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTest.cs">
-      <Link>core\ControllerTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTest.cs">
+      <Link>Core\ControllerTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand.cs">
-      <Link>core\ControllerTestCommand.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestCommand.cs">
+      <Link>Core\ControllerTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestCommand2.cs">
-      <Link>core\ControllerTestCommand2.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestCommand2.cs">
+      <Link>Core\ControllerTestCommand2.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ControllerTestVO.cs">
-      <Link>core\ControllerTestVO.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestVO.cs">
+      <Link>Core\ControllerTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTest.cs">
-      <Link>core\ModelTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ModelTest.cs">
+      <Link>Core\ModelTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ModelTestProxy.cs">
-      <Link>core\ModelTestProxy.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ModelTestProxy.cs">
+      <Link>Core\ModelTestProxy.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTest.cs">
-      <Link>core\ViewTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTest.cs">
+      <Link>Core\ViewTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator.cs">
-      <Link>core\ViewTestMediator.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator.cs">
+      <Link>Core\ViewTestMediator.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator2.cs">
-      <Link>core\ViewTestMediator2.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator2.cs">
+      <Link>Core\ViewTestMediator2.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator3.cs">
-      <Link>core\ViewTestMediator3.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator3.cs">
+      <Link>Core\ViewTestMediator3.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator4.cs">
-      <Link>core\ViewTestMediator4.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator4.cs">
+      <Link>Core\ViewTestMediator4.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator5.cs">
-      <Link>core\ViewTestMediator5.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator5.cs">
+      <Link>Core\ViewTestMediator5.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestMediator6.cs">
-      <Link>core\ViewTestMediator6.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator6.cs">
+      <Link>Core\ViewTestMediator6.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\core\ViewTestNote.cs">
-      <Link>core\ViewTestNote.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestNote.cs">
+      <Link>Core\ViewTestNote.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTest.cs">
-      <Link>patterns\command\MacroCommandTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTest.cs">
+      <Link>Patterns\Command\MacroCommandTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestCommand.cs">
-      <Link>patterns\command\MacroCommandTestCommand.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestCommand.cs">
+      <Link>Patterns\Command\MacroCommandTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub1Command.cs">
-      <Link>patterns\command\MacroCommandTestSub1Command.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestSub1Command.cs">
+      <Link>Patterns\Command\MacroCommandTestSub1Command.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestSub2Command.cs">
-      <Link>patterns\command\MacroCommandTestSub2Command.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestSub2Command.cs">
+      <Link>Patterns\Command\MacroCommandTestSub2Command.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\MacroCommandTestVO.cs">
-      <Link>patterns\command\MacroCommandTestVO.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestVO.cs">
+      <Link>Patterns\Command\MacroCommandTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTest.cs">
-      <Link>patterns\command\SimpleCommandTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTest.cs">
+      <Link>Patterns\Command\SimpleCommandTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestCommand.cs">
-      <Link>patterns\command\SimpleCommandTestCommand.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTestCommand.cs">
+      <Link>Patterns\Command\SimpleCommandTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\command\SimpleCommandTestVO.cs">
-      <Link>patterns\command\SimpleCommandTestVO.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTestVO.cs">
+      <Link>Patterns\Command\SimpleCommandTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTest.cs">
-      <Link>patterns\facade\FacadeTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTest.cs">
+      <Link>Patterns\Facade\FacadeTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestCommand.cs">
-      <Link>patterns\facade\FacadeTestCommand.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTestCommand.cs">
+      <Link>Patterns\Facade\FacadeTestCommand.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\facade\FacadeTestVO.cs">
-      <Link>patterns\facade\FacadeTestVO.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTestVO.cs">
+      <Link>Patterns\Facade\FacadeTestVO.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\mediator\MediatorTest.cs">
-      <Link>patterns\mediator\MediatorTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Mediator\MediatorTest.cs">
+      <Link>Patterns\Mediator\MediatorTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\NotificationTest.cs">
-      <Link>patterns\observer\NotificationTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Observer\NotificationTest.cs">
+      <Link>Patterns\Observer\NotificationTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\observer\ObserverTest.cs">
-      <Link>patterns\observer\ObserverTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Observer\ObserverTest.cs">
+      <Link>Patterns\Observer\ObserverTest.cs</Link>
     </Compile>
-    <Compile Include="..\org\puremvc\csharp\tests\patterns\proxy\ProxyTest.cs">
-      <Link>patterns\proxy\ProxyTest.cs</Link>
+    <Compile Include="..\PureMVC\Tests\Patterns\Proxy\ProxyTest.cs">
+      <Link>Patterns\Proxy\ProxyTest.cs</Link>
     </Compile>
     <Compile Include="TestRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

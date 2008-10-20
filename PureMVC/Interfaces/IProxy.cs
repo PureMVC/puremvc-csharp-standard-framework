@@ -5,7 +5,7 @@
 */
 using System;
 
-namespace org.puremvc.csharp.interfaces
+namespace PureMVC.Interfaces
 {
     /// <summary>
     /// The interface definition for a PureMVC Proxy
@@ -26,32 +26,24 @@ namespace org.puremvc.csharp.interfaces
     /// </remarks>
     public interface IProxy
     {
-        /// <summary>
-        /// Get the Proxy name
+		/// <summary>
+        /// The Proxy instance name
         /// </summary>
-        /// <returns>The Proxy instance name</returns>
-        String getProxyName();
+		string ProxyName { get; }
 
         /// <summary>
-        /// Set the data
+        /// The data of the proxy
         /// </summary>
-        /// <param name="data">The data of the proxy</param>
-        void setData(Object data);
+		object Data { get; set; }
 
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>The data object</returns>
-        Object getData();
-		
 		/// <summary>
 		/// Called by the Model when the Proxy is registered
 		/// </summary>
-		void onRegister();
+		void OnRegister();
 
 		/// <summary>
 		/// Called by the Model when the Proxy is removed
 		/// </summary>
-		void onRemove();
+		void OnRemove();
     }
 }

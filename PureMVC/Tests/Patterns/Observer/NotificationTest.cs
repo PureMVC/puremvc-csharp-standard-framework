@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.observer
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * Test the PureMVC Notification class.
@@ -27,7 +27,7 @@ namespace org.puremvc.csharp.patterns.observer
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public NotificationTest(String methodName) 
+        public NotificationTest(string methodName) 
             : base(methodName)
         { }
 
@@ -58,7 +58,7 @@ namespace org.puremvc.csharp.patterns.observer
    			INotification note = new Notification("TestNote");
    			
    			// test assertions
-   			Assert.True(note.getName() == "TestNote", "Expecting note.getName() == 'TestNote'");
+			Assert.True(note.Name == "TestNote", "Expecting note.Name == 'TestNote'");
    		}
 
         /**
@@ -68,10 +68,10 @@ namespace org.puremvc.csharp.patterns.observer
         {
 			// Create a new Notification and use accessors to set the body
    			INotification note = new Notification(null);
-   			note.setBody(5);
+   			note.Body = 5;
    			
    			// test assertions
-            Assert.True((int)note.getBody() == 5, "Expecting (int)note.getBody() == 5");
+			Assert.True((int) note.Body == 5, "Expecting (int) note.Body == 5");
    		}
 
         /**
@@ -83,9 +83,9 @@ namespace org.puremvc.csharp.patterns.observer
    			INotification note = new Notification("TestNote", 5, "TestNoteType");
    			
    			// test assertions
-   			Assert.True(note.getName() == "TestNote", "Expecting note.getName() == 'TestNote'");
-   			Assert.True((int)note.getBody() == 5, "Expecting (int)note.getBody() == 5");
-   			Assert.True(note.getType() == "TestNoteType", "Expecting note.getType() == 'TestNoteType'");
+			Assert.True(note.Name == "TestNote", "Expecting note.Name == 'TestNote'");
+			Assert.True((int) note.Body == 5, "Expecting (int) note.Body == 5");
+   			Assert.True(note.Type == "TestNoteType", "Expecting note.Type == 'TestNoteType'");
    		}
    		
   		/**
@@ -95,10 +95,10 @@ namespace org.puremvc.csharp.patterns.observer
 
 			// Create a new Notification and use accessors to set the note name 
    			INotification note = new Notification("TestNote", "1,3,5", "TestType");
-   			String ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+   			string ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
    			
    			// test assertions
-			Assert.True(note.toString() == ts, "Expecting note.testToString() == '" + ts + "'");
+			Assert.True(note.ToString() == ts, "Expecting note.testToString() == '" + ts + "'");
    		}
     }
 }

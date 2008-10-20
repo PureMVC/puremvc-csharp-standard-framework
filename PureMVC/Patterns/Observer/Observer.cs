@@ -3,12 +3,17 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
+
+#region Using
+
 using System;
 using System.Reflection;
 
-using org.puremvc.csharp.interfaces;
+using PureMVC.Interfaces;
 
-namespace org.puremvc.csharp.patterns.observer
+#endregion
+
+namespace PureMVC.Patterns
 {
     /// <summary>
     /// A base <c>IObserver</c> implementation
@@ -23,84 +28,87 @@ namespace org.puremvc.csharp.patterns.observer
     ///         <item>Provide a method for notifying the interested object</item>
     ///     </list>
     /// </remarks>
-    /// <see cref="org.puremvc.csharp.core.View"/>
-    /// <see cref="org.puremvc.csharp.patterns.observer.Notification"/>
-    public class Observer : IObserver
-    {
-        private String notify;
-		private Object context;
-	
-        /// <summary>
-        /// Constructs a new observer with the specified notification method and context
-        /// </summary>
-        /// <param name="notifyMethod">The notification method of the interested object</param>
-        /// <param name="notifyContext">The notification context of the interested object</param>
-        /// <remarks>
-        ///     <para>The notification method on the interested object should take on parameter of type <c>INotification</c></para>
-        /// </remarks>
-        public Observer(String notifyMethod, Object notifyContext) 
+	/// <see cref="PureMVC.Core.View"/>
+	/// <see cref="PureMVC.Patterns.Notification"/>
+	public class Observer : IObserver
+	{
+		#region Constructors
+
+		/// <summary>
+		/// Constructs a new observer with the specified notification method and context
+		/// </summary>
+		/// <param name="notifyMethod">The notification method of the interested object</param>
+		/// <param name="notifyContext">The notification context of the interested object</param>
+		/// <remarks>
+		///     <para>The notification method on the interested object should take on parameter of type <c>INotification</c></para>
+		/// </remarks>
+		public Observer(string notifyMethod, object notifyContext)
 		{
-			setNotifyMethod(notifyMethod);
-			setNotifyContext(notifyContext);
+			NotifyMethod = notifyMethod;
+			NotifyContext = notifyContext;
 		}
 
-        /// <summary>
-        /// Set the notification method
-        /// </summary>
-        /// <remarks>The notification method should take one parameter of type <c>INotification</c></remarks>
-        /// <param name="notifyMethod">The notification (callback) method of the interested object</param>
-        public void setNotifyMethod(String notifyMethod)
+		#endregion
+
+		#region Public Methods
+
+		#region IObserver Members
+
+		/// <summary>
+		/// Notify the interested object
+		/// </summary>
+		/// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
+		public void NotifyObserver(INotification notification)
 		{
-			notify = notifyMethod;
+			Type t = this.NotifyContext.GetType();
+			BindingFlags f = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase;
+			MethodInfo mi = t.GetMethod(this.NotifyMethod, f);
+			mi.Invoke(this.NotifyContext, new object[] { notification });
 		}
 
-        /// <summary>
-        /// Set the notification context
-        /// </summary>
-        /// <param name="notifyContext">The notification context (this) of the interested object</param>
-		public void setNotifyContext(Object notifyContext)
+		/// <summary>
+		/// Compare an object to the notification context
+		/// </summary>
+		/// <param name="obj">The object to compare</param>
+		/// <returns>Indicating if the object and the notification context are the same</returns>
+		public bool CompareNotifyContext(object obj)
 		{
-			context = notifyContext;
+			return this.NotifyContext.Equals(obj);
 		}
 
-        /// <summary>
-        /// Gets the notification method.
-        /// </summary>
-        /// <returns>The notification (callback) method of the interested object</returns>
-        private String getNotifyMethod()
+		#endregion
+
+		#endregion
+
+		#region Accessors
+
+		/// <summary>
+		/// The notification (callback) method of the interested object
+		/// </summary>
+		/// <remarks>The notification method should take one parameter of type <c>INotification</c></remarks>
+		public string NotifyMethod
 		{
-			return notify;
-		}
-		
-        /// <summary>
-        /// Get the notification context
-        /// </summary>
-        /// <returns>The notification context (<c>this</c>) of the interested object</returns>
-		private Object getNotifyContext()
-		{
-			return context;
+			private get { return m_notify; }
+			set { m_notify = value; }
 		}
 
-        /// <summary>
-        /// Notify the interested object
-        /// </summary>
-        /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
-		public void notifyObserver(INotification notification)
+		/// <summary>
+		/// The notification context (this) of the interested object
+		/// </summary>
+		public object NotifyContext
 		{
-            Type t = this.getNotifyContext().GetType();
-            BindingFlags f = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase;
-            MethodInfo mi = t.GetMethod(this.getNotifyMethod(), f);
-            mi.Invoke(this.getNotifyContext(), new Object[] { notification });
+			private get { return m_context; }
+			set { m_context = value; }
 		}
-	
-        /// <summary>
-        /// Compare an object to the notification context
-        /// </summary>
-        /// <param name="obj">The object to compare</param>
-        /// <returns>Indicating if the object and the notification context are the same</returns>
-		 public Boolean compareNotifyContext(Object obj)
-		 {
-		 	return this.getNotifyContext().Equals(obj);
-		 }
-     }
+
+		#endregion
+
+		#region Members
+
+		private string m_notify;
+
+		private object m_context;
+
+		#endregion
+	}
 }

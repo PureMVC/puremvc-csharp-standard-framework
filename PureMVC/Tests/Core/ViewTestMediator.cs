@@ -6,10 +6,10 @@
 using System;
 using System.Collections.Generic;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.mediator;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
     /**
   	 * A Mediator class used by ViewTest.
@@ -21,20 +21,20 @@ namespace org.puremvc.csharp.core
         /**
 		 * The Mediator name
 		 */
-		public new static String NAME = "ViewTestMediator";
+		public new static string NAME = "ViewTestMediator";
 		
 		/**
 		 * Constructor
 		 */
-		public ViewTestMediator(Object view) 
+		public ViewTestMediator(object view) 
             : base(NAME, view)
         { }
 
-		override public IList<String> listNotificationInterests()
+		override public IList<string> ListNotificationInterests()
 		{
 			// be sure that the mediator has some Observers created
 			// in order to test removeMediator
-			return new List<String>(new string[]{"ABC", "DEF", "GHI"});
+			return new List<string>(new string[]{"ABC", "DEF", "GHI"});
 		}
     }
 }

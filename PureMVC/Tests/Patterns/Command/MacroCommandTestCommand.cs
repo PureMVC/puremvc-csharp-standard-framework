@@ -5,10 +5,10 @@
 */
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.command;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.command
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * A MacroCommand subclass used by MacroCommandTest.
@@ -31,10 +31,10 @@ namespace org.puremvc.csharp.patterns.command
 		 * Initialize the MacroCommandTestCommand by adding
 		 * its 2 SubCommands.
 		 */
-		protected override void initializeMacroCommand()
+		protected override void InitializeMacroCommand()
 		{
-			addSubCommand(typeof(MacroCommandTestSub1Command));
-			addSubCommand(typeof(MacroCommandTestSub2Command));
+			AddSubCommand(typeof(MacroCommandTestSub1Command));
+			AddSubCommand(typeof(MacroCommandTestSub2Command));
 		}
     }
 }

@@ -5,7 +5,7 @@
 */
 using System;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
     /**
   	 * A utility class used by ControllerTest.

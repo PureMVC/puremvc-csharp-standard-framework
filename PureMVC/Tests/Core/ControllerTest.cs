@@ -8,18 +8,19 @@ using System;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
+using PureMVC.Core;
 
-namespace org.puremvc.csharp.core
+namespace PureMVC.Tests.Core
 {
-    /**
+	/**
 	 * Test the PureMVC Controller class.
 	 *
-  	 * @see org.puremvc.csharp.core.controller.ControllerTestVO ControllerTestVO
-  	 * @see org.puremvc.csharp.core.controller.ControllerTestCommand ControllerTestCommand
+	 * @see PureMVC.Tests.Core.ControllerTestVO ControllerTestVO
+	 * @see PureMVC.Tests.Core.ControllerTestCommand ControllerTestCommand
 	 */
-    [TestFixture]
+	[TestFixture]
     public class ControllerTest : TestCase
     {
         /**
@@ -27,7 +28,7 @@ namespace org.puremvc.csharp.core
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public ControllerTest(String methodName)
+        public ControllerTest(string methodName)
             : base(methodName)
         { }
 
@@ -56,7 +57,7 @@ namespace org.puremvc.csharp.core
   		public void testGetInstance()
         {
    			// Test Factory Method
-   			IController controller = Controller.getInstance();
+   			IController controller = Controller.Instance;
    			
    			// test assertions
             Assert.NotNull(controller, "Expecting instance not null");
@@ -82,8 +83,8 @@ namespace org.puremvc.csharp.core
   		public void testRegisterAndExecuteCommand() 
         {
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
-   			IController controller = Controller.getInstance();
-   			controller.registerCommand("ControllerTest", typeof(ControllerTestCommand));
+   			IController controller = Controller.Instance;
+   			controller.RegisterCommand("ControllerTest", typeof(ControllerTestCommand));
    			
    			// Create a 'ControllerTest' note
             ControllerTestVO vo = new ControllerTestVO(12);
@@ -92,7 +93,7 @@ namespace org.puremvc.csharp.core
 			// Tell the controller to execute the Command associated with the note
 			// the ControllerTestCommand invoked will multiply the vo.input value
 			// by 2 and set the result on vo.result
-   			controller.executeCommand(note);
+   			controller.ExecuteCommand(note);
    			
    			// test assertions 
             Assert.True(vo.result == 24, "Expecting vo.result == 24");
@@ -109,8 +110,8 @@ namespace org.puremvc.csharp.core
         {
   			
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
-   			IController controller = Controller.getInstance();
-   			controller.registerCommand("ControllerRemoveTest", typeof(ControllerTestCommand));
+   			IController controller = Controller.Instance;
+   			controller.RegisterCommand("ControllerRemoveTest", typeof(ControllerTestCommand));
    			
    			// Create a 'ControllerTest' note
             ControllerTestVO vo = new ControllerTestVO(12);
@@ -119,7 +120,7 @@ namespace org.puremvc.csharp.core
 			// Tell the controller to execute the Command associated with the note
 			// the ControllerTestCommand invoked will multiply the vo.input value
 			// by 2 and set the result on vo.result
-   			controller.executeCommand(note);
+   			controller.ExecuteCommand(note);
    			
    			// test assertions 
    			Assert.True(vo.result == 24, "Expecting vo.result == 24");
@@ -128,12 +129,12 @@ namespace org.puremvc.csharp.core
    			vo.result = 0;
    			
    			// Remove the Command from the Controller
-   			controller.removeCommand("ControllerRemoveTest");
+   			controller.RemoveCommand("ControllerRemoveTest");
 			
 			// Tell the controller to execute the Command associated with the
 			// note. This time, it should not be registered, and our vo result
 			// will not change   			
-   			controller.executeCommand(note);
+   			controller.ExecuteCommand(note);
    			
    			// test assertions 
             Assert.True(vo.result == 0, "Expecting vo.result == 0");
@@ -145,17 +146,17 @@ namespace org.puremvc.csharp.core
   		 */
   		public void testHasCommand() {
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
-   			IController controller = Controller.getInstance();
-   			controller.registerCommand("hasCommandTest", typeof(ControllerTestCommand));
+   			IController controller = Controller.Instance;
+   			controller.RegisterCommand("hasCommandTest", typeof(ControllerTestCommand));
    			
    			// test that hasCommand returns true for hasCommandTest notifications 
-   			Assert.True(controller.hasCommand("hasCommandTest") == true, "Expecting controller.hasCommand('hasCommandTest') == true");
+			Assert.True(controller.HasCommand("hasCommandTest") == true, "Expecting controller.HasCommand('hasCommandTest') == true");
    			
    			// Remove the Command from the Controller
-   			controller.removeCommand("hasCommandTest");
+   			controller.RemoveCommand("hasCommandTest");
 			
    			// test that hasCommand returns false for hasCommandTest notifications 
-			Assert.True(controller.hasCommand("hasCommandTest") == false, "Expecting controller.hasCommand('hasCommandTest') == false");
+			Assert.True(controller.HasCommand("hasCommandTest") == false, "Expecting controller.HasCommand('hasCommandTest') == false");
    		}
    		
  		/**
@@ -173,31 +174,31 @@ namespace org.puremvc.csharp.core
   		public void testReregisterAndExecuteCommand() {
   			 
    			// Fetch the controller, register the ControllerTestCommand2 to handle 'ControllerTest2' notes
-   			IController controller = Controller.getInstance();
-   			controller.registerCommand("ControllerTest2", typeof(ControllerTestCommand2));
+   			IController controller = Controller.Instance;
+   			controller.RegisterCommand("ControllerTest2", typeof(ControllerTestCommand2));
    			
    			// Remove the Command from the Controller
-   			controller.removeCommand("ControllerTest2");
+   			controller.RemoveCommand("ControllerTest2");
 			
    			// Re-register the Command with the Controller
-   			controller.registerCommand("ControllerTest2", typeof(ControllerTestCommand2));
+   			controller.RegisterCommand("ControllerTest2", typeof(ControllerTestCommand2));
 
    			// Create a 'ControllerTest2' note
 			ControllerTestVO vo = new ControllerTestVO(12);
    			Notification note = new Notification( "ControllerTest2", vo );
 
 			// retrieve a reference to the View.
-   			IView view = View.getInstance();
+   			IView view = View.Instance;
    			
 			// send the Notification
-   			view.notifyObservers(note);
+   			view.NotifyObservers(note);
    			
    			// test assertions 
 			// if the command is executed once the value will be 24
 			Assert.True(vo.result == 24, "Expecting vo.result == 24");
 
    			// Prove that accumulation works in the VO by sending the notification again
-   			view.notifyObservers(note);
+   			view.NotifyObservers(note);
    			
 			// if the command is executed twice the value will be 48
 			Assert.True(vo.result == 48, "Expecting vo.result == 48");

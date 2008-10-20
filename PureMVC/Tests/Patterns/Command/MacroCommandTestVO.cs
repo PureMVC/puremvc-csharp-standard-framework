@@ -5,7 +5,7 @@
 */
 using System;
 
-namespace org.puremvc.csharp.patterns.command
+namespace PureMVC.Tests.Patterns
 {
     /**
   	 * A utility class used by MacroCommandTest.

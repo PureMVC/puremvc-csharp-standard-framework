@@ -5,10 +5,10 @@
 */
 using System;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.command;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.command
+namespace PureMVC.Tests.Patterns
 {
     /**
 	 * A SimpleCommand subclass used by MacroCommandTestCommand.
@@ -31,9 +31,9 @@ namespace org.puremvc.csharp.patterns.command
 		 * 
 		 * @param event the <code>IEvent</code> carrying the <code>MacroCommandTestVO</code>
 		 */
-		public override void execute(INotification note)
+		public override void Execute(INotification note)
 		{
-			MacroCommandTestVO vo = (MacroCommandTestVO) note.getBody();
+			MacroCommandTestVO vo = (MacroCommandTestVO) note.Body;
 			
 			// Fabricate a result
 			vo.result2 = vo.input * vo.input;

@@ -8,10 +8,10 @@ using System;
 using NUnitLite;
 using NUnit.Framework;
 
-using org.puremvc.csharp.interfaces;
-using org.puremvc.csharp.patterns.observer;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
-namespace org.puremvc.csharp.patterns.observer
+namespace PureMVC.Tests.Patterns
 {
     /**
   	 * Tests PureMVC Observer class.
@@ -35,7 +35,7 @@ namespace org.puremvc.csharp.patterns.observer
   		 * 
   		 * @param methodName the name of the test method an instance to run
   		 */
-        public ObserverTest(String methodName) 
+        public ObserverTest(string methodName) 
             : base(methodName)
         { }
 
@@ -64,9 +64,9 @@ namespace org.puremvc.csharp.patterns.observer
         {
    			// Create observer with null args, then
    			// use accessors to set notification method and context
-    		IObserver observer = new Observer(null, null);
-    		observer.setNotifyContext(this);
-   			observer.setNotifyMethod("observerTestMethod");
+			IObserver observer = new Observer(null, null);
+    		observer.NotifyContext = this;
+   			observer.NotifyMethod = "observerTestMethod";
   			
    			// create a test event, setting a payload value and notify 
    			// the observer with it. since the observer is this class 
@@ -75,7 +75,7 @@ namespace org.puremvc.csharp.patterns.observer
    			// observerTestVar being set to the value we pass in 
    			// on the note body.
    			INotification note = new Notification("ObserverTestNote", 10);
-			observer.notifyObserver(note);
+			observer.NotifyObserver(note);
 
 			// test assertions  			
    			Assert.True(observerTestVar == 10, "Expecting observerTestVar = 10");
@@ -88,7 +88,7 @@ namespace org.puremvc.csharp.patterns.observer
   		public void testObserverConstructor()
         {
    			// Create observer passing in notification method and context
-   			IObserver observer = new Observer("observerTestMethod", this);
+			IObserver observer = new Observer("observerTestMethod", this);
   			
    			// create a test note, setting a body value and notify 
    			// the observer with it. since the observer is this class 
@@ -97,7 +97,7 @@ namespace org.puremvc.csharp.patterns.observer
    			// observerTestVar being set to the value we pass in 
    			// on the note body.
    			INotification note = new Notification("ObserverTestNote", 5);
-			observer.notifyObserver(note);
+			observer.NotifyObserver(note);
 
 			// test assertions  			
    			Assert.True(observerTestVar == 5, "Expecting observerTestVar = 5");
@@ -111,13 +111,13 @@ namespace org.puremvc.csharp.patterns.observer
         {
   			
    			// Create observer passing in notification method and context
-   			IObserver observer = new Observer("observerTestMethod", this);
+			IObserver observer = new Observer("observerTestMethod", this);
   			
-  			Object negTestObj = new Object();
+  			object negTestObj = new object();
   			
 			// test assertions  			
-   			Assert.True(observer.compareNotifyContext(negTestObj) == false, "Expecting observer.compareNotifyContext(negTestObj) == false");
-            Assert.True(observer.compareNotifyContext(this) == true, "Expecting observer.compareNotifyContext(this) == true");
+   			Assert.True(observer.CompareNotifyContext(negTestObj) == false, "Expecting observer.compareNotifyContext(negTestObj) == false");
+            Assert.True(observer.CompareNotifyContext(this) == true, "Expecting observer.compareNotifyContext(this) == true");
    		}
 
   		/**
@@ -133,7 +133,7 @@ namespace org.puremvc.csharp.patterns.observer
   		 */
   		public void observerTestMethod(INotification note)
   		{
-  			observerTestVar = (int)note.getBody();
+			observerTestVar = (int) note.Body;
   		}
     }
 }

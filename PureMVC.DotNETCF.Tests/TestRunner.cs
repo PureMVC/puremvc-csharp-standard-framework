@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 using NUnitLite.Runner;
 
-namespace org.puremvc.csharp.tests
+namespace PureMVC.Tests
 {
     public class TestRunner
     {
