@@ -270,7 +270,18 @@ namespace PureMVC.Core
 		/// </summary>
 		public static IView Instance
 		{
-			get { return m_instance; }
+			get
+			{
+				if (m_instance == null)
+				{
+					lock (m_syncRoot)
+					{
+						if (m_instance == null) m_instance = new View();
+					}
+				}
+
+				return m_instance;
+			}
 		}
 
 		#endregion
@@ -283,9 +294,6 @@ namespace PureMVC.Core
         /// </summary>
         static View()
         {
-			// We create the instance in the static constructor so that subclasses can create their own instance
-			// in their own static constructors.  This makes this pattern not an actual singleton, but a logical singleton.
-			m_instance = new View();
 		}
 
         /// <summary>

@@ -376,7 +376,18 @@ namespace PureMVC.Patterns
 		/// </summary>
 		public static IFacade Instance
 		{
-			get { return m_instance; }
+			get
+			{
+				if (m_instance == null)
+				{
+					lock (m_syncRoot)
+					{
+						if (m_instance == null) m_instance = new Facade();
+					}
+				}
+
+				return m_instance;
+			}
 		}
 
 		#endregion
@@ -389,9 +400,6 @@ namespace PureMVC.Patterns
         ///</summary>
         static Facade()
         {
-			// We create the instance in the static constructor so that subclasses can create their own instance
-			// in their own static constructors.  This makes this pattern not an actual singleton, but a logical singleton.
-			m_instance = new Facade();
         }
 
         /// <summary>
