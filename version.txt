@@ -12,6 +12,7 @@ Release Date: 10/20/08
 
 3.0 - Converted the framework to use C# conventions (accessors and package names). - AA
       Updated the framework to be thread safe. - AA
+      Added a Silverlight 2.0 library and tests. - AA
 
 2.0 - Converted the framework to use only generics. - AA
       Added separate Visual Studio 2008 projects that compile the framework

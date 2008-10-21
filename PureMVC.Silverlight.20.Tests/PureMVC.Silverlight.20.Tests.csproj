@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B803EC87-6979-4797-8EEB-D2C7A47B8A5F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PureMVC.Tests</RootNamespace>
+    <AssemblyName>PureMVC.Silverlight.20.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>PureMVC.Tests.TestRunner</StartupObject>
+    <PublishUrl>http://localhost/PureMVC.Silverlight.20.Tests/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NUnitLite, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnitLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTest.cs">
+      <Link>Core\ControllerTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestCommand.cs">
+      <Link>Core\ControllerTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestCommand2.cs">
+      <Link>Core\ControllerTestCommand2.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ControllerTestVO.cs">
+      <Link>Core\ControllerTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ModelTest.cs">
+      <Link>Core\ModelTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ModelTestProxy.cs">
+      <Link>Core\ModelTestProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTest.cs">
+      <Link>Core\ViewTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator.cs">
+      <Link>Core\ViewTestMediator.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator2.cs">
+      <Link>Core\ViewTestMediator2.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator3.cs">
+      <Link>Core\ViewTestMediator3.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator4.cs">
+      <Link>Core\ViewTestMediator4.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator5.cs">
+      <Link>Core\ViewTestMediator5.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestMediator6.cs">
+      <Link>Core\ViewTestMediator6.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Core\ViewTestNote.cs">
+      <Link>Core\ViewTestNote.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTest.cs">
+      <Link>Patterns\Command\MacroCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestCommand.cs">
+      <Link>Patterns\Command\MacroCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestSub1Command.cs">
+      <Link>Patterns\Command\MacroCommandTestSub1Command.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestSub2Command.cs">
+      <Link>Patterns\Command\MacroCommandTestSub2Command.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\MacroCommandTestVO.cs">
+      <Link>Patterns\Command\MacroCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTest.cs">
+      <Link>Patterns\Command\SimpleCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTestCommand.cs">
+      <Link>Patterns\Command\SimpleCommandTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Command\SimpleCommandTestVO.cs">
+      <Link>Patterns\Command\SimpleCommandTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTest.cs">
+      <Link>Patterns\Facade\FacadeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTestCommand.cs">
+      <Link>Patterns\Facade\FacadeTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Facade\FacadeTestVO.cs">
+      <Link>Patterns\Facade\FacadeTestVO.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Mediator\MediatorTest.cs">
+      <Link>Patterns\Mediator\MediatorTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Observer\NotificationTest.cs">
+      <Link>Patterns\Observer\NotificationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Observer\ObserverTest.cs">
+      <Link>Patterns\Observer\ObserverTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PureMVC\Tests\Patterns\Proxy\ProxyTest.cs">
+      <Link>Patterns\Proxy\ProxyTest.cs</Link>
+    </Compile>
+    <Compile Include="TestRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PureMVC.Silverlight.20\PureMVC.Silverlight.20.csproj">
+      <Project>{B4F50092-012E-4EA6-8194-AE42353FD89A}</Project>
+      <Name>PureMVC.Silverlight.20</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

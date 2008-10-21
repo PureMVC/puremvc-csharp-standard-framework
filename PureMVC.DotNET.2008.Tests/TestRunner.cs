@@ -14,8 +14,7 @@ namespace PureMVC.Tests
         static void Main(string[] args)
         {
             ConsoleUI testRunner = new ConsoleUI();
-            testRunner.Execute(new string[] { "PureMVC.DotNET.35.Tests, Version=0.1.0.0" });
-            
+            testRunner.Execute(new string[] { "PureMVC.DotNET.35.Tests, Version=3.0.0.0" });
             Console.WriteLine("\nPress ENTER to continue...");
             Console.Read();
         }

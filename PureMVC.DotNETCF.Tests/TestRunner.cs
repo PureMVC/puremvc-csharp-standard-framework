@@ -20,7 +20,7 @@ namespace PureMVC.Tests
             using (TextWriter writer = new StreamWriter(new FileStream(resultsPath, FileMode.Create)))
             {
                 TextUI testRunner = new TextUI(writer);
-                testRunner.Execute(new string[] { "PureMVC.DotNETCF.Tests, Version=0.1.0.0" });
+                testRunner.Execute(new string[] { "PureMVC.DotNETCF.Tests, Version=3.0.0.0" });
             }
         }
     }
