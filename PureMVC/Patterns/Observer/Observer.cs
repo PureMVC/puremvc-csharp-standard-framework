@@ -107,21 +107,13 @@ namespace PureMVC.Patterns
 		{
 			private get
 			{
-				lock (m_syncRoot)
-				{
-					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
-					// and they need to match.
-					return m_notifyMethod;
-				}
+				// Setting and getting of reference types is atomic, no need to lock here
+				return m_notifyMethod;
 			}
 			set
 			{
-				lock (m_syncRoot)
-				{
-					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
-					// and they need to match.
-					m_notifyMethod = value;
-				}
+				// Setting and getting of reference types is atomic, no need to lock here
+				m_notifyMethod = value;
 			}
 		}
 
@@ -133,21 +125,13 @@ namespace PureMVC.Patterns
 		{
 			private get
 			{
-				lock (m_syncRoot)
-				{
-					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
-					// and they need to match.
-					return m_notifyContext;
-				}
+				// Setting and getting of reference types is atomic, no need to lock here
+				return m_notifyContext;
 			}
 			set
 			{
-				lock (m_syncRoot)
-				{
-					// We need to lock here because NotifyObserver fetched NotifyMethod and NotifyContext in succession,
-					// and they need to match.
-					m_notifyContext = value;
-				}
+				// Setting and getting of reference types is atomic, no need to lock here
+				m_notifyContext = value;
 			}
 		}
 
