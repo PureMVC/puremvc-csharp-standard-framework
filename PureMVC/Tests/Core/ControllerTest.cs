@@ -7,61 +7,62 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using PureMVC.Core;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Core
 {
 	/**
 	 * Test the PureMVC Controller class.
 	 */
-	[TestFixture]
-    public class ControllerTest : TestCase
+	[TestClass]
+	public class ControllerTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public ControllerTest(string methodName)
-            : base(methodName)
+        public ControllerTest()
         { }
 
-        /**
-		 * Create the TestSuite.
-		 */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(ControllerTest));
-
-                ts.AddTest(new ControllerTest("TestGetInstance"));
-                ts.AddTest(new ControllerTest("TestRegisterAndExecuteCommand"));
-                ts.AddTest(new ControllerTest("TestRegisterAndRemoveCommand"));
-				ts.AddTest(new ControllerTest("TestHasCommand"));
-				ts.AddTest(new ControllerTest("TestReregisterAndExecuteCommand"));
-				ts.AddTest(new ControllerTest("TestMultiThreadedOperations"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests the Controller Singleton Factory Method 
   		 */
-  		public void TestGetInstance()
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void GetInstance()
         {
    			// Test Factory Method
    			IController controller = Controller.Instance;
    			
    			// test assertions
-            Assert.NotNull(controller, "Expecting instance not null");
-            Assert.True(controller is IController, "Expecting instance implements IController");
+            Assert.IsNotNull(controller, "Expecting instance not null");
+            Assert.IsTrue(controller is IController, "Expecting instance implements IController");
    		}
 
         /**
@@ -80,7 +81,9 @@ namespace PureMVC.Tests.Core
   		 * be modified when the Command executes.</P>
   		 * 
   		 */
-  		public void TestRegisterAndExecuteCommand() 
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void RegisterAndExecuteCommand() 
         {
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
    			IController controller = Controller.Instance;
@@ -97,7 +100,7 @@ namespace PureMVC.Tests.Core
    			controller.ExecuteCommand(note);
    			
    			// test assertions 
-            Assert.True(vo.result == 24, "Expecting vo.result == 24");
+            Assert.IsTrue(vo.result == 24, "Expecting vo.result == 24");
    		}
 
         /**
@@ -107,7 +110,9 @@ namespace PureMVC.Tests.Core
   		 * Tests that once a Command is registered and verified
   		 * working, it can be removed from the Controller.</P>
   		 */
-  		public void TestRegisterAndRemoveCommand()
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void RegisterAndRemoveCommand()
         {
   			
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
@@ -125,7 +130,7 @@ namespace PureMVC.Tests.Core
    			controller.ExecuteCommand(note);
    			
    			// test assertions 
-   			Assert.True(vo.result == 24, "Expecting vo.result == 24");
+   			Assert.IsTrue(vo.result == 24, "Expecting vo.result == 24");
    			
    			// Reset result
    			vo.result = 0;
@@ -139,27 +144,30 @@ namespace PureMVC.Tests.Core
    			controller.ExecuteCommand(note);
    			
    			// test assertions 
-            Assert.True(vo.result == 0, "Expecting vo.result == 0");
+            Assert.IsTrue(vo.result == 0, "Expecting vo.result == 0");
    			
    		}
   		
   		/**
   		 * Test hasCommand method.
   		 */
-  		public void TestHasCommand() {
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void HasCommand()
+		{
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
    			IController controller = Controller.Instance;
 			string name = "HasCommandTest" + Thread.CurrentThread.Name;
 			controller.RegisterCommand(name, typeof(ControllerTestCommand));
    			
    			// test that hasCommand returns true for hasCommandTest notifications 
-			Assert.True(controller.HasCommand(name) == true, "Expecting controller.HasCommand(name) == true");
+			Assert.IsTrue(controller.HasCommand(name) == true, "Expecting controller.HasCommand(name) == true");
    			
    			// Remove the Command from the Controller
 			controller.RemoveCommand(name);
 			
    			// test that hasCommand returns false for hasCommandTest notifications 
-			Assert.True(controller.HasCommand(name) == false, "Expecting controller.HasCommand(name) == false");
+			Assert.IsTrue(controller.HasCommand(name) == false, "Expecting controller.HasCommand(name) == false");
    		}
    		
  		/**
@@ -174,7 +182,10 @@ namespace PureMVC.Tests.Core
   		 * Version 2.0.2. If you run the unit tests with 2.0.1 this
   		 * test will fail.</P>
   		 */
-  		public void TestReregisterAndExecuteCommand() {
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void ReregisterAndExecuteCommand()
+		{
   			 
    			// Fetch the controller, register the ControllerTestCommand2 to handle 'ControllerTest2' notes
    			IController controller = Controller.Instance;
@@ -199,19 +210,21 @@ namespace PureMVC.Tests.Core
    			
    			// test assertions 
 			// if the command is executed once the value will be 24
-			Assert.True(vo.result == 24, "Expecting vo.result == 24");
+			Assert.IsTrue(vo.result == 24, "Expecting vo.result == 24");
 
    			// Prove that accumulation works in the VO by sending the notification again
    			view.NotifyObservers(note);
    			
 			// if the command is executed twice the value will be 48
-			Assert.True(vo.result == 48, "Expecting vo.result == 48");
+			Assert.IsTrue(vo.result == 48, "Expecting vo.result == 48");
    		}
 
 		/// <summary>
 		/// Test all of the function above using many threads at once.
 		/// </summary>
-		public void TestMultiThreadedOperations()
+		[TestMethod]
+		[Description("Controller Tests")]
+		public void MultiThreadedOperations()
 		{
 			count = 20;
 			IList<Thread> threads = new List<Thread>();
@@ -243,10 +256,10 @@ namespace PureMVC.Tests.Core
 			for (int i = 0; i < threadIterationCount; i++)
 			{
 				// All we need to do is test the registration and removal of commands.
-				TestRegisterAndExecuteCommand();
-				TestRegisterAndRemoveCommand();
-				TestHasCommand();
-				TestReregisterAndExecuteCommand();
+				RegisterAndExecuteCommand();
+				RegisterAndRemoveCommand();
+				HasCommand();
+				ReregisterAndExecuteCommand();
 			}
 
 			count--;

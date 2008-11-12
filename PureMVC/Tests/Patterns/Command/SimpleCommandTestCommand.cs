@@ -32,6 +32,7 @@ namespace PureMVC.Tests.Patterns
 		 */
 		public override void Execute(INotification note)
 		{
+			base.Execute(note);
 			SimpleCommandTestVO vo = (SimpleCommandTestVO) note.Body;
 			
 			// Fabricate a result

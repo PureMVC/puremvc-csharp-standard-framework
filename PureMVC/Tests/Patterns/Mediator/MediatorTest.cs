@@ -5,11 +5,11 @@
 */
 using System;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Patterns
 {
@@ -19,50 +19,57 @@ namespace PureMVC.Tests.Patterns
 	 * @see org.puremvc.csharp.interfaces.IMediator IMediator
 	 * @see org.puremvc.csharp.patterns.mediator.Mediator Mediator
 	 */
-    [TestFixture]
-    public class MediatorTest : TestCase
+    [TestClass]
+    public class MediatorTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public MediatorTest(string methodName) 
-            : base(methodName)
+        public MediatorTest() 
         { }
 
-        /**
-         * Create the TestSuite.
-         */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(MediatorTest));
-
-                ts.AddTest(new MediatorTest("TestNameAccessor"));
-                ts.AddTest(new MediatorTest("TestViewAccessor"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests getting the name using Mediator class accessor method. 
   		 */
-  		public void TestNameAccessor()
+		[TestMethod]
+		[Description("Mediator Tests")]
+		public void NameAccessor()
         {
 			// Create a new Mediator and use accessors to set the mediator name 
    			IMediator mediator = new Mediator("TestMediator");
    			
    			// test assertions
-            Assert.True(mediator.MediatorName == "TestMediator", "Expecting mediator.MediatorName == 'TestMediator'");
+            Assert.IsTrue(mediator.MediatorName == "TestMediator", "Expecting mediator.MediatorName == 'TestMediator'");
    		}
 
         /**
   		 * Tests getting the name using Mediator class accessor method. 
   		 */
-  		public void TestViewAccessor()
+		[TestMethod]
+		[Description("Mediator Tests")]
+		public void ViewAccessor()
         {
 			// Create a view object
 			object view = new object();
@@ -71,7 +78,7 @@ namespace PureMVC.Tests.Patterns
             IMediator mediator = new Mediator("TestMediator", view);
 			   			
    			// test assertions
-   			Assert.NotNull(mediator.ViewComponent, "Expecting mediator.ViewComponent not null");
+   			Assert.IsNotNull(mediator.ViewComponent, "Expecting mediator.ViewComponent not null");
    		}
     }
 }

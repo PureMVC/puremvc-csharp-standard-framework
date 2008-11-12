@@ -1,25 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0E2FA536-CA09-4E55-84D6-43AD9A93C9A0}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F8494A0F-BC59-4AC7-A60E-691D305ADCFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PureMVC.Tests</RootNamespace>
-    <AssemblyName>PureMVC.DotNET.35.Tests</AssemblyName>
+    <RootNamespace>PureMVC.Silverlight._20.Tests</RootNamespace>
+    <AssemblyName>PureMVC.Silverlight.20.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>PureMVC.Tests.TestRunner</StartupObject>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,21 +26,20 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NUnitLite, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NUnitLiteSL, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NUnitLite.dll</HintPath>
+      <HintPath>..\lib\NUnitLiteSL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\PureMVC\Tests\Core\ControllerTest.cs">
@@ -138,13 +129,18 @@
     <Compile Include="..\PureMVC\Tests\Patterns\Proxy\ProxyTest.cs">
       <Link>Patterns\Proxy\ProxyTest.cs</Link>
     </Compile>
-    <Compile Include="TestRunner.cs" />
+    <Compile Include="..\PureMVC\Tests\Util\BaseTest.cs">
+      <Link>Util\BaseTest.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PureMVC.DotNET.2008\PureMVC.DotNET.2008.csproj">
-      <Project>{A1482CF1-5566-4636-8590-30ED9CF3D4D9}</Project>
-      <Name>PureMVC.DotNET.2008</Name>
+    <Content Include="AuthoringTests.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PureMVC.Silverlight.20\PureMVC.Silverlight.20.csproj">
+      <Project>{B4F50092-012E-4EA6-8194-AE42353FD89A}</Project>
+      <Name>PureMVC.Silverlight.20</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

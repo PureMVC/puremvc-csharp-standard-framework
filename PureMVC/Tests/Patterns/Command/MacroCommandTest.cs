@@ -5,11 +5,11 @@
 */
 using System;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Patterns
 {
@@ -19,32 +19,36 @@ namespace PureMVC.Tests.Patterns
   	 * @see org.puremvc.csharp.patterns.command.MacroCommandTestVO MacroCommandTestVO
   	 * @see org.puremvc.csharp.patterns.command.MacroCommandTestCommand MacroCommandTestCommand
 	 */
-    [TestFixture]
-    public class MacroCommandTest : TestCase
+    [TestClass]
+    public class MacroCommandTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-  	    public MacroCommandTest(string methodName) 
-            : base(methodName)
+  	    public MacroCommandTest() 
         { }
 
-        /**
-         * Create the TestSuite.
-         */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(MacroCommandTest));
-
-                ts.AddTest(new MacroCommandTest("TestMacroCommandExecute"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests operation of a <code>MacroCommand</code>.
@@ -78,7 +82,9 @@ namespace PureMVC.Tests.Patterns
   		 * body.</P>
   		 * 
   		 */
-  		public void TestMacroCommandExecute()
+		[TestMethod]
+		[Description("Command Tests")]
+		public void MacroCommandExecute()
         {
   			// Create the VO
   			MacroCommandTestVO vo = new MacroCommandTestVO(5);
@@ -93,8 +99,8 @@ namespace PureMVC.Tests.Patterns
    			command.Execute(note);
    			
    			// test assertions
-   			Assert.True(vo.result1 == 10, "Expecting vo.result1 == 10");
-            Assert.True(vo.result2 == 25, "Expecting vo.result2 == 25");
+   			Assert.IsTrue(vo.result1 == 10, "Expecting vo.result1 == 10");
+            Assert.IsTrue(vo.result2 == 25, "Expecting vo.result2 == 25");
    		}
     }
 }

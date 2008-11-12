@@ -5,11 +5,11 @@
 */
 using System;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Patterns
 {
@@ -19,32 +19,36 @@ namespace PureMVC.Tests.Patterns
   	 * @see org.puremvc.csharp.patterns.command.SimpleCommandTestVO SimpleCommandTestVO
   	 * @see org.puremvc.csharp.patterns.command.SimpleCommandTestCommand SimpleCommandTestCommand
 	 */
-    [TestFixture]
-    public class SimpleCommandTest : TestCase
+	[TestClass]
+	public class SimpleCommandTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public SimpleCommandTest(string methodName)
-            : base(methodName)
+        public SimpleCommandTest()
         { }
 
-        /**
-		 * Create the TestSuite.
-		 */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(SimpleCommandTest));
-
-                ts.AddTest(new SimpleCommandTest("TestSimpleCommandExecute"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests the <code>execute</code> method of a <code>SimpleCommand</code>.
@@ -61,7 +65,9 @@ namespace PureMVC.Tests.Patterns
   		 * be modified by the SimpleCommand</P>.
   		 * 
   		 */
-  		public void TestSimpleCommandExecute()
+		[TestMethod]
+		[Description("Command Tests")]
+		public void SimpleCommandExecute()
         {
   			// Create the VO
   			SimpleCommandTestVO vo = new SimpleCommandTestVO(5);
@@ -76,7 +82,7 @@ namespace PureMVC.Tests.Patterns
    			command.Execute(note);
    			
    			// test assertions
-            Assert.True(vo.result == 10, "Expecting vo.result == 10");
+            Assert.IsTrue(vo.result == 10, "Expecting vo.result == 10");
    		}
     }
 }

@@ -5,11 +5,11 @@
 */
 using System;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Patterns
 {
@@ -27,40 +27,44 @@ namespace PureMVC.Tests.Patterns
   	 * method.</P>
   	 * 
   	 */
-    [TestFixture]
-    public class ObserverTest : TestCase
+    [TestClass]
+    public class ObserverTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public ObserverTest(string methodName) 
-            : base(methodName)
+        public ObserverTest() 
         { }
 
-        /**
-         * Create the TestSuite.
-         */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(ObserverTest));
-
-                ts.AddTest(new ObserverTest("TestObserverAccessors"));
-                ts.AddTest(new ObserverTest("TestObserverConstructor"));
-                ts.AddTest(new ObserverTest("TestCompareNotifyContext"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests observer class when initialized by accessor methods.
   		 * 
   		 */
-  		public void TestObserverAccessors()
+		[TestMethod]
+		[Description("Observer Tests")]
+		public void ObserverAccessors()
         {
    			// Create observer with null args, then
    			// use accessors to set notification method and context
@@ -78,14 +82,16 @@ namespace PureMVC.Tests.Patterns
 			observer.NotifyObserver(note);
 
 			// test assertions  			
-   			Assert.True(observerTestVar == 10, "Expecting observerTestVar = 10");
+   			Assert.IsTrue(observerTestVar == 10, "Expecting observerTestVar = 10");
    		}
 
   		/**
   		 * Tests observer class when initialized by constructor.
   		 * 
  		 */
-  		public void TestObserverConstructor()
+		[TestMethod]
+		[Description("Observer Tests")]
+		public void ObserverConstructor()
         {
    			// Create observer passing in notification method and context
 			IObserver observer = new Observer("observerTestMethod", this);
@@ -100,14 +106,16 @@ namespace PureMVC.Tests.Patterns
 			observer.NotifyObserver(note);
 
 			// test assertions  			
-   			Assert.True(observerTestVar == 5, "Expecting observerTestVar = 5");
+   			Assert.IsTrue(observerTestVar == 5, "Expecting observerTestVar = 5");
    		}
 
   		/**
   		 * Tests the compareNotifyContext method of the Observer class
   		 * 
  		 */
-  		public void TestCompareNotifyContext()
+		[TestMethod]
+		[Description("Observer Tests")]
+		public void CompareNotifyContext()
         {
   			
    			// Create observer passing in notification method and context
@@ -116,8 +124,8 @@ namespace PureMVC.Tests.Patterns
   			object negTestObj = new object();
   			
 			// test assertions  			
-   			Assert.True(observer.CompareNotifyContext(negTestObj) == false, "Expecting observer.compareNotifyContext(negTestObj) == false");
-            Assert.True(observer.CompareNotifyContext(this) == true, "Expecting observer.compareNotifyContext(this) == true");
+   			Assert.IsTrue(observer.CompareNotifyContext(negTestObj) == false, "Expecting observer.compareNotifyContext(negTestObj) == false");
+            Assert.IsTrue(observer.CompareNotifyContext(this) == true, "Expecting observer.compareNotifyContext(this) == true");
    		}
 
   		/**

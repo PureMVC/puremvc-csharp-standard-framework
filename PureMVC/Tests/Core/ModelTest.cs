@@ -7,61 +7,62 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using PureMVC.Core;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Core
 {
     /**
 	 * Test the PureMVC Model class.
 	 */
-    [TestFixture]
-    public class ModelTest : TestCase
+	[TestClass]
+	public class ModelTest : BaseTest
     {
          /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public ModelTest(string methodName)
-            : base(methodName)
+        public ModelTest()
         { }
 
-        /**
-		 * Create the TestSuite.
-		 */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(ModelTest));
-
-                ts.AddTest(new ModelTest("TestGetInstance"));
-                ts.AddTest(new ModelTest("TestRegisterAndRetrieveProxy"));
-                ts.AddTest(new ModelTest("TestRegisterAndRemoveProxy"));
-				ts.AddTest(new ModelTest("TestHasProxy"));
-				ts.AddTest(new ModelTest("TestOnRegisterAndOnRemove"));
-				ts.AddTest(new ModelTest("TestMultiThreadedOperations"));
-
-				return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests the Model Singleton Factory Method 
   		 */
-  		public void TestGetInstance()
+		[TestMethod]
+		[Description("Model Tests")]
+		public void GetInstance()
         {
    			// Test Factory Method
    			IModel model = Model.Instance;
    			
    			// test assertions
-            Assert.NotNull(model, "Expecting instance not null");
-            Assert.True(model is IModel, "Expecting instance implements IModel");
+            Assert.IsNotNull(model, "Expecting instance not null");
+            Assert.IsTrue(model is IModel, "Expecting instance implements IModel");
    		}
 
   		/**
@@ -73,7 +74,9 @@ namespace PureMVC.Tests.Core
   		 * in any meaningful way other than to show that the
   		 * methods do not throw exception when called. </P>
   		 */
-  		public void TestRegisterAndRetrieveProxy()
+		[TestMethod]
+		[Description("Model Tests")]
+		public void RegisterAndRetrieveProxy()
         {
    			// register a proxy and retrieve it.
    			IModel model = Model.Instance;
@@ -83,18 +86,20 @@ namespace PureMVC.Tests.Core
 			List<string> data = (List<string>) proxy.Data;
 			
 			// test assertions
-            Assert.NotNull(data, "Expecting data not null");
-			Assert.True(data is List<string>, "Expecting data type is ArrayList");
-   			Assert.True(data.Count == 3, "Expecting data.length == 3");
-   			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
-            Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
-            Assert.True(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
+            Assert.IsNotNull(data, "Expecting data not null");
+			Assert.IsTrue(data is List<string>, "Expecting data type is ArrayList");
+   			Assert.IsTrue(data.Count == 3, "Expecting data.length == 3");
+   			Assert.IsTrue(data[0].ToString() == "red", "Expecting data[0] == 'red'");
+            Assert.IsTrue(data[1].ToString() == "green", "Expecting data[1] == 'green'");
+            Assert.IsTrue(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
    		}
   		
   		/**
   		 * Tests the proxy removal method.
   		 */
-  		public void TestRegisterAndRemoveProxy()
+		[TestMethod]
+		[Description("Model Tests")]
+		public void RegisterAndRemoveProxy()
         {
    			// register a proxy, remove it, then try to retrieve it
    			IModel model = Model.Instance;
@@ -103,18 +108,21 @@ namespace PureMVC.Tests.Core
 
 			IProxy removedProxy = model.RemoveProxy(name);
 
-			Assert.True(removedProxy.ProxyName == name, "Expecting removedProxy.ProxyName == name");
+			Assert.IsTrue(removedProxy.ProxyName == name, "Expecting removedProxy.ProxyName == name");
 
 			IProxy proxy = model.RetrieveProxy(name);
 			
 			// test assertions
-   			Assert.Null(proxy, "Expecting proxy is null");
+   			Assert.IsNull(proxy, "Expecting proxy is null");
    		}
   		
   		/**
   		 * Tests the hasProxy Method
   		 */
-  		public void TestHasProxy() {
+		[TestMethod]
+		[Description("Model Tests")]
+		public void HasProxy()
+		{
   			
    			// register a proxy
    			IModel model = Model.Instance;
@@ -124,20 +132,23 @@ namespace PureMVC.Tests.Core
 			
    			// assert that the model.hasProxy method returns true
    			// for that proxy name
-			Assert.True(model.HasProxy(name) == true, "Expecting model.hasProxy(name) == true");
+			Assert.IsTrue(model.HasProxy(name) == true, "Expecting model.hasProxy(name) == true");
 			
 			// remove the proxy
 			model.RemoveProxy(name);
 			
    			// assert that the model.hasProxy method returns false
    			// for that proxy name
-			Assert.True(model.HasProxy(name) == false, "Expecting model.hasProxy(name) == false");
+			Assert.IsTrue(model.HasProxy(name) == false, "Expecting model.hasProxy(name) == false");
    		}
   		
 		/**
 		 * Tests that the Model calls the onRegister and onRemove methods
 		 */
-		public void TestOnRegisterAndOnRemove() {
+		[TestMethod]
+		[Description("Model Tests")]
+		public void OnRegisterAndOnRemove()
+		{
 			
   			// Get the Singleton View instance
   			IModel model = Model.Instance;
@@ -147,19 +158,21 @@ namespace PureMVC.Tests.Core
 			model.RegisterProxy(proxy);
 
 			// assert that onRegsiter was called, and the proxy responded by setting its data accordingly
-			Assert.True(proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED");
+			Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REGISTER_CALLED");
 			
 			// Remove the component
 			model.RemoveProxy(ModelTestProxy.NAME);
 			
 			// assert that onRemove was called, and the proxy responded by setting its data accordingly
-   			Assert.True(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
+   			Assert.IsTrue(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
 		}
 
 		/// <summary>
 		/// Test all of the function above using many threads at once.
 		/// </summary>
-		public void TestMultiThreadedOperations()
+		[TestMethod]
+		[Description("Model Tests")]
+		public void MultiThreadedOperations()
 		{
 			count = 20;
 			IList<Thread> threads = new List<Thread>();
@@ -192,9 +205,9 @@ namespace PureMVC.Tests.Core
 			for (int i = 0; i < threadIterationCount; i++)
 			{
 				// All we need to do is test the registration and removal of proxies.
-				TestRegisterAndRetrieveProxy();
-				TestRegisterAndRemoveProxy();
-				TestHasProxy();
+				RegisterAndRetrieveProxy();
+				RegisterAndRemoveProxy();
+				HasProxy();
 			}
 
 			count--;

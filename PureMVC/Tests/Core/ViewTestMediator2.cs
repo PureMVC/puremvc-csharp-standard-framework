@@ -39,6 +39,7 @@ namespace PureMVC.Tests.Core
 
         override public void HandleNotification(INotification notification)
 		{
+			base.HandleNotification(notification);
 			ViewTest.lastNotification = notification.Name;
 		}
 

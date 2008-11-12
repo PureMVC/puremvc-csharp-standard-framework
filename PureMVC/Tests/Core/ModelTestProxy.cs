@@ -6,9 +6,6 @@
 using System;
 using System.Collections.Generic;
 
-using NUnitLite;
-using NUnit.Framework;
-
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 

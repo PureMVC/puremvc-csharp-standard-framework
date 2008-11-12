@@ -33,6 +33,7 @@ namespace PureMVC.Tests.Patterns
 		 */
 		protected override void InitializeMacroCommand()
 		{
+			base.InitializeMacroCommand();
 			AddSubCommand(typeof(MacroCommandTestSub1Command));
 			AddSubCommand(typeof(MacroCommandTestSub2Command));
 		}

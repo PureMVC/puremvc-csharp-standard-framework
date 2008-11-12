@@ -6,11 +6,11 @@
 using System;
 using System.Collections.Generic;
 
-using NUnitLite;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using PureMVC.Tests.Util;
 
 namespace PureMVC.Tests.Patterns
 {
@@ -20,51 +20,57 @@ namespace PureMVC.Tests.Patterns
 	 * @see org.puremvc.interfaces.IProxy IProxy
 	 * @see org.puremvc.patterns.proxy.Proxy Proxy
 	 */
-    [TestFixture]
-    public class ProxyTest : TestCase
+    [TestClass]
+    public class ProxyTest : BaseTest
     {
         /**
   		 * Constructor.
-  		 * 
-  		 * @param methodName the name of the test method an instance to run
   		 */
-        public ProxyTest(string methodName) 
-            : base(methodName)
+        public ProxyTest() 
         { }
 
-        /**
-         * Create the TestSuite.
-         */
-        public static ITest Suite
-        {
-            get
-            {
-                TestSuite ts = new TestSuite(typeof(ProxyTest));
-
-                ts.AddTest(new ProxyTest("TestNameAccessor"));
-                ts.AddTest(new ProxyTest("TestDataAccessors"));
-                ts.AddTest(new ProxyTest("TestConstructor"));
-
-                return ts;
-            }
-        }
+		#region Additional test attributes
+		//
+		// You can use the following additional attributes as you write your tests:
+		//
+		// Use ClassInitialize to run code before running the first test in the class
+		// [ClassInitialize()]
+		// public static void MyClassInitialize(TestContext testContext) { }
+		//
+		// Use ClassCleanup to run code after all tests in a class have run
+		// [ClassCleanup()]
+		// public static void MyClassCleanup() { }
+		//
+		// Use TestInitialize to run code before running each test 
+		// [TestInitialize()]
+		// public void MyTestInitialize() { }
+		//
+		// Use TestCleanup to run code after each test has run
+		// [TestCleanup()]
+		// public void MyTestCleanup() { }
+		//
+		#endregion
 
         /**
   		 * Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
   		 */
-  		public void TestNameAccessor()
+		[TestMethod]
+		[Description("Proxy Tests")]
+		public void NameAccessor()
         {
 			// Create a new Proxy and use accessors to set the proxy name 
    			IProxy proxy = new Proxy("TestProxy");
    			
    			// test assertions
-   			Assert.True(proxy.ProxyName == "TestProxy", "Expecting proxy.ProxyName == 'TestProxy'");
+   			Assert.IsTrue(proxy.ProxyName == "TestProxy", "Expecting proxy.ProxyName == 'TestProxy'");
    		}
 
   		/**
   		 * Tests setting and getting the data using Proxy class accessor methods.
   		 */
-  		public void TestDataAccessors()
+		[TestMethod]
+		[Description("Proxy Tests")]
+		public void TestDataAccessors()
         {
 			// Create a new Proxy and use accessors to set the data
    			IProxy proxy = new Proxy("colors");
@@ -72,28 +78,30 @@ namespace PureMVC.Tests.Patterns
 			List<string> data = (List<string>) proxy.Data;
    			
    			// test assertions
-   			Assert.True(data.Count == 3, "Expecting data.Count == 3");
-   			Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
-   			Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
-   			Assert.True(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
+   			Assert.IsTrue(data.Count == 3, "Expecting data.Count == 3");
+   			Assert.IsTrue(data[0].ToString() == "red", "Expecting data[0] == 'red'");
+   			Assert.IsTrue(data[1].ToString() == "green", "Expecting data[1] == 'green'");
+   			Assert.IsTrue(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
    		}
 
   		/**
   		 * Tests setting the name and body using the Notification class Constructor.
   		 */
-  		public void TestConstructor()
+		[TestMethod]
+		[Description("Proxy Tests")]
+		public void TestConstructor()
         {
 			// Create a new Proxy using the Constructor to set the name and data
 			IProxy proxy = new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" }));
 			List<string> data = (List<string>) proxy.Data;
    			
    			// test assertions
-   			Assert.NotNull(proxy, "Expecting proxy not null");
-   			Assert.True(proxy.ProxyName == "colors", "Expecting proxy.ProxyName == 'colors'");
-            Assert.True(data.Count == 3, "Expecting data.Count == 3");
-            Assert.True(data[0].ToString() == "red", "Expecting data[0] == 'red'");
-            Assert.True(data[1].ToString() == "green", "Expecting data[1] == 'green'");
-            Assert.True(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
+   			Assert.IsNotNull(proxy, "Expecting proxy not null");
+   			Assert.IsTrue(proxy.ProxyName == "colors", "Expecting proxy.ProxyName == 'colors'");
+            Assert.IsTrue(data.Count == 3, "Expecting data.Count == 3");
+            Assert.IsTrue(data[0].ToString() == "red", "Expecting data[0] == 'red'");
+            Assert.IsTrue(data[1].ToString() == "green", "Expecting data[1] == 'green'");
+            Assert.IsTrue(data[2].ToString() == "blue", "Expecting data[2] == 'blue'");
    		}
     }
 }
