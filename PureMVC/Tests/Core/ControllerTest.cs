@@ -4,6 +4,8 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
+using System.Threading;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -43,6 +45,7 @@ namespace PureMVC.Tests.Core
                 ts.AddTest(new ControllerTest("TestRegisterAndRemoveCommand"));
 				ts.AddTest(new ControllerTest("TestHasCommand"));
 				ts.AddTest(new ControllerTest("TestReregisterAndExecuteCommand"));
+				ts.AddTest(new ControllerTest("TestMultiThreadedOperations"));
 
                 return ts;
             }
@@ -81,11 +84,12 @@ namespace PureMVC.Tests.Core
         {
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
    			IController controller = Controller.Instance;
-   			controller.RegisterCommand("ControllerTest", typeof(ControllerTestCommand));
+			string name = "ControllerTest" + Thread.CurrentThread.Name;
+   			controller.RegisterCommand(name, typeof(ControllerTestCommand));
    			
    			// Create a 'ControllerTest' note
             ControllerTestVO vo = new ControllerTestVO(12);
-   			INotification note = new Notification("ControllerTest", vo);
+   			INotification note = new Notification(name, vo);
 
 			// Tell the controller to execute the Command associated with the note
 			// the ControllerTestCommand invoked will multiply the vo.input value
@@ -108,11 +112,12 @@ namespace PureMVC.Tests.Core
   			
    			// Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
    			IController controller = Controller.Instance;
-   			controller.RegisterCommand("ControllerRemoveTest", typeof(ControllerTestCommand));
+			string name = "ControllerRemoveTest" + Thread.CurrentThread.Name;
+			controller.RegisterCommand(name, typeof(ControllerTestCommand));
    			
    			// Create a 'ControllerTest' note
             ControllerTestVO vo = new ControllerTestVO(12);
-   			INotification note = new Notification("ControllerRemoveTest", vo);
+   			INotification note = new Notification(name, vo);
 
 			// Tell the controller to execute the Command associated with the note
 			// the ControllerTestCommand invoked will multiply the vo.input value
@@ -126,7 +131,7 @@ namespace PureMVC.Tests.Core
    			vo.result = 0;
    			
    			// Remove the Command from the Controller
-   			controller.RemoveCommand("ControllerRemoveTest");
+   			controller.RemoveCommand(name);
 			
 			// Tell the controller to execute the Command associated with the
 			// note. This time, it should not be registered, and our vo result
@@ -144,16 +149,17 @@ namespace PureMVC.Tests.Core
   		public void TestHasCommand() {
    			// register the ControllerTestCommand to handle 'hasCommandTest' notes
    			IController controller = Controller.Instance;
-   			controller.RegisterCommand("hasCommandTest", typeof(ControllerTestCommand));
+			string name = "HasCommandTest" + Thread.CurrentThread.Name;
+			controller.RegisterCommand(name, typeof(ControllerTestCommand));
    			
    			// test that hasCommand returns true for hasCommandTest notifications 
-			Assert.True(controller.HasCommand("hasCommandTest") == true, "Expecting controller.HasCommand('hasCommandTest') == true");
+			Assert.True(controller.HasCommand(name) == true, "Expecting controller.HasCommand(name) == true");
    			
    			// Remove the Command from the Controller
-   			controller.RemoveCommand("hasCommandTest");
+			controller.RemoveCommand(name);
 			
    			// test that hasCommand returns false for hasCommandTest notifications 
-			Assert.True(controller.HasCommand("hasCommandTest") == false, "Expecting controller.HasCommand('hasCommandTest') == false");
+			Assert.True(controller.HasCommand(name) == false, "Expecting controller.HasCommand(name) == false");
    		}
    		
  		/**
@@ -172,17 +178,18 @@ namespace PureMVC.Tests.Core
   			 
    			// Fetch the controller, register the ControllerTestCommand2 to handle 'ControllerTest2' notes
    			IController controller = Controller.Instance;
-   			controller.RegisterCommand("ControllerTest2", typeof(ControllerTestCommand2));
+			string name = "ControllerTest2" + Thread.CurrentThread.Name;
+			controller.RegisterCommand(name, typeof(ControllerTestCommand2));
    			
    			// Remove the Command from the Controller
-   			controller.RemoveCommand("ControllerTest2");
+			controller.RemoveCommand(name);
 			
    			// Re-register the Command with the Controller
-   			controller.RegisterCommand("ControllerTest2", typeof(ControllerTestCommand2));
+			controller.RegisterCommand(name, typeof(ControllerTestCommand2));
 
    			// Create a 'ControllerTest2' note
 			ControllerTestVO vo = new ControllerTestVO(12);
-   			Notification note = new Notification( "ControllerTest2", vo );
+			Notification note = new Notification(name, vo);
 
 			// retrieve a reference to the View.
    			IView view = View.Instance;
@@ -199,7 +206,50 @@ namespace PureMVC.Tests.Core
    			
 			// if the command is executed twice the value will be 48
 			Assert.True(vo.result == 48, "Expecting vo.result == 48");
-   			
    		}
-    }
+
+		/// <summary>
+		/// Test all of the function above using many threads at once.
+		/// </summary>
+		public void TestMultiThreadedOperations()
+		{
+			count = 20;
+			IList<Thread> threads = new List<Thread>();
+
+			for (int i = 0; i < count; i++) {
+				Thread t = new Thread(new ThreadStart(MultiThreadedTestFunction));
+				t.Name = "ControllerTest" + i;
+				threads.Add(t);
+			}
+
+			foreach (Thread t in threads)
+			{
+				t.Start();
+			}
+
+			while (true)
+			{
+				if (count <= 0) break;
+				Thread.Sleep(100);
+			}
+		}
+
+		private int count = 0;
+
+		private int threadIterationCount = 10000;
+
+		private void MultiThreadedTestFunction()
+		{
+			for (int i = 0; i < threadIterationCount; i++)
+			{
+				// All we need to do is test the registration and removal of commands.
+				TestRegisterAndExecuteCommand();
+				TestRegisterAndRemoveCommand();
+				TestHasCommand();
+				TestReregisterAndExecuteCommand();
+			}
+
+			count--;
+		}
+	}
 }

@@ -5,6 +5,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -44,6 +45,7 @@ namespace PureMVC.Tests.Core
                 ts.AddTest(new ModelTest("TestRegisterAndRemoveProxy"));
 				ts.AddTest(new ModelTest("TestHasProxy"));
 				ts.AddTest(new ModelTest("TestOnRegisterAndOnRemove"));
+				ts.AddTest(new ModelTest("TestMultiThreadedOperations"));
 
 				return ts;
             }
@@ -75,8 +77,9 @@ namespace PureMVC.Tests.Core
         {
    			// register a proxy and retrieve it.
    			IModel model = Model.Instance;
-			model.RegisterProxy(new Proxy("colors", new List<string>(new string[] { "red", "green", "blue" })));
-			IProxy proxy = model.RetrieveProxy("colors");
+			string name = "colors" + Thread.CurrentThread.Name;
+			model.RegisterProxy(new Proxy(name, new List<string>(new string[] { "red", "green", "blue" })));
+			IProxy proxy = model.RetrieveProxy(name);
 			List<string> data = (List<string>) proxy.Data;
 			
 			// test assertions
@@ -95,13 +98,14 @@ namespace PureMVC.Tests.Core
         {
    			// register a proxy, remove it, then try to retrieve it
    			IModel model = Model.Instance;
-			model.RegisterProxy(new Proxy("sizes", new List<int>(new int[] { 7, 13, 21 })));
-			
-            IProxy removedProxy = model.RemoveProxy("sizes");
+			string name = "sizes" + Thread.CurrentThread.Name;
+			model.RegisterProxy(new Proxy(name, new List<int>(new int[] { 7, 13, 21 })));
 
-            Assert.True(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
+			IProxy removedProxy = model.RemoveProxy(name);
 
-			IProxy proxy = model.RetrieveProxy("sizes");
+			Assert.True(removedProxy.ProxyName == name, "Expecting removedProxy.ProxyName == name");
+
+			IProxy proxy = model.RetrieveProxy(name);
 			
 			// test assertions
    			Assert.Null(proxy, "Expecting proxy is null");
@@ -114,19 +118,20 @@ namespace PureMVC.Tests.Core
   			
    			// register a proxy
    			IModel model = Model.Instance;
-			IProxy proxy = new Proxy("aces", new List<string>(new string[] { "clubs", "spades", "hearts", "diamonds" }));
+			string name = "aces" + Thread.CurrentThread.Name;
+			IProxy proxy = new Proxy(name, new List<string>(new string[] { "clubs", "spades", "hearts", "diamonds" }));
 			model.RegisterProxy(proxy);
 			
    			// assert that the model.hasProxy method returns true
    			// for that proxy name
-   			Assert.True(model.HasProxy("aces") == true, "Expecting model.hasProxy('aces') == true");
+			Assert.True(model.HasProxy(name) == true, "Expecting model.hasProxy(name) == true");
 			
 			// remove the proxy
-			model.RemoveProxy("aces");
+			model.RemoveProxy(name);
 			
    			// assert that the model.hasProxy method returns false
    			// for that proxy name
-   			Assert.True(model.HasProxy("aces") == false, "Expecting model.hasProxy('aces') == false");
+			Assert.True(model.HasProxy(name) == false, "Expecting model.hasProxy(name) == false");
    		}
   		
 		/**
@@ -150,5 +155,49 @@ namespace PureMVC.Tests.Core
 			// assert that onRemove was called, and the proxy responded by setting its data accordingly
    			Assert.True(proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED, "Expecting proxy.Data.ToString() == ModelTestProxy.ON_REMOVE_CALLED");
 		}
-    }
+
+		/// <summary>
+		/// Test all of the function above using many threads at once.
+		/// </summary>
+		public void TestMultiThreadedOperations()
+		{
+			count = 20;
+			IList<Thread> threads = new List<Thread>();
+
+			for (int i = 0; i < count; i++)
+			{
+				Thread t = new Thread(new ThreadStart(MultiThreadedTestFunction));
+				t.Name = "ControllerTest" + i;
+				threads.Add(t);
+			}
+
+			foreach (Thread t in threads)
+			{
+				t.Start();
+			}
+
+			while (true)
+			{
+				if (count <= 0) break;
+				Thread.Sleep(100);
+			}
+		}
+
+		private int count = 0;
+
+		private int threadIterationCount = 10000;
+
+		private void MultiThreadedTestFunction()
+		{
+			for (int i = 0; i < threadIterationCount; i++)
+			{
+				// All we need to do is test the registration and removal of proxies.
+				TestRegisterAndRetrieveProxy();
+				TestRegisterAndRemoveProxy();
+				TestHasProxy();
+			}
+
+			count--;
+		}
+	}
 }

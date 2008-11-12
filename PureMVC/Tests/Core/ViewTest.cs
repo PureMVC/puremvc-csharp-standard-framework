@@ -4,6 +4,8 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
 */
 using System;
+using System.Threading;
+using System.Collections.Generic;
 
 using NUnitLite;
 using NUnit.Framework;
@@ -11,6 +13,7 @@ using NUnit.Framework;
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using PureMVC.Core;
+using System.Diagnostics;
 
 namespace PureMVC.Tests.Core
 {
@@ -61,6 +64,7 @@ namespace PureMVC.Tests.Core
 				ts.AddTest(new ViewTest("TestRemoveOneOfTwoMediatorsAndSubsequentNotify"));
 				ts.AddTest(new ViewTest("TestMediatorReregistration"));
 				ts.AddTest(new ViewTest("TestModifyObserverListDuringNotification"));
+				ts.AddTest(new ViewTest("TestMultiThreadedOperations"));
 
                 return ts;
             }
@@ -107,10 +111,18 @@ namespace PureMVC.Tests.Core
   			IView view = View.Instance;
   			
    			// Create observer, passing in notification method and context
-   			IObserver observer = new Observer("viewTestMethod", this);
+   			IObserver observer = new Observer("ViewTestMethod", this);
    			
    			// Register Observer's interest in a particulat Notification with the View 
-   			view.RegisterObserver(ViewTestNote.NAME, observer);
+			string name = Thread.CurrentThread.Name;
+			if (name == null) name = "";
+
+			lock (m_viewTestVarsLock)
+			{
+				viewTestVars.Remove(name);
+			}
+
+			view.RegisterObserver(ViewTestNote.NAME + name, observer);
   			
    			// Create a ViewTestNote, setting 
    			// a body value, and tell the View to notify 
@@ -119,18 +131,23 @@ namespace PureMVC.Tests.Core
    			// successful notification will result in our local 
    			// viewTestVar being set to the value we pass in 
    			// on the note body.
-   			INotification note = ViewTestNote.Create(10);
+			INotification note = ViewTestNote.Create(name, 10);
 			view.NotifyObservers(note);
 
 			// test assertions  			
-   			Assert.True(viewTestVar == 10, "Expecting viewTestVar = 10");
+			Assert.True(viewTestVars.ContainsKey(name), "Expecting viewTestVars.ContainsKey(name)");
+			Assert.True(viewTestVars[name] == 10, "Expecting viewTestVar[name] = 10");
+
+			view.RemoveObserver(ViewTestNote.NAME + name, this);
    		}
    		
   		/**
   		 * A test variable that proves the viewTestMethod was
   		 * invoked by the View.
   		 */
-  		private int viewTestVar;
+  		private IDictionary<string, int> viewTestVars = new Dictionary<string, int>();
+
+		private readonly object m_viewTestVarsLock = new object();
 
   		/**
   		 * A utility method to test the notification of Observers by the view
@@ -138,7 +155,14 @@ namespace PureMVC.Tests.Core
   		public void ViewTestMethod(INotification note)
   		{
   			// set the local viewTestVar to the number on the event payload
-			viewTestVar = (int) note.Body;
+			string name = Thread.CurrentThread.Name;
+			if (name == null) name = "";
+			
+			lock (m_viewTestVarsLock)
+			{
+				viewTestVars.Remove(name);
+				viewTestVars.Add(name, (int) note.Body);
+			}
   		}
 
 		/**
@@ -151,16 +175,17 @@ namespace PureMVC.Tests.Core
   			IView view = View.Instance;
 
 			// Create and register the test mediator
-			IMediator viewTestMediator = new ViewTestMediator(this);
+			IMediator viewTestMediator = new ViewTestMediator(Thread.CurrentThread.Name, this);
+			string name = viewTestMediator.MediatorName;
 			view.RegisterMediator(viewTestMediator);
 
 			// Retrieve the component
-			IMediator mediator = view.RetrieveMediator(ViewTestMediator.NAME);
+			IMediator mediator = view.RetrieveMediator(name);
 			
 			// test assertions  			
    			Assert.True(mediator is ViewTestMediator, "Expecting comp is ViewTestMediator");
-   			
-   			Cleanup();
+			// Remove our mediator
+			view.RemoveMediator(name);
 		}
  		
   		/**
@@ -172,18 +197,19 @@ namespace PureMVC.Tests.Core
    			IView view = View.Instance;
 			
 			// Create and register the test mediator
-			Mediator mediator = new Mediator("hasMediatorTest", this);
+			string name = "HasMediatorTest" + Thread.CurrentThread.Name;
+			Mediator mediator = new Mediator(name, this);
 			view.RegisterMediator(mediator);
 			
    			// assert that the view.hasMediator method returns true
    			// for that mediator name
-   			Assert.True(view.HasMediator("hasMediatorTest") == true, "Expecting view.hasMediator('hasMediatorTest') == true");
+			Assert.True(view.HasMediator(name) == true, "Expecting view.hasMediator(name) == true");
 
-			view.RemoveMediator("hasMediatorTest");
+			view.RemoveMediator(name);
 			
    			// assert that the view.hasMediator method returns false
    			// for that mediator name
-   			Assert.True(view.HasMediator("hasMediatorTest") == false, "Expecting view.hasMediator('hasMediatorTest') == false");
+			Assert.True(view.HasMediator(name) == false, "Expecting view.hasMediator(name) == false");
    		}
 
 		/**
@@ -196,16 +222,17 @@ namespace PureMVC.Tests.Core
 
 			// Create and register the test mediator, 
 			// but not so we have a reference to it
-			view.RegisterMediator(new Mediator("Testing", this));
+			string name = "Testing" + Thread.CurrentThread.Name;
+			view.RegisterMediator(new Mediator(name, this));
 			
 			// Remove the component
-            IMediator removedMediator = view.RemoveMediator("Testing");
+			IMediator removedMediator = view.RemoveMediator(name);
 			
 			// test assertions  		
-            Assert.True(removedMediator.MediatorName == "Testing", "Expecting removedMediator.MediatorName == 'testing'");
-            Assert.Null(view.RetrieveMediator("Testing"), "Expecting view.retrieveMediator('testing') == null");
+			Assert.True(removedMediator.MediatorName == name, "Expecting removedMediator.MediatorName == name");
+			Assert.Null(view.RetrieveMediator(name), "Expecting view.retrieveMediator(name) == null");
 
-			Cleanup();
+			view.RemoveMediator(name);
 		}
 		
 		/**
@@ -218,18 +245,17 @@ namespace PureMVC.Tests.Core
 
 			// Create and register the test mediator
 			IMediator mediator = new ViewTestMediator4(this);
+			string name = mediator.MediatorName;
 			view.RegisterMediator(mediator);
 
 			// assert that onRegsiter was called, and the mediator responded by setting our boolean
    			Assert.True(onRegisterCalled, "Expecting onRegisterCalled == true");
 				
 			// Remove the component
-			view.RemoveMediator(ViewTestMediator4.NAME);
+			view.RemoveMediator(name);
 			
 			// assert that the mediator is no longer retrievable
    			Assert.True(onRemoveCalled, "Expecting onRemoveCalled == true");
-   						
-			Cleanup();
 		}
 
 		/**
@@ -242,21 +268,23 @@ namespace PureMVC.Tests.Core
 
 			// Create and register the test mediator, 
 			// but not so we have a reference to it
-			view.RegisterMediator(new ViewTestMediator(this));
+			IMediator viewTestMediator = new ViewTestMediator(Thread.CurrentThread.Name, this);
+			string name = viewTestMediator.MediatorName;
+			view.RegisterMediator(viewTestMediator);
 			
 			// test that we can retrieve it
-            Assert.True(view.RetrieveMediator(ViewTestMediator.NAME) is ViewTestMediator, "Expecting view.retrieveMediator( ViewTestMediator.NAME ) is ViewTestMediator"); 
+			Assert.True(view.RetrieveMediator(name) is ViewTestMediator, "Expecting view.retrieveMediator( ViewTestMediator.NAME ) is ViewTestMediator"); 
 
 			// Remove the Mediator
-			view.RemoveMediator(ViewTestMediator.NAME);
+			view.RemoveMediator(name);
 
 			// test that retrieving it now returns null			
-   			Assert.Null(view.RetrieveMediator(ViewTestMediator.NAME), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
+			Assert.Null(view.RetrieveMediator(name), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
 
 			// test that removing the mediator again once its gone doesn't cause crash 	
             try
             {
-                view.RemoveMediator(ViewTestMediator.NAME);
+				view.RemoveMediator(name);
             }
             catch
             {
@@ -264,17 +292,17 @@ namespace PureMVC.Tests.Core
             }
 
 			// Create and register another instance of the test mediator, 
-			view.RegisterMediator(new ViewTestMediator(this));
-			
-   			Assert.True(view.RetrieveMediator(ViewTestMediator.NAME) is ViewTestMediator, "Expecting view.retrieveMediator( ViewTestMediator.NAME ) is ViewTestMediator"); 
+			viewTestMediator = new ViewTestMediator(Thread.CurrentThread.Name, this);
+			name = viewTestMediator.MediatorName;
+			view.RegisterMediator(viewTestMediator);
+
+			Assert.True(view.RetrieveMediator(name) is ViewTestMediator, "Expecting view.retrieveMediator( ViewTestMediator.NAME ) is ViewTestMediator"); 
 
 			// Remove the Mediator
-			view.RemoveMediator(ViewTestMediator.NAME);
+			view.RemoveMediator(name);
 			
 			// test that retrieving it now returns null			
-   			Assert.Null(view.RetrieveMediator(ViewTestMediator.NAME), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
-
-			Cleanup();						  			
+			Assert.Null(view.RetrieveMediator(name), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
 		}
 		
         /**
@@ -291,7 +319,9 @@ namespace PureMVC.Tests.Core
 			view.RegisterMediator(new ViewTestMediator2(this));
 			
 			// Create and register the Mediator to remain
-			view.RegisterMediator(new ViewTestMediator(this));
+			IMediator viewTestMediator = new ViewTestMediator(Thread.CurrentThread.Name, this);
+			string name = viewTestMediator.MediatorName;
+			view.RegisterMediator(viewTestMediator);
 			
 			// test that notifications work
    			view.NotifyObservers(new Notification(NOTE1));
@@ -404,6 +434,8 @@ namespace PureMVC.Tests.Core
 			counter = 0;
    			view.NotifyObservers( new Notification(NOTE5) );
    			Assert.True(counter == 0, "Expecting counter == 0");
+
+			Cleanup();
 		}
 		
 		
@@ -450,6 +482,7 @@ namespace PureMVC.Tests.Core
 			// verify the count is 0
    			Assert.True(counter == 0, "Expecting counter == 0");
 
+			Cleanup();
 		}
 
 		private void Cleanup()
@@ -457,6 +490,54 @@ namespace PureMVC.Tests.Core
             View.Instance.RemoveMediator(ViewTestMediator.NAME);
             View.Instance.RemoveMediator(ViewTestMediator2.NAME);
             View.Instance.RemoveMediator(ViewTestMediator3.NAME);
+			View.Instance.RemoveMediator(ViewTestMediator4.NAME);
+			View.Instance.RemoveMediator(ViewTestMediator5.NAME);
+			View.Instance.RemoveMediator(ViewTestMediator6.NAME);
 		}
-    }
+
+		/// <summary>
+		/// Test all of the function above using many threads at once.
+		/// </summary>
+		public void TestMultiThreadedOperations()
+		{
+			count = 20;
+			IList<Thread> threads = new List<Thread>();
+
+			for (int i = 0; i < count; i++)
+			{
+				Thread t = new Thread(new ThreadStart(MultiThreadedTestFunction));
+				t.Name = "ControllerTest" + i;
+				threads.Add(t);
+			}
+
+			foreach (Thread t in threads)
+			{
+				t.Start();
+			}
+
+			while (true)
+			{
+				if (count <= 0) break;
+				Thread.Sleep(100);
+			}
+		}
+
+		private int count = 0;
+
+		private int threadIterationCount = 10000;
+
+		private void MultiThreadedTestFunction()
+		{
+			for (int i = 0; i < threadIterationCount; i++)
+			{
+				// All we need to do is test the registration and removal of mediators and observers
+				TestRegisterAndNotifyObserver();
+				TestRegisterAndRetrieveMediator();
+				TestHasMediator();
+				TestRegisterAndRemoveMediator();
+			}
+
+			count--;
+		}
+	}
 }

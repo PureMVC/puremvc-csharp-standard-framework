@@ -26,8 +26,8 @@ namespace PureMVC.Tests.Core
 		/**
 		 * Constructor
 		 */
-		public ViewTestMediator(object view) 
-            : base(NAME, view)
+		public ViewTestMediator(string threadName, object view) 
+            : base(NAME + threadName, view)
         { }
 
 		override public IList<string> ListNotificationInterests()

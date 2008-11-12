@@ -28,8 +28,8 @@ namespace PureMVC.Tests.Core
 		 * @param name Ignored and forced to NAME.
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public ViewTestNote(object body)
-            : base(NAME, body)
+		public ViewTestNote(string threadName, object body)
+            : base(NAME + threadName, body)
 		{ }
 		
 		/**
@@ -40,11 +40,12 @@ namespace PureMVC.Tests.Core
 		 * automatically setting the note name so you don't have to. Use
 		 * this as an alternative to the constructor.</P>
 		 * 
+		 * @param threadName the name of the thread creating this notification.
 		 * @param body the body of the Notification to be constructed.
 		 */
-		public static INotification Create(object body) 		
+		public static INotification Create(string threadName, object body) 		
 		{
-			return new ViewTestNote(body);
+			return new ViewTestNote(threadName, body);
 		}
     }
 }
