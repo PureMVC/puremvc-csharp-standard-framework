@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.Silverlight.20", "PureMVC.Silverlight.20\PureMVC.Silverlight.20.csproj", "{B4F50092-012E-4EA6-8194-AE42353FD89A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.Silverlight.20.Tests", "PureMVC.Silverlight.20.Tests\PureMVC.Silverlight.20.Tests.csproj", "{B803EC87-6979-4797-8EEB-D2C7A47B8A5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.Silverlight.20.Tests.Old", "PureMVC.Silverlight.20.Tests.Old\PureMVC.Silverlight.20.Tests.Old.csproj", "{B803EC87-6979-4797-8EEB-D2C7A47B8A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
