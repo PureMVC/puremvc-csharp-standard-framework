@@ -380,7 +380,7 @@ namespace PureMVC.Patterns
 			{
 				if (m_instance == null)
 				{
-					lock (m_syncRoot)
+					lock (m_staticSyncRoot)
 					{
 						if (m_instance == null) m_instance = new Facade();
 					}
@@ -493,9 +493,9 @@ namespace PureMVC.Patterns
         protected static volatile IFacade m_instance;
 
 		/// <summary>
-		/// Used for locking
+		/// Used for locking the instance calls
 		/// </summary>
-		protected static readonly object m_syncRoot = new object();
+		protected static readonly object m_staticSyncRoot = new object();
 
 		#endregion
 	}

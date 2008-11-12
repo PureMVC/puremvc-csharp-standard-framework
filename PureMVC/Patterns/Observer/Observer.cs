@@ -168,7 +168,7 @@ namespace PureMVC.Patterns
 		/// <summary>
 		/// Used for locking
 		/// </summary>
-		protected static readonly object m_syncRoot = new object();
+		protected readonly object m_syncRoot = new object();
 
 		#endregion
 	}

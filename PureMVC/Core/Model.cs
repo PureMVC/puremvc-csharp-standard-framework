@@ -137,7 +137,7 @@ namespace PureMVC.Core
 			{
 				if (m_instance == null)
 				{
-					lock (m_syncRoot)
+					lock (m_staticSyncRoot)
 					{
 						if (m_instance == null) m_instance = new Model();
 					}
@@ -185,7 +185,12 @@ namespace PureMVC.Core
 		/// <summary>
 		/// Used for locking
 		/// </summary>
-		protected static readonly object m_syncRoot = new object();
+		protected readonly object m_syncRoot = new object();
+
+		/// <summary>
+		/// Used for locking the instance calls
+		/// </summary>
+		protected static readonly object m_staticSyncRoot = new object();
 
 		#endregion
     }
