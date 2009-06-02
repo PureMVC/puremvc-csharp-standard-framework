@@ -1,7 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.VS2008.WindowsCE", "PureMVC.DotNET.VS2008.WindowsCE\PureMVC.DotNET.VS2008.WindowsCE.csproj", "{F3C129A7-E655-47DE-83AD-1DBCF409B160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.VS2008.WindowsCE.Tests", "PureMVC.DotNET.VS2008.WindowsCE.Tests\PureMVC.DotNET.VS2008.WindowsCE.Tests.csproj", "{07C7F351-E5C7-48B1-958F-FDAAD2A828D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88CEE599-D10D-4B01-B019-A147E8ABC5EE}"
+	ProjectSection(SolutionItems) = preProject
+		PureMVC.DotNET.VS2008.WindowsCE.vsmdi = PureMVC.DotNET.VS2008.WindowsCE.vsmdi
+		WindowsCETestRun.testrunConfig = WindowsCETestRun.testrunConfig
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = PureMVC.DotNET.VS2008.WindowsCE.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3C129A7-E655-47DE-83AD-1DBCF409B160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C129A7-E655-47DE-83AD-1DBCF409B160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C129A7-E655-47DE-83AD-1DBCF409B160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C129A7-E655-47DE-83AD-1DBCF409B160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C7F351-E5C7-48B1-958F-FDAAD2A828D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C7F351-E5C7-48B1-958F-FDAAD2A828D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C7F351-E5C7-48B1-958F-FDAAD2A828D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C7F351-E5C7-48B1-958F-FDAAD2A828D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
