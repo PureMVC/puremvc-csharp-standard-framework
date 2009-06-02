@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		PureMVC.DotNET.VS2008.vsmdi = PureMVC.DotNET.VS2008.vsmdi
-		PureMVC.DotNET.VS20081.vsmdi = PureMVC.DotNET.VS20081.vsmdi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureMVC.DotNET.2008.Tests", "PureMVC.DotNET.2008.Tests\PureMVC.DotNET.2008.Tests.csproj", "{0A42BFD1-6BA7-4219-A1A7-0643BF824F97}"
@@ -18,7 +17,7 @@ Global
 		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = PureMVC.DotNET.VS20081.vsmdi
+		CategoryFile = PureMVC.DotNET.VS2008.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
