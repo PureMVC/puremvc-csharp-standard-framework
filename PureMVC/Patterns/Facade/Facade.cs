@@ -164,7 +164,7 @@ namespace PureMVC.Patterns
 		/// </summary>
 		/// <param name="proxy">The <c>IProxy</c> to be registered with the <c>Model</c></param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void RegisterProxy(IProxy proxy)
+		public virtual void RegisterProxy(IProxy proxy)
 		{
 			// The model is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the model.
@@ -177,7 +177,7 @@ namespace PureMVC.Patterns
 		/// <param name="proxyName">The name of the <c>IProxy</c> instance to be retrieved</param>
 		/// <returns>The <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c></returns>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public IProxy RetrieveProxy(string proxyName)
+        public virtual IProxy RetrieveProxy(string proxyName)
 		{
 			// The model is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the model.
@@ -189,7 +189,7 @@ namespace PureMVC.Patterns
 		/// </summary>
 		/// <param name="proxyName">The <c>IProxy</c> to remove from the <c>Model</c></param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public IProxy RemoveProxy(string proxyName)
+        public virtual IProxy RemoveProxy(string proxyName)
 		{
 			// The model is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the model.
@@ -202,7 +202,7 @@ namespace PureMVC.Patterns
 		/// <param name="proxyName">The name of the <c>IProxy</c> instance to check for</param>
 		/// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public bool HasProxy(string proxyName)
+        public virtual bool HasProxy(string proxyName)
 		{
 			// The model is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the model.
@@ -219,7 +219,7 @@ namespace PureMVC.Patterns
 		/// <param name="notificationName">The name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
 		/// <param name="commandType">A reference to the <c>Type</c> of the <c>ICommand</c></param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void RegisterCommand(string notificationName, Type commandType)
+        public virtual void RegisterCommand(string notificationName, Type commandType)
 		{
 			// The controller is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the controller.
@@ -231,7 +231,7 @@ namespace PureMVC.Patterns
 		/// </summary>
 		/// <param name="notificationName">TRemove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.</param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void RemoveCommand(string notificationName)
+        public virtual void RemoveCommand(string notificationName)
 		{
 			// The controller is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the controller.
@@ -244,7 +244,7 @@ namespace PureMVC.Patterns
 		/// <param name="notificationName">The name of the <c>INotification</c> to check for.</param>
 		/// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public bool HasCommand(string notificationName)
+        public virtual bool HasCommand(string notificationName)
 		{
 			// The controller is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the controller.
@@ -260,7 +260,7 @@ namespace PureMVC.Patterns
 		/// </summary>
 		/// <param name="mediator">A reference to the <c>IMediator</c> instance</param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void RegisterMediator(IMediator mediator)
+        public virtual void RegisterMediator(IMediator mediator)
 		{
 			// The view is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the view.
@@ -273,7 +273,7 @@ namespace PureMVC.Patterns
 		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to retrieve</param>
 		/// <returns>The <c>IMediator</c> previously registered with the given <c>mediatorName</c></returns>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public IMediator RetrieveMediator(string mediatorName)
+        public virtual IMediator RetrieveMediator(string mediatorName)
 		{
 			// The view is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the view.
@@ -285,7 +285,7 @@ namespace PureMVC.Patterns
 		/// </summary>
 		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to be removed</param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public IMediator RemoveMediator(string mediatorName)
+        public virtual IMediator RemoveMediator(string mediatorName)
 		{
 			// The view is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the view.
@@ -298,7 +298,7 @@ namespace PureMVC.Patterns
 		/// <param name="mediatorName">The name of the <c>IMediator</c> instance to check for</param>
 		/// <returns>whether a Mediator is registered with the given <code>mediatorName</code>.</returns>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public bool HasMediator(string mediatorName)
+        public virtual bool HasMediator(string mediatorName)
 		{
 			// The view is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the view.
@@ -316,7 +316,7 @@ namespace PureMVC.Patterns
 		/// <remarks>Usually you should just call sendNotification and pass the parameters, never having to construct the notification yourself.</remarks>
 		/// <param name="notification">The <c>INotification</c> to have the <c>View</c> notify observers of</param>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void NotifyObservers(INotification notification)
+        public virtual void NotifyObservers(INotification notification)
 		{
 			// The view is initialized in the constructor of the singleton, so this call should be thread safe.
 			// This method is thread safe on the view.
@@ -335,7 +335,7 @@ namespace PureMVC.Patterns
 		/// <param name="notificationName">The name of the notiification to send</param>
 		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void SendNotification(string notificationName)
+        public virtual void SendNotification(string notificationName)
 		{
 			NotifyObservers(new Notification(notificationName));
 		}
@@ -347,7 +347,7 @@ namespace PureMVC.Patterns
 		/// <param name="body">The body of the notification</param>
 		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void SendNotification(string notificationName, object body)
+        public virtual void SendNotification(string notificationName, object body)
 		{
 			NotifyObservers(new Notification(notificationName, body));
 		}
@@ -360,7 +360,7 @@ namespace PureMVC.Patterns
 		/// <param name="type">The type of the notification</param>
 		/// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe and needs to be thread safe in all implementations.</remarks>
-		public void SendNotification(string notificationName, object body, string type)
+        public virtual void SendNotification(string notificationName, object body, string type)
 		{
 			NotifyObservers(new Notification(notificationName, body, type));
 		}

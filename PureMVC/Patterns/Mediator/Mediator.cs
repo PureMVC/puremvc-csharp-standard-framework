@@ -134,7 +134,7 @@ namespace PureMVC.Patterns
 		///         </code>
 		///     </example>
 		/// </remarks>
-		public object ViewComponent
+		public virtual object ViewComponent
 		{
 			get { return m_viewComponent; }
 			set { m_viewComponent = value; }

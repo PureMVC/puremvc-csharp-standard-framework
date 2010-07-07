@@ -41,7 +41,7 @@ namespace PureMVC.Patterns
         /// <param name="notificationName">The name of the notiification to send</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe</remarks>
-		public void SendNotification(string notificationName) 
+		public virtual void SendNotification(string notificationName) 
 		{
 			// The Facade SendNotification is thread safe, therefore this method is thread safe.
 			m_facade.SendNotification(notificationName);
@@ -54,7 +54,7 @@ namespace PureMVC.Patterns
         /// <param name="body">The body of the notification</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe</remarks>
-		public void SendNotification(string notificationName, object body)
+		public virtual void SendNotification(string notificationName, object body)
 		{
 			// The Facade SendNotification is thread safe, therefore this method is thread safe.
 			m_facade.SendNotification(notificationName, body);
@@ -68,7 +68,7 @@ namespace PureMVC.Patterns
         /// <param name="type">The type of the notification</param>
         /// <remarks>Keeps us from having to construct new notification instances in our implementation code</remarks>
 		/// <remarks>This method is thread safe</remarks>
-		public void SendNotification(string notificationName, object body, string type)
+		public virtual void SendNotification(string notificationName, object body, string type)
 		{
 			// The Facade SendNotification is thread safe, therefore this method is thread safe.
             m_facade.SendNotification(notificationName, body, type);

@@ -96,7 +96,7 @@ namespace PureMVC.Patterns
 		/// Get the proxy name
 		/// </summary>
 		/// <returns></returns>
-		public string ProxyName
+		public virtual string ProxyName
 		{
 			get { return m_proxyName; }
 		}
@@ -104,7 +104,7 @@ namespace PureMVC.Patterns
 		/// <summary>
 		/// Set the data object
 		/// </summary>
-		public object Data
+		public virtual object Data
 		{
 			get { return m_data; }
 			set { m_data = value; }

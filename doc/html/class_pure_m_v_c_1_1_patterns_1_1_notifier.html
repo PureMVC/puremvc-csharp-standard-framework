@@ -46,14 +46,14 @@ Inheritance diagram for PureMVC.Patterns.Notifier:</div>
 <a href="class_pure_m_v_c_1_1_patterns_1_1_notifier-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#7aa8d72e58f657e7070e463c31e1e308">SendNotification</a> (string notificationName)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#2c2f87e07b30bd5816360645ddcab37b">SendNotification</a> (string notificationName)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#be0b7d00d7f2f5761a9943d6ce1cd7e8">SendNotification</a> (string notificationName, object body)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#bb6c5b825a625fc24db2f7d5e63a87ca">SendNotification</a> (string notificationName, object body)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#be0b7d00d7f2f5761a9943d6ce1cd7e8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#142e234d138f304404854550feca29dd">SendNotification</a> (string notificationName, object body, string type)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#bb6c5b825a625fc24db2f7d5e63a87ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#f612f79db8b11d0643a728072cf57243">SendNotification</a> (string notificationName, object body, string type)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#142e234d138f304404854550feca29dd"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#f612f79db8b11d0643a728072cf57243"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Properties</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_facade.html">IFacade</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html#3eaca63a1b733985deab5c689269c639">Facade</a><code> [get]</code></td></tr>
 
@@ -66,12 +66,12 @@ A Base <code>INotifier</code> implementation.
 The <code>INotifier</code> interface provides a common method called <code>sendNotification</code> that relieves implementation code of the necessity to actually construct <code>Notifications</code><p>
 The <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html" title="A Base INotifier implementation.">Notifier</a></code> class, which all of the above mentioned classes extend, provides an initialized reference to the <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html" title="A base Singleton IFacade implementation.">Facade</a></code> Singleton, which is required for the convienience method for sending <code>Notifications</code>, but also eases implementation as these classes have frequent <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html" title="A base Singleton IFacade implementation.">Facade</a></code> interactions and usually require access to the facade anyway<p>
 <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html" title="A base Singleton IFacade implementation.">PureMVC.Patterns.Facade</a> <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_mediator.html" title="A base IMediator implementation.">PureMVC.Patterns.Mediator</a> <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_proxy.html" title="A base IProxy implementation.">PureMVC.Patterns.Proxy</a> <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_simple_command.html" title="A base ICommand implementation.">PureMVC.Patterns.SimpleCommand</a> <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html" title="A base ICommand implementation that executes other ICommands.">PureMVC.Patterns.MacroCommand</a> <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="142e234d138f304404854550feca29dd"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="142e234d138f304404854550feca29dd" args="(string notificationName, object body, string type)" -->
+<a class="anchor" name="f612f79db8b11d0643a728072cf57243"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="f612f79db8b11d0643a728072cf57243" args="(string notificationName, object body, string type)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Notifier.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Notifier.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>, </td>
@@ -91,7 +91,7 @@ The <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notifier.html" t
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -112,12 +112,12 @@ Keeps us from having to construct new notification instances in our implementati
 
 </div>
 </div><p>
-<a class="anchor" name="be0b7d00d7f2f5761a9943d6ce1cd7e8"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="be0b7d00d7f2f5761a9943d6ce1cd7e8" args="(string notificationName, object body)" -->
+<a class="anchor" name="bb6c5b825a625fc24db2f7d5e63a87ca"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="bb6c5b825a625fc24db2f7d5e63a87ca" args="(string notificationName, object body)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Notifier.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Notifier.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>, </td>
@@ -131,7 +131,7 @@ Keeps us from having to construct new notification instances in our implementati
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -151,17 +151,17 @@ Keeps us from having to construct new notification instances in our implementati
 
 </div>
 </div><p>
-<a class="anchor" name="7aa8d72e58f657e7070e463c31e1e308"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="7aa8d72e58f657e7070e463c31e1e308" args="(string notificationName)" -->
+<a class="anchor" name="2c2f87e07b30bd5816360645ddcab37b"></a><!-- doxytag: member="PureMVC::Patterns::Notifier::SendNotification" ref="2c2f87e07b30bd5816360645ddcab37b" args="(string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Notifier.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Notifier.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -200,7 +200,7 @@ Local reference to the <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_fac
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>PureMVC/Patterns/Observer/<a class="el" href="_notifier_8cs.html">Notifier.cs</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jan 1 16:26:46 2009 for PureMVC by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 6 20:46:36 2010 for PureMVC by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

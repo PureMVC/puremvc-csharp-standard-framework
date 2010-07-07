@@ -1,17 +1,20 @@
 PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, Matt Brailsford
-PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
 Release Date: 10/20/08
     Platform: C# (DotNET, DotNetCF, Silverlight)
      Version: 3 
-    Revision: 0
+    Revision: 1
        Minor: 0    
       Author: Andy Adamczak <andy.adamczak@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
 
+3.1 - Fixed a bug in the multi-threaded implementation of the Observer. - AA
+      Made all public function virtual so the framework is easier to subclass. - AA
+
 3.0 - Converted the framework to use C# conventions (accessors and package names). - AA
-      Updated the framework to be thread safe. - AA
+	  Updated the framework to be thread safe. - AA
       Added a Silverlight 2.0 library and tests. - AA
       Added multi-threaded testing of the framework. - AA
       Converted 2008 and Silverlight 2.0 tests to use the Microsoft unit testing framework. - AA

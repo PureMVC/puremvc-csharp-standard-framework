@@ -57,7 +57,7 @@ namespace PureMVC.Patterns
 		/// <remarks>
 		///     <para>The <i>SubCommands</i> will be called in First In/First Out (FIFO) order</para>
 		/// </remarks>
-		public void Execute(INotification notification)
+		public virtual void Execute(INotification notification)
 		{
 			while (m_subCommands.Count > 0)
 			{

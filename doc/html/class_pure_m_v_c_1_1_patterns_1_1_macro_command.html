@@ -47,9 +47,9 @@ Inheritance diagram for PureMVC.Patterns.MacroCommand:</div>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html#9384682d5b127dc512a44f586f3b467e">MacroCommand</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html#9c64baa239f82acf40b54f5601065538">Execute</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html#2544d34575c18cf80411aa094b47f038">Execute</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Execute this <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html" title="A base ICommand implementation that executes other ICommands.">MacroCommand</a></code>'s <em>SubCommands</em>.  <a href="#9c64baa239f82acf40b54f5601065538"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Execute this <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html" title="A base ICommand implementation that executes other ICommands.">MacroCommand</a></code>'s <em>SubCommands</em>.  <a href="#2544d34575c18cf80411aa094b47f038"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_macro_command.html#e5b5d1f1bf196ec4df90122a26547362">InitializeMacroCommand</a> ()</td></tr>
 
@@ -114,17 +114,17 @@ Add a <em>SubCommand</em>.
 The <em>SubCommands</em> will be called in First In/First Out (FIFO) order
 </div>
 </div><p>
-<a class="anchor" name="9c64baa239f82acf40b54f5601065538"></a><!-- doxytag: member="PureMVC::Patterns::MacroCommand::Execute" ref="9c64baa239f82acf40b54f5601065538" args="(INotification notification)" -->
+<a class="anchor" name="2544d34575c18cf80411aa094b47f038"></a><!-- doxytag: member="PureMVC::Patterns::MacroCommand::Execute" ref="2544d34575c18cf80411aa094b47f038" args="(INotification notification)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.MacroCommand.Execute           </td>
+          <td class="memname">virtual void PureMVC.Patterns.MacroCommand.Execute           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a>&nbsp;</td>
           <td class="paramname"> <em>notification</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -176,7 +176,7 @@ Note that <em>SubCommand</em>s may be any <code>ICommand</code> implementor, <co
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>PureMVC/Patterns/Command/<a class="el" href="_macro_command_8cs.html">MacroCommand.cs</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jan 1 16:26:46 2009 for PureMVC by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 6 20:46:36 2010 for PureMVC by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

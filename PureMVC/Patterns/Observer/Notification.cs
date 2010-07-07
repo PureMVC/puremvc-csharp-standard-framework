@@ -80,7 +80,7 @@ namespace PureMVC.Patterns
 		/// <summary>
         /// The name of the <c>Notification</c> instance
         /// </summary>
-		public string Name
+		public virtual string Name
 		{
 			get { return m_name; }
 		}
@@ -89,7 +89,7 @@ namespace PureMVC.Patterns
         /// The body of the <c>Notification</c> instance
         /// </summary>
 		/// <remarks>This accessor is thread safe</remarks>
-		public object Body
+		public virtual object Body
 		{
 			get
 			{
@@ -107,7 +107,7 @@ namespace PureMVC.Patterns
 		/// The type of the <c>Notification</c> instance
 		/// </summary>
 		/// <remarks>This accessor is thread safe</remarks>
-		public string Type
+		public virtual string Type
         {
 			get
 			{

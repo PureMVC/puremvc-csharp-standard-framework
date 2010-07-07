@@ -45,23 +45,23 @@ Inheritance diagram for PureMVC.Patterns.Observer:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#fda1b8d2e3ff3e3f12017fec6bc2dcee">Observer</a> (string notifyMethod, object notifyContext)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructs a new observer with the specified notification method and context.  <a href="#fda1b8d2e3ff3e3f12017fec6bc2dcee"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#c061bd6d8fa4bdb908a69ef85d2693b2">NotifyObserver</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#966520073496b082849019db1f636537">NotifyObserver</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify the interested object.  <a href="#c061bd6d8fa4bdb908a69ef85d2693b2"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#c969cfcde7da1096dc62b5a7baa108ec">CompareNotifyContext</a> (object obj)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify the interested object.  <a href="#966520073496b082849019db1f636537"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#adb7ca1b5b60fde999fcb9ff74f2d0e8">CompareNotifyContext</a> (object obj)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compare an object to the notification context.  <a href="#c969cfcde7da1096dc62b5a7baa108ec"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compare an object to the notification context.  <a href="#adb7ca1b5b60fde999fcb9ff74f2d0e8"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">readonly object&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#942d47dd1d216c27c54e2f4531a61ba9">m_syncRoot</a> = new object()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used for locking.  <a href="#942d47dd1d216c27c54e2f4531a61ba9"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Properties</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#b1e33df3fe15e532958db58fc8963617">NotifyMethod</a><code> [get, set]</code></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#a9cdedcdfcb9fab962b4c1e31c5a5ef5">NotifyMethod</a><code> [get, set]</code></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The notification (callback) method of the interested object.  <a href="#b1e33df3fe15e532958db58fc8963617"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">object&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#9759146acb3bfb13a9dec0b4a7edd277">NotifyContext</a><code> [get, set]</code></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The notification (callback) method of the interested object.  <a href="#a9cdedcdfcb9fab962b4c1e31c5a5ef5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual object&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html#12d8af4dac5ff49a25620c2988532fb0">NotifyContext</a><code> [get, set]</code></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The notification context (this) of the interested object.  <a href="#9759146acb3bfb13a9dec0b4a7edd277"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The notification context (this) of the interested object.  <a href="#12d8af4dac5ff49a25620c2988532fb0"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A base <code>IObserver</code> implementation. 
@@ -118,17 +118,17 @@ The notification method on the interested object should take on parameter of typ
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="c969cfcde7da1096dc62b5a7baa108ec"></a><!-- doxytag: member="PureMVC::Patterns::Observer::CompareNotifyContext" ref="c969cfcde7da1096dc62b5a7baa108ec" args="(object obj)" -->
+<a class="anchor" name="adb7ca1b5b60fde999fcb9ff74f2d0e8"></a><!-- doxytag: member="PureMVC::Patterns::Observer::CompareNotifyContext" ref="adb7ca1b5b60fde999fcb9ff74f2d0e8" args="(object obj)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PureMVC.Patterns.Observer.CompareNotifyContext           </td>
+          <td class="memname">virtual bool PureMVC.Patterns.Observer.CompareNotifyContext           </td>
           <td>(</td>
           <td class="paramtype">object&nbsp;</td>
           <td class="paramname"> <em>obj</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -148,17 +148,17 @@ This method is thread safe <dl compact><dt><b>Parameters:</b></dt><dd>
 
 </div>
 </div><p>
-<a class="anchor" name="c061bd6d8fa4bdb908a69ef85d2693b2"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyObserver" ref="c061bd6d8fa4bdb908a69ef85d2693b2" args="(INotification notification)" -->
+<a class="anchor" name="966520073496b082849019db1f636537"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyObserver" ref="966520073496b082849019db1f636537" args="(INotification notification)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Observer.NotifyObserver           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Observer.NotifyObserver           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a>&nbsp;</td>
           <td class="paramname"> <em>notification</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -196,12 +196,12 @@ Used for locking.
 </div>
 </div><p>
 <hr><h2>Property Documentation</h2>
-<a class="anchor" name="9759146acb3bfb13a9dec0b4a7edd277"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyContext" ref="9759146acb3bfb13a9dec0b4a7edd277" args="" -->
+<a class="anchor" name="12d8af4dac5ff49a25620c2988532fb0"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyContext" ref="12d8af4dac5ff49a25620c2988532fb0" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object PureMVC.Patterns.Observer.NotifyContext<code> [get, set]</code>          </td>
+          <td class="memname">virtual object PureMVC.Patterns.Observer.NotifyContext<code> [get, set]</code>          </td>
         </tr>
       </table>
 </div>
@@ -215,12 +215,12 @@ This accessor is thread safe
 
 </div>
 </div><p>
-<a class="anchor" name="b1e33df3fe15e532958db58fc8963617"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyMethod" ref="b1e33df3fe15e532958db58fc8963617" args="" -->
+<a class="anchor" name="a9cdedcdfcb9fab962b4c1e31c5a5ef5"></a><!-- doxytag: member="PureMVC::Patterns::Observer::NotifyMethod" ref="a9cdedcdfcb9fab962b4c1e31c5a5ef5" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string PureMVC.Patterns.Observer.NotifyMethod<code> [get, set]</code>          </td>
+          <td class="memname">virtual string PureMVC.Patterns.Observer.NotifyMethod<code> [get, set]</code>          </td>
         </tr>
       </table>
 </div>
@@ -237,7 +237,7 @@ The notification method should take one parameter of type <code>INotification</c
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>PureMVC/Patterns/Observer/<a class="el" href="_observer_8cs.html">Observer.cs</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jan 1 16:26:46 2009 for PureMVC by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 6 20:46:36 2010 for PureMVC by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

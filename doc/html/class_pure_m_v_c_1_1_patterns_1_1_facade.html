@@ -43,51 +43,51 @@ Inheritance diagram for PureMVC.Patterns.Facade:</div>
 <a href="class_pure_m_v_c_1_1_patterns_1_1_facade-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#b5f6c85565eca490e47181f15810e2b2">RegisterProxy</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> proxy)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#e6e71b0565164190d33176a4db630e30">RegisterProxy</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> proxy)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IProxy</code> with the <code>Model</code> by name.  <a href="#b5f6c85565eca490e47181f15810e2b2"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#a113b14f220ba7377352cc2cf84ce101">RetrieveProxy</a> (string proxyName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IProxy</code> with the <code>Model</code> by name.  <a href="#e6e71b0565164190d33176a4db630e30"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#b6f550b188404d8165c3d0848c6cc028">RetrieveProxy</a> (string proxyName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code>IProxy</code> from the <code>Model</code> by name.  <a href="#a113b14f220ba7377352cc2cf84ce101"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#2f983d69842589c5cb9473ab9a0e3388">RemoveProxy</a> (string proxyName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a <code>IProxy</code> from the <code>Model</code> by name.  <a href="#b6f550b188404d8165c3d0848c6cc028"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#a2b5d1995e5ef2875b027dcf338df68f">RemoveProxy</a> (string proxyName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code>IProxy</code> instance from the <code>Model</code> by name.  <a href="#2f983d69842589c5cb9473ab9a0e3388"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#fb86bfd8db28f7890b53a311da8a64fa">HasProxy</a> (string proxyName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an <code>IProxy</code> instance from the <code>Model</code> by name.  <a href="#a2b5d1995e5ef2875b027dcf338df68f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#2df96720dbefe6da0d9897da7aebab87">HasProxy</a> (string proxyName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_proxy.html" title="A base IProxy implementation.">Proxy</a> is registered.  <a href="#fb86bfd8db28f7890b53a311da8a64fa"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#a84d03ad1878c20dfdf233db6bddb065">RegisterCommand</a> (string notificationName, Type commandType)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_proxy.html" title="A base IProxy implementation.">Proxy</a> is registered.  <a href="#2df96720dbefe6da0d9897da7aebab87"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#2849c0d9b258e4c4511ce320d4592ed6">RegisterCommand</a> (string notificationName, Type commandType)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>ICommand</code> with the <code>Controller</code>.  <a href="#a84d03ad1878c20dfdf233db6bddb065"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#f7bbcad19cd15aa93dc2464b4714b485">RemoveCommand</a> (string notificationName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>ICommand</code> with the <code>Controller</code>.  <a href="#2849c0d9b258e4c4511ce320d4592ed6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#d66d1d9ea20b0760bf57bc1b1197c692">RemoveCommand</a> (string notificationName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.  <a href="#f7bbcad19cd15aa93dc2464b4714b485"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#ecbc4b40f9442fcdb1ddfbd15016fc0c">HasCommand</a> (string notificationName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping from the Controller.  <a href="#d66d1d9ea20b0760bf57bc1b1197c692"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#2df374e873253511b1e3867376717d46">HasCommand</a> (string notificationName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a Command is registered for a given <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notification.html" title="A base INotification implementation.">Notification</a>.  <a href="#ecbc4b40f9442fcdb1ddfbd15016fc0c"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#6f98471437e6257937d58664eeefb894">RegisterMediator</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> mediator)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a Command is registered for a given <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_notification.html" title="A base INotification implementation.">Notification</a>.  <a href="#2df374e873253511b1e3867376717d46"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#a484dbef79219ab6a1c961b30dc269a6">RegisterMediator</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> mediator)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IMediator</code> instance with the <code>View</code>.  <a href="#6f98471437e6257937d58664eeefb894"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#8a1723a3107e607174399a99946cc03b">RetrieveMediator</a> (string mediatorName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Register an <code>IMediator</code> instance with the <code>View</code>.  <a href="#a484dbef79219ab6a1c961b30dc269a6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#8b1ace68da5dcf6a4fa77062168db742">RetrieveMediator</a> (string mediatorName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code>IMediator</code> instance from the <code>View</code>.  <a href="#8a1723a3107e607174399a99946cc03b"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#01861610db5f1617a31f2e95f5dcbe0a">RemoveMediator</a> (string mediatorName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve an <code>IMediator</code> instance from the <code>View</code>.  <a href="#8b1ace68da5dcf6a4fa77062168db742"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#814b8a1d7afe2095027509994bc463a8">RemoveMediator</a> (string mediatorName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <code>IMediator</code> instance from the <code>View</code>.  <a href="#01861610db5f1617a31f2e95f5dcbe0a"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#97c7b0f68efa35c103927240586e98e7">HasMediator</a> (string mediatorName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <code>IMediator</code> instance from the <code>View</code>.  <a href="#814b8a1d7afe2095027509994bc463a8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#cf860def68c96bbe927b816b66c3bd89">HasMediator</a> (string mediatorName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_mediator.html" title="A base IMediator implementation.">Mediator</a> is registered or not.  <a href="#97c7b0f68efa35c103927240586e98e7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#78e9cefca5d51f505d3b9d562bb761f8">NotifyObservers</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if a <a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_mediator.html" title="A base IMediator implementation.">Mediator</a> is registered or not.  <a href="#cf860def68c96bbe927b816b66c3bd89"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#0194a8c4ac4f4ad00c71d2fbad9f823a">NotifyObservers</a> (<a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a> notification)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html" title="A base IObserver implementation.">Observer</a></code>s of an <code>INotification</code>.  <a href="#78e9cefca5d51f505d3b9d562bb761f8"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#aa61c28705565ed4619529a913c683c7">SendNotification</a> (string notificationName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Notify <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_observer.html" title="A base IObserver implementation.">Observer</a></code>s of an <code>INotification</code>.  <a href="#0194a8c4ac4f4ad00c71d2fbad9f823a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#34555ed0fefae5bcfd22699de14216e4">SendNotification</a> (string notificationName)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#aa61c28705565ed4619529a913c683c7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#5b0f226ff0e744472f1bda9e93c6b080">SendNotification</a> (string notificationName, object body)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#34555ed0fefae5bcfd22699de14216e4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#a410e707772d1a2c451460b4b904353d">SendNotification</a> (string notificationName, object body)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#5b0f226ff0e744472f1bda9e93c6b080"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#24cc9d032f88e983fd27802c0505cd0d">SendNotification</a> (string notificationName, object body, string type)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#a410e707772d1a2c451460b4b904353d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#2ba206d26cc53b4c53809767d8065187">SendNotification</a> (string notificationName, object body, string type)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#24cc9d032f88e983fd27802c0505cd0d"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Send an <code>INotification</code>.  <a href="#2ba206d26cc53b4c53809767d8065187"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html#bd63a7e08fa8f922778c1084340d9142">Facade</a> ()</td></tr>
 
@@ -257,17 +257,17 @@ This <code>IFacade</code> implementation is a Singleton, so you should not call 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="ecbc4b40f9442fcdb1ddfbd15016fc0c"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasCommand" ref="ecbc4b40f9442fcdb1ddfbd15016fc0c" args="(string notificationName)" -->
+<a class="anchor" name="2df374e873253511b1e3867376717d46"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasCommand" ref="2df374e873253511b1e3867376717d46" args="(string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PureMVC.Patterns.Facade.HasCommand           </td>
+          <td class="memname">virtual bool PureMVC.Patterns.Facade.HasCommand           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -287,17 +287,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="97c7b0f68efa35c103927240586e98e7"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasMediator" ref="97c7b0f68efa35c103927240586e98e7" args="(string mediatorName)" -->
+<a class="anchor" name="cf860def68c96bbe927b816b66c3bd89"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasMediator" ref="cf860def68c96bbe927b816b66c3bd89" args="(string mediatorName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PureMVC.Patterns.Facade.HasMediator           </td>
+          <td class="memname">virtual bool PureMVC.Patterns.Facade.HasMediator           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -318,17 +318,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="fb86bfd8db28f7890b53a311da8a64fa"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasProxy" ref="fb86bfd8db28f7890b53a311da8a64fa" args="(string proxyName)" -->
+<a class="anchor" name="2df96720dbefe6da0d9897da7aebab87"></a><!-- doxytag: member="PureMVC::Patterns::Facade::HasProxy" ref="2df96720dbefe6da0d9897da7aebab87" args="(string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PureMVC.Patterns.Facade.HasProxy           </td>
+          <td class="memname">virtual bool PureMVC.Patterns.Facade.HasProxy           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -458,17 +458,17 @@ If you don't want to initialize a different <code>IView</code>, call <code>base.
 Note: This method is <em>rarely</em> overridden; in practice you are more likely to use a <code>Command</code> to create and register <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_mediator.html" title="A base IMediator implementation.">Mediator</a></code>s with the <code>View</code>, since <code>IMediator</code> instances will need to send <code>INotification</code>s and thus will likely want to fetch a reference to the <code><a class="el" href="class_pure_m_v_c_1_1_patterns_1_1_facade.html" title="A base Singleton IFacade implementation.">Facade</a></code> during their construction
 </div>
 </div><p>
-<a class="anchor" name="78e9cefca5d51f505d3b9d562bb761f8"></a><!-- doxytag: member="PureMVC::Patterns::Facade::NotifyObservers" ref="78e9cefca5d51f505d3b9d562bb761f8" args="(INotification notification)" -->
+<a class="anchor" name="0194a8c4ac4f4ad00c71d2fbad9f823a"></a><!-- doxytag: member="PureMVC::Patterns::Facade::NotifyObservers" ref="0194a8c4ac4f4ad00c71d2fbad9f823a" args="(INotification notification)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.NotifyObservers           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.NotifyObservers           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_notification.html">INotification</a>&nbsp;</td>
           <td class="paramname"> <em>notification</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -487,12 +487,12 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="a84d03ad1878c20dfdf233db6bddb065"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterCommand" ref="a84d03ad1878c20dfdf233db6bddb065" args="(string notificationName, Type commandType)" -->
+<a class="anchor" name="2849c0d9b258e4c4511ce320d4592ed6"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterCommand" ref="2849c0d9b258e4c4511ce320d4592ed6" args="(string notificationName, Type commandType)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.RegisterCommand           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.RegisterCommand           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>, </td>
@@ -506,7 +506,7 @@ This method is thread safe and needs to be thread safe in all implementations.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -526,17 +526,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="6f98471437e6257937d58664eeefb894"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterMediator" ref="6f98471437e6257937d58664eeefb894" args="(IMediator mediator)" -->
+<a class="anchor" name="a484dbef79219ab6a1c961b30dc269a6"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterMediator" ref="a484dbef79219ab6a1c961b30dc269a6" args="(IMediator mediator)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.RegisterMediator           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.RegisterMediator           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a>&nbsp;</td>
           <td class="paramname"> <em>mediator</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -555,17 +555,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="b5f6c85565eca490e47181f15810e2b2"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterProxy" ref="b5f6c85565eca490e47181f15810e2b2" args="(IProxy proxy)" -->
+<a class="anchor" name="e6e71b0565164190d33176a4db630e30"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RegisterProxy" ref="e6e71b0565164190d33176a4db630e30" args="(IProxy proxy)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.RegisterProxy           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.RegisterProxy           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a>&nbsp;</td>
           <td class="paramname"> <em>proxy</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -584,17 +584,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="f7bbcad19cd15aa93dc2464b4714b485"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveCommand" ref="f7bbcad19cd15aa93dc2464b4714b485" args="(string notificationName)" -->
+<a class="anchor" name="d66d1d9ea20b0760bf57bc1b1197c692"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveCommand" ref="d66d1d9ea20b0760bf57bc1b1197c692" args="(string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.RemoveCommand           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.RemoveCommand           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -613,17 +613,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="01861610db5f1617a31f2e95f5dcbe0a"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveMediator" ref="01861610db5f1617a31f2e95f5dcbe0a" args="(string mediatorName)" -->
+<a class="anchor" name="814b8a1d7afe2095027509994bc463a8"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveMediator" ref="814b8a1d7afe2095027509994bc463a8" args="(string mediatorName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> PureMVC.Patterns.Facade.RemoveMediator           </td>
+          <td class="memname">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> PureMVC.Patterns.Facade.RemoveMediator           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -642,17 +642,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="2f983d69842589c5cb9473ab9a0e3388"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveProxy" ref="2f983d69842589c5cb9473ab9a0e3388" args="(string proxyName)" -->
+<a class="anchor" name="a2b5d1995e5ef2875b027dcf338df68f"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RemoveProxy" ref="a2b5d1995e5ef2875b027dcf338df68f" args="(string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> PureMVC.Patterns.Facade.RemoveProxy           </td>
+          <td class="memname">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> PureMVC.Patterns.Facade.RemoveProxy           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -671,17 +671,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="8a1723a3107e607174399a99946cc03b"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RetrieveMediator" ref="8a1723a3107e607174399a99946cc03b" args="(string mediatorName)" -->
+<a class="anchor" name="8b1ace68da5dcf6a4fa77062168db742"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RetrieveMediator" ref="8b1ace68da5dcf6a4fa77062168db742" args="(string mediatorName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> PureMVC.Patterns.Facade.RetrieveMediator           </td>
+          <td class="memname">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_mediator.html">IMediator</a> PureMVC.Patterns.Facade.RetrieveMediator           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>mediatorName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -701,17 +701,17 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="a113b14f220ba7377352cc2cf84ce101"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RetrieveProxy" ref="a113b14f220ba7377352cc2cf84ce101" args="(string proxyName)" -->
+<a class="anchor" name="b6f550b188404d8165c3d0848c6cc028"></a><!-- doxytag: member="PureMVC::Patterns::Facade::RetrieveProxy" ref="b6f550b188404d8165c3d0848c6cc028" args="(string proxyName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> PureMVC.Patterns.Facade.RetrieveProxy           </td>
+          <td class="memname">virtual <a class="el" href="interface_pure_m_v_c_1_1_interfaces_1_1_i_proxy.html">IProxy</a> PureMVC.Patterns.Facade.RetrieveProxy           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>proxyName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -731,12 +731,12 @@ This method is thread safe and needs to be thread safe in all implementations.
 
 </div>
 </div><p>
-<a class="anchor" name="24cc9d032f88e983fd27802c0505cd0d"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="24cc9d032f88e983fd27802c0505cd0d" args="(string notificationName, object body, string type)" -->
+<a class="anchor" name="2ba206d26cc53b4c53809767d8065187"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="2ba206d26cc53b4c53809767d8065187" args="(string notificationName, object body, string type)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>, </td>
@@ -756,7 +756,7 @@ This method is thread safe and needs to be thread safe in all implementations.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -777,12 +777,12 @@ Keeps us from having to construct new notification instances in our implementati
 
 </div>
 </div><p>
-<a class="anchor" name="5b0f226ff0e744472f1bda9e93c6b080"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="5b0f226ff0e744472f1bda9e93c6b080" args="(string notificationName, object body)" -->
+<a class="anchor" name="a410e707772d1a2c451460b4b904353d"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="a410e707772d1a2c451460b4b904353d" args="(string notificationName, object body)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>, </td>
@@ -796,7 +796,7 @@ Keeps us from having to construct new notification instances in our implementati
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -816,17 +816,17 @@ Keeps us from having to construct new notification instances in our implementati
 
 </div>
 </div><p>
-<a class="anchor" name="aa61c28705565ed4619529a913c683c7"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="aa61c28705565ed4619529a913c683c7" args="(string notificationName)" -->
+<a class="anchor" name="34555ed0fefae5bcfd22699de14216e4"></a><!-- doxytag: member="PureMVC::Patterns::Facade::SendNotification" ref="34555ed0fefae5bcfd22699de14216e4" args="(string notificationName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void PureMVC.Patterns.Facade.SendNotification           </td>
+          <td class="memname">virtual void PureMVC.Patterns.Facade.SendNotification           </td>
           <td>(</td>
           <td class="paramtype">string&nbsp;</td>
           <td class="paramname"> <em>notificationName</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -950,7 +950,7 @@ Private reference to the View.
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>PureMVC/Patterns/Facade/<a class="el" href="_facade_8cs.html">Facade.cs</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jan 1 16:26:46 2009 for PureMVC by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 6 20:46:36 2010 for PureMVC by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>
