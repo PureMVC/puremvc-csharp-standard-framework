@@ -27,7 +27,7 @@ Production - [Version 3.1](https://github.com/PureMVC/puremvc-csharp-standard-fr
 * Microsoft  Windows CE 5.0
 
 ## License
-* PureMVC C# Standard Framework (Ported) - Copyright © 2008 Andy Adamczak, Matt Brailsford
+* PureMVC Standard Framework for C# (Ported) - Copyright © 2008 Andy Adamczak, Matt Brailsford
 * PureMVC - Copyright © 2007-2012 Futurescale, Inc.
 * All rights reserved.
 
