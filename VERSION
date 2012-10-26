@@ -1,5 +1,4 @@
-PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, Matt Brailsford
-PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved.
+PureMVC C# Standard Framework (Ported)
 --------------------------------------------------------------------------
 Release Date: 10/20/08
     Platform: C# (DotNET, DotNetCF, Silverlight)
@@ -7,7 +6,6 @@ Release Date: 10/20/08
     Revision: 1
        Minor: 0    
       Author: Andy Adamczak <andy.adamczak@puremvc.org>
-     License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
 
 3.1 - Fixed a bug in the multi-threaded implementation of the Observer. - AA
@@ -25,8 +23,8 @@ Release Date: 10/20/08
       against .Net Framework 3.5. - AA
 
 1.0 - Updated inline with version 2.0.4 release of the AS3 implementation
-	  See http://forums.puremvc.org/index.php?topic=625.0 for details
-	  Signed the built assemblies. - AA
+      See http://forums.puremvc.org/index.php?topic=625.0 for details
+      Signed the built assemblies. - AA
       
 0.9 - Updated inline with version 2.0 release of the AS3 implementation
       See http://forums.puremvc.org/index.php?topic=212.0 for details - MB
