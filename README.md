@@ -17,7 +17,7 @@ Production - [Version 3.1](https://github.com/PureMVC/puremvc-csharp-standard-fr
 
 ## Platforms / Technologies
 * [C#](http://en.wikipedia.org/wiki/C_Sharp_(programming_language\))
-* Microsoft .NET Framework 2.0, 3.0, 3.5
+* Microsoft .NET Framework 2.0, 3.0, 3.5, 4.0
 * Microsoft  WPF 3.0, 4.0
 * Microsoft .NET Compact Framework 2.0, 3.0, 3.5
 * Microsoft  Silverlight 2.0, 3.0, 4.0
@@ -28,7 +28,7 @@ Production - [Version 3.1](https://github.com/PureMVC/puremvc-csharp-standard-fr
 
 ## License
 * PureMVC Standard Framework for C# (Ported) - Copyright © 2008 Andy Adamczak, Matt Brailsford
-* PureMVC - Copyright © 2007-2012 Futurescale, Inc.
+* PureMVC - Copyright © 2007-2016 Futurescale, Inc.
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
