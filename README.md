@@ -1,4 +1,6 @@
 ## [PureMVC](http://puremvc.github.com/) C# Standard Framework
+
+[![Join the chat at https://gitter.im/PureMVC/puremvc-csharp-standard-framework](https://badges.gitter.im/PureMVC/puremvc-csharp-standard-framework.svg)](https://gitter.im/PureMVC/puremvc-csharp-standard-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a C# port of the [AS3 reference implementation of the Standard Version](https://github.com/PureMVC/puremvc-as3-standard-framework/wiki). 
 
 Unit tests are included for VS2005 using NUnit Lite, and in the new style for VS2008 Pro with code coverage.
