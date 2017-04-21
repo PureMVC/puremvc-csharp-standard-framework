@@ -3,7 +3,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 
 Unit tests are included for VS2005 using NUnit Lite, and in the new style for VS2008 Pro with code coverage.
 
-* [API Docs](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/docs/CSharp/standard/&desc=PureMVC%20API%20Docs:%20PureMVC%20Standard%20for%20C Sharp)
+* [API Docs](http://puremvc.org/pages/docs/CSharp/legacy/standard/&desc=PureMVC%20API%20Docs:%20PureMVC%20Standard%20for%20CSharp)
 * [Discussion](http://forums.puremvc.org/index.php?board=72.0)
 * [Overview Presentation](http://puremvc.tv/#P100)
 
@@ -13,7 +13,7 @@ Unit tests are included for VS2005 using NUnit Lite, and in the new style for VS
 * [Demo: Employee Admin - Silverlight](https://github.com/PureMVC/puremvc-csharp-demo-silverlight-employeeadmin/wiki)
 
 ## Status
-Production - [Version 3.1](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
+Legacy - [Version 3.2](https://github.com/PureMVC/puremvc-csharp-standard-framework-legacy/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [C#](http://en.wikipedia.org/wiki/C_Sharp_(programming_language\))
@@ -28,7 +28,7 @@ Production - [Version 3.1](https://github.com/PureMVC/puremvc-csharp-standard-fr
 
 ## License
 * PureMVC Standard Framework for C# (Ported) - Copyright © 2008 Andy Adamczak, Matt Brailsford
-* PureMVC - Copyright © 2007-2016 Futurescale, Inc.
+* PureMVC - Copyright © 2007-2017 Futurescale, Inc.
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

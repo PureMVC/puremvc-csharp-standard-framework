@@ -1,12 +1,16 @@
-PureMVC Standard Framework for C# (Ported)
+PureMVC Standard Framework for C# (Ported) / Legacy Implementation
 --------------------------------------------------------------------------
-Release Date: 10/20/08
+Release Date: 4/21/17
     Platform: C# (DotNET, DotNetCF, Silverlight)
      Version: 3 
-    Revision: 1
+    Revision: 2
        Minor: 0    
       Author: Andy Adamczak <andy.adamczak@puremvc.org>
 --------------------------------------------------------------------------
+3.2 - Moved to legacy. A brand new implementation of standard, multicore
+      and pipes has been built which are more closely in alignment with
+      the reference implementation and are suitable for use with modern
+      development targets like Windows 10 and HoloLens.
 
 3.1 - Fixed a bug in the multi-threaded implementation of the Observer. - AA
       Made all public function virtual so the framework is easier to subclass. - AA
@@ -31,7 +35,7 @@ Release Date: 10/20/08
 
 0.8 - Updated comments to XML format, updated the singletong pattern
       (See http://forums.puremvc.org/index.php?topic=197.0 for details), 
-      initial comit of the DotNETCF solution files - JC
+      initial commit of the DotNETCF solution files - JC
 
 0.7 - Created IDE specific solution files - MB
 
