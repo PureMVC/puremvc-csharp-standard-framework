@@ -1,9 +1,10 @@
-## [PureMVC](http://puremvc.github.com/) C# Standard Framework
+## [PureMVC](http://puremvc.github.com/) C# Standard Framework - LEGACY IMPLEMENTATION 
+### For the current implementation with support for targets such as Windows 10 and HoloLens, go [here](https://github.com/PureMVC/puremvc-csharp-standard-framework/wiki)
 PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a C# port of the [AS3 reference implementation of the Standard Version](https://github.com/PureMVC/puremvc-as3-standard-framework/wiki). 
 
 Unit tests are included for VS2005 using NUnit Lite, and in the new style for VS2008 Pro with code coverage.
 
-* [API Docs](http://puremvc.org/pages/docs/CSharp/legacy/standard/&desc=PureMVC%20API%20Docs:%20PureMVC%20Standard%20for%20CSharp)
+* [API Docs](http://puremvc.org/pages/docs/CSharp/legacy/standard)
 * [Discussion](http://forums.puremvc.org/index.php?board=72.0)
 * [Overview Presentation](http://puremvc.tv/#P100)
 
