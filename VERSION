@@ -1,52 +1,10 @@
-PureMVC Standard Framework for C# (Ported) / Legacy Implementation
+PureMVC Standard Framework for C#
 --------------------------------------------------------------------------
-Release Date: 4/21/17
-    Platform: C# (DotNET, DotNetCF, Silverlight)
-     Version: 3 
-    Revision: 2
-       Minor: 0    
-      Author: Andy Adamczak <andy.adamczak@puremvc.org>
+Release Date: 04/22/17
+    Platform: C# 
+     Version: 4
+    Revision: 0
+       Minor: 0
+      Author: Saad Shams <saad.shams@puremvc.org>
 --------------------------------------------------------------------------
-3.2 - Moved to legacy. A brand new implementation of standard, multicore
-      and pipes has been built which are more closely in alignment with
-      the reference implementation and are suitable for use with modern
-      development targets like Windows 10 and HoloLens.
-
-3.1 - Fixed a bug in the multi-threaded implementation of the Observer. - AA
-      Made all public function virtual so the framework is easier to subclass. - AA
-
-3.0 - Converted the framework to use C# conventions (accessors and package names). - AA
-	  Updated the framework to be thread safe. - AA
-      Added a Silverlight 2.0 library and tests. - AA
-      Added multi-threaded testing of the framework. - AA
-      Converted 2008 and Silverlight 2.0 tests to use the Microsoft unit testing framework. - AA
-      Added documentation using doxygen (http://www.stack.nl/~dimitri/doxygen/) - AA
-
-2.0 - Converted the framework to use only generics. - AA
-      Added separate Visual Studio 2008 projects that compile the framework
-      against .Net Framework 3.5. - AA
-
-1.0 - Updated inline with version 2.0.4 release of the AS3 implementation
-      See http://forums.puremvc.org/index.php?topic=625.0 for details
-      Signed the built assemblies. - AA
-      
-0.9 - Updated inline with version 2.0 release of the AS3 implementation
-      See http://forums.puremvc.org/index.php?topic=212.0 for details - MB
-
-0.8 - Updated comments to XML format, updated the singletong pattern
-      (See http://forums.puremvc.org/index.php?topic=197.0 for details), 
-      initial commit of the DotNETCF solution files - JC
-
-0.7 - Created IDE specific solution files - MB
-
-0.6 - Updated inline with version 1.7.1 of the AS3 implementation - MB
-
-0.5 - Updated inline with version 1.7 of the AS3 implementation - MB
-
-0.4 - Updated code error, Mediator now extends Notifier as per AS3 source - MB
-
-0.3 - Updated code error, Proxy now extends Notifier as per AS3 source - MB
-
-0.2 - Initial conversion from AS3 to C# - MB
-
-0.1 - Initial project structure created in repository - CLH
+4.0 - Brand new implementation of ported code, equivalent to AS3 Standard Version 2.0.4.
