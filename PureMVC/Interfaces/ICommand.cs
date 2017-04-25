@@ -1,26 +1,22 @@
-﻿/* 
- PureMVC C# Port by Andy Adamczak <andy.adamczak@puremvc.org>, et al.
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
- Your reuse is governed by the Creative Commons Attribution 3.0 License 
-*/
-#region Using
-
-using System;
-
-#endregion
+﻿//
+//  PureMVC C# Standard
+//
+//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//
 
 namespace PureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Command
+    /// The interface definition for a PureMVC Command.
     /// </summary>
-	/// <see cref="PureMVC.Interfaces.INotification"/>
-    public interface ICommand
+    /// <seealso cref="INotification"/>
+    public interface ICommand: INotifier
     {
         /// <summary>
-        /// Execute the <c>ICommand</c>'s logic to handle a given <c>INotification</c>
+        /// Execute the <c>ICommand</c>'s logic to handle a given <c>INotification</c>.
         /// </summary>
-        /// <param name="notification">An <c>INotification</c> to handle</param>
-		void Execute(INotification notification);
+        /// <param name="Notification">an <c>INotification</c> to handle.</param>
+        void Execute(INotification Notification);
     }
 }

@@ -1,35 +1,29 @@
-## [PureMVC](http://puremvc.github.com/) C# Standard Framework - LEGACY IMPLEMENTATION 
-### For the current implementation with support for targets such as Windows 10 and HoloLens, go [here](https://github.com/PureMVC/puremvc-csharp-standard-framework/wiki)
-PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a C# port of the [AS3 reference implementation of the Standard Version](https://github.com/PureMVC/puremvc-as3-standard-framework/wiki). 
+## [PureMVC](http://puremvc.github.com/) C# Standard Framework
 
-Unit tests are included for VS2005 using NUnit Lite, and in the new style for VS2008 Pro with code coverage.
+PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is the specific implementation for the [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) language. It does not support [modular programming](http://en.wikipedia.org/wiki/Modular_programming) since it uses [Singletons](http://en.wikipedia.org/wiki/Singleton_pattern) as Core actors rather than the [Multiton](http://en.wikipedia.org/wiki/Multiton) used in the [MultiCore](https://github.com/PureMVC/puremvc-csharp-multicore-framework/wiki) Version.
 
-* [API Docs](http://puremvc.org/pages/docs/CSharp/legacy/standard)
+* [API Docs](http://puremvc.org/pages/docs/CSharp/standard/)
+* [Unit Tests](http://puremvc.org/images/CSharp/unittest/standard.png)
 * [Discussion](http://forums.puremvc.org/index.php?board=72.0)
-* [Overview Presentation](http://puremvc.tv/#P100)
+* [Standard Version Overview Presentation](http://puremvc.tv/#P100)
 
-##Demos
-* [Demo: Webservice Login](https://github.com/PureMVC/puremvc-csharp-demo-webservice-login/wiki)
-* [Demo: Employee Admin - WPF](https://github.com/PureMVC/puremvc-csharp-demo-wpf-employeeadmin/wiki) 
-* [Demo: Employee Admin - Silverlight](https://github.com/PureMVC/puremvc-csharp-demo-silverlight-employeeadmin/wiki)
-
-## Status
-Legacy - [Version 3.2](https://github.com/PureMVC/puremvc-csharp-standard-framework-legacy/blob/master/VERSION)
+## Nuget Installation
+`Install-Package PureMVC-Standard`
 
 ## Platforms / Technologies
-* [C#](http://en.wikipedia.org/wiki/C_Sharp_(programming_language\))
-* Microsoft .NET Framework 2.0, 3.0, 3.5, 4.0
-* Microsoft  WPF 3.0, 4.0
-* Microsoft .NET Compact Framework 2.0, 3.0, 3.5
-* Microsoft  Silverlight 2.0, 3.0, 4.0
-* Microsoft  Windows Mobile 5.0, 6.0
-* Microsoft  Pocket PC (Windows Mobile 6)
-* Microsoft  SmartPhone (Windows Mobile 5)
-* Microsoft  Windows CE 5.0
+* [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))
+* [Windows 10](https://en.wikipedia.org/wiki/Windows_10)
+* [Xamarin](https://en.wikipedia.org/wiki/Xamarin)
+* [Xbox](https://en.wikipedia.org/wiki/Xbox)
+* [Kinect](https://en.wikipedia.org/wiki/Kinect)
+* [HoloLens](https://en.wikipedia.org/wiki/Microsoft_HoloLens)
+
+## Status
+Production - [Version 4.0](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
 
 ## License
-* PureMVC Standard Framework for C# (Ported) - Copyright © 2008 Andy Adamczak, Matt Brailsford
-* PureMVC - Copyright © 2007-2017 Futurescale, Inc.
+* PureMVC Standard Framework for C# - Copyright © 2017 [Saad Shams](http://saad.io)
+* PureMVC - Copyright © 2017 [Futurescale, Inc](http://futurescale.com) 
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

@@ -1,0 +1,15 @@
+<html><head><title>InitializeController()</title><link href="styles/default.css" type="text/css" rel="stylesheet"/></head><body><div class="header"> </div><br class="clear"/><div class="navigation"><ul><li><a href="index.htm">Documentation</a></li></ul><ul><li><a class="" href="4294967296-PureMVC.Core.htm">PureMVC.Core</a><ul><li><a class="" href="4294967562.htm">Controller</a><ul><li><a class="" href="4294967562-Methods.htm">Methods</a><ul><li><a class="current" href="4294967564.htm">InitializeController</a><ul/></li></ul></li></ul></li></ul></li></ul></div><div class="content"><h1>InitializeController() Method</h1><div class="summary">Initialize the Singleton <span class="code">Controller</span> instance </div><div class="details"><span class="namespace"><em>Namespace:</em> <a href="4294967296-PureMVC.Core.htm">PureMVC.Core</a></span><span class="assembly"><em>Assembly:</em> PureMVC in (PureMVC.dll)
+								</span></div>
+        <div class="syntax">
+            <h2>Syntax</h2>
+            <pre><span class="keyword">protected</span> <span class="keyword">void</span> InitializeController()</pre>
+        </div>
+    <div class="remarks"><h2>Remarks</h2><p>Called automatically by the constructor</p><p>Please aware that if you are using a subclass of <span class="code">View</span>in your application, you should also subclass <span class="code">Controller</span>and override the <span class="code">initializeController</span> method in the following way: </p>
+        <pre class="code">// ensure that the Controller is talking to my IView implementation
+public override void initializeController()
+{
+    view = MyView.getInstance(() =&gt; new MyView());
+}</pre>
+    </div></div><div class="footer">
+			Produced by the <a href="http://theboxsoftware.com/products/live-documenter/">Live Documenter</a> developed by <a href="http://theboxsoftware.com">The Box Software</a>.
+		</div></body></html>

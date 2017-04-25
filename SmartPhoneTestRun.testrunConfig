@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestRunConfiguration xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006" id="7e691bc2-c2aa-482d-a9c7-1ef6c6bd35c9" name="Local SmartDevices Test Run">
-	<Description>This is a default test run configuration for a local SmartDevice test run.</Description>
-	<Timeouts testTimeout="1800000"/>
-	<Hosts type="Smart Device">
-		<DeviceHostRunConfigData name="Smart Device" deviceId="BEDE20EF-6548-413E-943F-1E87FEC249FA" deviceName="USA Windows Mobile 5.0 Smartphone R2 QVGA Emulator" platformId="BD0CC567-F6FD-4ca3-99D2-063EFDFC0A39" platformName="Windows Mobile 5.0 Smartphone SDK" uiPlatformId="BD0CC567-F6FD-4ca3-99D2-063EFDFC0A39"/>
-	</Hosts>
-</TestRunConfiguration>
