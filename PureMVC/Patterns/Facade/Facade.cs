@@ -30,7 +30,7 @@ namespace PureMVC.Patterns.Facade
     /// <seealso cref="PureMVC.Core.Model"/>
     /// <seealso cref="PureMVC.Core.View"/>
     /// <seealso cref="PureMVC.Core.Controller"/>
-    public class Facade: IFacade
+    public class Facade : IFacade
     {
         /// <summary>
         /// Constructor.
@@ -76,7 +76,8 @@ namespace PureMVC.Patterns.Facade
         /// <returns>the Singleton instance of the Facade</returns>
         public static IFacade GetInstance(Func<IFacade> facadeFunc)
         {
-            if (instance == null) {
+            if (instance == null)
+            {
                 instance = facadeFunc();
             }
             return instance;
@@ -277,7 +278,7 @@ namespace PureMVC.Patterns.Facade
         /// <param name="notificationName">the name of the notiification to send</param>
         /// <param name="body">the body of the notification (optional)</param>
         /// <param name="type">type the type of the notification (optional)</param>
-        public virtual void SendNotification(string notificationName, object body=null, string type = null)
+        public virtual void SendNotification(string notificationName, object body = null, string type = null)
         {
             NotifyObservers(new Notification(notificationName, body, type));
         }
