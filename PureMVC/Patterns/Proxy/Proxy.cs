@@ -42,7 +42,7 @@ namespace PureMVC.Patterns.Proxy
         /// </summary>
         /// <param name="proxyName"></param>
         /// <param name="data"></param>
-        public Proxy(string proxyName, object data=null)
+        public Proxy(string proxyName, object data = null)
         {
             ProxyName = proxyName ?? Proxy.NAME;
             if (data != null) Data = data;

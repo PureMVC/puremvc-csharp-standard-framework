@@ -74,7 +74,8 @@ namespace PureMVC.Core
         /// <returns>the instance for this Singleton key </returns>
         public static IModel GetInstance(Func<IModel> modelFunc)
         {
-            if (instance == null) {
+            if (instance == null)
+            {
                 instance = modelFunc();
             }
             return instance;

@@ -62,8 +62,8 @@ namespace PureMVC.Interfaces
         /// Register an <c>ICommand</c> with the <c>Controller</c>.
         /// </summary>
         /// <param name="notificationName">the name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
-        /// <param name="commandClassRef">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c></param>
-        void RegisterCommand(string notificationName, Func<ICommand> commandClassRef);
+        /// <param name="commandFunc">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c></param>
+        void RegisterCommand(string notificationName, Func<ICommand> commandFunc);
 
         /// <summary>
         /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.

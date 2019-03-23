@@ -53,7 +53,7 @@ namespace PureMVC.Patterns.Observer
         /// <param name="name">name of the <c>Notification</c> instance. (required)</param>
         /// <param name="body">the <c>Notification</c> body. (optional)</param>
         /// <param name="type">the type of the <c>Notification</c> (optional)</param>
-        public Notification(string name, object body=null, string type=null)
+        public Notification(string name, object body = null, string type = null)
         {
             Name = name;
             Body = body;

@@ -17,4 +17,7 @@
 *.RTF	 diff=astextplain
 
 #linguist-documentation
-docs/* linguist-documentation
+Docs/* linguist-documentation
+
+
+.gitignore

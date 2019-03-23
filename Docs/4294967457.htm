@@ -1,11 +1,11 @@
-<html><head><title>ICommand</title><link href="styles/default.css" type="text/css" rel="stylesheet"/></head><body><div class="header"> </div><br class="clear"/><div class="navigation"><ul><li><a href="index.htm">Documentation</a></li></ul><ul><li><a class="" href="4294967296-PureMVC.Interfaces.htm">PureMVC.Interfaces</a><ul><li><a class="current" href="4294967457.htm">ICommand</a><ul><li><a class="" href="4294967457-Methods.htm">Methods</a></li></ul></li></ul></li></ul></div><div class="content"><h1>ICommand Interface</h1><div class="summary">The interface definition for a PureMVC Command. </div><div class="details"><span class="namespace"><em>Namespace:</em> <a href="4294967296-PureMVC.Interfaces.htm">PureMVC.Interfaces</a></span><span class="assembly"><em>Assembly:</em> PureMVC in (PureMVC.dll)
-								</span></div>
-        <div class="syntax">
-            <h2>Syntax</h2>
-            <pre><span class="keyword">public</span> <span class="keyword">interface</span> ICommand : INotifier</pre>
-        </div>
-    <p>
-				The ICommand type exposes the following members.
-			</p><h2>Methods</h2><table><thead><tr><th class="icon"/><th>Name</th><th>Summary</th></tr></thead><tbody><tr><td><img src="styles/images/vsobject_method.png" alt="public method"/></td><td><a href="4294967458.htm">Execute(INotification)</a></td><td><div class="summary">Execute the <span class="code">ICommand</span>'s logic to handle a given <span class="code">INotification</span>. </div></td></tr></tbody></table><div class="seealso"><h2>See also</h2><div><a href="4294967515.htm">INotification</a></div></div></div><div class="footer">
-			Produced by the <a href="http://theboxsoftware.com/products/live-documenter/">Live Documenter</a> developed by <a href="http://theboxsoftware.com">The Box Software</a>.
-		</div></body></html>
+<!DOCTYPE html><html><head><title>InitializeMacroCommand()</title><meta charset="UTF-8" /><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" /><link href="styles/default.css" type="text/css" rel="stylesheet" /></head><body><div class="container"><div class="row"><nav class="navigation col-sm-4"><div class="brand"><img src="styles/images/logo.png" /></div><ul><li><a href="index.htm">Documentation</a></li></ul><ul><li><a class="" href="4294967296-PureMVC.Patterns.Command.htm">PureMVC.Patterns.Command</a><ul><li><a class="" href="4294967455.htm">MacroCommand</a><ul><li><a class="" href="4294967455-Methods.htm">Methods</a><ul><li><a class="current" href="4294967457.htm">InitializeMacroCommand</a><ul /></li></ul></li></ul></li></ul></li></ul></nav><main class="col-sm-8"><div><section class="details"><h1>InitializeMacroCommand()</h1><div class="summary">Initialize the <span class="code">MacroCommand</span>. </div><div class="details"><span class="namespace"><em>Namespace:</em> <a href="4294967296-PureMVC.Patterns.Command.htm">PureMVC.Patterns.Command</a></span><span class="assembly"><em>Assembly:</em> PureMVC in (PureMVC.dll)
+						</span></div><div class="syntax"><h2>Syntax</h2><div class="csharp code"><div>C#</div><pre><span class="keyword">protected</span> <span class="keyword">void</span> InitializeMacroCommand()</pre></div></div></section><section class="remarks"><h2>Remarks</h2><p>In your subclass, override this method to  initialize the <span class="code">MacroCommand</span>'s SubCommand  list with <span class="code">ICommand</span> class references like this: </p>
+		<div class="code">
+        	<pre>override void InitializeMacroCommand() 
+{
+    AddSubCommand(() =&gt; new com.me.myapp.controller.FirstCommand());
+    AddSubCommand(() =&gt; new com.me.myapp.controller.SecondCommand());
+    AddSubCommand(() =&gt; new com.me.myapp.controller.ThirdCommand());
+}</pre>
+		</div>
+    <p>Note that SubCommands may be any <span class="code">ICommand</span> implementor, <span class="code">MacroCommand</span>s or <span class="code">SimpleCommands</span> are both acceptable. </p></section></div></main></div></div><script src="styles/site.js"></script></body></html>

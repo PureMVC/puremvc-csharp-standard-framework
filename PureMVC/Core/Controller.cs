@@ -96,7 +96,8 @@ namespace PureMVC.Core
         /// <returns>the Singleton instance of <c>Controller</c></returns>
         public static IController GetInstance(Func<IController> controllerFunc)
         {
-            if (instance == null) {
+            if (instance == null)
+            {
                 instance = controllerFunc();
             }
             return instance;
