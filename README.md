@@ -9,7 +9,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Legacy Implementation](https://github.com/PureMVC/puremvc-csharp-standard-framework/tree/3.2.0)
 
 ## Nuget Installation
-`Install-Package PureMVC`
+`dotnet add package PureMVC`
 
 ## Platforms / Technologies
 * [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))
