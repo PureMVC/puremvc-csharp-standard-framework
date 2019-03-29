@@ -75,7 +75,8 @@ namespace PureMVC.Core
         /// <returns>the instance for this Singleton key </returns>
         public static IView GetInstance(Func<IView> viewFunc)
         {
-            if (instance == null) {
+            if (instance == null)
+            {
                 instance = viewFunc();
             }
             return instance;

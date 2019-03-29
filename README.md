@@ -9,7 +9,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Legacy Implementation](https://github.com/PureMVC/puremvc-csharp-standard-framework/tree/3.2.0)
 
 ## Nuget Installation
-`Install-Package PureMVC-Standard`
+`dotnet add package PureMVC`
 
 ## Platforms / Technologies
 * [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))
@@ -20,10 +20,10 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [HoloLens](https://en.wikipedia.org/wiki/Microsoft_HoloLens)
 
 ## Status
-Production - [Version 4.0](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
+Production - [Version 4.1](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
 
 ## License
-* PureMVC Standard Framework for C# - Copyright © 2017 [Saad Shams](http://saad.io)
+* PureMVC Standard Framework for C# - Copyright © 2017 [Saad Shams](https://www.linkedin.com/in/muizz)
 * PureMVC - Copyright © 2017 [Futurescale, Inc](http://futurescale.com) 
 * All rights reserved.
 

@@ -36,7 +36,7 @@ namespace PureMVC.Patterns.Observer
     /// <seealso cref="PureMVC.Patterns.Mediator.Mediator"/>
     /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
     /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
-    public class Notifier: INotifier
+    public class Notifier : INotifier
     {
         /// <summary>
         /// Create and send an <c>INotification</c>.
@@ -50,7 +50,7 @@ namespace PureMVC.Patterns.Observer
         /// <param name="notificationName">the name of the notiification to send</param>
         /// <param name="body">the body of the notification (optional)</param>
         /// <param name="type">the type of the notification (optional)</param>
-        public virtual void SendNotification(string notificationName, object body, string type)
+        public virtual void SendNotification(string notificationName, object body = null, string type = null)
         {
             Facade.SendNotification(notificationName, body, type);
         }
@@ -58,7 +58,8 @@ namespace PureMVC.Patterns.Observer
         /// <summary>Return the Singleton Facade instance</summary>
         protected IFacade Facade
         {
-            get {
+            get
+            {
                 return Patterns.Facade.Facade.GetInstance(() => new Facade.Facade());
             }
         }

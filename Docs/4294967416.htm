@@ -1,13 +1,4 @@
-<html><head><title>HasCommand(String)</title><link href="styles/default.css" type="text/css" rel="stylesheet"/></head><body><div class="header"> </div><br class="clear"/><div class="navigation"><ul><li><a href="index.htm">Documentation</a></li></ul><ul><li><a class="" href="4294967296-PureMVC.Patterns.Facade.htm">PureMVC.Patterns.Facade</a><ul><li><a class="" href="4294967403.htm">Facade</a><ul><li><a class="" href="4294967403-Methods.htm">Methods</a><ul><li><a class="current" href="4294967416.htm">HasCommand</a><ul/></li></ul></li></ul></li></ul></li></ul></div><div class="content"><h1>HasCommand(String) Method</h1><div class="summary">Check if a Command is registered for a given Notification  </div><div class="details"><span class="namespace"><em>Namespace:</em> <a href="4294967296-PureMVC.Patterns.Facade.htm">PureMVC.Patterns.Facade</a></span><span class="assembly"><em>Assembly:</em> PureMVC in (PureMVC.dll)
-								</span></div>
-        <div class="syntax">
-            <h2>Syntax</h2>
-            <pre><span class="keyword">public</span> <span class="keyword">bool</span> HasCommand(
-	<span class="keyword">string</span> notificationName
-	)</pre>
-        </div>
-    <div class="parameters"><h3>Parameters</h3><dl><dt>notificationName</dt><dd><div>
-				Type:
-				String</div><div/></dd></dl></div></div><div class="footer">
-			Produced by the <a href="http://theboxsoftware.com/products/live-documenter/">Live Documenter</a> developed by <a href="http://theboxsoftware.com">The Box Software</a>.
-		</div></body></html>
+<!DOCTYPE html><html><head><title>GetInstance(Func&lt;IFacade&gt;)</title><meta charset="UTF-8" /><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" /><link href="styles/default.css" type="text/css" rel="stylesheet" /></head><body><div class="container"><div class="row"><nav class="navigation col-sm-4"><div class="brand"><img src="styles/images/logo.png" /></div><ul><li><a href="index.htm">Documentation</a></li></ul><ul><li><a class="" href="4294967296-PureMVC.Patterns.Facade.htm">PureMVC.Patterns.Facade</a><ul><li><a class="" href="4294967413.htm">Facade</a><ul><li><a class="" href="4294967413-Methods.htm">Methods</a><ul><li><a class="current" href="4294967416.htm">GetInstance</a><ul /></li></ul></li></ul></li></ul></li></ul></nav><main class="col-sm-8"><div><section class="details"><h1>GetInstance(Func&lt;IFacade&gt;)</h1><div class="summary">Facade Singleton Factory method </div><div class="details"><span class="namespace"><em>Namespace:</em> <a href="4294967296-PureMVC.Patterns.Facade.htm">PureMVC.Patterns.Facade</a></span><span class="assembly"><em>Assembly:</em> PureMVC in (PureMVC.dll)
+						</span></div><div class="syntax"><h2>Syntax</h2><div class="csharp code"><div>C#</div><pre><span class="keyword">public</span> <span class="keyword">static</span> IFacade GetInstance(
+	Func&lt;IFacade&gt; facadeFunc
+	)</pre></div></div></section><section class="parameters members"><h3>Parameters</h3><div class="entry row"><div class="col-sm"><code>facadeFunc</code>Func&lt;&gt;</div><div class="col-sm">the FuncDelegate of the IFacade</div></div></section><section class="return"><h3>Returns</h3><div class="item"><a href="4294967480.htm">IFacade</a></div><div class="returns">the Singleton instance of the Facade</div></section></div></main></div></div><script src="styles/site.js"></script></body></html>
