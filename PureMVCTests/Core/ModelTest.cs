@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -24,7 +24,7 @@ namespace PureMVC.Core
         public void TestGetInstance()
         {
             // Test Factory Method
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
 
             // test assertions
             Assert.IsNotNull(model, "Expecting instance not null");
@@ -46,10 +46,10 @@ namespace PureMVC.Core
         public void TestRegisterAndRetrieveProxy()
         {
             // register a proxy and retrieve it.
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
             model.RegisterProxy(new Proxy("colors", new string[3]{ "red", "green", "blue" }));
-            IProxy proxy = model.RetrieveProxy("colors");
-            string[] data = (string[])proxy.Data;
+            var proxy = model.RetrieveProxy("colors");
+            var data = (string[])proxy.Data;
 
             // test assertions
             Assert.IsNotNull(data, "Expecting data not null");
@@ -67,12 +67,12 @@ namespace PureMVC.Core
         public void TestRegisterAndRemoveProxy()
         {
             // register a proxy, remove it, then try to retrieve it
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
             model.RegisterProxy(new Proxy("sizes", new int[3]{ 7, 13, 21 }));
-            IProxy removedProxy = model.RemoveProxy("sizes");
+            var removedProxy = model.RemoveProxy("sizes");
 
             Assert.IsTrue(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
-            IProxy proxy = model.RetrieveProxy("sizes");
+            var proxy = model.RetrieveProxy("sizes");
 
             // test assertions
             Assert.IsNull(proxy, "Expecting proxy is null");
@@ -85,8 +85,8 @@ namespace PureMVC.Core
         public void TestHasProxy()
         {
             // register a proxy
-            IModel model = Model.GetInstance(() => new Model());
-            IProxy proxy = new Proxy("aces", new string[] { "clubs", "spades", "hearts", "diamonds" });
+            var model = Model.GetInstance(() => new Model());
+            var proxy = new Proxy("aces", new string[] { "clubs", "spades", "hearts", "diamonds" });
             model.RegisterProxy(proxy);
 
             // assert that the model.hasProxy method returns true
@@ -108,10 +108,10 @@ namespace PureMVC.Core
         public void TestOnRegisterAndOnRemove()
         {
             // Get the Singleton View instance
-            IModel model = Model.GetInstance(() => new Model());
+            var model = Model.GetInstance(() => new Model());
 
             // Create and register the test mediator
-            IProxy proxy = new ModelTestProxy();
+            var proxy = new ModelTestProxy();
             model.RegisterProxy(proxy);
 
             // assert that onRegsiter was called, and the proxy responded by setting its data accordingly

@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -24,7 +24,7 @@ namespace PureMVC.Patterns.Observer
         public void TestNameAccessors()
         {
             // // Create a new Notification and use accessors to set the note name 
-            INotification note = new Notification("TestNote");
+            var note = new Notification("TestNote");
 
             // test assertions
             Assert.IsTrue(note.Name == "TestNote", "Expecting note.Name == 'TestNote'");
@@ -37,7 +37,7 @@ namespace PureMVC.Patterns.Observer
         public void TestBodyAccessors()
         {
             // Create a new Notification and use accessors to set the body
-            INotification note = new Notification(null);
+            var note = new Notification(null);
             note.Body = 5;
 
             // test assertions
@@ -51,7 +51,7 @@ namespace PureMVC.Patterns.Observer
         public void TestConstructor()
         {
             // Create a new Notification using the Constructor to set the notification name and body
-            INotification note = new Notification("TestNote", 5, "TestNoteType");
+            var note = new Notification("TestNote", 5, "TestNoteType");
 
             // test assertions
             Assert.IsTrue(note.Name == "TestNote", "Expecting note.Name == 'TestNote'");
@@ -66,8 +66,8 @@ namespace PureMVC.Patterns.Observer
         public void TestToString()
         {
             // Create a new Notification and use accessors to set the notification name 
-            INotification note = new Notification("TestNote", "1,3,5", "TestType");
-            string ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+            var note = new Notification("TestNote", "1,3,5", "TestType");
+            const string ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
 
             // test assertions
             Assert.IsTrue(note.ToString() == ts, "Expecting note.TestToString() == '" + ts + "'");

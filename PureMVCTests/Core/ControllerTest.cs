@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -26,7 +26,7 @@ namespace PureMVC.Core
         public void TestGetInstance()
         {
             // Test Factory Method
-            IController controller = Controller.GetInstance(() => new Controller());
+            var controller = Controller.GetInstance(() => new Controller());
 
             // test assertions
             Assert.IsNotNull(controller, "Expecting instance not null");
@@ -54,12 +54,12 @@ namespace PureMVC.Core
         public void TestRegisterAndExecuteCommand()
         {
             // Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
-            IController controller = Controller.GetInstance(() => new Controller());
+            var controller = Controller.GetInstance(() => new Controller());
             controller.RegisterCommand("ControllerTest", () => new ControllerTestCommand() );
 
             // Create a 'ControllerTest' notification
             var vo = new ControllerTestVO(12);
-            INotification note = new Notification("ControllerTest", vo);
+            var note = new Notification("ControllerTest", vo);
 
             // Tell the controller to execute the Command associated with the notification
             // the ControllerTestCommand invoked will multiply the vo.input value
@@ -83,11 +83,11 @@ namespace PureMVC.Core
         public void TestRegisterAndRemoveCommand()
         {
             // Create the controller, register the ControllerTestCommand to handle 'ControllerTest' notes
-            IController controller = Controller.GetInstance(() => new Controller());
+            var controller = Controller.GetInstance(() => new Controller());
             controller.RegisterCommand("ControllerRemoveTest", () => new ControllerTestCommand());
 
             // Create a 'ControllerTest' note
-            ControllerTestVO vo = new ControllerTestVO(12);
+            var vo = new ControllerTestVO(12);
             INotification note = new Notification("ControllerRemoveTest", vo);
 
             // Tell the controller to execute the Command associated with the note
@@ -121,7 +121,7 @@ namespace PureMVC.Core
         public void TestHasCommand()
         {
             // register the ControllerTestCommand to handle 'hasCommandTest' notes
-            IController controller = Controller.GetInstance(() => new Controller());
+            var controller = Controller.GetInstance(() => new Controller());
             controller.RegisterCommand("HasCommandTest", () => new ControllerTestCommand());
 
             // test that hasCommand returns true for hasCommandTest notifications 
@@ -152,7 +152,7 @@ namespace PureMVC.Core
         public void TestReRegisterAndExecuteCommand()
         {
             // Fetch the controller, register the ControllerTestCommand2 to handle 'ControllerTest2' notes
-            IController controller = Controller.GetInstance(() => new Controller());
+            var controller = Controller.GetInstance(() => new Controller());
             controller.RegisterCommand("ControllerTest2", () => new ControllerTestCommand2());
 
             // Remove the Command from the Controller
@@ -162,11 +162,11 @@ namespace PureMVC.Core
             controller.RegisterCommand("ControllerTest2", () => new ControllerTestCommand2());
 
             // Create a 'ControllerTest2' note
-            ControllerTestVO vo = new ControllerTestVO(12);
-            INotification note = new Notification("ControllerTest2", vo);
+            var vo = new ControllerTestVO(12);
+            var note = new Notification("ControllerTest2", vo);
 
             // retrieve a reference to the View from the same core.
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // send the Notification
             view.NotifyObservers(note);

@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -39,13 +39,13 @@ namespace PureMVC.Patterns.Command
         public void TestExecute()
         {
             // Create the VO
-            SimpleCommandTestVO vo = new SimpleCommandTestVO(5);
+            var vo = new SimpleCommandTestVO(5);
 
             // Create the Notification (notification)
-            INotification note = new Notification("SimpleCommandTestNote", vo);
+            var note = new Notification("SimpleCommandTestNote", vo);
 
             // Create the SimpleCommand  
-            ICommand command = new SimpleCommandTestCommand();
+            var command = new SimpleCommandTestCommand();
 
             // Execute the SimpleCommand
             command.Execute(note);

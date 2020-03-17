@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -25,7 +25,7 @@ namespace PureMVC.Patterns.Mediator
         public void TestNameAccessor()
         {
             // Create a new Mediator and use accessors to set the medi ator name 
-            IMediator mediator = new Mediator("TestMediator");
+            var mediator = new Mediator("TestMediator");
 
             // test assertions
             Assert.IsTrue(mediator.MediatorName == "TestMediator", "Expecting mediator.MediatorName == 'TestMediator'");
@@ -41,7 +41,7 @@ namespace PureMVC.Patterns.Mediator
             var view = new object();
 
             // Create a new Mediator and use accessors to set the mediator name 
-            IMediator mediator = new Mediator("TestMediator", view);
+            var mediator = new Mediator("TestMediator", view);
 
             // test assertions
             Assert.IsNotNull(mediator.ViewComponent, "Expecting mediator.ViewComponent not null");

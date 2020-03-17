@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -17,7 +17,7 @@ namespace PureMVC.Core
     public class ViewTestMediator3 : Mediator
     {
         // The Mediator name
-        public static new string NAME = "ViewTestMediator3";
+        public new const string NAME = "ViewTestMediator3";
 
         // Constructor
         public ViewTestMediator3(object viewComponent) : base(NAME, viewComponent)

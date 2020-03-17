@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -14,7 +14,7 @@ namespace PureMVC.Patterns.Mediator
     /// A base <c>IMediator</c> implementation. 
     /// </summary>
     /// <seealso cref="PureMVC.Core.View"/>
-    public class Mediator : Notifier, IMediator, INotifier
+    public class Mediator : Notifier, IMediator
     {
         /// <summary>
         /// The name of the <c>Mediator</c>. 
@@ -35,7 +35,7 @@ namespace PureMVC.Patterns.Mediator
         /// <param name="viewComponent"></param>
         public Mediator(string mediatorName, object viewComponent = null)
         {
-            MediatorName = mediatorName ?? Mediator.NAME;
+            MediatorName = mediatorName ?? NAME;
             ViewComponent = viewComponent;
         }
 

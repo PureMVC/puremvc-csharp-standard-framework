@@ -20,11 +20,11 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [HoloLens](https://en.wikipedia.org/wiki/Microsoft_HoloLens)
 
 ## Status
-Production - [Version 4.1](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
+Production - [Version 4.2](https://github.com/PureMVC/puremvc-csharp-standard-framework/blob/master/VERSION)
 
 ## License
-* PureMVC Standard Framework for C# - Copyright © 2017 [Saad Shams](https://www.linkedin.com/in/muizz)
-* PureMVC - Copyright © 2017 [Futurescale, Inc](http://futurescale.com) 
+* PureMVC Standard Framework for C# - Copyright © 2020 [Saad Shams](https://www.linkedin.com/in/muizz)
+* PureMVC - Copyright © 2020 [Futurescale, Inc](http://futurescale.com) 
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

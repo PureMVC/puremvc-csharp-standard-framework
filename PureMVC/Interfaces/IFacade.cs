@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -41,7 +41,7 @@ namespace PureMVC.Interfaces
         /// Retrieve a <c>IProxy</c> from the <c>Model</c> by name.
         /// </summary>
         /// <param name="proxyName">the name of the <c>IProxy</c> instance to be retrieved.</param>
-        /// <returns>the <c>IProxy</c> previously regisetered by <c>proxyName</c> with the <c>Model</c>.</returns>
+        /// <returns>the <c>IProxy</c> previously registered by <c>proxyName</c> with the <c>Model</c>.</returns>
         IProxy RetrieveProxy(string proxyName);
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace PureMVC.Interfaces
         /// Register an <c>ICommand</c> with the <c>Controller</c>.
         /// </summary>
         /// <param name="notificationName">the name of the <c>INotification</c> to associate the <c>ICommand</c> with.</param>
-        /// <param name="commandFunc">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c></param>
-        void RegisterCommand(string notificationName, Func<ICommand> commandFunc);
+        /// <param name="factory">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c></param>
+        void RegisterCommand(string notificationName, Func<ICommand> factory);
 
         /// <summary>
         /// Remove a previously registered <c>ICommand</c> to <c>INotification</c> mapping from the Controller.

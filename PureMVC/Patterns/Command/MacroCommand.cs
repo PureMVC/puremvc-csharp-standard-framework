@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -38,7 +38,7 @@ namespace PureMVC.Patterns.Command
     /// <seealso cref="PureMVC.Core.Controller"/>
     /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
     /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
-    public class MacroCommand : Notifier, ICommand, INotifier
+    public class MacroCommand : Notifier, ICommand
     {
         /// <summary>
         /// Constructor.
@@ -98,10 +98,10 @@ namespace PureMVC.Patterns.Command
         ///         order.
         ///     </para>
         /// </remarks>
-        /// <param name="commandFunc">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c>.</param>
-        protected void AddSubCommand(Func<ICommand> commandFunc)
+        /// <param name="factory">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c>.</param>
+        protected void AddSubCommand(Func<ICommand> factory)
         {
-            subcommands.Add(commandFunc);
+            subcommands.Add(factory);
         }
 
         /// <summary>
@@ -118,14 +118,14 @@ namespace PureMVC.Patterns.Command
         {
             while(subcommands.Count > 0)
             {
-                Func<ICommand> commandFunc = subcommands[0];
-                ICommand commandInstance = commandFunc();
+                var factory = subcommands[0];
+                var commandInstance = factory();
                 commandInstance.Execute(notification);
                 subcommands.RemoveAt(0);
             }
         }
 
         /// <summary>List of subcommands</summary>
-        public IList<Func<ICommand>> subcommands;
+        public readonly IList<Func<ICommand>> subcommands;
     }
 }

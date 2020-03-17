@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -26,16 +26,16 @@ namespace PureMVC.Patterns.Proxy
     ///     <para>
     ///         <c>Proxy</c> classes are also used to encapsulate the application's 
     ///         interaction with remote services to save or retrieve data, in which case,
-    ///         we adopt an asyncronous idiom; setting data (or calling a method) on the 
+    ///         we adopt an asynchronous idiom; setting data (or calling a method) on the 
     ///         <c>Proxy</c> and listening for a <c>Notification</c> to be sent 
     ///         when the <c>Proxy</c> has retrieved the data from the service.
     ///     </para>
     /// </remarks>
     /// <seealso cref="PureMVC.Core.Model"/>
-    public class Proxy: Notifier, IProxy, INotifier
+    public class Proxy: Notifier, IProxy
     {
         /// <summary> Name of the proxy</summary>
-        public static string NAME = "Proxy";
+        public const string NAME = "Proxy";
 
         /// <summary>
         /// Constructor.
@@ -44,7 +44,7 @@ namespace PureMVC.Patterns.Proxy
         /// <param name="data"></param>
         public Proxy(string proxyName, object data = null)
         {
-            ProxyName = proxyName ?? Proxy.NAME;
+            ProxyName = proxyName ?? NAME;
             if (data != null) Data = data;
         }
 

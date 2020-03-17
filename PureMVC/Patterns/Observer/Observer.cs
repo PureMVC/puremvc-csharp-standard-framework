@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -53,10 +53,10 @@ namespace PureMVC.Patterns.Observer
         /// <summary>
         /// Notify the interested object.
         /// </summary>
-        /// <param name="Notification">the <c>INotification</c> to pass to the interested object's notification method.</param>
-        public virtual void NotifyObserver(INotification Notification)
+        /// <param name="notification">the <c>INotification</c> to pass to the interested object's notification method.</param>
+        public virtual void NotifyObserver(INotification notification)
         {
-            NotifyMethod(Notification);
+            NotifyMethod(notification);
         }
 
         /// <summary>

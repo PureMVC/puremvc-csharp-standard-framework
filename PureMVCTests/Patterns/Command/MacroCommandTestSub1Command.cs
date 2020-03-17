@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -23,7 +23,7 @@ namespace PureMVC.Patterns.Command
         /// <param name="note">notification the <c>INotification</c> carrying the <c>MacroCommandTestVO</c></param>
         public override void Execute(INotification note)
         {
-            MacroCommandTestVO vo = (MacroCommandTestVO)note.Body;
+            var vo = (MacroCommandTestVO)note.Body;
 
             // Fabricate a result
             vo.Result1 = 2 * vo.Input;

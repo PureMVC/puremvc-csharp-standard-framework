@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -58,7 +58,7 @@ namespace PureMVC.Core
         /// <exception cref="System.Exception">Thrown if Singleton instance has already been constructed</exception>
         public Controller()
         {
-            if (instance != null) throw new Exception(Singleton_MSG);
+            if (instance != null) throw new Exception(SingletonMsg);
             instance = this;
             commandMap = new ConcurrentDictionary<string, Func<ICommand>>();
             InitializeController();
@@ -92,13 +92,13 @@ namespace PureMVC.Core
         /// <summary>
         /// <c>Controller</c> Singleton Factory method.
         /// </summary>
-        /// <param name="controllerFunc">the <c>FuncDelegate</c> of the <c>IController</c></param>
+        /// <param name="factory">the <c>FuncDelegate</c> of the <c>IController</c></param>
         /// <returns>the Singleton instance of <c>Controller</c></returns>
-        public static IController GetInstance(Func<IController> controllerFunc)
+        public static IController GetInstance(Func<IController> factory)
         {
             if (instance == null)
             {
-                instance = controllerFunc();
+                instance = factory();
             }
             return instance;
         }
@@ -110,9 +110,9 @@ namespace PureMVC.Core
         /// <param name="notification">note an <c>INotification</c></param>
         public virtual void ExecuteCommand(INotification notification)
         {
-            if (commandMap.TryGetValue(notification.Name, out Func<ICommand> commandFunc))
+            if (commandMap.TryGetValue(notification.Name, out var factory))
             {
-                ICommand commandInstance = commandFunc();
+                var commandInstance = factory();
                 commandInstance.Execute(notification);
             }
         }
@@ -129,18 +129,18 @@ namespace PureMVC.Core
         ///     </para>
         ///     <para>
         ///         The Observer for the new ICommand is only created if this the
-        ///         first time an ICommand has been regisered for this Notification name.
+        ///         first time an ICommand has been registered for this Notification name.
         ///     </para>
         /// </remarks>
         /// <param name="notificationName">the name of the <c>INotification</c></param>
-        /// <param name="commandFunc">the <c>Func Delegate</c> of the <c>ICommand</c></param>
-        public virtual void RegisterCommand(string notificationName, Func<ICommand> commandFunc)
+        /// <param name="factory">the <c>Func Delegate</c> of the <c>ICommand</c></param>
+        public virtual void RegisterCommand(string notificationName, Func<ICommand> factory)
         {
-            if (commandMap.TryGetValue(notificationName, out Func<ICommand> _) == false)
+            if (commandMap.TryGetValue(notificationName, out _) == false)
             {
                 view.RegisterObserver(notificationName, new Observer(ExecuteCommand, this));
             }
-            commandMap[notificationName] = commandFunc;
+            commandMap[notificationName] = factory;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace PureMVC.Core
         /// <param name="notificationName">the name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
         public virtual void RemoveCommand(string notificationName)
         {
-            if (commandMap.TryRemove(notificationName, out Func<ICommand> _))
+            if (commandMap.TryRemove(notificationName, out _))
             {
                 view.RemoveObserver(notificationName, this);
             }
@@ -175,6 +175,6 @@ namespace PureMVC.Core
         protected static IController instance;
 
         /// <summary>Message Constants</summary>
-        protected const string Singleton_MSG = "Controller Singleton already constructed!";
+        protected const string SingletonMsg = "Controller Singleton already constructed!";
     }
 }

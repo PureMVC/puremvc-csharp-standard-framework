@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -22,7 +22,7 @@ namespace PureMVC.Patterns.Command
         /// <param name="note">event the <c>INotification</c> carrying the <c>SimpleCommandTestVO</c></param>
         public override void Execute(INotification note)
         {
-            SimpleCommandTestVO vo = (SimpleCommandTestVO)note.Body;
+            var vo = (SimpleCommandTestVO)note.Body;
 
             // Fabricate a result
             vo.Result = 2 * vo.Input;

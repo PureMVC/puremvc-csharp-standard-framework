@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -43,8 +43,8 @@ namespace PureMVC.Interfaces
         ///  for a particular <c>INotification</c>.
         /// </summary>
         /// <param name="notificationName">the name of the <c>INotification</c></param>
-        /// <param name="commandFunc">the FuncDelegate of the <c>ICommand</c></param>
-        void RegisterCommand(string notificationName, Func<ICommand> commandFunc);
+        /// <param name="factory">the FuncDelegate of the <c>ICommand</c></param>
+        void RegisterCommand(string notificationName, Func<ICommand> factory);
 
         /// <summary>
         /// Execute the <c>ICommand</c> previously registered as the

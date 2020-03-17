@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -16,7 +16,7 @@ namespace PureMVC.Interfaces
         /// <summary>
         /// Execute the <c>ICommand</c>'s logic to handle a given <c>INotification</c>.
         /// </summary>
-        /// <param name="Notification">an <c>INotification</c> to handle.</param>
-        void Execute(INotification Notification);
+        /// <param name="notification">an <c>INotification</c> to handle.</param>
+        void Execute(INotification notification);
     }
 }

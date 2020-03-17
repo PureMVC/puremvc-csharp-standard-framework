@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -22,7 +22,7 @@ namespace PureMVC.Patterns.Command
     /// <seealso cref="PureMVC.Core.Controller"/>
     /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
     /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
-    public class SimpleCommand : Notifier, ICommand, INotifier
+    public class SimpleCommand : Notifier, ICommand
     {
         /// <summary>
         /// Fulfill the use-case initiated by the given <c>INotification</c>.

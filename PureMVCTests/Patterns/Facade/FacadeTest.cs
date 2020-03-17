@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -25,7 +25,7 @@ namespace PureMVC.Patterns.Facade
         public void TestGetInstance()
         {
             // Test Factory Method
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
 
             // test assertions
             Assert.IsTrue(facade != null, "Expecting instance not null");
@@ -53,13 +53,13 @@ namespace PureMVC.Patterns.Facade
         {
             // Create the Facade, register the FacadeTestCommand to 
             // handle 'FacadeTest' notifications
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterCommand("FacadeTestNote", () => new FacadeTestCommand());
 
             // Send notification. The Command associated with the event
             // (FacadeTestCommand) will be invoked, and will multiply 
             // the vo.input value by 2 and set the result on vo.result
-            FacadeTestVO vo = new FacadeTestVO(32);
+            var vo = new FacadeTestVO(32);
             facade.SendNotification("FacadeTestNote", vo);
 
             // test assertions
@@ -87,14 +87,14 @@ namespace PureMVC.Patterns.Facade
         {
             // Create the Facade, register the FacadeTestCommand to 
             // handle 'FacadeTest' events
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterCommand("FacadeTestNote", () => new FacadeTestCommand());
             facade.RemoveCommand("FacadeTestNote");
 
             // Send notification. The Command associated with the event
             // (FacadeTestCommand) will NOT be invoked, and will NOT multiply 
             // the vo.input value by 2 
-            FacadeTestVO vo = new FacadeTestVO(32);
+            var vo = new FacadeTestVO(32);
             facade.SendNotification("FacadeTestNote", vo);
 
             // test assertions 
@@ -116,15 +116,15 @@ namespace PureMVC.Patterns.Facade
         public void TestRegisterAndRetrieveProxy()
         {
             // register a proxy and retrieve it.
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterProxy(new Proxy.Proxy("colors", new string[3] { "red", "green", "blue" }));
-            IProxy proxy = facade.RetrieveProxy("colors");
+            var proxy = facade.RetrieveProxy("colors");
 
             // test assertions
             Assert.IsTrue(proxy is IProxy, "Expecting proxy is IProxy");
 
             // retrieve data from proxy
-            string[] data = (string[])proxy.Data;
+            var data = (string[])proxy.Data;
 
             // test assertions
             Assert.IsNotNull(data, "Expecting data not null");
@@ -141,12 +141,12 @@ namespace PureMVC.Patterns.Facade
         public void TestRegisterAndRemoveProxy()
         {
             // register a proxy, remove it, then try to retrieve it
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             IProxy proxy = new Proxy.Proxy("sizes", new string[3] { "7", "13", "21" });
             facade.RegisterProxy(proxy);
 
             // remove the proxy
-            IProxy removedProxy = facade.RemoveProxy("sizes");
+            var removedProxy = facade.RemoveProxy("sizes");
 
             // assert that we removed the appropriate proxy
             Assert.IsTrue(removedProxy.ProxyName == "sizes", "Expecting removedProxy.ProxyName == 'sizes'");
@@ -165,14 +165,14 @@ namespace PureMVC.Patterns.Facade
         public void TestRegisterRetrieveAndRemoveMediator()
         {
             // register a mediator, remove it, then try to retrieve it
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterMediator(new Mediator.Mediator(Mediator.Mediator.NAME, new object()));
 
             // retrieve the mediator
             Assert.IsNotNull(facade.RetrieveMediator(Mediator.Mediator.NAME));
 
             // remove the mediator
-            IMediator removedMediator = facade.RemoveMediator(Mediator.Mediator.NAME);
+            var removedMediator = facade.RemoveMediator(Mediator.Mediator.NAME);
 
             // assert that we have removed the appropriate mediator
             Assert.IsTrue(removedMediator.MediatorName == Mediator.Mediator.NAME, "Expecting removedMediator.MediatorName == Mediator.NAME");
@@ -185,7 +185,7 @@ namespace PureMVC.Patterns.Facade
         public void TestHasProxy()
         {
             // register a Proxy
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterProxy(new Proxy.Proxy("hasProxyTest", new int[] { 1, 2, 3 }));
 
             // assert that the model.hasProxy method returns true
@@ -200,7 +200,7 @@ namespace PureMVC.Patterns.Facade
         public void TestHasMediator()
         {
             // register a Mediator
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterMediator(new Mediator.Mediator("facadeHasMediatorTest", new object()));
 
             // assert that the facade.hasMediator method returns true
@@ -221,7 +221,7 @@ namespace PureMVC.Patterns.Facade
         public void TestHasCommand()
         {
             // register the ControllerTestCommand to handle 'hasCommandTest' notes
-            IFacade facade = Facade.GetInstance(() => new Facade());
+            var facade = Facade.GetInstance(() => new Facade());
             facade.RegisterCommand("facadeHasCommandTest", () => new FacadeTestCommand());
 
             // test that hasCommand returns true for hasCommandTest notifications 

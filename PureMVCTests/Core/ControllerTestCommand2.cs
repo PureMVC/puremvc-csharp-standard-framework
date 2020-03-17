@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -26,7 +26,7 @@ namespace PureMVC.Core
         /// <param name="notification">the note carrying the ControllerTestVO</param>
         public override void Execute(INotification notification)
         {
-            ControllerTestVO vo = (ControllerTestVO)notification.Body;
+            var vo = (ControllerTestVO) notification.Body;
 
             // Fabricate a result
             vo.result = vo.result + (2 * vo.input);

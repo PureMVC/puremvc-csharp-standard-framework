@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -46,7 +46,7 @@ namespace PureMVC.Core
         /// <exception cref="System.Exception">Thrown if Singleton instance has already been constructed</exception>
         public View()
         {
-            if (instance != null) throw new Exception(Singleton_MSG);
+            if (instance != null) throw new Exception(SingletonMsg);
             instance = this;
             mediatorMap = new ConcurrentDictionary<string, IMediator>();
             observerMap = new ConcurrentDictionary<string, IList<IObserver>>();
@@ -71,13 +71,13 @@ namespace PureMVC.Core
         /// <summary>
         /// <c>View</c> Singleton Factory method. 
         /// </summary>
-        /// <param name="viewFunc">the <c>FuncDelegate</c> of the <c>IView</c></param>
+        /// <param name="factory">the <c>FuncDelegate</c> of the <c>IView</c></param>
         /// <returns>the instance for this Singleton key </returns>
-        public static IView GetInstance(Func<IView> viewFunc)
+        public static IView GetInstance(Func<IView> factory)
         {
             if (instance == null)
             {
-                instance = viewFunc();
+                instance = factory();
             }
             return instance;
         }
@@ -90,7 +90,7 @@ namespace PureMVC.Core
         /// <param name="observer">the <c>IObserver</c> to register</param>
         public virtual void RegisterObserver(string notificationName, IObserver observer)
         {
-            if (observerMap.TryGetValue(notificationName, out IList<IObserver> observers))
+            if (observerMap.TryGetValue(notificationName, out var observers))
             {
                 observers.Add(observer);
             }
@@ -114,14 +114,14 @@ namespace PureMVC.Core
         public virtual void NotifyObservers(INotification notification)
         {
             // Get a reference to the observers list for this notification name
-            if (observerMap.TryGetValue(notification.Name, out IList<IObserver> observers_ref))
+            if (observerMap.TryGetValue(notification.Name, out var observersRef))
             {
                 // Copy observers from reference array to working array, 
                 // since the reference array may change during the notification loop
-                var observers = new List<IObserver>(observers_ref);
+                var observers = new List<IObserver>(observersRef);
 
                 // Notify Observers from the working array
-                foreach (IObserver observer in observers)
+                foreach (var observer in observers)
                 {
                     observer.NotifyObserver(notification);
                 }
@@ -136,10 +136,10 @@ namespace PureMVC.Core
         public virtual void RemoveObserver(string notificationName, object notifyContext)
         {
             // the observer list for the notification under inspection
-            if (observerMap.TryGetValue(notificationName, out IList<IObserver> observers))
+            if (observerMap.TryGetValue(notificationName, out var observers))
             {
                 // find the observer for the notifyContext
-                for (int i = 0; i < observers.Count; i++)
+                for (var i = 0; i < observers.Count; i++)
                 {
                     if (observers[i].CompareNotifyContext(notifyContext))
                     {
@@ -153,7 +153,7 @@ namespace PureMVC.Core
                 // Also, when a Notification's Observer list length falls to
                 // zero, delete the notification key from the observer map
                 if (observers.Count == 0)
-                    observerMap.TryRemove(notificationName, out IList<IObserver> _);
+                    observerMap.TryRemove(notificationName, out _);
             }
         }
 
@@ -182,18 +182,18 @@ namespace PureMVC.Core
             if(mediatorMap.TryAdd(mediator.MediatorName, mediator))
             {
                 // Get Notification interests, if any.
-                string[] interests = mediator.ListNotificationInterests();
+                var interests = mediator.ListNotificationInterests();
 
                 // Register Mediator as an observer for each notification of interests
                 if (interests.Length > 0)
                 {
-                    // Create Observer referencing this mediator's handlNotification method
+                    // Create Observer referencing this mediator's handleNotification method
                     IObserver observer = new Observer(mediator.HandleNotification, mediator);
 
                     // Register Mediator as Observer for its list of Notification interests
-                    for (int i = 0; i < interests.Length; i++)
+                    foreach (var interest in interests)
                     {
-                        RegisterObserver(interests[i], observer);
+                        RegisterObserver(interest, observer);
                     }
                 }
                 // alert the mediator that it has been registered
@@ -208,7 +208,7 @@ namespace PureMVC.Core
         /// <returns>the <c>IMediator</c> instance previously registered with the given <c>mediatorName</c>.</returns>
         public virtual IMediator RetrieveMediator(string mediatorName)
         {
-            return mediatorMap.TryGetValue(mediatorName, out IMediator mediator) ? mediator : null;
+            return mediatorMap.TryGetValue(mediatorName, out var mediator) ? mediator : null;
         }
 
         /// <summary>
@@ -219,15 +219,15 @@ namespace PureMVC.Core
         public virtual IMediator RemoveMediator(string mediatorName)
         {
             // Retrieve the named mediator
-            if (mediatorMap.TryRemove(mediatorName, out IMediator mediator))
+            if (mediatorMap.TryRemove(mediatorName, out var mediator))
             {
                 // for every notification this mediator is interested in...
-                string[] interests = mediator.ListNotificationInterests();
-                for (int i = 0; i < interests.Length; i++)
+                var interests = mediator.ListNotificationInterests();
+                foreach (var interest in interests)
                 {
                     // remove the observer linking the mediator 
-					// to the notification interest
-                    RemoveObserver(interests[i], mediator);
+                    // to the notification interest
+                    RemoveObserver(interest, mediator);
                 }
 
                 // remove the mediator from the map
@@ -256,6 +256,6 @@ namespace PureMVC.Core
         protected static IView instance;
 
         /// <summary>Message Constants</summary>
-        protected const string Singleton_MSG = "View Singleton already constructed!";
+        protected const string SingletonMsg = "View Singleton already constructed!";
     }
 }

@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -36,7 +36,7 @@ namespace PureMVC.Core
         public void TestGetInstance()
         {
             // Test Factory Method
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // test assertions
             Assert.IsNotNull(view, "Expecting instance not null");
@@ -69,10 +69,10 @@ namespace PureMVC.Core
         public void TestRegisterAndNotifyObserver()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create observer, passing in notification method and context
-            IObserver observer = new Observer(ViewTestMethod, this);
+            var observer = new Observer(ViewTestMethod, this);
 
             // Register Observer's interest in a particulat Notification with the View 
             view.RegisterObserver(ViewTestNote.NAME, observer);
@@ -84,7 +84,7 @@ namespace PureMVC.Core
             // successful notification will result in our local 
             // viewTestVar being set to the value we pass in 
             // on the note body.
-            INotification note = ViewTestNote.Create(10);
+            var note = ViewTestNote.Create(10);
             view.NotifyObservers(note);
 
             // test assertions  
@@ -110,14 +110,14 @@ namespace PureMVC.Core
         public void TestRegisterAndRetrieveMediator()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator
-            IMediator viewTestMediator = new ViewTestMediator(this);
+            var viewTestMediator = new ViewTestMediator(this);
             view.RegisterMediator(viewTestMediator);
 
             // Retrieve the component
-            IMediator mediator = view.RetrieveMediator(ViewTestMediator.NAME);
+            var mediator = view.RetrieveMediator(ViewTestMediator.NAME);
 
             //  assertions  
             Assert.IsTrue(mediator is ViewTestMediator, "Expecting comp is ViewTestMediator");
@@ -130,7 +130,7 @@ namespace PureMVC.Core
         public void TestHasMediator()
         {
             // // register a Mediator
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator
             IMediator mediator = new Mediator("HasMediatorTest", this);
@@ -154,14 +154,14 @@ namespace PureMVC.Core
         public void TestRegisterAndRemoveMediator()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator
-            IMediator mediator = new Mediator("testing", this);
+            var mediator = new Mediator("testing", this);
             view.RegisterMediator(mediator);
 
             // Remove the component
-            IMediator removedMediator = view.RemoveMediator("testing");
+            var removedMediator = view.RemoveMediator("testing");
 
             // assert that we have removed the appropriate mediator
             Assert.IsTrue(removedMediator.MediatorName == "testing", "Expecting removedMediator.MediatorName == 'testing'");
@@ -177,10 +177,10 @@ namespace PureMVC.Core
         public void TestOnRegisterAndOnRemove()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator
-            IMediator mediator = new ViewTestMediator4(this);
+            var mediator = new ViewTestMediator4(this);
             view.RegisterMediator(mediator);
 
             // assert that onRegsiter was called, and the mediator responded by setting our boolean
@@ -200,7 +200,7 @@ namespace PureMVC.Core
         public void TestSuccessiveRegisterAndRemoveMediator()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator, 
             // but not so we have a reference to it
@@ -239,7 +239,7 @@ namespace PureMVC.Core
         public void TestRemoveMediatorAndSubsequentNotify()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register the test mediator to be removed.
             view.RegisterMediator(new ViewTestMediator2(this));
@@ -277,7 +277,7 @@ namespace PureMVC.Core
         public void TestRemoveOneOfTwoMediatorsAndSubsequentNotify()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register that responds to notifications 1 and 2
             view.RegisterMediator(new ViewTestMediator2(this));
@@ -327,7 +327,7 @@ namespace PureMVC.Core
         public void TestMediatorRegistration()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register that responds to notification 5
             view.RegisterMediator(new ViewTestMediator5(this));
@@ -364,7 +364,7 @@ namespace PureMVC.Core
         public void TestModifyObserverListDuringNotification()
         {
             // Get the Singleton View instance
-            IView view = View.GetInstance(() => new View());
+            var view = View.GetInstance(() => new View());
 
             // Create and register several mediator instances that respond to notification 6 
             // by removing themselves, which will cause the observer list for that notification 

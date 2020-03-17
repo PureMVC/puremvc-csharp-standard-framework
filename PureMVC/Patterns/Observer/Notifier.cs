@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -25,7 +25,7 @@ namespace PureMVC.Patterns.Observer
     ///     <para>
     ///         The <c>Notifier</c> class, which all of the above mentioned classes
     ///         extend, provides an initialized reference to the <c>Facade</c>
-    ///         Singleton, which is required for the convienience method
+    ///         Singleton, which is required for the convenience method
     ///         for sending <c>Notifications</c>, but also eases implementation as these
     ///         classes have frequent <c>Facade</c> interactions and usually require
     ///         access to the facade anyway.
@@ -47,7 +47,7 @@ namespace PureMVC.Patterns.Observer
         ///         instances in our implementation code.
         ///     </para>
         /// </remarks>
-        /// <param name="notificationName">the name of the notiification to send</param>
+        /// <param name="notificationName">the name of the notification to send</param>
         /// <param name="body">the body of the notification (optional)</param>
         /// <param name="type">the type of the notification (optional)</param>
         public virtual void SendNotification(string notificationName, object body = null, string type = null)

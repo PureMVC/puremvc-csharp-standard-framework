@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -37,7 +37,7 @@ namespace PureMVC.Patterns.Observer
         {
             // Create observer with null args, then
             // use accessors to set notification method and context
-            Observer observer = new Observer(null, null);
+            var observer = new Observer(null, null);
             observer.NotifyContext = this;
             observer.NotifyMethod = ObserverTestMethod;
 
@@ -47,7 +47,7 @@ namespace PureMVC.Patterns.Observer
             // successful notification will result in our local 
             // observerTestVar being set to the value we pass in 
             // on the note body.
-            Notification note = new Notification("ObserverTestNote", 10);
+            var note = new Notification("ObserverTestNote", 10);
             observer.NotifyObserver(note);
 
             // test assertions  
@@ -61,7 +61,7 @@ namespace PureMVC.Patterns.Observer
         public void TestObserverConstructor()
         {
             // Create observer passing in notification method and context
-            IObserver observer = new Observer(ObserverTestMethod, this);
+            var observer = new Observer(ObserverTestMethod, this);
 
             // create a test notification, setting a body value and notify 
             // the observer with it. since the observer is this class 
@@ -69,7 +69,7 @@ namespace PureMVC.Patterns.Observer
             // successful notification will result in our local 
             // observerTestVar being set to the value we pass in 
             // on the notification body.
-            INotification note = new Notification("ObserverTestNote", 5);
+            var note = new Notification("ObserverTestNote", 5);
             observer.NotifyObserver(note);
 
             // test assertions  			
@@ -83,7 +83,7 @@ namespace PureMVC.Patterns.Observer
         public void TestCompareNotifyContext()
         {
             // Create observer passing in notification method and context
-            IObserver observer = new Observer(ObserverTestMethod, this);
+            var observer = new Observer(ObserverTestMethod, this);
 
             var negTestObj = new object();
 
@@ -105,7 +105,7 @@ namespace PureMVC.Patterns.Observer
         /// observerTestVar value
         /// </summary>
         /// <param name="note">notification</param>
-        public void ObserverTestMethod(INotification note)
+        private void ObserverTestMethod(INotification note)
         {
             ObserverTestVar = (int)note.Body;
         }

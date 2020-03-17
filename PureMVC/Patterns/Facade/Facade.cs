@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -47,7 +47,7 @@ namespace PureMVC.Patterns.Facade
         /// <exception cref="System.Exception">Thrown if instance for this Singleton key has already been constructed</exception>
         public Facade()
         {
-            if (instance != null) throw new Exception(Singleton_MSG);
+            if (instance != null) throw new Exception(SingletonMsg);
             instance = this;
             InitializeFacade();
         }
@@ -163,10 +163,10 @@ namespace PureMVC.Patterns.Facade
         /// Register an <c>ICommand</c> with the <c>Controller</c> by Notification name.
         /// </summary>
         /// <param name="notificationName">the name of the <c>INotification</c> to associate the <c>ICommand</c> with</param>
-        /// <param name="commandFunc">a reference to the Class of the <c>ICommand</c></param>
-        public virtual void RegisterCommand(string notificationName, Func<ICommand> commandFunc)
+        /// <param name="factory">a reference to the Class of the <c>ICommand</c></param>
+        public virtual void RegisterCommand(string notificationName, Func<ICommand> factory)
         {
-            controller.RegisterCommand(notificationName, commandFunc);
+            controller.RegisterCommand(notificationName, factory);
         }
 
         /// <summary>
@@ -315,6 +315,6 @@ namespace PureMVC.Patterns.Facade
         protected static IFacade instance;
 
         /// <summary>Message Constants</summary>
-        protected const string Singleton_MSG = "Facade Singleton already constructed!";
+        protected const string SingletonMsg = "Facade Singleton already constructed!";
     }
 }

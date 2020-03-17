@@ -1,12 +1,14 @@
 PureMVC Standard Framework for C#
 --------------------------------------------------------------------------
-Release Date: 03/22/19
+Release Date: 03/17/20
     Platform: C# 
      Version: 4
-    Revision: 1
+    Revision: 2
        Minor: 0
       Author: Saad Shams <saad.shams@puremvc.org>
 --------------------------------------------------------------------------
+4.2 - Refactor
+
 4.1 - Nuget Integration
 
 4.0 - Brand new implementation of ported code, equivalent to AS3 Standard Version 2.0.4.

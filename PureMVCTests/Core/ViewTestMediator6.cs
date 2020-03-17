@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -17,7 +17,7 @@ namespace PureMVC.Core
     public class ViewTestMediator6 : Mediator
     {
         // The Mediator base name
-        public static new string NAME = "ViewTestMediator6";
+        public new const string NAME = "ViewTestMediator6";
 
         // Constructor
         public ViewTestMediator6(string name, object view): base(name, view)
@@ -27,7 +27,7 @@ namespace PureMVC.Core
     
         public override string[] ListNotificationInterests()
         {
-            return new string[1] { ViewTest.NOTE6 };
+            return new [] { ViewTest.NOTE6 };
         }
         public override void HandleNotification(INotification notification)
         {

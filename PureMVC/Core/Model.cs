@@ -1,7 +1,7 @@
 ﻿//
 //  PureMVC C# Standard
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
@@ -46,7 +46,7 @@ namespace PureMVC.Core
         /// <exception cref="System.Exception">Thrown if instance for this Singleton key has already been constructed</exception>
         public Model()
         {
-            if (instance != null) throw new Exception(Singleton_MSG);
+            if (instance != null) throw new Exception(SingletonMsg);
             instance = this;
             proxyMap = new ConcurrentDictionary<string, IProxy>();
             InitializeModel();
@@ -70,13 +70,13 @@ namespace PureMVC.Core
         /// <summary>
         /// <c>Model</c> Singleton Factory method. 
         /// </summary>
-        /// <param name="modelFunc">the <c>FuncDelegate</c> of the <c>IModel</c></param>
+        /// <param name="factory">the <c>FuncDelegate</c> of the <c>IModel</c></param>
         /// <returns>the instance for this Singleton key </returns>
-        public static IModel GetInstance(Func<IModel> modelFunc)
+        public static IModel GetInstance(Func<IModel> factory)
         {
             if (instance == null)
             {
-                instance = modelFunc();
+                instance = factory();
             }
             return instance;
         }
@@ -98,7 +98,7 @@ namespace PureMVC.Core
         /// <returns>the <c>IProxy</c> instance previously registered with the given <c>proxyName</c>.</returns>
         public virtual IProxy RetrieveProxy(string proxyName)
         {
-            return proxyMap.TryGetValue(proxyName, out IProxy proxy) ? proxy : null;
+            return proxyMap.TryGetValue(proxyName, out var proxy) ? proxy : null;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace PureMVC.Core
         /// <returns>the <c>IProxy</c> that was removed from the <c>Model</c></returns>
         public virtual IProxy RemoveProxy(string proxyName)
         {
-            if (proxyMap.TryRemove(proxyName, out IProxy proxy))
+            if (proxyMap.TryRemove(proxyName, out var proxy))
             {
                 proxy.OnRemove();
             }
@@ -132,6 +132,6 @@ namespace PureMVC.Core
         protected static IModel instance;
 
         /// <summary>Message Constants</summary>
-        protected const string Singleton_MSG = "Model Singleton already constructed!";
+        protected const string SingletonMsg = "Model Singleton already constructed!";
     }
 }
