@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <PackageId>PureMVC</PackageId>
-    <Version>4.1.0</Version>
+    <Version>4.2.0</Version>
     <Description>PureMVC is a lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern.</Description>
     <Copyright>Copyright © 2020 Saad Shams, Futurescale, Inc.</Copyright>
     <license>Creative Commons Attribution 3.0</license>
@@ -15,11 +15,10 @@
     <Authors>Saad Shams</Authors>
     <Company>Futurescale, Inc.</Company>
     <PackageTags>PureMVC Standard MVC</PackageTags>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
   
 </Project>
